@@ -29,11 +29,31 @@ public :
         else return board_instance;
     };
 
-    void addCard(Card);
+    void addCard(Card c){
+        bool exist=false;
+        for(card_iter = cards.begin(); card_iter != cards.end(); card_iter++){
+            if(card_iter.top()==c){
+                card_iter.push(c);
+                exist=true;
+            }
+        }
+        if(exist==false){
+            stack<Card> new_pile;
+            new_pile.push(c);
+            cards.push_back(new_pile);
+        }
+        nbCards++;
+    };
 
     virtual void initBoard();
 
-    void removeCard(Card);
+    void removeCard(Card){
+        for(card_iter = cards.begin(); card_iter != cards.end(); card_iter++){
+            if(card_iter.top()==c){
+                card_iter.pop();
+                nbCards--;
+            }
+    };
 
 };
 
