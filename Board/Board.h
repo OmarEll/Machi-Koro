@@ -53,6 +53,7 @@ public :
                 card_iter.pop();
                 nbCards--;
             }
+        }
     };
 
 };
