@@ -1,6 +1,7 @@
 #include <string> 
 #include <iostream>
 #include "../Hand/Hand.hpp"
+#include "../Wallet/Wallet.hpp"
 using namespace std;
 
 class Player{

@@ -1,7 +1,6 @@
-#include "Game.hpp"
+#include "../Game/Game.h"
 
-class Strategy
-{
+class Strategy{
 public:
     Strategy(/* args */);
     virtual void chooseCard(Game);
