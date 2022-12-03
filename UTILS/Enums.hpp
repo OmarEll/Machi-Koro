@@ -1,4 +1,6 @@
-enum Colors{
+
+
+enum class Colors{
     RED,
     BLUE,
     PURPLE,

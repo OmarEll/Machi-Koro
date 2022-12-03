@@ -3,6 +3,12 @@
 #include <iostream>
 #include <list>
 #include <string>
+#include <vector>
+#include "Bank.hpp"
+#include "Player.hpp"
+#include "Board.h"
+#include "Enums.hpp"
+#include "Dies/Dies.h"
 
 using namespace std;
 //
@@ -13,28 +19,28 @@ using namespace std;
 
 class Game {
 private :
-    Vector <Player> players;
-    Vector <Card> Establishments;
-    Vector <Card> Landmarks;
+    vector <Player> players;
+    vector <Card> Establishments;
+    vector <Card> Landmarks;
     size_t minPlayers;
     size_t maxPlayers;
-    board Board_Game;
-    list<dies> Dice;
+    Board Board_Game;
+    Dies Dice;
     Bank Bank_Game;
-    list <player> Players_Game;
+    list <Player> Players_Game;
     static Game* Game_single;
-    List<colors> Activation_order;
+    list<Color>Activation_order;
     string Nom_Extension;
     Game ();
 public:
     void virtual initGame();
     void virtual DoTurn ();
-    bool Iswin(player& current_player);
+    bool Iswin(Player& current_player);
     void virtual Destructor ();
     ostream& Afficher_etat_partie (ostream& standard);
     static Game* Singleton (string NomEdition);
-    Establishment& Buy_Establishment(player& current_player);
-    void Buy_Landmark(player& current_player);
+    Establishment& Buy_Establishment(Player& current_player);
+    void Buy_Landmark(Player& current_player);
     string Get_Extension() { return Nom_Extension;}
 };
 
