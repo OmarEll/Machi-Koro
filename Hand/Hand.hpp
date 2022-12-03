@@ -18,5 +18,6 @@ public:
     vector<Card> getPurpleCards();
     vector<Card> getBlueCards();
     void activateColorCards(Color);
+    vector <Card> GetLandmarks() {return landmarks;}
     ~Hand();
    };
