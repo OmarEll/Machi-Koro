@@ -8,11 +8,3 @@ public:
     EasyLevel(/* args */);
     ~EasyLevel();
 };
-
-EasyLevel::EasyLevel(/* args */)
-{
-}
-
-EasyLevel::~EasyLevel()
-{
-}

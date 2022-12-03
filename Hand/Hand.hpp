@@ -1,8 +1,8 @@
-#include "Player.hpp"
-#include "Card.hpp"
 #include <map>
 #include <vector>
+#include "../Card.hpp"
 #include "Enums.hpp"
+#include "../UTILS/Enums.hpp"
 using namespace std;
 class Hand{
 private:
@@ -17,7 +17,7 @@ public:
     vector<Card> getGreenCards();
     vector<Card> getPurpleCards();
     vector<Card> getBlueCards();
-    void activateColorCards(Color);
+    void activateColorCards(Colors);
     vector <Card> GetLandmarks() {return landmarks;}
     ~Hand();
    };

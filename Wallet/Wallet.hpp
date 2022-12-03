@@ -1,5 +1,5 @@
 #define defaultValue 3
-
+#include "../Player/Player.hpp"
 class Wallet
 {
 private:

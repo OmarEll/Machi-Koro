@@ -8,11 +8,3 @@ public:
     IA(/* args */);
     ~IA();
 };
-
-IA::IA(/* args */)
-{
-}
-
-IA::~IA()
-{
-}

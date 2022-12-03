@@ -5,12 +5,12 @@ enum class Colors{
     BLUE,
     PURPLE,
     GREEN
-}
+};
 
 enum Expansions{
     Standard, Harbor, GreenValley, Deluxe
-}
+};
 
-enum Types{ //
+enum Types{
     wheat, cow, bread, coffee, wheel, tower, factory, apple
-}
+};
