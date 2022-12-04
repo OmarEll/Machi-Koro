@@ -1,4 +1,5 @@
-
+#ifndef MACHIKORO_FICHIER_ENUMS_H
+#define MACHIKORO_FICHIER_ENUMS_H
 
 enum Colors{
     RED,
@@ -18,3 +19,5 @@ enum Expansions{
 enum Types{
     wheat, cow, bread, coffee, wheel, tower, factory, apple
 };
+
+#endif //MACHIKORO_FICHIER_ENUMS_H

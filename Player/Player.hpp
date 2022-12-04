@@ -4,22 +4,24 @@
 #include <string>
 #include <iostream>
 #include "../Hand/Hand.hpp"
-#include "Bank/Wallet.hpp"
+
+class Hand;
+
 using namespace std;
 
 class Player{
+    static int id_counter;
     private:
         int idPlayer;
-        static int id_counter;
         string name;
         Hand hand;
     public:
-        Player(string nm):idPlayer(id_counter++),name(nm){};
+        Player(string nm,Expansions myExpansion):idPlayer(++id_counter),name(nm),hand(myExpansion){};
         int getId() const { return idPlayer; };
         string getName() const { return name; };
         Hand getHand() const { return hand;};
         Wallet getWallet() const {return wallet; }
-        bool hasLandmark(LandmarksNames name) const;
+        bool hasLandmark(LandmarksNames name) const{return hand.getLandmarks().find(name)!=hand.getLandmarks().end();}
         virtual ~Player();
 };
 
