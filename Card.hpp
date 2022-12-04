@@ -1,5 +1,8 @@
-#include "Enums.hpp"
-#include "Player.hpp"
+#ifndef MACHIKORO_FICHIER_CARD_H
+#define MACHIKORO_FICHIER_CARD_H
+
+#include "UTILS/Enums.hpp"
+#include "Player/Player.hpp"
 #include <string>
 
 using namespace std;
@@ -109,3 +112,4 @@ class Landmarks : public Card {
         void isConstructed() const {constructed = true};
 };
 
+#endif //MACHIKORO_FICHIER_CARD_H

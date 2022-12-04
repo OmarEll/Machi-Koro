@@ -1,10 +1,14 @@
 
 
-enum class Colors{
+enum Colors{
     RED,
     BLUE,
     PURPLE,
     GREEN
+};
+
+enum LandmarksNames{
+    RadioTower,TrainStation,ShoppingMall,AmusementPark
 };
 
 enum Expansions{

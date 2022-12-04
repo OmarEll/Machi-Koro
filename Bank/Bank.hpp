@@ -1,16 +1,18 @@
-
+#include <vector>
+#include "Wallet.hpp"
+using namespace std;
 class Bank{
 private:
-    int solde;
+    int balance;
     static Bank* uniqueBank;
+    vector<Wallet*> wallets;
 public:
-    void deposit(int);
-    int withdraw(int);
-    Bank(int b):solde(b){};
-    Bank(Bank&);
+    Bank(size_t nbPlayers, int defaultValueWallet,int b);
     ~Bank();
-    static Bank& giveInstance();
+    static Bank& getInstance(){ return *uniqueBank; }
+    static Bank& makeIfNotInstance(size_t nbPlayersint,int defaultValueWallet,int b);
     static void freeInstance();
-    void deposit(int);
-    int withdraw(int);
+    int deposit(size_t idPlayer,int amount);
+    void withdraw(size_t idPlayer,int amount);
+    void playerPaysPlayer(size_t idPlayer1,size_t idPlayer2,int amount);
 };

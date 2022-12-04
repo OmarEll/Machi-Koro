@@ -1,8 +1,13 @@
+#ifndef MACHIKORO_FICHIER_STRATEGY_H
+#define MACHIKORO_FICHIER_STRATEGY_H
+
 #include "../Game/Game.h"
 
 class Strategy{
 public:
     Strategy(/* args */);
     virtual void chooseCard(Game);
-    ~Strategy();
+    virtual ~Strategy();
 };
+
+#endif //MACHIKORO_FICHIER_STRATEGY_H

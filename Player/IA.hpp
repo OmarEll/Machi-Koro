@@ -1,3 +1,6 @@
+#ifndef MACHIKORO_FICHIER_IA_H
+#define MACHIKORO_FICHIER_IA_H
+
 #include "Player.hpp"
 #include "Strategy.hpp"
 
@@ -8,3 +11,5 @@ public:
     IA(/* args */);
     ~IA();
 };
+
+#endif //MACHIKORO_FICHIER_IA_H

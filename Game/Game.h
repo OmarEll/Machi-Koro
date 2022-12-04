@@ -1,20 +1,21 @@
 //
 // Created by mabur on 02/12/2022.
+
+#ifndef MACHIKORO_FICHIER_GAME_H
+#define MACHIKORO_FICHIER_GAME_H
+
 #include <iostream>
 #include <list>
 #include <string>
 #include <vector>
-#include "Bank.hpp"
-#include "Player.hpp"
-#include "Board.h"
-#include "Enums.hpp"
-#include "Dies/Dies.h"
+#include "../Bank/Bank.hpp"
+#include "../Player/Player.hpp"
+#include "../Board/Board.h"
+#include "../UTILS/Enums.hpp"
+#include "../Dies/Dies.h"
 
 using namespace std;
 //
-
-#ifndef MACHIKORO_FICHIER_GAME_H
-#define MACHIKORO_FICHIER_GAME_H
 
 
 class Game {
@@ -29,7 +30,7 @@ private :
     Bank Bank_Game;
     list <Player> Players_Game;
     static Game* Game_single;
-    list<Color>Activation_order;
+    list<Colors>Activation_order;
     string Nom_Extension;
     Game ();
 public:

@@ -4,7 +4,8 @@
 #include <vector>
 #include <iostream>
 #include <string>
-
+#include <stack>
+#include "../Card.hpp"
 using namespace std;
 
 class Board{
@@ -15,7 +16,7 @@ private :
     size_t nbCardsMax;
     static Board* board_instance;
 
-    Board Board();
+    Board();
     ~Board();
     Board(Board);
     Board& operator=(Board&);

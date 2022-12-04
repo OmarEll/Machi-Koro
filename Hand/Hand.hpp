@@ -1,13 +1,15 @@
+#ifndef MACHIKORO_FICHIER_HAND_H
+#define MACHIKORO_FICHIER_HAND_H
+
 #include <map>
 #include <vector>
 #include "../Card.hpp"
-#include "Enums.hpp"
-#include "../UTILS/Enums.hpp"
+
 using namespace std;
 class Hand{
 private:
     map<Card,size_t> establishments;
-    vector<Card> landmarks;
+    map<LandmarksNames,Card> landmarks;
 public:
     Hand();
     void addEstablishment(Card);
@@ -18,6 +20,8 @@ public:
     vector<Card> getPurpleCards();
     vector<Card> getBlueCards();
     void activateColorCards(Colors);
-    vector <Card> GetLandmarks() {return landmarks;}
+    map<LandmarksNames, Card> getLandmarks() const {return landmarks;}
     ~Hand();
    };
+
+#endif //MACHIKORO_FICHIER_HAND_H
