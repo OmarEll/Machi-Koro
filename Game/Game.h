@@ -43,6 +43,7 @@ public:
     Establishment& Buy_Establishment(Player& current_player);
     void Buy_Landmark(Player& current_player);
     string Get_Extension() { return Nom_Extension;}
+    void getBank() {return Bank_Game;}
 };
 
 

@@ -4,6 +4,7 @@
 #include "UTILS/Enums.hpp"
 #include "Player/Player.hpp"
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -15,7 +16,7 @@ class Card
         string description;
         Colors color; 
         Player& owner;
-        Player& activePlayer;
+        Player& activePlayer; //a chercher d'ailleurs avec un getCurrentPlayer 
         int cost;
         Expansions expansion;
     public:
@@ -35,60 +36,45 @@ class Establishment : public Card
     protected:
         bool activated;
         Types type; 
-        list<int> activationNumbers;
+        vector<int> activationNumbers;
         string originOfCoinsEarned; //a revoir
         int numberOfCoinsEarned;
     public:
-        Establishment(bool act = false, Types typ = nullptr, /* voir comment on gere list*/ , string ori= nullptr, int num= 0)
-            :activated(act), type(typ), /* voir comment on gere list*/, originOfCoinsEarned(ori), numberOfCoinsEarned(num);
-        void activate(int DiceRolled){//méthode réutilisée pour les différentes cartes
-            activated = false;
-		    for(int i=0; i<activationNumbers.size(); i++){
- 			    if(iActivationNumber[i] == diceRolled) bActivated = true;
-            }
-        }
-        void deactivate{ activated=false; };
+        Establishment(bool act = false, Types typ = nullptr, vector<int> actNum.push_back(0) , string ori= nullptr, int num= 0)
+            :activated(act), type(typ), activationNumbers(actNum), originOfCoinsEarned(ori), numberOfCoinsEarned(num);
+        void activate(int DiceRolled); //méthode réutilisée pour les différentes cartes
+        void deactivate{ activated=false; }
         virtual void launchEffect(Game);
-        void setNumberOfCoinsEarned();
-        void setOriginOfCoinsEarned();
+        void setNumberOfCoinsEarned(int num) {numberOfCoinsEarned = num;}
+        void getNumberOfCoinsEarned() {return numberOfCoinsEarned;}
+        void setOriginOfCoinsEarned(string name){ originOfCoinsEarned = name; }
+        void getOriginOfCoinsEarned(){ return originOfCoinsEarned; }
+        void launchEffet(Game);
 };
 
 //Déclaration des classes correspondant aux couleurs des cartes establishment
 class Red : public Establishment{ //ne peut être activé que pendant le tour des adversaires
     public:
-        Red(Card::Colors col):color(col = "RED");
-        void activate(int DiceRolled){
-            Establishment::activate(int DiceRolled);
-            if ((ActivePlayer != owner) && activated=true) activated=true;
-            else activated = false;
-
-        };
+        Red(Colors col= "RED", string ori= "PlayerWhoRolledDice"):color(col), originOfCoinsEarned(ori);
+        void activate(int DiceRolled);
 };
 
 class Blue : public Establishment{ //peut-être activé pendant le tour de n’importe quel joueurs
     public:
-        Blue(Card::Colors col):color(col = "BLUE");
+        Blue(Colors col= "BLUE", string ori= "Bank"):color(col), originOfCoinsEarned(ori);
         void activate(int DiceRolled); //méthode inchangé
 };
 
 class Green : public Establishment{ //peut être activé uniquement pendant le tour du propriétaire de la carte 
     public:
-        Green(Card::Colors col):color(col = "GREEN");
-        void activate(int DiceRolled) { 
-            Establishment::activate(int DiceRolled);
-            if ((ActivePlayer == owner) && activated=true) activated=true;
-            else activated = false;
-        }
+        Green(Colors col= "GREEN", string ori= "Bank"):color(col), originOfCoinsEarned(ori);
+        void activate(int DiceRolled);
 };
 
 class Purple : public Establishment{ //peut être activé uniquement pendant le tour du propriétaire de la carte 
     public:
         Purple(Card::Colors col):color(col = "PURPLE");
-        void activate(int DiceRolled) { 
-            Establishment::activate(int DiceRolled);
-            if ((ActivePlayer == owner) && activated=true) activated=true;
-            else activated = false;
-        }
+        void activate(int DiceRolled);
 };
 
 // Déclaration des classes de cartes bleu establishment individuelles 
@@ -99,7 +85,7 @@ class WheatField : public Blue{
 };
 
 
-class BusinessCenter : public Purple { //unique establishement standard qui fait autre chose que gagner des coins
+class Office : public Purple { //unique establishement standard qui fait autre chose que gagner des coins
     public:
     void tradeCards();
 };

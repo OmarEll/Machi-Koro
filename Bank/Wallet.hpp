@@ -14,6 +14,7 @@ public:
     explicit Wallet(int defaultValue):balance(defaultValue){};
     int getBalance(){ return balance; };
     void addCoins(int nbCoins) { balance +=nbCoins; };
+    void removeCoins(int nbCoins) { balance -=nbCoins; };
 };
 
 #endif //MACHIKORO_FICHIER_WALLET_H

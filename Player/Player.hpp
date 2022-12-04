@@ -18,6 +18,7 @@ class Player{
         int getId() const { return idPlayer; };
         string getName() const { return name; };
         Hand getHand() const { return hand;};
+        Wallet getWallet() const {return wallet; }
         bool hasLandmark(LandmarksNames name) const;
         virtual ~Player();
 };
