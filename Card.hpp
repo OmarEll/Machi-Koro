@@ -49,7 +49,7 @@ class Establishment : public Card
         void getNumberOfCoinsEarned() {return numberOfCoinsEarned;}
         void setOriginOfCoinsEarned(string name){ originOfCoinsEarned = name; }
         void getOriginOfCoinsEarned(){ return originOfCoinsEarned; }
-        void launchEffet(Game);
+        void launchEffect(Game g, Establishment e);
 };
 
 //Déclaration des classes correspondant aux couleurs des cartes establishment
@@ -77,17 +77,30 @@ class Purple : public Establishment{ //peut être activé uniquement pendant le 
         void activate(int DiceRolled);
 };
 
+/* A revoir (est-ce necessaire de déclarer les cartes classiques ?)
 // Déclaration des classes de cartes bleu establishment individuelles 
 class WheatField : public Blue{
     public:
         WheatField();
         launchEffet(Game);
 };
+*/
 
+//Déclaration des cartes violettes de la version standard (remarque : il y a 3 cartes violettes et un joueur peut posséder les trois mais pas en avoir une en plusieurs exemplaire)
+class Stadium : public Purple {
+    public:
+    void launchEffect(Game g, Establishment e); //méthode redefinie pour permettre de recevoir des coins de la part de l'ensemble des adversaires
+}
+
+class TvStation : public Purple {
+    public:
+    void launchEffect(Game g, Establishment e); //méthode redefinie pour permettre de choisir l'adversaire qui donne les coins au propriétaire de la carte (automatique si 2 joueurs)
+}
 
 class Office : public Purple { //unique establishement standard qui fait autre chose que gagner des coins
     public:
-    void tradeCards();
+    void launchEffect(Game g, Establishment e);
+    //void tradeCards(); //echange une carte avec un autre joueur sauf de type tower (ie.les cartes violettes)
 };
 
 class Landmarks : public Card {

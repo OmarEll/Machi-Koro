@@ -20,7 +20,7 @@ using namespace std;
 
 class Game {
 private :
-    vector <Player> players;
+    vector <Player> players; 
     vector <Card> Establishments;
     vector <Card> Landmarks;
     size_t minPlayers;
@@ -28,7 +28,7 @@ private :
     Board Board_Game;
     Dies Dice;
     Bank Bank_Game;
-    list <Player> Players_Game;
+    list <Player> Players_Game; //quel est la dif avec "vector <Player> players" qu'il y a déjà plus haut ?
     static Game* Game_single;
     list<Colors>Activation_order;
     string Nom_Extension;
@@ -44,6 +44,7 @@ public:
     void Buy_Landmark(Player& current_player);
     string Get_Extension() { return Nom_Extension;}
     void getBank() {return Bank_Game;}
+    const vector<Player>& getPlayers() const {return players}; //pas sur, comment on recupere un vector ? (j'en ai besoin pour les cartes violettes)
 };
 
 
