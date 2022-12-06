@@ -1,62 +1,9 @@
-<<<<<<< HEAD
-cmake_minimum_required(VERSION 3.24)
-=======
-cmake_minimum_required(VERSION 3.23)
->>>>>>> cd03e1fee04b0fb11730e1a5a16330d2334d5ed5
-project(Machi_Koro)
+cmake_minimum_required(VERSION 3.13)  # CMake version check
+project(simple_example)               # Create project "simple_example"
+set(CMAKE_CXX_STANDARD 14)            # Enable c++14 standard
 
-set(CMAKE_CXX_STANDARD 14)
+# Add main.cpp file of project root directory as source file
+set(SOURCE_FILES main.cpp)
 
-include_directories(.)
-include_directories(Bank)
-include_directories(Board)
-<<<<<<< HEAD
-=======
-include_directories(Dies)
->>>>>>> cd03e1fee04b0fb11730e1a5a16330d2334d5ed5
-include_directories(Game)
-include_directories(Hand)
-include_directories(Player)
-include_directories(UTILS)
-include_directories(Wallet)
-
-add_executable(Machi_Koro
-        Bank/Bank.hpp
-        Board/Board.cpp
-        Board/Board.h
-        Board/Deck.h
-        Board/DeluxeBoard.h
-        Board/GreenValleyBoard.h
-        Board/HarborBoard.h
-        Board/StandardBoard.h
-<<<<<<< HEAD
-=======
-        Dies/Dies.cpp
-        Dies/Dies.h
->>>>>>> cd03e1fee04b0fb11730e1a5a16330d2334d5ed5
-        Game/DeluxeExpansion.cpp
-        Game/DeluxeExpansion.h
-        Game/Game.cpp
-        Game/Game.h
-        Game/GreenValeyExpansion.cpp
-        Game/GreenValeyExpansion.h
-        Game/HarborExpansion.cpp
-        Game/HarborExpansion.h
-        Game/StandardExpansion.cpp
-        Game/StandardExpansion.h
-        Hand/Hand.hpp
-        Player/EasyLevel.hpp
-        Player/IA.hpp
-        Player/Player.hpp
-        Player/Strategy.hpp
-        UTILS/Enums.hpp
-<<<<<<< HEAD
-        Wallet/Wallet.hpp
-        Card.hpp
-        main.cpp Dies/Dies.cpp Dies/Dies.h)
-=======
-        Bank/Wallet.hpp
-        Card.cpp
-        Card.hpp
-        main.cpp Bank/Bank.cpp Hand/Hand.cpp)
->>>>>>> cd03e1fee04b0fb11730e1a5a16330d2334d5ed5
+# Add executable target with source files listed in SOURCE_FILES variable
+add_executable(simple_example ${SOURCE_FILES})
