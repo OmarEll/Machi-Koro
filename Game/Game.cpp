@@ -26,6 +26,7 @@ bool Game::Iswin(Player& current_player) {
     return true;
 }
 
+// A METTRE DANS STANDARD
 void virtual Game::DoTurn() {
     // Variables
     bool is_finish = false;
