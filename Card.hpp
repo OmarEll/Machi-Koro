@@ -1,9 +1,6 @@
-<<<<<<< Updated upstream
 #ifndef MACHIKORO_FICHIER_CARD_H
 #define MACHIKORO_FICHIER_CARD_H
 
-=======
->>>>>>> Stashed changes
 #include "UTILS/Enums.hpp"
 #include "Player/Player.hpp"
 #include <string>

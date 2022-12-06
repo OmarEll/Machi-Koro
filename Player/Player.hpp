@@ -20,17 +20,9 @@ class Player{
         int getId() const { return idPlayer; };
         string getName() const { return name; };
         Hand getHand() const { return hand;};
-<<<<<<< Updated upstream
         Wallet getWallet() const {return wallet; }
         bool hasLandmark(LandmarksNames name) const{return hand.getLandmarks().find(name)!=hand.getLandmarks().end();}
         virtual ~Player();
 };
 
 #endif //MACHIKORO_FICHIER_PLAYER_H
-=======
-        Wallet getWallet() const { return wallet;};
-        bool hasTrainStation();
-        ~Player();
-};
-
->>>>>>> Stashed changes
