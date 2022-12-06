@@ -4,10 +4,11 @@
 
 // we chose to have an int balance instead of unsigned int
 // because maybe in future expantion player need to pay his debt
-// so there's a possibility that player have a negative balance.
+// so there's a possibility that player have a negative balance.:::
 
 class Wallet
 {
+    
 private:
     int balance;
 public:
