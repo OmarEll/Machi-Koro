@@ -1,7 +1,11 @@
 #ifndef DELUXEBOARD_H_INCLUDED
 #define DELUXEBOARD_H_INCLUDED
 
-class GreenValleyBoard : public HarborBoard, public GreenValley {
+#include "../Board/Deck.h"
+#include "../Board/HarborBoard.h"
+#include "../Board/GreenValleyBoard.h"
+
+class DeluxeBoard : public HarborBoard, public GreenValleyBoard {
 
 public :
     void initBoard();

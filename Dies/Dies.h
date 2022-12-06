@@ -1,11 +1,10 @@
 //
 // Created by mabur on 03/12/2022.
-#include "Player.hpp"
 //
 
 #ifndef MACHI_KORO_DIES_H
 #define MACHI_KORO_DIES_H
-
+#include "../Player/Player.hpp"
 
 class Dies {
 private :

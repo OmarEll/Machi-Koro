@@ -5,21 +5,22 @@
 #include <iostream>
 #include <string>
 #include <stack>
-#include "../Card.hpp"
+#include "../Card/Card.hpp"
+
 using namespace std;
 
 class Board{
-private :
+protected:
 
     vector<stack<Card>> cards;
     size_t nbCards;
     size_t nbCardsMax;
     static Board* board_instance;
 
-    Board();
-    ~Board();
-    Board(Board);
-    Board& operator=(Board&);
+    Board(); //a implémenter
+    ~Board();//a implémenter
+    Board(Board&); //a implémenter
+    Board& operator=(Board&); //a implémenter
 
 public :
     Board& createBoard(){
@@ -32,13 +33,22 @@ public :
 
     void addCard(Card c){
         bool exist=false;
-        for(card_iter = cards.begin(); card_iter != cards.end(); card_iter++){
+        for (auto& it : cards){
+            if(it.top()==c){ //sameCard
+                it.push(c);
+                exist=true;
+            }
+        }
+
+        /*
+        for(stack<Card> card_iter = cards.begin(); card_iter != cards.end(); card_iter++){
             if(card_iter.top()==c){
                 card_iter.push(c);
                 exist=true;
             }
         }
-        if(exist==false){
+        */
+        if(!exist){
             stack<Card> new_pile;
             new_pile.push(c);
             cards.push_back(new_pile);
@@ -46,12 +56,12 @@ public :
         nbCards++;
     };
 
-    virtual void initBoard();
+    virtual void initBoard(); // à faire
 
-    void removeCard(Card){
-        for(card_iter = cards.begin(); card_iter != cards.end(); card_iter++){
-            if(card_iter.top()==c){
-                card_iter.pop();
+    void removeCard(Card c){
+        for (auto& it : cards){
+            if(it.top()==c){
+                it.pop();
                 nbCards--;
             }
         }

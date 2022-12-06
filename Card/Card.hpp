@@ -1,8 +1,9 @@
 #ifndef MACHIKORO_FICHIER_CARD_H
 #define MACHIKORO_FICHIER_CARD_H
 
-#include "UTILS/Enums.hpp"
-#include "Player/Player.hpp"
+#include "../UTILS/Enums.hpp"
+#include "../Player/Player.hpp"
+#include "../Game/Game.h"
 #include <string>
 #include <vector>
 
@@ -15,16 +16,16 @@ class Card
         string cardName;
         string description;
         Colors color; 
-        Player& owner;
-        Player& activePlayer; //a chercher d'ailleurs avec un getCurrentPlayer 
+        Player* owner = nullptr;
+        Player* activePlayer = nullptr; //a chercher d'ailleurs avec un getCurrentPlayer
         int cost;
         Expansions expansion;
     public:
         Card(int i, string n, string desc, Colors col, int cos, Expansions exp)
-            :id(i),cardName(n),description(desc),color(col),owner(nullptr),activePlayer(nullptr),cost(cos),expansion(exp); //surement a revoir
+            :id(i),cardName(n),description(desc),color(col),cost(cos),expansion(exp); //surement a revoir
         ~Card(); //est-ce qu'il y a besoin de redefinir le destructeur ? Il n'y a rien d'alloué dynamiquement dans Card
         bool sameCard(Card); //a revoir ce qui est mis en paramètre 
-        void setOwner(Player& o) {owner = o;}; //a revoir
+        void setOwner(Player* o) {owner = o;}; //a revoir
         Player getOwner(Player&) const {return owner;}; //a revoir
         void setActivePlayer(Player& a) {activePlayer = a;}; //a revoir
         Player getActivePlayer(Player&) const {return activePlayer}; //a revoir
@@ -55,25 +56,25 @@ class Establishment : public Card
 //Déclaration des classes correspondant aux couleurs des cartes establishment
 class Red : public Establishment{ //ne peut être activé que pendant le tour des adversaires
     public:
-        Red(Colors col= "RED", string ori= "PlayerWhoRolledDice"):color(col), originOfCoinsEarned(ori);
+        Red(Colors col= RED, string ori= "PlayerWhoRolledDice"):color(col), originOfCoinsEarned(ori);
         void activate(int DiceRolled);
 };
 
 class Blue : public Establishment{ //peut-être activé pendant le tour de n’importe quel joueurs
     public:
-        Blue(Colors col= "BLUE", string ori= "Bank"):color(col), originOfCoinsEarned(ori);
+        Blue(Colors col= BLUE, string ori= "Bank"):color(col), originOfCoinsEarned(ori);
         void activate(int DiceRolled); //méthode inchangé
 };
 
 class Green : public Establishment{ //peut être activé uniquement pendant le tour du propriétaire de la carte 
     public:
-        Green(Colors col= "GREEN", string ori= "Bank"):color(col), originOfCoinsEarned(ori);
+        Green(Colors col= GREEN, string ori= "Bank"):color(col), originOfCoinsEarned(ori);
         void activate(int DiceRolled);
 };
 
 class Purple : public Establishment{ //peut être activé uniquement pendant le tour du propriétaire de la carte 
     public:
-        Purple(Card::Colors col):color(col = "PURPLE");
+        Purple(Card::Colors col):color(col = PURPLE);
         void activate(int DiceRolled);
 };
 
@@ -107,7 +108,7 @@ class Landmarks : public Card {
     protected:
         bool constructed;
     public:
-        virtual void lauchEffect(Game);
+        virtual void launchEffect(Game);
         void isConstructed() const {constructed = true};
 };
 

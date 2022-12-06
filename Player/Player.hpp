@@ -4,6 +4,8 @@
 #include <string>
 #include <iostream>
 #include "../Hand/Hand.hpp"
+#include "../Bank/Bank.hpp"
+#include "../Bank/Wallet.hpp"
 
 class Hand;
 
@@ -20,8 +22,7 @@ class Player{
         int getId() const { return idPlayer; };
         string getName() const { return name; };
         Hand getHand() const { return hand;};
-        Wallet getWallet() const {return wallet; }
-        bool hasLandmark(LandmarksNames name) const{return hand.getLandmarks().find(name)!=hand.getLandmarks().end();}
+        //bool hasLandmark(LandmarksNames name) const{return hand.getLandmarks().find(name)!=hand.getLandmarks().end();}
         virtual ~Player();
 };
 

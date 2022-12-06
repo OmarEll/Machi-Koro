@@ -1,5 +1,6 @@
 #ifndef STANDARDBOARD_H_INCLUDED
 #define STANDARDBOARD_H_INCLUDED
+#include "../Board/Board.h"
 
 class StandardBoard : public Board {
 

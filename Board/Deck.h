@@ -1,12 +1,15 @@
 #ifndef DECK_H_INCLUDED
 #define DECK_H_INCLUDED
 
+#include "../Card/Card.hpp"
+
+
 class Deck{
 private :
     stack<Card> cards;
 
 public :
-    // Remarque : finalement pas besoin de méthode isEmpty()
+    // Remarque : finalement pas besoin de mï¿½thode isEmpty()
     // avec stack on a deja cards.empty() qui renvoie bool
 
     Card drawCard(){

@@ -1,6 +1,9 @@
 #ifndef HARBORBOARD_H_INCLUDED
 #define HARBORBOARD_H_INCLUDED
 
+#include "../Board/Board.h"
+#include "../Board/Deck.h"
+
 class HarborBoard : public Board {
 private :
     Deck deck;

@@ -1,30 +1,31 @@
 #include "Card.hpp"
-#include "Game.h"
+#include "../Player/Player.hpp"
+#include "../Game/Game.h"
 
 //definition des différents méthodes activate en fonction de la couleur des cartes
 
 void Establishment::activate(int DiceRolled){//méthode réutilisée pour les différentes cartes
             activated = false;
 		    for(int i=0; i<activationNumbers.size(); i++){
- 			    if(iActivationNumber[i] == diceRolled) bActivated = true;
+ 			    if(activationNumbers[i] == diceRolled) activated = true;
             }
         }
 
 void Red::activate(int DiceRolled){
             Establishment::activate(int DiceRolled);
-            if ((ActivePlayer != owner) && activated==true) activated=true;
+            if ((activePlayer != owner) && activated==true) activated=true;
             else activated = false;
         };
 
 void Green::activate(int DiceRolled) { 
             Establishment::activate(int DiceRolled);
-            if ((ActivePlayer == owner) && activated==true) activated=true;
+            if ((activePlayer == owner) && activated==true) activated=true;
             else activated = false;
         }
 
 void Purple::activate(int DiceRolled) { 
             Establishment::activate(int DiceRolled);
-            if ((ActivePlayer == owner) && activated==true) activated=true;
+            if ((activePlayer == owner) && activated==true) activated=true;
             else activated = false;
         }
 

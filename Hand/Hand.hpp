@@ -1,7 +1,7 @@
 
 #include <map>
 #include <vector>
-#include "../Card.hpp"
+#include "../Card/Card.hpp"
 
 class  Card;
 using namespace std;
