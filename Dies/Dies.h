@@ -11,7 +11,7 @@ class Dies {
 private :
     int faces;
 public :
-    Dies();
+    Dies() : faces(0) {};
     ~Dies();
     int rollDice(const Player& current_player );
 };

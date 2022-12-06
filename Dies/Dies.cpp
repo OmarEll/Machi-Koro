@@ -7,7 +7,7 @@
 
 int Dies::rollDice(const Player &current_player) {
     for (auto radio : current_player.getHand().GetLandmarks()){
-        if (radio.GetName() == "TrainStation" && radio.construct())
+        if (radio.GetName() == "TrainStation" && TrainStation.construct())
             return rand()%12+1;
     }
     return ::rand()%6+1;

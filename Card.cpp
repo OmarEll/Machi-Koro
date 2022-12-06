@@ -86,5 +86,8 @@ WheatField::WheatField(int i, string n, string desc, int cos, Expansions exp, Ty
                 ori = "Bank";
                 num = 1;
             }
+<<<<<<< Updated upstream
 
 */
+=======
+>>>>>>> Stashed changes
