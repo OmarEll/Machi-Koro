@@ -27,18 +27,37 @@ bool Game::Iswin(Player& current_player) {
 }
 
 void virtual Game::DoTurn() {
+    // Variables
     bool is_finish = false;
     int dice;
+    char choice;
+    // Fonction
     do{
+        // Chaque joueur
         for (auto current_player : Players_Game){
+            // Lance le dés
             dice = this->Dice.rollDice(current_player);
+            // On regarde les cartes rouges des autres joueurs
             for (auto other_player : Players_Game){
                 if (other_player.getId() != current_player.getId()) {
-                    for (auto red_cards: other_player.getHand().getRedCards()){
-                       // if (red_cards)
+                    // On regarde si le nombre correspond à la carte rouge d'un autre joueur;
+                    for (Red red_cards: other_player.getHand().getRedCards()){
+                        red_cards.activate(dice);
+                        // Si la carte est considéré comme activated
+                        if (red_cards.get_activated()){
+                            // On paye
+                            current_player.getWallet().removeCoins(red_cards.getNumberOfCoinsEarned());
+                            (red_cards.getOwner()).getWallet().addCoins(red_cards.getNumberOfCoinsEarned);
+                            red_cards.deactivate();
+                        }
+                    }
                 }
             }
-        }
+            // On a finit de regarder les cartes rouges des autres joueurs
+            // Il faut trouver moyen de regarder les cartes bleus des autres joueurs en même temps
+            cout<< "Voulez vous achetez un établissement ?\na-oui\nb-non" << endl;
+            cin >> choice;
+
         }
     }
 
