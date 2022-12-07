@@ -104,6 +104,22 @@ class Office : public Purple { //unique establishement standard qui fait autre c
     //void tradeCards(); //echange une carte avec un autre joueur sauf de type tower (ie.les cartes violettes)
 };
 
+//Déclaration des cartes spécifiques de la version harbor (a voir avec doc word, il y a surement des methodes general a faire)
+
+class MackerelBoat : public Blue {
+public:
+    void launchEffect(Game g, Establishment e);
+    //If you have a Harbor, get 3 coins from the bank on anyone's turn.
+}
+
+class TunaBoat : public Blue {
+public:
+    void launchEffect(Game g, Establishment e);
+    //On anyone's Turn: The current player rolls 2 dice. If you have a harbor you get as many coins as the dice total.
+}
+
+//Déclaration des landmarks
+
 class Landmarks : public Card {
     protected:
         bool constructed;
@@ -111,5 +127,50 @@ class Landmarks : public Card {
         virtual void launchEffect(Game);
         void isConstructed() const {constructed = true};
 };
+
+//Landmark STANDARD
+class TrainStation : public Landmarks {
+public:
+    void launchEffect(Game g, Landmarks l);
+    //You may roll 1 or 2 dice
+}
+
+class ShoppingMall : public Landmarks {
+public:
+    void launchEffect(Game g, Landmarks l);
+    //Every time you collect for one of your buildings containing a 'coffee cup' symbol or the 'bread' symbol, you gain extra coins.
+}
+
+class AmusementPark : public Landmarks {
+public:
+    void launchEffect(Game g, Landmarks l);
+    //If you roll doubles, take another turn after this one.
+}
+
+class RadioTower : public Landmarks {
+public:
+    void launchEffect(Game g, Landmarks l);
+    //Once every turn, you can choose to re-roll your dice
+}
+
+//Landmark HARBOR
+
+class CityHall : public Landmarks {
+public:
+    void launchEffect(Game g, Landmarks l);
+    //Immediately before buying establishments, if you have 0 coins, get 1 from the bank.
+}
+
+class Harbor : public Landmarks {
+public:
+    void launchEffect(Game g, Landmarks l);
+    //If the dice total is 10 or more, you may add 2 to the total, on your turn only.
+}
+
+class Airport : public Landmarks {
+public:
+    void launchEffect(Game g, Landmarks l);
+    //If you build nothing on your turn, you get 10 coins from the bank.
+}
 
 #endif //MACHIKORO_FICHIER_CARD_H

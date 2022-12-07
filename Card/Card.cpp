@@ -55,7 +55,7 @@ void Establishment::launchEffect(Game g, Establishment e){ //ne gère pas les ca
 
 }
 
-//redefinition des effets des cartes violettes 
+//redefinition des effets des cartes violettes standard
 
 void Stadium::launchEffect(Game g, Establishment e){ //méthode redefinie pour permettre de recevoir des coins de la part de l'ensemble des adversaires
     //comment est-ce qu'on parcours la liste des joueurs ? 
@@ -73,6 +73,11 @@ void TvStation::launchEffect(Game g, Establishment e){ //echange une carte avec 
 
 }
 
+//redfinition des effets des cartes spécifiques harbor
+
+void MackerelBoat::launchEffect(Game g, Establishment e){ //echange une carte avec un autre joueur sauf de type tower (ie.les cartes violettes)
+
+}
 
 /*
 
@@ -87,8 +92,6 @@ WheatField::WheatField(int i, string n, string desc, int cos, Expansions exp, Ty
                 ori = "Bank";
                 num = 1;
             }
-<<<<<<< Updated upstream
 
 */
-=======
->>>>>>> Stashed changes
+
