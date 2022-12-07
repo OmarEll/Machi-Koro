@@ -24,7 +24,8 @@ class Card
         Card(int i, string n, string desc, Colors col, int cos, Expansions exp)
             :id(i),cardName(n),description(desc),color(col),cost(cos),expansion(exp); //surement a revoir
         ~Card(); //est-ce qu'il y a besoin de redefinir le destructeur ? Il n'y a rien d'alloué dynamiquement dans Card
-        bool sameCard(Card); //a revoir ce qui est mis en paramètre 
+        bool sameCard(Card); //a revoir ce qui est mis en paramètre
+        Colors getColor() { return color ;}
         void setOwner(Player* o) {owner = o;}; //a revoir
         Player getOwner(Player&) const {return owner;}; //a revoir
         void setActivePlayer(Player& a) {activePlayer = a;}; //a revoir
@@ -41,7 +42,7 @@ class Establishment : public Card
         string originOfCoinsEarned; //a revoir
         int numberOfCoinsEarned;
     public:
-        Establishment(bool act = false, Types typ = nullptr, vector<int> actNum.push_back(0) , string ori= nullptr, int num= 0)
+        Establishment(Colors color,bool act = false, Types typ = nullptr, vector<int> actNum.push_back(0) , string ori= nullptr, int num= 0)
             :activated(act), type(typ), activationNumbers(actNum), originOfCoinsEarned(ori), numberOfCoinsEarned(num);
         void activate(int DiceRolled); //méthode réutilisée pour les différentes cartes
         void deactivate{ activated=false; }
@@ -120,7 +121,7 @@ public:
 
 //Déclaration des landmarks
 
-class Landmarks : public Card {
+class Landmark : public Card {
     protected:
         bool constructed;
     public:

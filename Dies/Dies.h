@@ -10,7 +10,7 @@ class Dies {
 private :
     int faces;
 public :
-    Dies() : faces(0) {};
+    Dies() : faces(6) {};
     ~Dies();
     int rollDice(const Player& current_player );
 };

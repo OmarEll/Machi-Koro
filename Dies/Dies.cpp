@@ -4,11 +4,10 @@
 
 #include "Dies.h"
 #include <cstdlib>
-
+#include "../UTILS/Enums.hpp"
 int Dies::rollDice(const Player &current_player) {
-    for (auto radio : current_player.getHand().GetLandmarks()){
-        if (radio.GetName() == "TrainStation" && TrainStation.construct())
-            return rand()%12+1;
-    }
-    return ::rand()%6+1;
+        if (current_player.hasLandmark(TrainStation))
+            return rand()%(faces*2)+1;
+
+    return ::rand()%faces+1;
 }

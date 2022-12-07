@@ -7,7 +7,11 @@ enum Colors{
     PURPLE,
     GREEN
 };
-
+enum Level{
+    Easy,
+    Medium,
+    Hard,
+};
 enum LandmarksNames{
     RadioTower,TrainStation,ShoppingMall,AmusementPark
 };

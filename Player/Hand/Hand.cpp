@@ -23,3 +23,27 @@ Hand::Hand(Expansions myExpansion){
         default:break;
     }
 }
+void Hand::addEstablishment(Establishment* card){
+    if(establishments.find(card)!=establishments.end())
+        establishments[card]++;
+    else{
+        establishments.insert(pair<Establishment*,size_t>(card,1));
+    }
+}
+
+void Hand::removeEstablishment(Establishment* card){
+    if(establishments.find(card)!=establishments.end()){
+        establishments[card]--;
+        if(establishments[card]<=0){
+            establishments.erase(card);
+        }
+    }
+}
+vector<Establishment*> Hand::getColorCards(Colors color){
+    vector<Establishment*> cards;
+    for(auto establishment : establishments){
+        if((establishment.first)->getColor()==color)
+            cards.push_back(establishment.first);
+    }
+    return cards;
+}
