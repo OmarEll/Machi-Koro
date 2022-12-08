@@ -1,8 +1,11 @@
 //
 // Created by mabur on 02/12/2022.
 //
-
+#include "Card.hpp"
 #include "Game.h"
+#include "Establishment/Establishment.h"
+#include "Landmark/Landmark.h"
+#include "Enums.hpp"
 
 using namespace std;
 
@@ -31,7 +34,7 @@ void virtual Game::DoTurn() {
     // Variables
     bool is_finish = false;
     int dice;
-    char choice;
+    string choice;
     // Fonction
     do{
         // Chaque joueur
@@ -43,23 +46,58 @@ void virtual Game::DoTurn() {
                 if (other_player.getId() != current_player.getId()) {
                     // On regarde si le nombre correspond à la carte rouge d'un autre joueur;
                     for (Red red_cards: other_player.getHand().getRedCards()){
-                        red_cards.activate(dice);
-                        // Si la carte est considéré comme activated
-                        if (red_cards.get_activated()){
-                            // On paye
-                            current_player.getWallet().removeCoins(red_cards.getNumberOfCoinsEarned());
-                            (red_cards.getOwner()).getWallet().addCoins(red_cards.getNumberOfCoinsEarned);
-                            red_cards.deactivate();
+                        if (red_cards.activate(dice) && ){ // Rajouter Can Pay
+                            red_cards.launchEffect();
                         }
                     }
                 }
             }
             // On a finit de regarder les cartes rouges des autres joueurs
-            // Il faut trouver moyen de regarder les cartes bleus des autres joueurs en même temps
-            cout<< "Voulez vous achetez un établissement ?\na-oui\nb-non" << endl;
+            // Maintenant, on va activer toutes les cartes bleus des autres joueurs (current player compris)
+            // Et toutes les cartes du current player qui doivent être activés
+            for (auto all_players : Players_Game){
+
+                // On regarde les établissement de tout le monde
+                for ( Establishment cards : all_players.getHand().GetEstablishment()){
+
+                    // Si le joueur est le current player et que sa cartes n'est pas rouge et doit être activé
+                    if (current_player.getId() == all_players.getId() &&
+                        cards.getColor() != RED &&
+                        cards.activate(dice)){
+
+                        cards.launchEffect();
+                    }
+
+                    // Si le joueur est différent du current player et que la carte est bleue et qu'elle doit être activé
+                    if (current_player.getId() != all_players.getId() &&
+                        cards.getColor() == BLUE &&
+                        cards.activate(dice))
+
+                        cards.launchEffect();
+                }
+            }
+            // On regarde si le joueur veut acheter un landmark
+            choice = "";
+            cout<< "Voulez vous achetez un établissement ?\noui\nnon" << endl;
             cin >> choice;
-
+            if (choice == "oui"){
+                cout << "Quelle landmark voulez vous achetez ?" << endl;
+                cout << "Trainstation\nRadiotower\nAmusementPark\nCommercialCenter\n"<< endl;
+                cin >> choice;
+                // On regarde si l'établissement existe et qu'il a l'argent nécessaire
+                if (!current_player.hasLandmark(choice) &&
+                current_player.getWallet().GetBalance - FoundPriceLandmark(choice) >= 0 )
+                    Buy_Landmark(current_player);
+                else
+                    cout << "Impossible : soit l'établissement n'existe pas soit vous n'avez pas l'argent" << endl;
+            }
+            // On regarde si le joueur gagne la partie après avoir acheter le dernier LandMark
+            if (Iswin(current_player)){
+                is_finish = true;
+                cout << "Player" << current_player.getName() << "a gagné ! " << endl;
+                break;
+            }
         }
-    }
-
+        // Fin de la boucle
+    } while (!is_finish);
 }
