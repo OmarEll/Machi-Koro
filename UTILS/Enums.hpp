@@ -20,6 +20,10 @@ enum Expansions{
     Standard, Harbor, GreenValley, Deluxe
 };
 
+enum OriginsOfCoins{
+    Bank,PlayerRolledDice,OtherPlayers
+};
+
 enum Types{
     wheat, cow, bread, coffee, wheel, tower, factory, apple
 };

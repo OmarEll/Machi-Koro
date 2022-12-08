@@ -18,6 +18,7 @@ public:
     void addEstablishment(Establishment*);
     void removeEstablishment(Establishment*);
     vector<Establishment*> getColorCards(Colors);
+    vector<Establishment*> getTypeCards(Types);
     map<LandmarksNames, Landmark*> getLandmarks() const {return landmarks;}
     ~Hand();
    };

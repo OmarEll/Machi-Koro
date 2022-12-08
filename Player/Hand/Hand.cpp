@@ -47,3 +47,11 @@ vector<Establishment*> Hand::getColorCards(Colors color){
     }
     return cards;
 }
+vector<Establishment*> Hand::getTypeCards(Types type){
+    vector<Establishment*> cards;
+    for(auto establishment : establishments){
+        if((establishment.first)->getType()==type)
+            cards.push_back(establishment.first);
+    }
+    return cards;
+}

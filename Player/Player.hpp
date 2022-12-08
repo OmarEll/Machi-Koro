@@ -17,7 +17,7 @@ private:
         string name;
         Hand hand;
     public:
-    static int id_counter;
+        static int id_counter;
         Player(string nm,Expansions myExpansion):idPlayer(++id_counter),name(nm),hand(myExpansion){};
         int getId() const { return idPlayer; };
         string getName() const { return name; };
