@@ -14,29 +14,26 @@ class Card
     protected:
         string cardName;
         string description;
-        Colors color; 
         Player* owner = nullptr;
         int cost;
         Expansions expansion;
     public:
-        Card(string name, string desc, Colors col, int cos, Expansions exp)
-            :cardName(name),description(desc),color(col),cost(cos),expansion(exp){}
+        Card(string name, string desc, int cos, Expansions exp)
+            :cardName(name),description(desc),cost(cos),expansion(exp){}
         virtual ~Card()=default; //destructeur en virtual parcque Card est abstraite
         /* GETTERS & SETTERS */
-        Colors getColor() { return color ;}
         string getCardName(){ return cardName;}
         string getDescription(){ return description;}
         Player* getOwner() const {return owner;};
         int getCost() { return cost; }
         Expansions getExpansion() { return expansion;}
 
-        void setColor(Colors col) { color=col ;}
         void setOwner(Player* o) {owner = o;} //a revoir
 
         /* REST */
         bool sameCard(Card); //a revoir ce qui est mis en paramètre
         virtual int gainWithType();
-        virtual void launchEffect(Game);
+        virtual void launchEffect(Game,Player& currentPlayer);
 
 };
 
