@@ -43,7 +43,7 @@ public:
     Establishment& Buy_Establishment(Player& current_player);
     void Buy_Landmark(Player& current_player);
     string Get_Extension() { return Nom_Extension;}
-    void getBank() {return Bank_Game;}
+    Bank getBank() {return Bank_Game;}
     const vector<Player>& getPlayers() const {return players}; //pas sur, comment on recupere un vector ? (j'en ai besoin pour les cartes violettes)
 };
 

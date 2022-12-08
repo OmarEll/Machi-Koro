@@ -1,7 +1,7 @@
 #include "Establishment.h"
 #include "../Player/Player.hpp"
 #include "../Game/Game.h"
-
+#include "../../UTILS/Enums.hpp"
 //definition des différents méthodes activate en fonction de la couleur des cartes
 
 bool Establishment::activate(int diceRolled){//méthode réutilisée pour les différentes cartes
@@ -18,28 +18,26 @@ bool Establishment::activate(int diceRolled){//méthode réutilisée pour les di
 
 //definition des effets
 
-void Establishment::launchEffect(Game g){ //ne gère pas les cartes violette, a gerer dans des classes filles spécifiques
+void Establishment::launchEffect(Game g,Player& currentPlayer){ //ne gère pas les cartes violette, a gerer dans des classes filles spécifiques
+    int id_Owner=getOwner()->getId();
+    if (getOrigin() == Bank && Card::getOwner()!=nullptr)
+        g.getBank().withdraw(id_Owner,getEarnedCoins());
 
-    if (getOriginOfCoinsEarned() == "Bank" && e.getOwner()!=nullptr)
-        e.getOwner().getWallet().addCoins(e.getNumberOfcoinsEarned());
-}
-
-if (e.getOriginOfCoinsEarned() == "PlayerWhoRolledDice" && e.getOwner()!=nullptr){ //on va prendre des coins du joueur qui a lancé le dé et le donner à celui qui possède cette carte
-if (e.getActivePlayer().getWallet().getBalance() >= e.getNumberOfcoinsEarned()){ //le joueur qui doit payer a assez de coins pour payer
-e.getActivePlayer().getWallet().removeCoins(e.getNumberOfcoinsEarned());
-e.getOwner().getWallet().addCoins(e.getNumberOfcoinsEarned());
-}
-else {                                                                       //le joueur qui doit payer n'a pas assez de coins pour payer donc donne ce qu'il a
-int num = e.getActivePlayer().getWallet().getBalance();
-e.getOwner().getWallet().addCoins(num);
-e.getActivePlayer().getWallet().removeCoins(num);
-}
+int id_current=currentPlayer.getId();
+int balance_current=g.getBank().getBalance(id_current);
+if ((getOrigin() == PlayerRolledDice) && getOwner()!=nullptr){ //on va prendre des coins du joueur qui a lancé le dé et le donner à celui qui possède cette carte
+    if (balance_current >= getEarnedCoins()){ //le joueur qui doit payer a assez de coins pour payer
+        g.getBank().playerPaysPlayer(id_current,id_Owner,getEarnedCoins());
+    }
+    else {                                                                       //le joueur qui doit payer n'a pas assez de coins pour payer donc donne ce qu'il a
+        g.getBank().playerPaysPlayer(id_current,id_Owner,balance_current);
+    }
 
 }
 
 
 }
-
+/*
 //redefinition des effets des cartes violettes standard
 
 void Stadium::launchEffect(Game g, Establishment e){ //méthode redefinie pour permettre de recevoir des coins de la part de l'ensemble des adversaires
@@ -64,7 +62,7 @@ void MackerelBoat::launchEffect(Game g, Establishment e){ //echange une carte av
 
 }
 
-/*
+
 
 WheatField::WheatField(int i, string n, string desc, int cos, Expansions exp, Types typ, Types typ, vector<int> actNum , string ori, int num)
             :id(i),cardName(n),description(desc),cost(cos),expansion(exp), type(typ), activationNumbers(actNum), originOfCoinsEarned(ori), numberOfCoinsEarned(num);{
@@ -79,3 +77,4 @@ WheatField::WheatField(int i, string n, string desc, int cos, Expansions exp, Ty
             }
 
 */
+
