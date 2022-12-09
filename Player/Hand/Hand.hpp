@@ -21,7 +21,9 @@ public:
     vector<Establishment*> getTypeCards(Types);
     map<LandmarksNames, Landmark*> getLandmarks() const {return landmarks;}
     map<Establishment*, size_t> getEstablishments() const {return establishments;}
-    //methode qui regarde tout ce qu'il y a dans la main du joueur passé en paramètres
+    //1 methode qui permet d'acceder à tout les noms des cartes qu'il y a dans la main
+    //1 methode qui permet d'acceder à tout les types des cartes qu'il y a dans la main
+    //1 methode qui permet d'acceder à toute les couleurs qu'il y a dans la main
     ~Hand();
    };
 
