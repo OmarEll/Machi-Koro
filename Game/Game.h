@@ -44,7 +44,7 @@ public:
     void Buy_Landmark(Player& current_player);
     string Get_Extension() { return Nom_Extension;}
     Bank getBank() {return Bank_Game;}
-    const list<Player>& getPlayers() const {return Players_Game}; //pas sur, comment on recupere une liste ? (j'en ai besoin pour les cartes violettes)
+    const list<Player>& getPlayers() const {return Players_Game};
 };
 
 
