@@ -97,8 +97,8 @@ void Office::launchEffect(Game& g, Player& currentPlayer){ //echange une carte a
     cout<<"Entrez le nom de la carte que vous souhaitez donner (elle ne doit pas être de type tower) :\n";
     cin>>nameOfCardOwner;
 
-    for (const auto& card_owner : currentPlayer.getHand().getEstablishments().){ // On verifie que la carte choisi est dans la main du joueur et qu'elle n'est pas de type tower
-
+    for (const auto& card_owner : currentPlayer.getHand().getEstablishments()){ // On verifie que la carte choisi est dans la main du joueur et qu'elle n'est pas de type tower
+        
     }
 
     for (const auto& other_player : g.getPlayers()){

@@ -5,7 +5,6 @@ class Card;
 class Establishment : public Card
 {
 protected:
-
     Colors color;
     vector<int> activationNumbers;
     OriginsOfCoins originOfCoinsEarned;

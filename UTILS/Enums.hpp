@@ -15,7 +15,9 @@ enum Level{
 enum LandmarksNames{
     RadioTower,TrainStation,ShoppingMall,AmusementPark
 };
+enum EstablishmentsNames{
 
+};
 enum Expansions{
     Standard, Harbor, GreenValley, Deluxe
 };
