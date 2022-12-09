@@ -12,7 +12,7 @@ private :
 public :
     Dies() : faces(6) {};
     ~Dies();
-    int rollDice(const Player& current_player );
+    int rollDice(const Player& current_player ) const;
 };
 
 
