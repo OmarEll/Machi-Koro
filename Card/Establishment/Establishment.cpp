@@ -119,6 +119,16 @@ void Office::launchEffect(Game& g, Player& currentPlayer){ //echange une carte a
     playerExchanger->getHand().removeEstablishment(CardExchanger);
 }
 
+int Establishment::numberGainWithType(Player& currentPlayer, vector<Types>& t) const{  //fonction à utiliser pour les cartes comme cheese factory
+                                                                        // ici on calcule le nb de cartes d'un certain type que possède un joueur et on le multiplie par le gain de la carte
+    int nb = getEarnedCoins();
+    int sum=0;
+    for (auto& it : t){
+        sum += currentPlayer.getHand().getTypeCards(it).size();
+    }
+    return sum*nb;
+}
+
 /*
 //redfinition des effets des cartes spécifiques harbor
 

@@ -1,4 +1,5 @@
 #include "../Card.hpp"
+#include <vector>
 class Card;
 
 /* Classe non abstract */
@@ -26,6 +27,7 @@ public:
     /* REST */
     bool activate(int DiceRolled); //méthode réutilisée pour les différentes cartes
     void launchEffect(Game&,Player&) override;
+    int numberGainWithType(Player& currentPlayer, vector<Types>& t) const;
 };
 
 

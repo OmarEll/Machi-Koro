@@ -66,7 +66,7 @@ void Game::DoTurn() {
             // On a finit de regarder les cartes rouges des autres joueurs
             // Maintenant, on va activer toutes les cartes bleus des autres joueurs (current player compris)
             // Et toutes les cartes du current player qui doivent être activés
-            for (auto all_players : Players_Game){
+            for (auto all_players : Players_Game){ // c'est pas players???
 
                 // On regarde les établissement de tout le monde
                 for ( Establishment cards : all_players.getHand().GetEstablishment()){
