@@ -11,7 +11,7 @@ using namespace std;
 
 class Hand{
 private:
-    map<Establishment*,size_t> establishments;
+    map<EstablishmentsNames,Establishment*> establishments;
     map<LandmarksNames,Landmark*> landmarks;
 public:
     Hand(Expansions myExpansion);
