@@ -2,6 +2,7 @@
 #include "../Player/Player.hpp"
 #include "../Game/Game.h"
 #include "../../UTILS/Enums.hpp"
+#include <string>
 
 bool Establishment::activate(int diceRolled){
 
@@ -15,7 +16,7 @@ bool Establishment::activate(int diceRolled){
 
 //definition de l'effet de base d'un etablissement (recevoir de l'ragent de la banque ou d'un joueur
 
-void Establishment::launchEffect(Game g,Player& currentPlayer){ //ne gère pas les cartes violette, a gerer dans des classes filles spécifiques
+void Establishment::launchEffect(Game& g,Player& currentPlayer){ //ne gère pas les cartes violette, a gerer dans des classes filles spécifiques
     int id_Owner=getOwner()->getId();
     if (getOrigin() == Bank && Card::getOwner()!=nullptr)
         g.getBank().withdraw(id_Owner,getEarnedCoins());
@@ -34,7 +35,7 @@ void Establishment::launchEffect(Game g,Player& currentPlayer){ //ne gère pas l
 
 //redefinition des effets des cartes violettes standard
 
-void Stadium::launchEffect(Game g, Player& currentPlayer){ //méthode redefinie pour permettre de recevoir des coins de la part de l'ensemble des adversaires
+void Stadium::launchEffect(Game& g, Player& currentPlayer){ //méthode redefinie pour permettre de recevoir des coins de la part de l'ensemble des adversaires
     int id_Owner=getOwner()->getId();
     for (const auto& other_player : g.getPlayers()){
         int id_other = other_player.getId();
@@ -51,16 +52,65 @@ void Stadium::launchEffect(Game g, Player& currentPlayer){ //méthode redefinie 
     }
 }
 
+void TvStation::launchEffect(Game& g, Player& currentPlayer){ //méthode redefinie pour permettre de choisir l'adversaire qui donne les coins au propriétaire de la carte (automatique si 2 joueurs)
+    string nameOfPayer;
+    int id_payer = 0;
+    int id_Owner=getOwner()->getId();
+    while (id_payer==0){
+        cout<<"Choissisez le joueur qui doit vous payer :\n";
+        for (const auto& other_player : g.getPlayers()){
+            cout<<other_player.getName()<<" "; //affiche la liste des joueurs
+        }
+        cout<<"\n";
+        cin>>nameOfPayer;
+        for (const auto& other_player : g.getPlayers()){
+            if(nameOfPayer==other_player.getName()){
+                id_payer = other_player.getId();
+            }
+        }
+    }
+    g.getBank().playerPaysPlayer(id_payer, id_Owner, getEarnedCoins());
+}
+
+
+
+void Office::launchEffect(Game& g, Player& currentPlayer){ //echange une carte avec un autre joueur sauf de type tower (ie.les cartes violettes)
+    int id_Exchanger = 0;
+    Card& CardExchanger;
+    Card& CardOwner;
+    string nameOfExchanger;
+    string nameOfCardExchanger;
+    string nameOfCardOwner;
+    while (id_Exchanger == 0){
+        cout<<"Entrez le nom du joueur avec qui vous voulez échanger une carte :\n";
+        cin>>nameOfExchanger;
+        for (const auto& other_player : g.getPlayers()){
+            if(nameOfExchanger==other_player.getName()){
+                id_Exchanger = other_player.getId();
+            }
+        }
+    }
+
+
+    cout<<"Entrez le nom de la carte que vous souhaitez récupérer (elle ne doit pas être de type tower) :\n";
+    cin>>nameOfCardExchanger;
+    cout<<"Entrez le nom de la carte que vous souhaitez donner (elle ne doit pas être de type tower) :\n";
+    cin>>nameOfCardOwner;
+
+    for (const auto& card_owner : currentPlayer.getHand().getEstablishments().){ // On verifie que la carte choisi est dans la main du joueur et qu'elle n'est pas de type tower
+
+    }
+
+    for (const auto& other_player : g.getPlayers()){
+        if(nameOfExchanger==other_player.getName()){
+            id_payer = other_player.getId();
+        }
+    }
+
+
+}
+
 /*
-void TvStation::launchEffect(Game g, Establishment e){ //méthode redefinie pour permettre de choisir l'adversaire qui donne les coins au propriétaire de la carte (automatique si 2 joueurs)
-    if (g. )
-
-}
-
-void TvStation::launchEffect(Game g, Establishment e){ //echange une carte avec un autre joueur sauf de type tower (ie.les cartes violettes)
-
-}
-
 //redfinition des effets des cartes spécifiques harbor
 
 void MackerelBoat::launchEffect(Game g, Establishment e){ //echange une carte avec un autre joueur sauf de type tower (ie.les cartes violettes)

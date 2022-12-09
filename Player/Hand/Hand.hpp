@@ -20,6 +20,8 @@ public:
     vector<Establishment*> getColorCards(Colors);
     vector<Establishment*> getTypeCards(Types);
     map<LandmarksNames, Landmark*> getLandmarks() const {return landmarks;}
+    map<Establishment*, size_t> getEstablishments() const {return establishments;}
+    //methode qui regarde tout ce qu'il y a dans la main du joueur passé en paramètres
     ~Hand();
    };
 
