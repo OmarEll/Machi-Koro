@@ -28,7 +28,6 @@ private :
     Board Board_Game;
     Dies Dice;
     Bank Bank_Game;
-    list <Player> Players_Game; //quel est la dif avec "vector <Player> players" qu'il y a déjà plus haut ?
     static Game* Game_single;
     list<Colors>Activation_order;
     string Nom_Extension;
@@ -45,6 +44,7 @@ public:
     string Get_Extension() { return Nom_Extension;}
     Bank getBank() {return Bank_Game;}
     const list<Player>& getPlayers() const {return Players_Game};
+    static bool CanPay(Player& CurrentPlayer, Bank& bank, int amount);
 };
 
 

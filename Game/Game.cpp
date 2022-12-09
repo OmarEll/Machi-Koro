@@ -6,6 +6,7 @@
 #include "Establishment/Establishment.h"
 #include "Landmark/Landmark.h"
 #include "Enums.hpp"
+#include <iterator>
 
 using namespace std;
 
@@ -22,7 +23,7 @@ Game* Game::Singleton(string NomEdition) {
 }
 
 bool Game::Iswin(Player& current_player) {
-    for (auto land_check : current_player.getHand().GetLandmarks() ){
+    for (auto land_check : current_player.getHand().GetLandmark() ){
         if (!land_check.construct())
             return false;
     }
@@ -32,22 +33,32 @@ bool Game::Iswin(Player& current_player) {
 // A METTRE DANS STANDARD
 void virtual Game::DoTurn() {
     // Variables
-    bool is_finish = false;
     int dice;
     string choice;
+    bool is_finish = false;
     // Fonction
     do{
         // Chaque joueur
-        for (auto current_player : Players_Game){
+        //for (auto current_player : Players_Game){
+        for (vector <Player>::iterator current_player = players.begin();
+             current_player != players.end() ||
+             Iswin(*current_player);
+             current_player++){
+
             // Lance le dés
             dice = this->Dice.rollDice(current_player);
             // On regarde les cartes rouges des autres joueurs
             for (auto other_player : Players_Game){
                 if (other_player.getId() != current_player.getId()) {
+
                     // On regarde si le nombre correspond à la carte rouge d'un autre joueur;
-                    for (Red red_cards: other_player.getHand().getRedCards()){
-                        if (red_cards.activate(dice) && ){ // Rajouter Can Pay
-                            red_cards.launchEffect();
+                    for (vector <Establishment*>::iterator vIter = other_player.getHand().getColorCards(RED).begin();
+                            vIter != other_player.getHand().getColorCards(RED).end() ||
+                            CanPay(current_player,Bank_Game,(**vIter).getCost());
+                            (*vIter)++) {
+                        if ((**vIter).activate(dice) ){
+                            (**vIter).launchEffect();
+
                         }
                     }
                 }
@@ -85,19 +96,28 @@ void virtual Game::DoTurn() {
                 cout << "Trainstation\nRadiotower\nAmusementPark\nCommercialCenter\n"<< endl;
                 cin >> choice;
                 // On regarde si l'établissement existe et qu'il a l'argent nécessaire
-                if (!current_player.hasLandmark(choice) &&
+                if (!(*current_player).hasLandmark(choice) &&
                 current_player.getWallet().GetBalance - FoundPriceLandmark(choice) >= 0 )
                     Buy_Landmark(current_player);
                 else
                     cout << "Impossible : soit l'établissement n'existe pas soit vous n'avez pas l'argent" << endl;
             }
             // On regarde si le joueur gagne la partie après avoir acheter le dernier LandMark
-            if (Iswin(current_player)){
+            if (Iswin(*current_player)){
                 is_finish = true;
                 cout << "Player" << current_player.getName() << "a gagné ! " << endl;
-                break;
             }
         }
         // Fin de la boucle
     } while (!is_finish);
 }
+
+
+static bool Game::CanPay(Player &CurrentPlayer, class Bank &bank, int amount) {
+    if (bank.getBalance(CurrentPlayer.getId()) - amount >= 0 )
+        return true;
+    else
+        return false;
+}
+
+
