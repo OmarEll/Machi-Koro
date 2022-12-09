@@ -2,9 +2,8 @@
 #include "../Player/Player.hpp"
 #include "../Game/Game.h"
 #include "../../UTILS/Enums.hpp"
-//definition des différents méthodes activate en fonction de la couleur des cartes
 
-bool Establishment::activate(int diceRolled){//méthode réutilisée pour les différentes cartes
+bool Establishment::activate(int diceRolled){
 
     for(auto activationNumber : activationNumbers) {
         if (activationNumber == diceRolled)
@@ -14,39 +13,45 @@ bool Establishment::activate(int diceRolled){//méthode réutilisée pour les di
 }
 
 
-
-
-//definition des effets
+//definition de l'effet de base d'un etablissement (recevoir de l'ragent de la banque ou d'un joueur
 
 void Establishment::launchEffect(Game g,Player& currentPlayer){ //ne gère pas les cartes violette, a gerer dans des classes filles spécifiques
     int id_Owner=getOwner()->getId();
     if (getOrigin() == Bank && Card::getOwner()!=nullptr)
         g.getBank().withdraw(id_Owner,getEarnedCoins());
 
-int id_current=currentPlayer.getId();
-int balance_current=g.getBank().getBalance(id_current);
-if ((getOrigin() == PlayerRolledDice) && getOwner()!=nullptr){ //on va prendre des coins du joueur qui a lancé le dé et le donner à celui qui possède cette carte
-    if (balance_current >= getEarnedCoins()){ //le joueur qui doit payer a assez de coins pour payer
-        g.getBank().playerPaysPlayer(id_current,id_Owner,getEarnedCoins());
+    int id_current=currentPlayer.getId();
+    int balance_current=g.getBank().getBalance(id_current);
+    if ((getOrigin() == PlayerRolledDice) && getOwner()!=nullptr) { //on va prendre des coins du joueur qui a lancé le dé et le donner à celui qui possède cette carte
+        if (balance_current >= getEarnedCoins()) { //le joueur qui doit payer a assez de coins pour payer
+            g.getBank().playerPaysPlayer(id_current, id_Owner, getEarnedCoins());
+        } else {                                    //le joueur qui doit payer n'a pas assez de coins pour payer donc il donne ce qu'il a
+            g.getBank().playerPaysPlayer(id_current, id_Owner, balance_current);
+        }
     }
-    else {                                                                       //le joueur qui doit payer n'a pas assez de coins pour payer donc donne ce qu'il a
-        g.getBank().playerPaysPlayer(id_current,id_Owner,balance_current);
-    }
-
 }
 
 
-}
-/*
 //redefinition des effets des cartes violettes standard
 
-void Stadium::launchEffect(Game g, Establishment e){ //méthode redefinie pour permettre de recevoir des coins de la part de l'ensemble des adversaires
-    //comment est-ce qu'on parcours la liste des joueurs ?
-    if(g.getPlayers().size() == 2){ //s'il n'y a que deux joueurs les coins sont payés par l'adversaire (ie. celui qui n'est pas le propriétaire de la carte)
-
+void Stadium::launchEffect(Game g, Player& currentPlayer){ //méthode redefinie pour permettre de recevoir des coins de la part de l'ensemble des adversaires
+    int id_Owner=getOwner()->getId();
+    for (const auto& other_player : g.getPlayers()){
+        int id_other = other_player.getId();
+        if (id_Owner != id_other){
+            int balance_other=g.getBank().getBalance(id_other);
+            if ((getOrigin() == OtherPlayers) && getOwner()!=nullptr) { //on va prendre les coins des joueurs adverse et le donner à celui qui possède cette carte (qui est aussi le current_player)
+                if (balance_other >= getEarnedCoins()) { //le joueur qui doit payer a assez de coins pour payer
+                    g.getBank().playerPaysPlayer(id_other, id_Owner, getEarnedCoins());
+                } else {                                    //le joueur qui doit payer n'a pas assez de coins pour payer donc il donne ce qu'il a
+                    g.getBank().playerPaysPlayer(id_other, id_Owner, balance_other);
+                }
+            }
+        }
     }
 }
 
+/*
 void TvStation::launchEffect(Game g, Establishment e){ //méthode redefinie pour permettre de choisir l'adversaire qui donne les coins au propriétaire de la carte (automatique si 2 joueurs)
     if (g. )
 
