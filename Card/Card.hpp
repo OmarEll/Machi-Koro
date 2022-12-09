@@ -17,9 +17,10 @@ class Card
         Player* owner = nullptr;
         int cost;
         Expansions expansion;
+        Types type;
     public:
-        Card(string name, string desc, int cos, Expansions exp)
-            :cardName(name),description(desc),cost(cos),expansion(exp){}
+        Card(string name, string desc, int cos, Expansions exp, Types typ,)
+            :cardName(name),description(desc),cost(cos),expansion(exp), type(typ){}
         virtual ~Card()=default; //destructeur en virtual parcque Card est abstraite
         /* GETTERS & SETTERS */
         string getCardName(){ return cardName;}
@@ -33,7 +34,7 @@ class Card
         /* REST */
         bool sameCard(Card); //a revoir ce qui est mis en paramètre
         virtual int gainWithType();
-        virtual void launchEffect(Game,Player& currentPlayer);
+        virtual void launchEffect(Game&,Player& currentPlayer);
 
 };
 
