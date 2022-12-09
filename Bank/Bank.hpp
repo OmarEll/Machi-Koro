@@ -1,6 +1,7 @@
 #include <vector>
 #include "Wallet.hpp"
 using namespace std;
+
 class Bank{
 private:
     int balance;

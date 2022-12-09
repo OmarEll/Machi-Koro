@@ -19,7 +19,7 @@ class Card
         Expansions expansion;
         Types type;
     public:
-        Card(string name, string desc, int cos, Expansions exp, Types typ,)
+        Card(string name, string desc, int cos, Expansions exp, Types typ)
             :cardName(name),description(desc),cost(cos),expansion(exp), type(typ){}
         virtual ~Card()=default; //destructeur en virtual parcque Card est abstraite
         /* GETTERS & SETTERS */

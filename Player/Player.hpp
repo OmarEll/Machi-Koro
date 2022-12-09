@@ -3,7 +3,7 @@
 
 #include <string>
 #include <iostream>
-#include "../Hand/Hand.hpp"
+#include "../Player/Hand/Hand.hpp"
 #include "../Bank/Bank.hpp"
 #include "../Bank/Wallet.hpp"
 
