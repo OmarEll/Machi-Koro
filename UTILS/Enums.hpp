@@ -10,13 +10,15 @@ enum Colors{
 enum Level{
     Easy,
     Medium,
-    Hard,
+    Hard
 };
 enum LandmarksNames{
-    RadioTower,TrainStation,ShoppingMall,AmusementPark
+    RadioTower,TrainStation,ShoppingMall,AmusementPark, CityHall, HarborCard, Airport
 };
 enum EstablishmentsNames{
-
+    WheatField, LivestockFarm, Bakery, Cafe, ConvenienceStore, Forest, Stadium, TvStation, Office, CheeseFactory,
+    FurnitureFactory, Mine, Restaurant, AppleOrchard, ProduceMarket, FlowerGarden, MackerelBoat, TunaBoat, FlowerShop,
+    FoodWarehouse, SushiBar, PizzaJoint, HamburgerStand, Publisher, TaxOffice, Diamine, InternationalExhibitHall
 };
 enum Expansions{
     Standard, Harbor, GreenValley, Deluxe
@@ -27,7 +29,7 @@ enum OriginsOfCoins{
 };
 
 enum Types{
-    wheat, cow, bread, coffee, wheel, tower, factory, apple
+    wheat, cow, bread, coffee, wheel, tower, factory, apple, boat
 };
 
 #endif //MACHIKORO_FICHIER_ENUMS_H
