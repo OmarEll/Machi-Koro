@@ -10,14 +10,14 @@
 
 using namespace std;
 
-Game* Game::Game_single = NULL;
+Game* Game::Game_single = nullptr;
 
 Game :: Game() {
 
 }
 
 Game* Game::Singleton(string NomEdition) {
-    if (Game::Game_single == NULL)
+    if (Game::Game_single == nullptr)
         Game::Game_single = new Game();
     return Game::Game_single;
 }
@@ -31,7 +31,7 @@ bool Game::Iswin(Player& current_player) {
 }
 
 // A METTRE DANS STANDARD
-void virtual Game::DoTurn() {
+void Game::DoTurn() {
     // Variables
     int dice;
     string choice;

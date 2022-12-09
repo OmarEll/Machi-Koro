@@ -15,9 +15,8 @@ int Dies::rollDice(const Player &current_player) const {
             unsigned int nb;
             cout<<"Voulez-vous utiliser un ou deux dés? (Tapez 1 ou 2)\n";
             cin>>nb;
-            if(nb==2){
-                return rand()%(faces*2)+1;
-            }
+            if (nb == 2)
+                return rand() % (faces * 2) + 1;
         }
     return rand()%faces+1;
 }
