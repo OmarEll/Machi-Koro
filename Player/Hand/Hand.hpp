@@ -11,7 +11,7 @@ using namespace std;
 
 class Hand{
 private:
-    map<EstablishmentsNames,Establishment*> establishments;
+    map<Establishment*,size_t> establishments;
     map<LandmarksNames,Landmark*> landmarks;
 public:
     Hand(Expansions myExpansion);
@@ -26,4 +26,3 @@ public:
     //1 methode qui permet d'acceder à toute les couleurs qu'il y a dans la main
     ~Hand();
    };
-

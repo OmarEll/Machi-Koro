@@ -20,7 +20,7 @@ using namespace std;
 
 class Game {
 private :
-    vector <Player> players; 
+    vector <Player*> players;
     vector <Card> Establishments;
     vector <Card> Landmarks;
     size_t minPlayers;
@@ -43,7 +43,8 @@ public:
     void Buy_Landmark(Player& current_player);
     string Get_Extension() { return Nom_Extension;}
     Bank getBank() {return Bank_Game;}
-    const list<Player>& getPlayers() const {return Players_Game};
+    //const list<Player>& getPlayers() const {return Players_Game};
+    vector <Player*> getPlayers() const {return players};
     static bool CanPay(Player& CurrentPlayer, Bank& bank, int amount);
 };
 

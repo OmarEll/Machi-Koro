@@ -38,7 +38,7 @@ void Establishment::launchEffect(Game& g,Player& currentPlayer){ //ne gère pas 
 void Stadium::launchEffect(Game& g, Player& currentPlayer){ //méthode redefinie pour permettre de recevoir des coins de la part de l'ensemble des adversaires
     int id_Owner=getOwner()->getId();
     for (const auto& other_player : g.getPlayers()){
-        int id_other = other_player.getId();
+        int id_other = other_player->getId();
         if (id_Owner != id_other){
             int balance_other=g.getBank().getBalance(id_other);
             if ((getOrigin() == OtherPlayers) && getOwner()!=nullptr) { //on va prendre les coins des joueurs adverse et le donner à celui qui possède cette carte (qui est aussi le current_player)
@@ -54,18 +54,18 @@ void Stadium::launchEffect(Game& g, Player& currentPlayer){ //méthode redefinie
 
 void TvStation::launchEffect(Game& g, Player& currentPlayer){ //méthode redefinie pour permettre de choisir l'adversaire qui donne les coins au propriétaire de la carte (automatique si 2 joueurs)
     string nameOfPayer;
-    int id_payer = 0;
+    int id_payer = -1;
     int id_Owner=getOwner()->getId();
-    while (id_payer==0){
+    while (id_payer==-1){
         cout<<"Choissisez le joueur qui doit vous payer :\n";
         for (const auto& other_player : g.getPlayers()){
-            cout<<other_player.getName()<<" "; //affiche la liste des joueurs
+            cout<<other_player->getName()<<" "; //affiche la liste des joueurs
         }
         cout<<"\n";
         cin>>nameOfPayer;
         for (const auto& other_player : g.getPlayers()){
-            if(nameOfPayer==other_player.getName()){
-                id_payer = other_player.getId();
+            if(nameOfPayer==other_player->getName()){
+                id_payer = other_player->getId();
             }
         }
     }
@@ -75,39 +75,48 @@ void TvStation::launchEffect(Game& g, Player& currentPlayer){ //méthode redefin
 
 
 void Office::launchEffect(Game& g, Player& currentPlayer){ //echange une carte avec un autre joueur sauf de type tower (ie.les cartes violettes)
-    int id_Exchanger = 0;
-    Card& CardExchanger;
-    Card& CardOwner;
+    Establishment* CardExchanger= nullptr;
+    Establishment* CardOwner= nullptr;
+    Player* playerExchanger= nullptr;
     string nameOfExchanger;
     string nameOfCardExchanger;
     string nameOfCardOwner;
-    while (id_Exchanger == 0){
+    while (playerExchanger == nullptr){
         cout<<"Entrez le nom du joueur avec qui vous voulez échanger une carte :\n";
         cin>>nameOfExchanger;
         for (const auto& other_player : g.getPlayers()){
-            if(nameOfExchanger==other_player.getName()){
-                id_Exchanger = other_player.getId();
+            if(nameOfExchanger==other_player->getName()){
+                playerExchanger = other_player;
             }
         }
     }
 
+    while (CardExchanger== nullptr || CardOwner== nullptr){
+        cout<<"Entrez le nom de la carte que vous souhaitez récupérer (elle ne doit pas être de type tower) :\n";
+        cin>>nameOfCardExchanger;
+        cout<<"Entrez le nom de la carte que vous souhaitez donner (elle ne doit pas être de type tower) :\n";
+        cin>>nameOfCardOwner;
 
-    cout<<"Entrez le nom de la carte que vous souhaitez récupérer (elle ne doit pas être de type tower) :\n";
-    cin>>nameOfCardExchanger;
-    cout<<"Entrez le nom de la carte que vous souhaitez donner (elle ne doit pas être de type tower) :\n";
-    cin>>nameOfCardOwner;
-
-    for (const auto& card_owner : currentPlayer.getHand().getEstablishments()){ // On verifie que la carte choisi est dans la main du joueur et qu'elle n'est pas de type tower
-        
-    }
-
-    for (const auto& other_player : g.getPlayers()){
-        if(nameOfExchanger==other_player.getName()){
-            id_payer = other_player.getId();
+        //Owner
+        for (const auto&  card : currentPlayer.getHand().getEstablishments()){ // On verifie que la carte choisi est dans la main du joueur et qu'elle n'est pas de type tower
+            if((nameOfCardOwner==(card.first)->getCardName()) && ((card.first)->getType()!=tower) ){
+                CardOwner=card.first;
+            }
         }
+        //Exchanger
+        for (const auto&  card : playerExchanger->getHand().getEstablishments()){ // On verifie que la carte choisi est dans la main du joueur et qu'elle n'est pas de type tower
+            if((nameOfCardExchanger==(card.first)->getCardName()) && ((card.first)->getType()!=tower) ){
+                CardExchanger=card.first;
+            }
+        }
+
     }
-
-
+    //add
+    currentPlayer.getHand().addEstablishment(CardExchanger);
+    playerExchanger->getHand().addEstablishment(CardOwner);
+    //remove
+    currentPlayer.getHand().removeEstablishment(CardOwner);
+    playerExchanger->getHand().removeEstablishment(CardExchanger);
 }
 
 /*

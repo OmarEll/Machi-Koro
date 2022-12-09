@@ -23,7 +23,8 @@ private:
         string getName() const { return name; };
         Hand getHand() const { return hand;};
         bool hasLandmark(LandmarksNames name) const{return hand.getLandmarks().find(name)!=hand.getLandmarks().end();}
-        virtual ~Player();
+        bool hasEstablishment(EstablishmentsNames name) const{return hand.getEstablishments().find(name)!=hand.getEstablishments().end();}
+    virtual ~Player();
 };
 
 #endif //MACHIKORO_FICHIER_PLAYER_H
