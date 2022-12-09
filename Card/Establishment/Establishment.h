@@ -11,7 +11,8 @@ protected:
     OriginsOfCoins originOfCoinsEarned;
     int numberOfCoinsEarned;
 public:
-    Establishment(string name, string desc, Colors col, int cos, Expansions exp, Types typ, vector<int> actNum, OriginsOfCoins ori, int num): Card(name,desc,cos,exp),color(col),type(typ),activationNumbers(actNum),originOfCoinsEarned(ori),numberOfCoinsEarned(num){}
+    Establishment(string name, string desc, Colors col, int cos, Expansions exp, Types typ, vector<int> actNum, OriginsOfCoins ori, int num)
+        :Card(name,desc,cos,exp),color(col),type(typ),activationNumbers(actNum),originOfCoinsEarned(ori),numberOfCoinsEarned(num){}
     ~Establishment();
     /* GETTERS & SETTERS */
     Types getType(){ return type ;}
@@ -28,24 +29,22 @@ public:
     void launchEffect(Game,Player&) override;
 };
 
-/**************************/
-//Déclaration des classes correspondant aux couleurs des cartes establishment
-class Red : public Establishment{ //ne peut être activé que pendant le tour des adversaires
+
+/* Définition des establishment violets de la version standard */
+class Stadium : public Establishment {
 public:
-    Red(string name, string desc, int cos, Expansions exp,Types typ, vector<int> actNum, OriginsOfCoins ori, int num): Establishment(name,desc,RED,cos,exp,typ,actNum,PlayerRolledDice,num){}
+    Stadium(): Establishment("Stadium","Receive 2 coins from each of your fellow players.",PURPLE, 6,Standard, tower,6,OtherPlayers,2){}
+    void Establishment::launchEffect(Game g,Player& currentPlayer) override;
 };
 
-class Blue : public Establishment{ //peut-être activé pendant le tour de n’importe quel joueurs
+class TvStation : public Establishment {
 public:
-    Blue(string name, string desc, int cos, Expansions exp,Types typ, vector<int> actNum, int num): Establishment(name,desc,BLUE,cos,exp,typ,actNum,Bank,num){}
+    TvStation(): Establishment("TV Station","Choose one player who has to give you 5 coins.",PURPLE, 6,Standard, tower,6,OtherPlayers,5){}
+    void Establishment::launchEffect(Game g,Player& currentPlayer) override;
 };
 
-class Green : public Establishment{ //peut être activé uniquement pendant le tour du propriétaire de la carte
+class Office : public Establishment {
 public:
-    Green(string name, string desc, int cos, Expansions exp,Types typ, vector<int> actNum, int num): Establishment(name,desc,GREEN,cos,exp,typ,actNum,Bank,num){}
-};
-
-class Purple : public Establishment { //peut être activé uniquement pendant le tour du propriétaire de la carte
-public:
-    Purple(string name, string desc, int cos, Expansions exp,Types typ, vector<int> actNum, int num): Establishment(name,desc,PURPLE,cos,exp,typ,actNum,OtherPlayers,num){}
+    Office(): Establishment("Office","Exchange a card with another player. No tower type establishment.",PURPLE, 8,Standard, tower,6,OtherPlayers,0){}
+    void Establishment::launchEffect(Game g,Player& currentPlayer) override;
 };
