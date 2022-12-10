@@ -14,7 +14,7 @@ bool Establishment::activate(int diceRolled){
 }
 
 
-//definition de l'effet de base d'un etablissement (recevoir de l'ragent de la banque ou d'un joueur
+/* Definition de l'effet de base d'un etablissement (recevoir de l'argent de la banque ou d'un joueur) */
 
 void Establishment::launchEffect(Game& g,Player& currentPlayer){ //ne gère pas les cartes violette, a gerer dans des classes filles spécifiques
     int id_Owner=getOwner()->getId();
@@ -32,8 +32,26 @@ void Establishment::launchEffect(Game& g,Player& currentPlayer){ //ne gère pas 
     }
 }
 
+/* Definition de méthodes qui permetterons de redefinir des effets pour plusieurs cartes */
 
-//redefinition des effets des cartes violettes standard
+int Establishment::numberGainWithType(Player* owner, vector<Types> t) const{  //fonction à utiliser pour les cartes comme cheese factory
+    // ici on calcule le nb de cartes d'un certain type que possède un joueur et on le multiplie par le gain de la carte
+    int nb = getEarnedCoins();
+    int sum=0;
+    for (auto& it : t){
+        sum += owner->getHand().getTypeCards(it).size();
+    }
+    return sum*nb;
+}
+
+bool Establishment::hasHarbor(){ //fonction qui permet de regarder si le joueur propriètaire de la carte possède un Harbor dans sa main
+    //utilisée pour les effets avec "If you have a harbor"
+    return getOwner()->hasLandmark(HarborCard);
+}
+
+
+
+/* Redefinition des effets des cartes violettes standard */
 
 void Stadium::launchEffect(Game& g, Player& currentPlayer){ //méthode redefinie pour permettre de recevoir des coins de la part de l'ensemble des adversaires
     int id_Owner=getOwner()->getId();
@@ -119,36 +137,47 @@ void Office::launchEffect(Game& g, Player& currentPlayer){ //echange une carte a
     playerExchanger->getHand().removeEstablishment(CardExchanger);
 }
 
-int Establishment::numberGainWithType(Player& currentPlayer, vector<Types>& t) const{  //fonction à utiliser pour les cartes comme cheese factory
-                                                                        // ici on calcule le nb de cartes d'un certain type que possède un joueur et on le multiplie par le gain de la carte
-    int nb = getEarnedCoins();
-    int sum=0;
-    for (auto& it : t){
-        sum += currentPlayer.getHand().getTypeCards(it).size();
-    }
-    return sum*nb;
+
+/* Redefinition des establishments avec un effet de type "For each of your 'type' establishments, gain x coins"*/
+//Standard
+void CheeseFactory::launchEffect(Game& g, Player& currentPlayer){
+    setNumberOfCoinsEarned(numberGainWithType(getOwner(), {cow}));
+    Establishment::launchEffect(g, currentPlayer);
 }
 
-/*
-//redfinition des effets des cartes spécifiques harbor
+void FurnitureFactory::launchEffect(Game& g, Player& currentPlayer){
+    setNumberOfCoinsEarned(numberGainWithType(getOwner(), {wheel}));
+    Establishment::launchEffect(g, currentPlayer);
+}
 
-void MackerelBoat::launchEffect(Game g, Establishment e){ //echange une carte avec un autre joueur sauf de type tower (ie.les cartes violettes)
+void ProduceMarket::launchEffect(Game& g, Player& currentPlayer){
+    setNumberOfCoinsEarned(numberGainWithType(getOwner(), {wheat}));
+    Establishment::launchEffect(g, currentPlayer);
+}
 
+//Harbor
+void FoodWarehouse::launchEffect(Game& g, Player& currentPlayer){
+    setNumberOfCoinsEarned(numberGainWithType(getOwner(), {coffee}));
+    Establishment::launchEffect(g, currentPlayer);
+}
+
+/* Redefinition des establishments avec un effet de type "If you have a Harbor, gain x coins"*/
+void MackerelBoat::launchEffect(Game& g, Player& currentPlayer){
+    if (hasHarbor()) Establishment::launchEffect(g, currentPlayer);
+}
+
+void SushiBar::launchEffect(Game& g, Player& currentPlayer){
+    if (hasHarbor()) Establishment::launchEffect(g, currentPlayer);
 }
 
 
+/* Redéfinition des cartes violettes harbor */
 
-WheatField::WheatField(int i, string n, string desc, int cos, Expansions exp, Types typ, Types typ, vector<int> actNum , string ori, int num)
-            :id(i),cardName(n),description(desc),cost(cos),expansion(exp), type(typ), activationNumbers(actNum), originOfCoinsEarned(ori), numberOfCoinsEarned(num);{
-                n = "Wheat Field";
-                desc = "Receive 1 coin from the bank";
-                cos = 1;
-                exp = "Standard";
-                typ = "wheat";
-                actNum.push_back(1);
-                ori = "Bank";
-                num = 1;
-            }
+void Publisher::launchEffect(Game& g, Player& currentPlayer){
+    //setNumberOfCoinsEarned a redefinir pour regarder les cartes des adversaires
+    setNumberOfCoinsEarned(numberGainWithType(getOwner(), {coffee,bread}));
+    Establishment::launchEffect(g, currentPlayer);
+}
 
-*/
+
 
