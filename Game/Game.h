@@ -20,7 +20,7 @@ using namespace std;
 
 class Game {
 private :
-    vector <Player*> players;
+    vector <Player> players;
     vector <Card> Establishments;
     vector <Card> Landmarks;
     size_t minPlayers;
