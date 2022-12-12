@@ -44,7 +44,7 @@ public:
     string Get_Extension() { return Nom_Extension;}
     Bank getBank() {return Bank_Game;}
     //const list<Player>& getPlayers() const {return Players_Game};
-    vector <Player*> getPlayers() const {return players};
+    vector <Player*> getPlayers() const {return players;}
     static bool CanPay(Player& CurrentPlayer, Bank& bank, int amount);
 };
 
