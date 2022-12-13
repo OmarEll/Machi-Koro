@@ -12,10 +12,10 @@
 #include "../Player/Player.hpp"
 #include "../Board/Board.h"
 #include "../UTILS/Enums.hpp"
-#include "../Dies/Dice.h"
+#include "../Dice/Dice.h"
+#include "../Card.hpp"
 
 using namespace std;
-
 
 
 class Game {
