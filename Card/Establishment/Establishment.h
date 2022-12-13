@@ -10,6 +10,7 @@ protected:
     vector<int> activationNumbers;
     OriginsOfCoins originOfCoinsEarned;
     int numberOfCoinsEarned;
+
 public:
     Establishment(string name, string desc, Colors col, int cos, Expansions exp, Types typ, vector<int> actNum, OriginsOfCoins ori, int num)
         :Card(name,desc,cos,exp,typ),color(col),activationNumbers(actNum),originOfCoinsEarned(ori),numberOfCoinsEarned(num){}

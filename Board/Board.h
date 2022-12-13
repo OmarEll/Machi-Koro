@@ -22,6 +22,8 @@ protected:
     Board(Board&); //a implémenter
     Board& operator=(Board&); //a implémenter
 
+    // faire méthode affiche qui affiche nom de chaque carte qu'il y a sur board et cbm il y en a de chq type
+        // Board.Affiche()
 public :
     Board& createBoard(){
         if (board_instance == nullptr){

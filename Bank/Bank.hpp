@@ -1,3 +1,6 @@
+#ifndef MACHIKORO_FICHIER_BANK_H
+#define MACHIKORO_FICHIER_BANK_H
+
 #include <vector>
 #include "Wallet.hpp"
 using namespace std;
@@ -18,3 +21,5 @@ public:
     int getBalance(int id){ return wallets[id]->getBalance(); }
     void playerPaysPlayer(size_t idPlayer1,size_t idPlayer2,int amount);
 };
+
+#endif

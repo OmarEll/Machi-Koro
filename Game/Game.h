@@ -16,13 +16,14 @@
 
 using namespace std;
 
-
+class Bank;
+class Player;
 
 class Game {
 private :
-    vector <Player> players;
-    vector <Card> Establishments;
-    vector <Card> Landmarks;
+    vector<Player> players;
+    vector<Card> Establishments;
+    vector<Card> Landmarks;
     size_t minPlayers;
     size_t maxPlayers;
     Board Board_Game;
