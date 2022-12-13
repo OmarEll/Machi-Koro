@@ -161,6 +161,12 @@ void FoodWarehouse::launchEffect(Game& g, Player& currentPlayer){
     Establishment::launchEffect(g, currentPlayer);
 }
 
+void FlowerShop::launchEffect(Game& g, Player& currentPlayer){ //A FAIRE
+    // setNumberOfCoinsEarned(); // A redefinir pour aller compter le nombre de landmark Flower garden qu'il y a dans la main du propriétaire de la carte
+    //Get 1 coin from the bank for Flower Garden you own, on your turn only.
+    Establishment::launchEffect(g, currentPlayer);
+}
+
 /* Redefinition des establishments avec un effet de type "If you have a Harbor, gain x coins"*/
 void MackerelBoat::launchEffect(Game& g, Player& currentPlayer){
     if (hasHarbor()) Establishment::launchEffect(g, currentPlayer);
@@ -171,12 +177,35 @@ void SushiBar::launchEffect(Game& g, Player& currentPlayer){
 }
 
 
-/* Redéfinition des cartes violettes harbor */
+/* Redéfinition des cartes violettes HARBOR */
 
-void Publisher::launchEffect(Game& g, Player& currentPlayer){
+void Publisher::launchEffect(Game& g, Player& currentPlayer){ //A FAIRE
     //setNumberOfCoinsEarned a redefinir pour regarder les cartes des adversaires
+    //Take 1 coins from each opponent for each 'coffee' and 'bread' type establishment they own
     setNumberOfCoinsEarned(numberGainWithType(getOwner(), {coffee,bread}));
     Establishment::launchEffect(g, currentPlayer);
+}
+
++void TaxOffice::launchEffect(Game& g, Player& currentPlayer){ // A FAIRE
+    //From each opponent with 10 or more coins: take half their coins, rounded down. This only applies in your turn.
+}
+
+/* Redéfinition des cartes violettes GREEN VALLEY */
+
+void Park::launchEffect(Game& g, Player& currentPlayer) { // A FAIRE
+    //Redistribute all players' coins evenly among all players, on your turn only. If there is an uneven amount of coins, take coins from the bank to make up the difference.
+}
+
+void RenovationCompany::launchEffect(Game& g, Player& currentPlayer) { // A FAIRE
+    //Choose a non-tower type building. All buildings owned by any player of that type are closed for renovations. Get 1 coin from each player for each of their buildings closed for renovation, on your turn only.
+}
+
+void TechStartup::launchEffect(Game& g, Player& currentPlayer) { // A FAIRE
+    //At the end of each of your turns, you may place 1 coin on this card. The total placed here is your investment. When activated, get an amount equal to your investment from all player, on your turn only.
+}
+
+void InternationalExhibitHall::launchEffect(Game& g, Player& currentPlayer) { // A FAIRE
+    //You may choose to activate another of your non tower type establishments in place of this one, on your turn only. If you do, return this card to the market.
 }
 
 
