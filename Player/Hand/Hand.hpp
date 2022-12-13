@@ -2,7 +2,7 @@
 #include <map>
 #include <vector>
 #include "../Card/Card.hpp"
-
+#include "../Card/Establishment/Establishment.h"
 class  Establishment;
 class Landmark;
 
@@ -10,10 +10,12 @@ class Landmark;
 using namespace std;
 
 class Hand{
+
 private:
     map<Establishment*,size_t> establishments;
     map<LandmarksNames,Landmark*> landmarks;
 public:
+    friend class Establishment;
     Hand(Expansions myExpansion);
     void addEstablishment(Establishment*);
     void removeEstablishment(Establishment*);
