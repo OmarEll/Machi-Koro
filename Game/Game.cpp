@@ -23,8 +23,8 @@ Game* Game::Singleton(string NomEdition) {
 }
 
 bool Game::Iswin(Player& current_player) {
-    for (auto land_check : current_player.getHand().GetLandmark() ){
-        if (!land_check.construct())
+    for (auto land_check : current_player.getHand().getLandmarks() ){
+        if (!land_check.second->isConstructed())
             return false;
     }
     return true;
@@ -69,7 +69,7 @@ void Game::DoTurn() {
             for (auto all_players : players){
 
                 // On regarde les établissement de tout le monde
-                for ( Establishment cards : all_players.getHand().GetEstablishment()){
+                for ( Establishment cards : all_players.getHand().getEstablishments()){
 
                     // Si le joueur est le current player et que sa cartes n'est pas rouge et doit être activé
                     if ((*current_player).getId() == all_players.getId() &&

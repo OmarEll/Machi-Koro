@@ -8,3 +8,7 @@ void Strategy::chooseCard(Game& game){
         default:break;
     }
 }
+
+void Strategy::easyLevelCard(Game& game){
+    
+}
