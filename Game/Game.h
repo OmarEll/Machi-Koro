@@ -12,7 +12,7 @@
 #include "../Player/Player.hpp"
 #include "../Board/Board.h"
 #include "../UTILS/Enums.hpp"
-#include "../Dies/Dies.h"
+#include "../Dies/Dice.h"
 
 using namespace std;
 
@@ -26,7 +26,7 @@ private :
     size_t minPlayers;
     size_t maxPlayers;
     Board Board_Game;
-    Dies Dice;
+    Dice Dice;
     Bank Bank_Game;
     static Game* Game_single;
     list<Colors>Activation_order;

@@ -8,7 +8,7 @@
 
 #include "Game.h"
 
-class GreenValeyExpansion : public Game{
+class GreenValleyExpansion : public Game{
 
 };
 
