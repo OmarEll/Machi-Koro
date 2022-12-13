@@ -4,11 +4,7 @@
 
 #include "Bank.hpp"
 
-Bank& Bank::makeIfNotInstance(size_t nbPlayers, int defaultValueWallet,int b){
-    if (uniqueBank == nullptr)
-        uniqueBank = new Bank(nbPlayers,defaultValueWallet,b);
-    return *uniqueBank;
-}
+
 Bank::Bank(size_t nbPlayers, int defaultValueWallet,int b):balance(b){
         for(auto i=0;i<nbPlayers;i++){
             wallets.push_back(new Wallet(defaultValueWallet));

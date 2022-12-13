@@ -12,18 +12,17 @@
 #include "../Player/Player.hpp"
 #include "../Board/Board.h"
 #include "../UTILS/Enums.hpp"
-#include "../Dies/Dice.h"
+#include "../Dice/Dice.h"
+#include "../Card.hpp"
 
 using namespace std;
 
-class Bank;
-class Player;
 
 class Game {
 private :
-    vector<Player> players;
-    vector<Card> Establishments;
-    vector<Card> Landmarks;
+    vector <Player> players;
+    vector <Card> Establishments;
+    vector <Card> Landmarks;
     size_t minPlayers;
     size_t maxPlayers;
     Board Board_Game;

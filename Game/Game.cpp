@@ -46,7 +46,7 @@ void Game::DoTurn() {
              current_player++){
 
             // Lance le dés
-            dice = this->Dice.rollDice(*current_player);
+            dice = this->Dice.rollDice();
             // On regarde les cartes rouges des autres joueurs
             for (auto other_player : players){
                 if (other_player.getId() != (*current_player).getId()) {
@@ -98,14 +98,14 @@ void Game::DoTurn() {
                 Buy_Establishment((*current_player));
             }
             else {
-                if (choice == "Landkark"){
-                    cout << "Quelle Landmark voulez vous achetez ?" << endl;
+                if (choice == "Landmark"){
+                    cout << "Quel Landmark voulez-vous acheter ?" << endl;
                     cout << "Trainstation\nRadiotower\nAmusementPark\nCommercialCenter\n"<< endl;
                     cin >> choice;
                     // On regarde si l'établissement existe et qu'il a l'argent nécessaire
                     if (!(*current_player).hasLandmark(choice) &&
-                    current_player.getWallet().GetBalance - FoundPriceLandmark(choice) >= 0 )
-                        Buy_Landmark(current_player);
+                    Bank_Game.getBalance(current_player->getId()) - FoundPriceLandmark(choice) >= 0 )
+                        Buy_Landmark(*current_player);
                     else
                         cout << "Impossible : soit l'établissement n'existe pas soit vous n'avez pas l'argent" << endl;
                 }
