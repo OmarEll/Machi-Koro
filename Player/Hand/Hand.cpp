@@ -23,27 +23,28 @@ Hand::Hand(Expansions myExpansion){
         default:break;
     }
 }
-void Hand::addEstablishment(Establishment* card){
-    if(establishments.find(card)!=establishments.end())
-        establishments[card]++;
-    else{
-        establishments.insert(pair<Establishment*,size_t>(card,1));
-    }
+void Hand::addEstablishment(EstablishmentsNames cardName){
+    if(establishments.find(cardName)!=establishments.end())
+        establishments[cardName].second++;
+    else
+        cout<< cardName << "n'existe pas.";
 }
 
-void Hand::removeEstablishment(Establishment* card){
-    if(establishments.find(card)!=establishments.end()){
-        establishments[card]--;
-        if(establishments[card]<=0){
-            establishments.erase(card);
+void Hand::removeEstablishment(EstablishmentsNames cardName){
+    if(establishments.find(cardName)!=establishments.end()){
+        establishments[cardName].second--;
+        if(establishments[cardName].second<=0){
+            establishments.erase(cardName);
         }
     }
+    else
+        cout<< cardName << "n'existe pas.";
 }
 vector<Establishment*> Hand::getColorCards(Colors color){
     vector<Establishment*> cards;
     for(auto establishment : establishments){
-        if((establishment.first)->getColor()==color)
-            cards.push_back(establishment.first);
+        if((establishment.second.first)->getColor()==color)
+            cards.push_back(establishment.second.first);
     }
     return cards;
 }
@@ -51,9 +52,8 @@ vector<Establishment*> Hand::getColorCards(Colors color){
 vector<Establishment*> Hand::getTypeCards(Types type){
     vector<Establishment*> cards;
     for(auto establishment : establishments){
-        Establishment* est= (establishment.first);
-        if(est->getType()==type)
-            cards.push_back(establishment.first);
+        if(establishment.second.first->getType()==type)
+            cards.push_back(establishment.second.first);
     }
     return cards;
 }
