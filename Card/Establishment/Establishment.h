@@ -18,7 +18,7 @@ public:
     /* GETTERS & SETTERS */
     Types getType(){ return type ;}
     vector<int> getActivationNumbers() { return activationNumbers; }
-    OriginsOfCoins getOrigin(){ return originOfCoinsEarned; }
+    OriginsOfCoins getOrigin() const { return originOfCoinsEarned; }
     int getEarnedCoins() const{ return numberOfCoinsEarned; }
     Colors getColor(){ return color; }
 
@@ -26,11 +26,11 @@ public:
     void setOriginOfCoinsEarned(OriginsOfCoins name){ originOfCoinsEarned = name; }
 
     /* REST */
-    bool activate(int DiceRolled);
+    bool activate(int);
     void launchEffect(Game&,Player&) override;
-    int numberGainWithType(Player* owner, vector<Types> t) const;
+    int numberGainWithType(Player&, vector<Types>) const;
     bool hasHarbor();
-    //A FAIRE : Méthode pour compter le nombre de monuments (landmark) construit d'un joueur passé en paramètre
+    int numberOfLandmarks(Player&);
 };
 
 
