@@ -34,6 +34,7 @@ bool Game::Iswin(Player& current_player) {
 void Game::DoTurn(Player& current_player) {
     // Variables
     int dice = 0;
+
     string choice;
     // Fonction
             // Lance le dés
@@ -66,7 +67,7 @@ void Game::DoTurn(Player& current_player) {
             for (auto all_players : players){
 
                 // On regarde les établissement de tout le monde
-                for ( Establishment cards : all_players.getHand().getEstablishments()){
+                for ( Establishment cards : all_players.getHand().getEstablishments().){
 
                     // Si le joueur est le current player et que sa cartes n'est pas rouge et doit être activé
                     if (current_player.getId() == all_players.getId() &&
@@ -100,7 +101,7 @@ void Game::DoTurn(Player& current_player) {
                     cout << "Trainstation\nRadiotower\nAmusementPark\nCommercialCenter\n"<< endl;
                     cin >> choice;
                     // On regarde si l'établissement existe et qu'il a l'argent nécessaire
-                    if (!current_player.hasLandmark(choice) &&
+                    if (!current_player.hasLandmark(static_cast<LandmarksNames>(choice)) &&
                     Bank_Game.getBalance(current_player.getId()) - FoundPriceLandmark(choice) >= 0 )
                         Buy_Landmark(current_player);
                     else
@@ -151,4 +152,11 @@ int Game::dice_turn(Player& current_player) {
     return Dices[0]->GetResult();
 }
 
+
+/*
+ int somme = red_cards.laucheffect()
+ if (other_player.hasLandmark(ShoppingMall))
+ somme +=1
+ BankGame.playerpaysplayer(current_player,other_player,somme);
+ */
 
