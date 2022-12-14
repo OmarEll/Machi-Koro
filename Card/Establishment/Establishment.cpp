@@ -61,6 +61,10 @@ int Establishment::numberOfLandmarks(Player* p){
     return p->getHand().getLandmarks().size();
 };
 
+int Establishment::numberOfLandmarks(Player& p){
+    return p.getHand().getLandmarks().size();
+};
+
 
 /* Redefinition des effets des cartes violettes standard */
 
@@ -273,10 +277,35 @@ void InternationalExhibitHall::launchEffect(Game& g, Player& currentPlayer) { //
 
 /* Redéfinition des cartes spéciales GREEN VALLEY */
 
-void CornField::launchEffect(Game& g, Player& currentPlayer) { // A FAIRE
+void CornField::launchEffect(Game& g, Player& currentPlayer) {
+    //If you have less than 2 landmarks built, get 1 coin from the bank
     if(numberOfLandmarks(getOwner())<2) {
         Establishment::launchEffect(g, currentPlayer);
     };
 }
+
+void GeneralStore::launchEffect(Game& g, Player& currentPlayer) {
+    //If you have less than 2 constructed landmarks, get 2 coins from the bank, on your turn only
+    if(numberOfLandmarks(getOwner())<2) {
+        Establishment::launchEffect(g, currentPlayer);
+    };
+}
+
+void MembersOnlyClub::launchEffect(Game& g, Player& currentPlayer) {
+    //If the player who rolled this number has 3 or more constructed landmarks, get all of their coins
+    if(numberOfLandmarks(currentPlayer)>=3) {
+        int id_current = currentPlayer.getId();
+        int balance_current=g.getBank().getBalance(id_current);
+        g.getBank().playerPaysPlayer(id_current, getOwner()->getId(), balance_current);
+    };
+}
+
+void FrenchRestaurant::launchEffect(Game& g, Player& currentPlayer) {
+    //If the player who rolled this number has 2 or more constructed landmarks, get 5 coins from the player who rolled the dice
+    if(numberOfLandmarks(currentPlayer)>=2) {
+        Establishment::launchEffect(g, currentPlayer);
+    };
+}
+
 
 

@@ -31,6 +31,7 @@ public:
     int numberGainWithType(Player&, vector<Types>) const;
     bool hasHarbor();
     int numberOfLandmarks(Player*);
+    int numberOfLandmarks(Player&);
 };
 
 
@@ -150,5 +151,23 @@ public:
 class CornField : public Establishment {
 public:
     CornField(): Establishment("Corn Field","If you have less than 2 landmarks built, get 1 coin from the bank",BLUE, 2,GreenValley, wheat,{3,4},Bank,1){}
+    void launchEffect(Game& g,Player& currentPlayer) final;
+};
+
+class GeneralStore: public Establishment {
+public:
+    GeneralStore(): Establishment("General Store","If you have less than 2 constructed landmarks, get 2 coins from the bank, on your turn only",GREEN, 0,GreenValley, bread,{2},Bank,2){}
+    void launchEffect(Game& g,Player& currentPlayer) final;
+};
+
+class MembersOnlyClub: public Establishment {
+public:
+    MembersOnlyClub(): Establishment("Members Only Club","If the player who rolled this number has 3 or more constructed landmarks, get all of their coins",RED, 4,GreenValley, coffee,{12, 14},PlayerRolledDice,0){}
+    void launchEffect(Game& g,Player& currentPlayer) final;
+};
+
+class FrenchRestaurant: public Establishment {
+public:
+    FrenchRestaurant(): Establishment("French Restaurant","If the player who rolled this number has 2 or more constructed landmarks, get 5 coins from the player who rolled the dice",RED, 3,GreenValley, coffee,{5},PlayerRolledDice,5){}
     void launchEffect(Game& g,Player& currentPlayer) final;
 };
