@@ -19,5 +19,6 @@ public:
     int deposit(size_t idPlayer,int amount);
     void withdraw(size_t idPlayer,int amount);
     int getBalance(int id){ return wallets[id]->getBalance(); }
+    void setBalance(int id, int num) { wallets[id]->setBalance(num);}
     void playerPaysPlayer(size_t idPlayer1,size_t idPlayer2,int amount);
 };

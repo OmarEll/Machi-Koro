@@ -14,6 +14,7 @@ private:
 public:
     explicit Wallet(int defaultValue):balance(defaultValue){};
     int getBalance(){ return balance; };
+    void setBalance(int num) { balance = num; };
     void addCoins(int nbCoins) { balance +=nbCoins; };
     void removeCoins(int nbCoins) { balance -=nbCoins; };
 };
