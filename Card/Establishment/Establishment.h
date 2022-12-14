@@ -30,7 +30,7 @@ public:
     void launchEffect(Game&,Player&) override;
     int numberGainWithType(Player&, vector<Types>) const;
     bool hasHarbor();
-    int numberOfLandmarks(Player&);
+    int numberOfLandmarks(Player*);
 };
 
 
@@ -99,6 +99,12 @@ public:
     void launchEffect(Game& g,Player& currentPlayer) final;
 };
 
+class TunaBoat : public Establishment {
+public:
+    TunaBoat(): Establishment("Tuna Boat","On anyone's turn: The current player rolls 2 dice. If you have a harbor you get as many coins as the dice total.",BLUE, 5,Harbor, boat,{12, 14},Bank,0){}
+    void launchEffect(Game& g,Player& currentPlayer) final;
+};
+
 
 /* Définition des cartes violettes harbor */
 class Publisher : public Establishment {
@@ -136,5 +142,13 @@ public:
 class InternationalExhibitHall : public Establishment {
 public:
     InternationalExhibitHall(): Establishment("International Exhibit Hall","You may choose to activate another of your non tower type establishments in place of this one, on your turn only. If you do, return this card to the market.",PURPLE, 7,GreenValley, tower,{10},OtherPlayers,0){}
+    void launchEffect(Game& g,Player& currentPlayer) final;
+};
+
+/* Définition des cartes spéciales GREEN VALLEY */
+
+class CornField : public Establishment {
+public:
+    CornField(): Establishment("Corn Field","If you have less than 2 landmarks built, get 1 coin from the bank",BLUE, 2,GreenValley, wheat,{3,4},Bank,1){}
     void launchEffect(Game& g,Player& currentPlayer) final;
 };

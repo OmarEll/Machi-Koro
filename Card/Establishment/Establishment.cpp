@@ -2,6 +2,7 @@
 #include "../Player/Player.hpp"
 #include "../Game/Game.h"
 #include "../../UTILS/Enums.hpp"
+#include "../Dice/Dice.h"
 #include <string>
 
 bool Establishment::activate(int diceRolled){
@@ -56,8 +57,8 @@ bool Establishment::hasHarbor(){ //fonction qui permet de regarder si le joueur 
     return getOwner()->hasLandmark(HarborCard);
 }
 
-int Establishment::numberOfLandmarks(Player& p){
-    return p.getHand().getLandmarks().size();
+int Establishment::numberOfLandmarks(Player* p){
+    return p->getHand().getLandmarks().size();
 };
 
 
@@ -194,6 +195,11 @@ void SushiBar::launchEffect(Game& g, Player& currentPlayer){
     if (hasHarbor()) Establishment::launchEffect(g, currentPlayer);
 }
 
+void TunaBoat::launchEffect(Game& g, Player& currentPlayer){ // A FAIRE
+    //On anyone's turn: The current player rolls 2 dice. If you have a harbor you get as many coins as the dice total.
+    setNumberOfCoinsEarned(/* the dice total */);
+    if (hasHarbor() /* && The current player rolls 2 dice*/) Establishment::launchEffect(g, currentPlayer);
+}
 
 /* Redéfinition des cartes violettes HARBOR */
 
@@ -216,18 +222,45 @@ void Publisher::launchEffect(Game& g, Player& currentPlayer){ //A REVOIR
     }
 }
 
-+void TaxOffice::launchEffect(Game& g, Player& currentPlayer){ // A FAIRE
+void TaxOffice::launchEffect(Game& g, Player& currentPlayer){
     //From each opponent with 10 or more coins: take half their coins, rounded down. This only applies in your turn.
+    int id_Owner=getOwner()->getId();
+    for (const auto& other_player : g.getPlayers()){
+        int id_other = other_player->getId();
+        if (id_Owner != id_other && g.getBank().getBalance(id_other)>=10){ //le joueur possède au moins 10 coins
+            int balance_other=g.getBank().getBalance(id_other);
+            g.getBank().playerPaysPlayer(id_other, id_Owner, balance_other/2); //On prend la moitié de la balance arrondi à l'inférieur (le reste de la divison est ignorée)
+        }
+    }
+
 }
 
 /* Redéfinition des cartes violettes GREEN VALLEY */
 
-void Park::launchEffect(Game& g, Player& currentPlayer) { // A FAIRE
+void Park::launchEffect(Game& g, Player& currentPlayer) {
     //Redistribute all players' coins evenly among all players, on your turn only. If there is an uneven amount of coins, take coins from the bank to make up the difference.
+    int total;
+    int new_balance;
+
+    for (const auto& all_player : g.getPlayers()){ //On calcul la somme de toutes les balances des joueurs
+        total += g.getBank().getBalance(all_player->getId());
+    }
+
+    if(total % g.getPlayers().size() == 0){ //On calcul quel va être la nouvelle balance de tout les joueurs
+        new_balance = total/g.getPlayers().size();
+    }
+    else{
+        new_balance = (total/g.getPlayers().size())+1; //si le modulo n'est pas egale a zero cela veux dire qu'il reste au moins une pièce et la banque complète pour tout le monde donc tout le monde a une pièce en plus
+    }
+
+    for (const auto& all_player : g.getPlayers()){ //On met à jour toutes les balances
+        g.getBank().setBalance(all_player->getId(), new_balance);
+    }
 }
 
 void RenovationCompany::launchEffect(Game& g, Player& currentPlayer) { // A FAIRE
     //Choose a non-tower type building. All buildings owned by any player of that type are closed for renovations. Get 1 coin from each player for each of their buildings closed for renovation, on your turn only.
+
 }
 
 void TechStartup::launchEffect(Game& g, Player& currentPlayer) { // A FAIRE
@@ -238,5 +271,12 @@ void InternationalExhibitHall::launchEffect(Game& g, Player& currentPlayer) { //
     //You may choose to activate another of your non tower type establishments in place of this one, on your turn only. If you do, return this card to the market.
 }
 
+/* Redéfinition des cartes spéciales GREEN VALLEY */
+
+void CornField::launchEffect(Game& g, Player& currentPlayer) { // A FAIRE
+    if(numberOfLandmarks(getOwner())<2) {
+        Establishment::launchEffect(g, currentPlayer);
+    };
+}
 
 
