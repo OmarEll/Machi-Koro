@@ -9,6 +9,6 @@
 using std::cout;
 using std::cin;
 
-int Dice::rollDice() const {
-    return rand()%faces+1;
+void Dice::rollDice() {
+    result = rand()%faces+1;
 }

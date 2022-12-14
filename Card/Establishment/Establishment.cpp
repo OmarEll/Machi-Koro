@@ -2,6 +2,7 @@
 #include "../Player/Player.hpp"
 #include "../Game/Game.h"
 #include "../../UTILS/Enums.hpp"
+#include "../Dice/Dice.h"
 #include <string>
 
 bool Establishment::activate(int diceRolled){
@@ -34,21 +35,35 @@ void Establishment::launchEffect(Game& g,Player& currentPlayer){ //ne gère pas 
 
 /* Definition de méthodes qui permetterons de redefinir des effets pour plusieurs cartes */
 
-int Establishment::numberGainWithType(Player* owner, vector<Types> t) const{  //fonction à utiliser pour les cartes comme cheese factory
+int Establishment::numberGainWithType(Player& currentPlayer, vector<Types> t) const{  //fonction à utiliser pour les cartes comme cheese factory
     // ici on calcule le nb de cartes d'un certain type que possède un joueur et on le multiplie par le gain de la carte
     int nb = getEarnedCoins();
     int sum=0;
-    for (auto& it : t){
-        sum += owner->getHand().getTypeCards(it).size();
+    if(getOrigin()==Bank){
+        for (auto& it : t){
+            sum += getOwner()->getHand().getTypeCards(it).size();
+        }
+    }
+    else{
+        for (auto& it : t){
+            sum += currentPlayer.getHand().getTypeCards(it).size();
+        }
     }
     return sum*nb;
 }
 
-bool Establishment::hasHarbor(){ //fonction qui permet de regarder si le joueur propriètaire de la carte possède un Harbor dans sa main
+bool Establishment::hasHarbor(){ //fonction qui permet de regarder si le joueur propriétaire de la carte possède un Harbor dans sa main
     //utilisée pour les effets avec "If you have a harbor"
     return getOwner()->hasLandmark(HarborCard);
 }
 
+int Establishment::numberOfLandmarks(Player* p){
+    return p->getHand().getLandmarks().size();
+};
+
+int Establishment::numberOfLandmarks(Player& p){
+    return p.getHand().getLandmarks().size();
+};
 
 
 /* Redefinition des effets des cartes violettes standard */
@@ -117,14 +132,16 @@ void Office::launchEffect(Game& g, Player& currentPlayer){ //echange une carte a
 
         //Owner
         for (const auto&  card : currentPlayer.getHand().getEstablishments()){ // On verifie que la carte choisi est dans la main du joueur et qu'elle n'est pas de type tower
-            if((nameOfCardOwner==(card.first)->getCardName()) && ((card.first)->getType()!=tower) ){
-                CardOwner=card.first;
+            Establishment* est= (card.first);
+            if((nameOfCardOwner==est->getCardName()) && (est->getType()!=tower) ){
+                CardOwner=est;
             }
         }
         //Exchanger
         for (const auto&  card : playerExchanger->getHand().getEstablishments()){ // On verifie que la carte choisi est dans la main du joueur et qu'elle n'est pas de type tower
-            if((nameOfCardExchanger==(card.first)->getCardName()) && ((card.first)->getType()!=tower) ){
-                CardExchanger=card.first;
+            Establishment* est= (card.first);
+            if((nameOfCardExchanger==est->getCardName()) && (est->getType()!=tower) ){
+                CardExchanger=est;
             }
         }
 
@@ -141,29 +158,35 @@ void Office::launchEffect(Game& g, Player& currentPlayer){ //echange une carte a
 /* Redefinition des establishments avec un effet de type "For each of your 'type' establishments, gain x coins"*/
 //Standard
 void CheeseFactory::launchEffect(Game& g, Player& currentPlayer){
-    setNumberOfCoinsEarned(numberGainWithType(getOwner(), {cow}));
+    setNumberOfCoinsEarned(numberGainWithType(currentPlayer, {cow}));
     Establishment::launchEffect(g, currentPlayer);
 }
 
 void FurnitureFactory::launchEffect(Game& g, Player& currentPlayer){
-    setNumberOfCoinsEarned(numberGainWithType(getOwner(), {wheel}));
+    setNumberOfCoinsEarned(numberGainWithType(currentPlayer, {wheel}));
     Establishment::launchEffect(g, currentPlayer);
 }
 
 void ProduceMarket::launchEffect(Game& g, Player& currentPlayer){
-    setNumberOfCoinsEarned(numberGainWithType(getOwner(), {wheat}));
+    setNumberOfCoinsEarned(numberGainWithType(currentPlayer, {wheat}));
     Establishment::launchEffect(g, currentPlayer);
 }
 
 //Harbor
 void FoodWarehouse::launchEffect(Game& g, Player& currentPlayer){
-    setNumberOfCoinsEarned(numberGainWithType(getOwner(), {coffee}));
+    setNumberOfCoinsEarned(numberGainWithType(currentPlayer, {coffee}));
     Establishment::launchEffect(g, currentPlayer);
 }
 
-void FlowerShop::launchEffect(Game& g, Player& currentPlayer){ //A FAIRE
-    // setNumberOfCoinsEarned(); // A redefinir pour aller compter le nombre de landmark Flower garden qu'il y a dans la main du propriétaire de la carte
-    //Get 1 coin from the bank for Flower Garden you own, on your turn only.
+void FlowerShop::launchEffect(Game& g, Player& currentPlayer){
+    //Get 1 coin from the bank for each Flower Garden you own, on your turn only.
+    auto establishments=getOwner()->getHand().getEstablishments();
+    if (getOwner()->getHand().getEstablishments().find(FlowerGarden)!=getOwner()->getHand().getEstablishments().end()){
+        setNumberOfCoinsEarned(getOwner()->getHand().getEstablishments()[FlowerGarden].second); //Le nombre de coins gagné est le nombre de flower garden possédé
+    }
+    else {
+        setNumberOfCoinsEarned(0); //Le joueur ne possède pas de flower garden
+    }
     Establishment::launchEffect(g, currentPlayer);
 }
 
@@ -176,28 +199,72 @@ void SushiBar::launchEffect(Game& g, Player& currentPlayer){
     if (hasHarbor()) Establishment::launchEffect(g, currentPlayer);
 }
 
+void TunaBoat::launchEffect(Game& g, Player& currentPlayer){ // A FAIRE
+    //On anyone's turn: The current player rolls 2 dice. If you have a harbor you get as many coins as the dice total.
+    setNumberOfCoinsEarned(/* the dice total */);
+    if (hasHarbor() /* && The current player rolls 2 dice*/) Establishment::launchEffect(g, currentPlayer);
+}
 
 /* Redéfinition des cartes violettes HARBOR */
 
-void Publisher::launchEffect(Game& g, Player& currentPlayer){ //A FAIRE
-    //setNumberOfCoinsEarned a redefinir pour regarder les cartes des adversaires
+void Publisher::launchEffect(Game& g, Player& currentPlayer){ //A REVOIR
     //Take 1 coins from each opponent for each 'coffee' and 'bread' type establishment they own
-    setNumberOfCoinsEarned(numberGainWithType(getOwner(), {coffee,bread}));
-    Establishment::launchEffect(g, currentPlayer);
+    int id_Owner=getOwner()->getId();
+    for (const auto& other_player : g.getPlayers()){
+        int id_other = other_player->getId();
+        if (id_Owner != id_other){
+            int balance_other=g.getBank().getBalance(id_other);
+            if ((getOrigin() == OtherPlayers) && getOwner()!=nullptr) { //on va prendre les coins des joueurs adverse et le donner à celui qui possède cette carte (qui est aussi le current_player)
+                setNumberOfCoinsEarned(numberGainWithType(other_player, {coffee,bread})); //On definit le nombre de piece que le joueur adverse doit payer
+                if (balance_other >= getEarnedCoins()) { //le joueur qui doit payer a assez de coins pour payer
+                    g.getBank().playerPaysPlayer(id_other, id_Owner, getEarnedCoins());
+                } else {                                    //le joueur qui doit payer n'a pas assez de coins pour payer donc il donne ce qu'il a
+                    g.getBank().playerPaysPlayer(id_other, id_Owner, balance_other);
+                }
+            }
+        }
+    }
 }
 
-+void TaxOffice::launchEffect(Game& g, Player& currentPlayer){ // A FAIRE
+void TaxOffice::launchEffect(Game& g, Player& currentPlayer){
     //From each opponent with 10 or more coins: take half their coins, rounded down. This only applies in your turn.
+    int id_Owner=getOwner()->getId();
+    for (const auto& other_player : g.getPlayers()){
+        int id_other = other_player->getId();
+        if (id_Owner != id_other && g.getBank().getBalance(id_other)>=10){ //le joueur possède au moins 10 coins
+            int balance_other=g.getBank().getBalance(id_other);
+            g.getBank().playerPaysPlayer(id_other, id_Owner, balance_other/2); //On prend la moitié de la balance arrondi à l'inférieur (le reste de la divison est ignorée)
+        }
+    }
+
 }
 
 /* Redéfinition des cartes violettes GREEN VALLEY */
 
-void Park::launchEffect(Game& g, Player& currentPlayer) { // A FAIRE
+void Park::launchEffect(Game& g, Player& currentPlayer) {
     //Redistribute all players' coins evenly among all players, on your turn only. If there is an uneven amount of coins, take coins from the bank to make up the difference.
+    int total;
+    int new_balance;
+
+    for (const auto& all_player : g.getPlayers()){ //On calcul la somme de toutes les balances des joueurs
+        total += g.getBank().getBalance(all_player->getId());
+    }
+
+    if(total % g.getPlayers().size() == 0){ //On calcul quel va être la nouvelle balance de tout les joueurs
+        new_balance = total/g.getPlayers().size();
+    }
+    else{
+        new_balance = (total/g.getPlayers().size())+1; //si le modulo n'est pas egale a zero cela veux dire qu'il reste au moins une pièce et la banque complète pour tout le monde donc tout le monde a une pièce en plus
+    }
+
+    for (const auto& all_player : g.getPlayers()){ //On met à jour toutes les balances
+        g.getBank().setBalance(all_player->getId(), new_balance);
+    }
 }
 
 void RenovationCompany::launchEffect(Game& g, Player& currentPlayer) { // A FAIRE
     //Choose a non-tower type building. All buildings owned by any player of that type are closed for renovations. Get 1 coin from each player for each of their buildings closed for renovation, on your turn only.
+
 }
 
 void TechStartup::launchEffect(Game& g, Player& currentPlayer) { // A FAIRE
@@ -206,6 +273,38 @@ void TechStartup::launchEffect(Game& g, Player& currentPlayer) { // A FAIRE
 
 void InternationalExhibitHall::launchEffect(Game& g, Player& currentPlayer) { // A FAIRE
     //You may choose to activate another of your non tower type establishments in place of this one, on your turn only. If you do, return this card to the market.
+}
+
+/* Redéfinition des cartes spéciales GREEN VALLEY */
+
+void CornField::launchEffect(Game& g, Player& currentPlayer) {
+    //If you have less than 2 landmarks built, get 1 coin from the bank
+    if(numberOfLandmarks(getOwner())<2) {
+        Establishment::launchEffect(g, currentPlayer);
+    };
+}
+
+void GeneralStore::launchEffect(Game& g, Player& currentPlayer) {
+    //If you have less than 2 constructed landmarks, get 2 coins from the bank, on your turn only
+    if(numberOfLandmarks(getOwner())<2) {
+        Establishment::launchEffect(g, currentPlayer);
+    };
+}
+
+void MembersOnlyClub::launchEffect(Game& g, Player& currentPlayer) {
+    //If the player who rolled this number has 3 or more constructed landmarks, get all of their coins
+    if(numberOfLandmarks(currentPlayer)>=3) {
+        int id_current = currentPlayer.getId();
+        int balance_current=g.getBank().getBalance(id_current);
+        g.getBank().playerPaysPlayer(id_current, getOwner()->getId(), balance_current);
+    };
+}
+
+void FrenchRestaurant::launchEffect(Game& g, Player& currentPlayer) {
+    //If the player who rolled this number has 2 or more constructed landmarks, get 5 coins from the player who rolled the dice
+    if(numberOfLandmarks(currentPlayer)>=2) {
+        Establishment::launchEffect(g, currentPlayer);
+    };
 }
 
 
