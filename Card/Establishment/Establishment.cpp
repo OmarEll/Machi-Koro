@@ -263,7 +263,21 @@ void Park::launchEffect(Game& g, Player& currentPlayer) {
 }
 
 void RenovationCompany::launchEffect(Game& g, Player& currentPlayer) { // A FAIRE
-    //Choose a non-tower type building. All buildings owned by any player of that type are closed for renovations. Get 1 coin from each player for each of their buildings closed for renovation, on your turn only.
+    //Choose a non-tower type building. All buildings owned by any player of that type are closed for renovations.
+    // Get 1 coin from each player for each of their buildings closed for renovation, on your turn only.
+    string cardRenov;
+    cout<<"Entrez le nom de la carte que vous souhaitez mettre en rénovation (pas de type tower):\n";
+    cin >> cardRenov;
+
+    for (const auto& all_player : g.getPlayers()){
+        for(const auto& etablishment : all_player->getHand().getEstablishments()){
+            if (etablishment.first==dynamic_cast<EstablishmentsNames>(cardRenov))
+
+                // attention vu que on met en renov etablissement, on a tous les objets qui le sont
+                // hors si on en achète un nouveau il ne doit pas etre en rénovation
+                // pb qui ne se résout pas avec les maps, il faut un objet à chaque fois
+        }
+    }
 
 }
 
