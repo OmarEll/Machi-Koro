@@ -9,10 +9,12 @@
 class Dice {
 private :
     int faces;
+    int result;
 public :
     Dice() : faces(6) {};
     ~Dice();
-    int rollDice() const;
+    void rollDice();
+    int GetResult(){return result;}
 };
 
 

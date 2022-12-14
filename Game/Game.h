@@ -26,7 +26,7 @@ private :
     size_t minPlayers;
     size_t maxPlayers;
     Board Board_Game;
-    Dice Dice;
+    Dice* Dices [2] ;
     Bank Bank_Game;
     static Game* Game_single;
     list<Colors>Activation_order;
@@ -34,7 +34,7 @@ private :
     Game ();
 public:
     void virtual initGame();
-    void virtual DoTurn ();
+    void virtual DoTurn (Player& current_player);
     bool Iswin(Player& current_player);
     void virtual Destructor ();
     ostream& Afficher_etat_partie (ostream& standard);
@@ -43,8 +43,10 @@ public:
     void Buy_Landmark(Player& current_player);
     string Get_Extension() { return Nom_Extension;}
     Bank getBank() {return Bank_Game;}
+    void Do_Game();
     //const list<Player>& getPlayers() const {return Players_Game};
     vector <Player*> getPlayers() const {return players;}
+    int dice_turn (Player& current_player);
     static bool CanPay(Player& CurrentPlayer, Bank& bank, int amount);
 };
 
