@@ -11,6 +11,7 @@ protected:
     vector<int> activationNumbers;
     OriginsOfCoins originOfCoinsEarned;
     int numberOfCoinsEarned;
+    bool underRenovation=false;
 
 public:
     Establishment(string name, string desc, Colors col, int cos, Expansions exp, Types typ, vector<int> actNum, OriginsOfCoins ori, int num)
@@ -22,9 +23,11 @@ public:
     OriginsOfCoins getOrigin() const { return originOfCoinsEarned; }
     int getEarnedCoins() const{ return numberOfCoinsEarned; }
     Colors getColor(){ return color; }
+    bool getRenovation(){return underRenovation;}
 
     void setNumberOfCoinsEarned(int num) {numberOfCoinsEarned = num;}
     void setOriginOfCoinsEarned(OriginsOfCoins name){ originOfCoinsEarned = name; }
+    void setRenovation(bool r){ underRenovation=r;}
 
     /* REST */
     bool activate(int);
