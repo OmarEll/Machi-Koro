@@ -12,7 +12,7 @@ class StandardExpansion : public Game {
 private :
 
 public:
-
+    StandardExpansion();
 
 };
 

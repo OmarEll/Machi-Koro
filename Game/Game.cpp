@@ -4,7 +4,7 @@
 #include "Card.hpp"
 #include "Game.h"
 #include "Establishment/Establishment.h"
-#include "Landmark/Landmark.h"
+#include "../Card/Landmark/Landmark.h"
 #include "Enums.hpp"
 #include <iterator>
 
@@ -12,17 +12,25 @@ using namespace std;
 
 Game* Game::Game_single = nullptr;
 
-Game :: Game() {
+Game :: Game():board(nullptr),bank(nullptr),players(nullptr),establishments(nullptr),landmarks(nullptr),dice(nullptr),activationOorder(
+        nullptr){}
 
+<<<<<<< Updated upstream
 }
 
 Game* Game::Singleton() {
     if (Game::Game_single == nullptr)
+=======
+Game* Game::singleton(string NomEdition) {
+    if (Game::Game_single == nullptr){
+>>>>>>> Stashed changes
         Game::Game_single = new Game();
+    }
+
     return Game::Game_single;
 }
 
-bool Game::Iswin(Player& current_player) {
+bool Game::isWinner(Player& current_player) {
     for (auto land_check : current_player.getHand().getLandmarks() ){
         if (!land_check.second->isConstructed())
             return false;
@@ -30,6 +38,20 @@ bool Game::Iswin(Player& current_player) {
     return true;
 }
 
+Establishment* Game::getEstablishmentByName(string estName){
+    for (auto establishment : Establishments){
+        if (establishment.getCardName()==estName)
+        return establishment;
+    }
+    return nullptr;
+}
+
+bool Game::buyableByPlayer(size_t idPlayer,Landmark* landmark){
+    return bank->getBalancePlayer(idPlayer)>=landmark->getCost();
+}
+bool Game::buyableByPlayer(size_t idPlayer,Establishment* establishment){
+    return bank->getBalancePlayer(idPlayer)>=establishment->getCost();
+}
 // A METTRE DANS STANDARD
 void Game::DoTurn(Player& current_player) {
     // Variables

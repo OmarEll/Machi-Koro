@@ -6,23 +6,21 @@
 
 class Deck{
 private :
-    stack<Card> cards;
+    stack<Card*> cards;
 
 public :
     // Remarque : finalement pas besoin de m�thode isEmpty()
     // avec stack on a deja cards.empty() qui renvoie bool
 
-    Card drawCard(){
+    Card* drawCard(){
         if (!cards.empty()){
-            Card c = cards.top();
-            cards.pop();
-            return c;
+            return cards.pop();
         }
         cout<<"la pile est vide, impossible de piocher";
         return nullptr;
     };
 
-    void addCardToDeck(Card c){
+    void addCardToDeck(Card* c){
         cards.push(c);
     }
 };

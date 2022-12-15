@@ -19,32 +19,29 @@ using namespace std;
 
 
 class Game {
-private :
+protected : //protected because we can't inheret from this class if it's private
     vector <Player*> players;
     vector <Establishment*> establishments;
     vector <Landmark*> landmarks;
     Bank* bank;
     Dice* dice[2] ;
     Board* board;
-    size_t minPlayers;
-    size_t maxPlayers;
-    list<Colors>Activation_order;
+    size_t gameSize[2]; // min / max
+    list<Colors>activationOorder;
     static Game* Game_single;
     //string Nom_Extension;
+    //Establishment& Buy_Establishment(Player& current_player);
+    void buyEstablishment(Player*,Establishment*);
+    void buyLandmark(size_t ,Landmark*);
+    bool buyableByPlayer(size_t id,Landmark*); //+
+    bool buyableByPlayer(size_t id,Establishment*); //+
+    bool isWinner(Player*);
     Game ();
 public:
-    void virtual initGame();
-    void virtual DoTurn (Player& current_player);
-    bool Iswin(Player& current_player);
-    void virtual Destructor ();
-    ostream& Afficher_etat_partie (ostream& standard);
-    static Game* Singleton (string NomEdition);
-    Establishment& Buy_Establishment(Player& current_player);
-    void Buy_Landmark(Player& current_player);
-    string Get_Extension() { return Nom_Extension;}
-    Bank getBank() {return Bank_Game;}
-    void Do_Game();
+    //void virtual Destructor ();
+    //string Get_Extension() { return Nom_Extension;}
     //const list<Player>& getPlayers() const {return Players_Game};
+<<<<<<< Updated upstream
     vector <Player> getPlayers() const {return players;}
     int dice_turn (Player& current_player);
     static bool CanPay(Player& CurrentPlayer, Bank& bank, int amount);
@@ -58,6 +55,33 @@ public:
         return nullptr;
     }
     vector<Landmark> getLandmarks(){return landmarks;}
+=======
+    //static bool CanPay(Player& CurrentPlayer, Bank& bank, int amount);
+
+    virtual ~Game();
+    Game(const Game&) = delete;
+    Game& operator=(const Game&) = delete;
+
+    static Game* singleton (string NomEdition);
+
+    void startGame();
+    void virtual initGame();
+    void virtual doTurn (Player& current_player);
+    int throwDice (Player& current_player);
+
+    ostream& afficher_etat_partie (ostream& standard);
+
+    /*GETTERS*/
+    Bank* getBank() {return bank;}
+    vector<Player*> getPlayers() const {return players;}
+    Dice * getDices(){return reinterpret_cast<Dice *>(Dices);}
+    vector<Establishment> getEstablishments(){return Establishments;}
+    vector<Landmark> getLandmarks(){return Landmarks;}
+    Establishment* getEstablishmentByName(string estName);
+    Establishment* getLandmarkByName(string landName);
+    Board* getBoard() const{ return board;}
+    void tradeTwoCards(Player* p1,Player p2, Establishment* cardP1,Establishment* cardP2);
+>>>>>>> Stashed changes
 };
 
 

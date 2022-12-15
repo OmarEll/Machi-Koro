@@ -6,12 +6,19 @@
 
 class HarborBoard : public Board {
 private :
-    Deck deck;
-    size_t nb_card_dif;
+    Deck* deck;
+    size_t nb_card_dif; //?
 
 public :
-    virtual void initBoard();
+    //from super class
+    void initBoard();
+    void displayCards();
     void fillBoard();
+    Board& createBoard();
+    void initBoard();
+    //new to this class
+    Deck* getDeck() { return deck;}
+    void reFillBoard();
 };
 
 
