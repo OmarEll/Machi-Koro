@@ -271,25 +271,23 @@ void RenovationCompany::launchEffect(Game& g, Player& currentPlayer) { // A FAIR
     while (!cardok) {
         cout << "Entrez le nom de la carte que vous souhaitez mettre en rénovation (pas de type tower):\n";
         cin >> cardRenov;
-        g.getEstablishment()
-        for (auto &cardE: g.GetEstablishment()) {
-            if (cardE.getCardName() == cardRenov && cardE.getType() != tower) {
-                cardok = true;
-                break;
+        if(g.getEstablishmentByName(cardRenov)!= nullptr){
+            if(g.getEstablishmentByName(cardRenov)->getType()!=tower)
+                cardok= true;
+            else{
+                cout<<"\nErreur: choisir une carte d'un type non tower"<<endl;
             }
-            else {
-
-            }
+        }else{
+            cout<<"\nErreur: verifiez l'orthographe de la carte tape"<<endl;
         }
-        if(!cardok)
     }
 
-
-
-
     for (const auto& player : g.getPlayers()){
-        if (player->hasEstablishment(cardRenov)!= nullptr){
-            player->hasEstablishment(cardRenov)->setRenovation(true);
+        if (player.hasEstablishment(cardRenov)!= nullptr){
+            player.hasEstablishment(cardRenov)->setRenovation(true);
+            if(player.getId()!=currentPlayer.getId()){
+                g.getBank().playerPaysPlayer(player.getId(),currentPlayer.getId(),1);
+            }
         }
     }
 
