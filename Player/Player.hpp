@@ -22,7 +22,12 @@ private:
         int getId() const { return idPlayer; };
         string getName() const { return name; };
         Hand getHand() const { return hand;};
-        bool hasLandmark(LandmarksNames name) const{return hand.getLandmarks().find(name)!=hand.getLandmarks().end();}
+        Landmark* hasLandmark(LandmarksNames name) const{
+            auto it=hand.getLandmarks().find(name);
+            if(it!=hand.getLandmarks().end())
+                return (*it).second;
+            else return nullptr;
+        }
         //
         Establishment* hasEstablishment(EstablishmentsNames name) const{
             auto it=hand.getEstablishments().find(name);

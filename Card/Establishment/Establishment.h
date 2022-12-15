@@ -24,7 +24,11 @@ public:
     int getEarnedCoins() const{ return numberOfCoinsEarned; }
     Colors getColor(){ return color; }
     bool getRenovation(){return underRenovation;}
-
+    EstablishmentsNames getCardName_Enum(){
+        EnumParser<EstablishmentsNames> fieldTypeParser;
+        EstablishmentsNames val = fieldTypeParser.ParseSomeEnum(cardName);
+        return val ;
+    }
     void setNumberOfCoinsEarned(int num) {numberOfCoinsEarned = num;}
     void setOriginOfCoinsEarned(OriginsOfCoins name){ originOfCoinsEarned = name; }
     void setRenovation(bool r){ underRenovation=r;}
