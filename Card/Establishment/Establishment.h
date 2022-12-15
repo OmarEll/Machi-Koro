@@ -59,39 +59,39 @@ public:
 //Standard
 class CheeseFactory : public Establishment {
 public:
-    CheeseFactory(): Establishment("Cheese Factory","Receive 3 coins from the bank for each of your 'cow' type establishments.",GREEN, 5,Standard, factory,{7},Bank,3){}
+    CheeseFactory(): Establishment("Cheese Factory","Receive 3 coins from the bank for each of your 'cow' type establishments.",GREEN, 5,Standard, factory,{7},BankOrigin,3){}
     void launchEffect(Game& g,Player& currentPlayer) final;
 };
 
 class FurnitureFactory : public Establishment {
 public:
-    FurnitureFactory(): Establishment("Furniture Factory","Receive 3 coins from the bank for each of your 'wheel' type establishments.",GREEN, 3,Standard, factory,{8},Bank,3){}
+    FurnitureFactory(): Establishment("Furniture Factory","Receive 3 coins from the bank for each of your 'wheel' type establishments.",GREEN, 3,Standard, factory,{8},BankOrigin,3){}
     void launchEffect(Game& g,Player& currentPlayer) final;
 };
 
 class ProduceMarket : public Establishment {
 public:
-    ProduceMarket(): Establishment("Produce Market","Receive 2 coins from the bank for each of your 'wheat' type establishments.",GREEN, 2,Standard, apple,{11,12},Bank,2){}
+    ProduceMarket(): Establishment("Produce Market","Receive 2 coins from the bank for each of your 'wheat' type establishments.",GREEN, 2,Standard, apple,{11,12},BankOrigin,2){}
     void launchEffect(Game& g,Player& currentPlayer) final;
 };
 
 //Harbor
 class FoodWarehouse : public Establishment {
 public:
-    FoodWarehouse(): Establishment("Food Warehouse","Get 2 coins from the bank for each 'coffee' type establishment that you own, on your turn only.",GREEN, 2,Harbor, factory,{12,13},Bank,2){}
+    FoodWarehouse(): Establishment("Food Warehouse","Get 2 coins from the bank for each 'coffee' type establishment that you own, on your turn only.",GREEN, 2,Harbor, factory,{12,13},BankOrigin,2){}
     void launchEffect(Game& g,Player& currentPlayer) final;
 };
 
 class FlowerShop : public Establishment {
 public:
-    FlowerShop(): Establishment("Flower Shop","Get 1 coin from the bank for Flower Garden you own, on your turn only.",GREEN, 1,Harbor, bread,{6},Bank,1){}
+    FlowerShop(): Establishment("Flower Shop","Get 1 coin from the bank for Flower Garden you own, on your turn only.",GREEN, 1,Harbor, bread,{6},BankOrigin,1){}
     void launchEffect(Game& g,Player& currentPlayer) final;
 };
 
 /* Definition des establishments avec un effet de type "If you have a Harbor, gain x coins"*/
 class MackerelBoat : public Establishment {
 public:
-    MackerelBoat(): Establishment("Mackerel Boat","If you have a Harbor, get 3 coins from the bank on anyone's turn.",BLUE, 2,Harbor, boat,{8},Bank,3){}
+    MackerelBoat(): Establishment("Mackerel Boat","If you have a Harbor, get 3 coins from the bank on anyone's turn.",BLUE, 2,Harbor, boat,{8},BankOrigin,3){}
     void launchEffect(Game& g,Player& currentPlayer) final;
 };
 
@@ -103,7 +103,7 @@ public:
 
 class TunaBoat : public Establishment {
 public:
-    TunaBoat(): Establishment("Tuna Boat","On anyone's turn: The current player rolls 2 dice. If you have a harbor you get as many coins as the dice total.",BLUE, 5,Harbor, boat,{12, 14},Bank,0){}
+    TunaBoat(): Establishment("Tuna Boat","On anyone's turn: The current player rolls 2 dice. If you have a harbor you get as many coins as the dice total.",BLUE, 5,Harbor, boat,{12, 14},BankOrigin,0){}
     void launchEffect(Game& g,Player& currentPlayer) final;
 };
 
@@ -151,13 +151,13 @@ public:
 
 class CornField : public Establishment {
 public:
-    CornField(): Establishment("Corn Field","If you have less than 2 landmarks built, get 1 coin from the bank",BLUE, 2,GreenValley, wheat,{3,4},Bank,1){}
+    CornField(): Establishment("Corn Field","If you have less than 2 landmarks built, get 1 coin from the bank",BLUE, 2,GreenValley, wheat,{3,4},BankOrigin,1){}
     void launchEffect(Game& g,Player& currentPlayer) final;
 };
 
 class GeneralStore: public Establishment {
 public:
-    GeneralStore(): Establishment("General Store","If you have less than 2 constructed landmarks, get 2 coins from the bank, on your turn only",GREEN, 0,GreenValley, bread,{2},Bank,2){}
+    GeneralStore(): Establishment("General Store","If you have less than 2 constructed landmarks, get 2 coins from the bank, on your turn only",GREEN, 0,GreenValley, bread,{2},BankOrigin,2){}
     void launchEffect(Game& g,Player& currentPlayer) final;
 };
 
