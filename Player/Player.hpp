@@ -23,11 +23,20 @@ private:
         string getName() const { return name; };
         Hand getHand() const { return hand;};
         bool hasLandmark(LandmarksNames name) const{return hand.getLandmarks().find(name)!=hand.getLandmarks().end();}
-        bool hasEstablishment(EstablishmentsNames name) const{return hand.getEstablishments().find(name)!=hand.getEstablishments().end();}
-        bool hasEstablishment(string name) const{
+        //
+        Establishment* hasEstablishment(EstablishmentsNames name) const{
+            auto it=hand.getEstablishments().find(name);
+            if(it!=hand.getEstablishments().end())
+                return (*it).second.first;
+            else return nullptr;
+        }
+        Establishment* hasEstablishment(string name) const{
             EnumParser<EstablishmentsNames> fieldTypeParser;
             EstablishmentsNames val = fieldTypeParser.ParseSomeEnum(name);
-            return hand.getEstablishments().find(val)!=hand.getEstablishments().end();
+            auto it=hand.getEstablishments().find(val);
+            if(it!=hand.getEstablishments().end())
+                return (*it).second.first;
+            else return nullptr;
         }
 
     virtual ~Player();
