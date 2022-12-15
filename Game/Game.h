@@ -21,8 +21,8 @@ using namespace std;
 class Game {
 private :
     vector <Player> players;
-    vector <Card> Establishments;
-    vector <Card> Landmarks;
+    vector <Establishment> Establishments;
+    vector <Landmark> Landmarks;
     size_t minPlayers;
     size_t maxPlayers;
     Board Board_Game;
@@ -48,6 +48,9 @@ public:
     vector <Player*> getPlayers() const {return players;}
     int dice_turn (Player& current_player);
     static bool CanPay(Player& CurrentPlayer, Bank& bank, int amount);
+    Dice * GetDices(){return reinterpret_cast<Dice *>(Dices);}
+    vector<Establishment> GetEstablishment(){return Establishments;}
+    vector<Landmark> GetLandmarks(){return Landmarks;}
 };
 
 

@@ -132,7 +132,7 @@ void Office::launchEffect(Game& g, Player& currentPlayer){ //echange une carte a
 
         //Owner
         for (const auto&  card : currentPlayer.getHand().getEstablishments()){ // On verifie que la carte choisi est dans la main du joueur et qu'elle n'est pas de type tower
-            Establishment* est= (card.first);
+            Establishment* est= (card[card.first].first);
             if((nameOfCardOwner==est->getCardName()) && (est->getType()!=tower) ){
                 CardOwner=est;
             }
@@ -201,8 +201,9 @@ void SushiBar::launchEffect(Game& g, Player& currentPlayer){
 
 void TunaBoat::launchEffect(Game& g, Player& currentPlayer){ // A FAIRE
     //On anyone's turn: The current player rolls 2 dice. If you have a harbor you get as many coins as the dice total.
-    setNumberOfCoinsEarned(/* the dice total */);
-    if (hasHarbor() /* && The current player rolls 2 dice*/) Establishment::launchEffect(g, currentPlayer);
+    Dice* tab = g.GetDices();
+    setNumberOfCoinsEarned( tab->GetResult() + (++tab)->GetResult());
+    if (hasHarbor() && tab->GetResult() != 0) Establishment::launchEffect(g, currentPlayer);
 }
 
 /* Redéfinition des cartes violettes HARBOR */

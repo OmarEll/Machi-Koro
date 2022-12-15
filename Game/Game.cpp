@@ -139,7 +139,6 @@ static bool Game::CanPay(Player &CurrentPlayer, class Bank &bank, int amount) {
 
 int Game::dice_turn(Player& current_player) {
     string choice;
-    Dices[1] = 0;
     Dices[0]->rollDice();
     if (current_player.hasLandmark(TrainStation)){
         cout << "Voulez vous relancer un dé ? " << endl;
