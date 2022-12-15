@@ -263,7 +263,7 @@ void Park::launchEffect(Game& g, Player& currentPlayer) {
     }
 }
 
-void RenovationCompany::launchEffect(Game& g, Player& currentPlayer) { // A FAIRE
+void RenovationCompany::launchEffect(Game& g, Player& currentPlayer) {
     //Choose a non-tower type building. All buildings owned by any player of that type are closed for renovations.
     // Get 1 coin from each player for each of their buildings closed for renovation, on your turn only.
     string cardRenov;
@@ -293,12 +293,35 @@ void RenovationCompany::launchEffect(Game& g, Player& currentPlayer) { // A FAIR
 
 }
 
-void TechStartup::launchEffect(Game& g, Player& currentPlayer) { // A FAIRE
+void TechStartup::launchEffect(Game& g, Player& currentPlayer) {
     //At the end of each of your turns, you may place 1 coin on this card. The total placed here is your investment. When activated, get an amount equal to your investment from all player, on your turn only.
+    for(auto player : players){
+        g.getBank().playerPaysPlayer(player.getId(),currentPlayer.getId(),investment);
+    }
 }
 
 void InternationalExhibitHall::launchEffect(Game& g, Player& currentPlayer) { // A FAIRE
     //You may choose to activate another of your non tower type establishments in place of this one, on your turn only. If you do, return this card to the market.
+    string cardAct;
+    bool cardok=false;
+    while (!cardok) {
+        cout << "Entrez le nom de la carte que vous souhaitez activer (pas de type tower), ecrire 'non' pour ne rien faire:\n";
+        cin >> cardAct;
+        if (cardAct=="non") return;
+        if(g.getEstablishmentByName(cardAct)!= nullptr){
+            if(g.getEstablishmentByName(cardAct)->getType()!=tower)
+                cardok= true;
+            else{
+                cout<<"\nErreur: choisir une carte d'un type non tower"<<endl;
+            }
+        }else{
+            cout<<"\nErreur: verifiez l'orthographe de la carte tape"<<endl;
+        }
+    }
+    Establishment est=currentPlayer.hasEstablishment(cardAct);
+    est->launchEffect(g,currentPlayer);
+    currentPlayer.getHand().removeEstablishment(est.getCardName_Enum());
+    //rajouter la carte au board (market)---------------------------------------------------------
 }
 
 /* Redéfinition des cartes spéciales GREEN VALLEY */

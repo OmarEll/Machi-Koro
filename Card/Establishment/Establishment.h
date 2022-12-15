@@ -24,7 +24,8 @@ public:
     EstablishmentsNames getCardName_Enum(){
         EnumParser<EstablishmentsNames> fieldTypeParser;
         EstablishmentsNames val = fieldTypeParser.ParseSomeEnum(cardName);
-        return val; ;}
+        return val ;
+    }
     int getEarnedCoins() const{ return numberOfCoinsEarned; }
     Colors getColor(){ return color; }
     bool getRenovation(){return underRenovation;}
@@ -143,9 +144,13 @@ public:
 };
 
 class TechStartup : public Establishment {
+private:
+    unsigned int investment=0;
 public:
     TechStartup(): Establishment("Tech Startup","At the end of each of your turns, you may place 1 coin on this card. The total placed here is your investment. When activated, get an amount equal to your investment from all player, on your turn only.",PURPLE, 1,GreenValley, tower,{10},OtherPlayers,0){}
     void launchEffect(Game& g,Player& currentPlayer) final;
+    unsigned int getInvestment() { return investment; }
+    void investOneCoin(){ investment++; }
 };
 
 class InternationalExhibitHall : public Establishment {
