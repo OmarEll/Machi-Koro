@@ -20,17 +20,17 @@ using namespace std;
 
 class Game {
 private :
-    vector <Player> players;
-    vector <Establishment> Establishments;
-    vector <Landmark> Landmarks;
+    vector <Player*> players;
+    vector <Establishment*> establishments;
+    vector <Landmark*> landmarks;
+    Bank* bank;
+    Dice* dice[2] ;
+    Board* board;
     size_t minPlayers;
     size_t maxPlayers;
-    Board Board_Game;
-    Dice* Dices [2] ;
-    Bank Bank_Game;
-    static Game* Game_single;
     list<Colors>Activation_order;
-    string Nom_Extension;
+    static Game* Game_single;
+    //string Nom_Extension;
     Game ();
 public:
     void virtual initGame();
