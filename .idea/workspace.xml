@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakePresetLoader">{
+  &quot;useNewFormat&quot;: true
+}</component>
+  <component name="CMakeReloadState">
+    <option name="reloaded" value="true" />
+  </component>
+  <component name="CMakeRunConfigurationManager">
+    <generated />
+  </component>
+  <component name="CMakeSettings" AUTO_RELOAD="true">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9f3eda9a-50d7-4d8a-9007-c58105ed8332" name="Changes" comment="return type establishment">
+      <change beforePath="$PROJECT_DIR$/Game/Game.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Game.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/Game.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Game.h" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectApplicationVersion">
+    <option name="ide" value="CLion" />
+    <option name="majorVersion" value="2022" />
+    <option name="minorVersion" value="2.1" />
+  </component>
+  <component name="ProjectId" id="2Ib83sg0HstNZKzcPv0pgv6bMUb" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Card/Landmark" />
+      <recent name="$PROJECT_DIR$/Player/Strategy" />
+      <recent name="$PROJECT_DIR$/Player" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9f3eda9a-50d7-4d8a-9007-c58105ed8332" name="Changes" comment="" />
+      <created>1670438726608</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1670438726608</updated>
+      <workItem from="1670438727733" duration="2380000" />
+      <workItem from="1670441133920" duration="5172000" />
+      <workItem from="1670491170505" duration="11333000" />
+      <workItem from="1670594217926" duration="4477000" />
+      <workItem from="1670775182360" duration="1296000" />
+      <workItem from="1670923028409" duration="2019000" />
+      <workItem from="1670938467140" duration="385000" />
+      <workItem from="1670945627204" duration="428000" />
+      <workItem from="1670948290225" duration="2222000" />
+      <workItem from="1670952618463" duration="1767000" />
+      <workItem from="1671033787030" duration="115000" />
+      <workItem from="1671055380043" duration="14243000" />
+      <workItem from="1671126589242" duration="8736000" />
+    </task>
+    <task id="LOCAL-00001" summary="Bug fix">
+      <created>1670446303115</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1670446303115</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Changement Card">
+      <created>1670501285655</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1670501285655</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Changement Establishment">
+      <created>1670503026075</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1670503026075</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Enum est">
+      <created>1670595554249</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1670595554249</updated>
+    </task>
+    <task id="LOCAL-00005" summary="OFfice">
+      <created>1670598319411</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1670598319411</updated>
+    </task>
+    <task id="LOCAL-00006" summary="maj">
+      <created>1670938530753</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1670938530753</updated>
+    </task>
+    <task id="LOCAL-00007" summary="maj">
+      <created>1670938836229</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1670938836229</updated>
+    </task>
+    <task id="LOCAL-00008" summary="maj">
+      <created>1670951588401</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1670951588401</updated>
+    </task>
+    <task id="LOCAL-00009" summary="maj">
+      <created>1670953681681</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1670953681681</updated>
+    </task>
+    <task id="LOCAL-00010" summary="enum parser">
+      <created>1671097410755</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1671097410755</updated>
+    </task>
+    <task id="LOCAL-00011" summary="return type establishment">
+      <created>1671097923268</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1671097923268</updated>
+    </task>
+    <task id="LOCAL-00012" summary="return type establishment">
+      <created>1671127313140</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1671127313140</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="test" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Bug fix" />
+    <MESSAGE value="Changement Card" />
+    <MESSAGE value="Changement Establishment" />
+    <MESSAGE value="Enum est" />
+    <MESSAGE value="OFfice" />
+    <MESSAGE value="maj" />
+    <MESSAGE value="enum parser" />
+    <MESSAGE value="return type establishment" />
+    <option name="LAST_COMMIT_MESSAGE" value="return type establishment" />
+  </component>
+</project>

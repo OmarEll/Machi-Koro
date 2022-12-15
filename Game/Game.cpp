@@ -16,7 +16,7 @@ Game :: Game() {
 
 }
 
-Game* Game::Singleton(string NomEdition) {
+Game* Game::Singleton() {
     if (Game::Game_single == nullptr)
         Game::Game_single = new Game();
     return Game::Game_single;

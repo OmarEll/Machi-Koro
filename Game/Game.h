@@ -48,16 +48,16 @@ public:
     vector <Player> getPlayers() const {return players;}
     int dice_turn (Player& current_player);
     static bool CanPay(Player& CurrentPlayer, Bank& bank, int amount);
-    Dice * GetDices(){return reinterpret_cast<Dice *>(Dices);}
-    vector<Establishment> getEstablishments(){return Establishments;}
+    Dice * GetDices(){return reinterpret_cast<Dice *>(dice);}
+    vector<Establishment> getEstablishments(){return establishments;}
     Establishment* getEstablishmentByName(string estName){
-        for (auto e : Establishments){
+        for (auto e : establishments){
             if (e.getCardName()==estName)
                 return &e;
         }
         return nullptr;
     }
-    vector<Landmark> getLandmarks(){return Landmarks;}
+    vector<Landmark> getLandmarks(){return landmarks;}
 };
 
 
