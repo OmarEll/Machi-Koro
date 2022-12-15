@@ -187,7 +187,7 @@ void FlowerShop::launchEffect(Game& g, Player& currentPlayer){
     else {
         setNumberOfCoinsEarned(0); //Le joueur ne possède pas de flower garden
     }
-    Establishment::launchEffect(g, currentPlayer);
+    g.getBank().withdraw(getOwner()->getId(), getEarnedCoins());
 }
 
 /* Redefinition des establishments avec un effet de type "If you have a Harbor, gain x coins"*/
@@ -199,7 +199,7 @@ void SushiBar::launchEffect(Game& g, Player& currentPlayer){
     if (hasHarbor()) Establishment::launchEffect(g, currentPlayer);
 }
 
-void TunaBoat::launchEffect(Game& g, Player& currentPlayer){ // A FAIRE
+void TunaBoat::launchEffect(Game& g, Player& currentPlayer){
     //On anyone's turn: The current player rolls 2 dice. If you have a harbor you get as many coins as the dice total.
     Dice* tab = g.GetDices();
     setNumberOfCoinsEarned( tab->GetResult() + (++tab)->GetResult());
@@ -369,6 +369,21 @@ void SodaBottlingPlant::launchEffect(Game& g, Player& currentPlayer) { //A REVOI
 
 void DemolitionCompany::launchEffect(Game& g, Player& currentPlayer) { //A FAIRE (il faut pouvoir deconstruire un landmark...)
     //Demolish 1 of your built landmarks (flip it back over). When you do, get 8 coins from the bank (your turn only)"
-
 }
 
+void MovingCompany::launchEffect(Game& g, Player& currentPlayer) { //A FAIRE
+    //You must give a non-tower type building that you own to another player. When you do so, get 4 coins from the bank, on your turn only
+}
+
+void Winery::launchEffect(Game& g, Player& currentPlayer) {
+    //Get 6 coins for each vineyard you own, on your turn only. Then, close this building for renovation.
+    auto establishments=getOwner()->getHand().getEstablishments();
+    if (getOwner()->getHand().getEstablishments().find(Vineyard)!=getOwner()->getHand().getEstablishments().end()){
+        setNumberOfCoinsEarned(getOwner()->getHand().getEstablishments()[Vineyard].second); //Le nombre de coins gagné est le nombre de vineyard possédées
+    }
+    else {
+        setNumberOfCoinsEarned(0); //Le joueur ne possède pas de winery
+    }
+    g.getBank().withdraw(getOwner()->getId(), getEarnedCoins());
+    setRenovation(true);
+}
