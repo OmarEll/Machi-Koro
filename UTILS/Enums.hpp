@@ -56,7 +56,7 @@ enum OriginsOfCoins{
 };
 
 enum Types{
-    wheat, cow, bread, coffee, wheel, tower, factory, apple, boat
+    wheat, cow, bread, coffee, wheel, tower, factory, apple, boat, suitcase
 };
 
 

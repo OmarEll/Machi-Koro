@@ -71,7 +71,7 @@ int Establishment::numberOfLandmarks(Player& p){
 void Stadium::launchEffect(Game& g, Player& currentPlayer){ //méthode redefinie pour permettre de recevoir des coins de la part de l'ensemble des adversaires
     int id_Owner=getOwner()->getId();
     for (const auto& other_player : g.getPlayers()){
-        int id_other = other_player->getId();
+        int id_other = other_player.getId();
         if (id_Owner != id_other){
             int balance_other=g.getBank().getBalance(id_other);
             if ((getOrigin() == OtherPlayers) && getOwner()!=nullptr) { //on va prendre les coins des joueurs adverse et le donner à celui qui possède cette carte (qui est aussi le current_player)
@@ -92,13 +92,13 @@ void TvStation::launchEffect(Game& g, Player& currentPlayer){ //méthode redefin
     while (id_payer==-1){
         cout<<"Choissisez le joueur qui doit vous payer :\n";
         for (const auto& other_player : g.getPlayers()){
-            cout<<other_player->getName()<<" "; //affiche la liste des joueurs
+            cout<<other_player.getName()<<" "; //affiche la liste des joueurs
         }
         cout<<"\n";
         cin>>nameOfPayer;
         for (const auto& other_player : g.getPlayers()){
-            if(nameOfPayer==other_player->getName()){
-                id_payer = other_player->getId();
+            if(nameOfPayer==other_player.getName()){
+                id_payer = other_player.getId();
             }
         }
     }
@@ -118,7 +118,7 @@ void Office::launchEffect(Game& g, Player& currentPlayer){ //echange une carte a
         cout<<"Entrez le nom du joueur avec qui vous voulez échanger une carte :\n";
         cin>>nameOfExchanger;
         for (const auto& other_player : g.getPlayers()){
-            if(nameOfExchanger==other_player->getName()){
+            if(nameOfExchanger==other_player.getName()){
                 playerExchanger = other_player;
             }
         }
@@ -212,7 +212,7 @@ void Publisher::launchEffect(Game& g, Player& currentPlayer){ //A REVOIR
     //Take 1 coins from each opponent for each 'coffee' and 'bread' type establishment they own
     int id_Owner=getOwner()->getId();
     for (const auto& other_player : g.getPlayers()){
-        int id_other = other_player->getId();
+        int id_other = other_player.getId();
         if (id_Owner != id_other){
             int balance_other=g.getBank().getBalance(id_other);
             if ((getOrigin() == OtherPlayers) && getOwner()!=nullptr) { //on va prendre les coins des joueurs adverse et le donner à celui qui possède cette carte (qui est aussi le current_player)
@@ -231,7 +231,7 @@ void TaxOffice::launchEffect(Game& g, Player& currentPlayer){
     //From each opponent with 10 or more coins: take half their coins, rounded down. This only applies in your turn.
     int id_Owner=getOwner()->getId();
     for (const auto& other_player : g.getPlayers()){
-        int id_other = other_player->getId();
+        int id_other = other_player.getId();
         if (id_Owner != id_other && g.getBank().getBalance(id_other)>=10){ //le joueur possède au moins 10 coins
             int balance_other=g.getBank().getBalance(id_other);
             g.getBank().playerPaysPlayer(id_other, id_Owner, balance_other/2); //On prend la moitié de la balance arrondi à l'inférieur (le reste de la divison est ignorée)
@@ -248,7 +248,7 @@ void Park::launchEffect(Game& g, Player& currentPlayer) {
     int new_balance;
 
     for (const auto& all_player : g.getPlayers()){ //On calcul la somme de toutes les balances des joueurs
-        total += g.getBank().getBalance(all_player->getId());
+        total += g.getBank().getBalance(all_player.getId());
     }
 
     if(total % g.getPlayers().size() == 0){ //On calcul quel va être la nouvelle balance de tout les joueurs
@@ -259,7 +259,7 @@ void Park::launchEffect(Game& g, Player& currentPlayer) {
     }
 
     for (const auto& all_player : g.getPlayers()){ //On met à jour toutes les balances
-        g.getBank().setBalance(all_player->getId(), new_balance);
+        g.getBank().setBalance(all_player.getId(), new_balance);
     }
 }
 
@@ -293,9 +293,9 @@ void RenovationCompany::launchEffect(Game& g, Player& currentPlayer) {
 
 }
 
-void TechStartup::launchEffect(Game& g, Player& currentPlayer) {
+void TechStartup::launchEffect(Game& g, Player& currentPlayer) { //A REVOIR
     //At the end of each of your turns, you may place 1 coin on this card. The total placed here is your investment. When activated, get an amount equal to your investment from all player, on your turn only.
-    for(auto player : players){
+    for(auto& player : g.getPlayers()){
         g.getBank().playerPaysPlayer(player.getId(),currentPlayer.getId(),investment);
     }
 }
@@ -356,5 +356,19 @@ void FrenchRestaurant::launchEffect(Game& g, Player& currentPlayer) {
     };
 }
 
+void SodaBottlingPlant::launchEffect(Game& g, Player& currentPlayer) { //A REVOIR
+    //Get 1 coin from the bank for each coffee type establishments owned by all players (on your turn only)
+    int id_Owner=getOwner()->getId();
+    int total = 0;
+    for (const auto& other_player : g.getPlayers()){
+        total += numberGainWithType(*other_player, {coffee});
+    }
+    setNumberOfCoinsEarned(total);
+    g.getBank().withdraw(id_Owner,getEarnedCoins());
+}
 
+void DemolitionCompany::launchEffect(Game& g, Player& currentPlayer) { //A FAIRE (il faut pouvoir deconstruire un landmark...)
+    //Demolish 1 of your built landmarks (flip it back over). When you do, get 8 coins from the bank (your turn only)"
+
+}
 

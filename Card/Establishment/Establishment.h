@@ -184,3 +184,15 @@ public:
     FrenchRestaurant(): Establishment("French Restaurant","If the player who rolled this number has 2 or more constructed landmarks, get 5 coins from the player who rolled the dice",RED, 3,GreenValley, coffee,{5},PlayerRolledDice,5){}
     void launchEffect(Game& g,Player& currentPlayer) final;
 };
+
+class SodaBottlingPlant: public Establishment {
+public:
+    SodaBottlingPlant(): Establishment("Soda Bottling Plant","Get 1 coin from the bank for each coffee type establishments owned by all players (on your turn only)",GREEN, 5,GreenValley, factory,{11},OtherPlayers,1){}
+    void launchEffect(Game& g,Player& currentPlayer) final;
+};
+
+class DemolitionCompany: public Establishment {
+public:
+    DemolitionCompany(): Establishment("Demolition Company","Demolish 1 of your built landmarks (flip it back over). When you do, get 8 coins from the bank (your turn only)",GREEN, 2,GreenValley, suitcase,{4},BankOrigin,8){}
+    void launchEffect(Game& g,Player& currentPlayer) final;
+};
