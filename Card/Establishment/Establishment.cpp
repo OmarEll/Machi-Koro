@@ -132,14 +132,14 @@ void Office::launchEffect(Game& g, Player& currentPlayer){ //echange une carte a
 
         //Owner
         for (const auto&  card : currentPlayer.getHand().getEstablishments()){ // On verifie que la carte choisi est dans la main du joueur et qu'elle n'est pas de type tower
-            Establishment* est= (card[card.first].first);
+            Establishment* est= (getOwner()->getHand().getEstablishments()[card.first].first);
             if((nameOfCardOwner==est->getCardName()) && (est->getType()!=tower) ){
                 CardOwner=est;
             }
         }
         //Exchanger
         for (const auto&  card : playerExchanger->getHand().getEstablishments()){ // On verifie que la carte choisi est dans la main du joueur et qu'elle n'est pas de type tower
-            Establishment* est= (card.first);
+            Establishment* est= (playerExchanger->getHand().getEstablishments()[card.first].first);
             if((nameOfCardExchanger==est->getCardName()) && (est->getType()!=tower) ){
                 CardExchanger=est;
             }
@@ -147,11 +147,11 @@ void Office::launchEffect(Game& g, Player& currentPlayer){ //echange une carte a
 
     }
     //add
-    currentPlayer.getHand().addEstablishment(CardExchanger);
-    playerExchanger->getHand().addEstablishment(CardOwner);
+    currentPlayer.getHand().addEstablishment(CardExchanger->getCardName_Enum());
+    playerExchanger->getHand().addEstablishment(CardOwner->getCardName_Enum());
     //remove
-    currentPlayer.getHand().removeEstablishment(CardOwner);
-    playerExchanger->getHand().removeEstablishment(CardExchanger);
+    currentPlayer.getHand().removeEstablishment(CardOwner->getCardName_Enum());
+    playerExchanger->getHand().removeEstablishment(CardExchanger->getCardName_Enum());
 }
 
 
@@ -216,7 +216,7 @@ void Publisher::launchEffect(Game& g, Player& currentPlayer){ //A REVOIR
         if (id_Owner != id_other){
             int balance_other=g.getBank().getBalance(id_other);
             if ((getOrigin() == OtherPlayers) && getOwner()!=nullptr) { //on va prendre les coins des joueurs adverse et le donner à celui qui possède cette carte (qui est aussi le current_player)
-                setNumberOfCoinsEarned(numberGainWithType(other_player, {coffee,bread})); //On definit le nombre de piece que le joueur adverse doit payer
+                setNumberOfCoinsEarned(numberGainWithType(*other_player, {coffee,bread})); //On definit le nombre de piece que le joueur adverse doit payer
                 if (balance_other >= getEarnedCoins()) { //le joueur qui doit payer a assez de coins pour payer
                     g.getBank().playerPaysPlayer(id_other, id_Owner, getEarnedCoins());
                 } else {                                    //le joueur qui doit payer n'a pas assez de coins pour payer donc il donne ce qu'il a

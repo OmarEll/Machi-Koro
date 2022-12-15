@@ -20,6 +20,10 @@ public:
     Types getType(){ return type ;}
     vector<int> getActivationNumbers() { return activationNumbers; }
     OriginsOfCoins getOrigin() const { return originOfCoinsEarned; }
+    EstablishmentsNames getCardName_Enum(){
+        EnumParser<EstablishmentsNames> fieldTypeParser;
+        EstablishmentsNames val = fieldTypeParser.ParseSomeEnum(cardName);
+        return val; ;}
     int getEarnedCoins() const{ return numberOfCoinsEarned; }
     Colors getColor(){ return color; }
 

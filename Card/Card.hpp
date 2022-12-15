@@ -1,4 +1,4 @@
-#pragma once
+
 #include "../UTILS/Enums.hpp"
 #include "../Player/Player.hpp"
 #include "../Game/Game.h"
