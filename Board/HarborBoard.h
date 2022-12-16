@@ -2,7 +2,7 @@
 #define HARBORBOARD_H_INCLUDED
 
 #include "../Board/Board.h"
-#include "../Board/Deck.h"
+#include "Deck/Deck.h"
 
 class HarborBoard : public Board {
 private :

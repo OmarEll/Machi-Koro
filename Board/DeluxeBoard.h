@@ -1,7 +1,7 @@
 #ifndef DELUXEBOARD_H_INCLUDED
 #define DELUXEBOARD_H_INCLUDED
 
-#include "../Board/Deck.h"
+#include "Deck/Deck.h"
 #include "../Board/HarborBoard.h"
 #include "../Board/GreenValleyBoard.h"
 

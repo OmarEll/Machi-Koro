@@ -17,7 +17,7 @@ using namespace std;
 class Hand{
 
 private:
-    map<EstablishmentsNames,pair<Establishment*,size_t>> establishments;
+    map<EstablishmentsNames,stack<Establishment*>> establishments;
     map<LandmarksNames,Landmark*> landmarks;
 public:
     friend class Establishment;
