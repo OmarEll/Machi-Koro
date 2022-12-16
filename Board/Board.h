@@ -12,7 +12,6 @@ using namespace std;
 class Board{
 protected:
     vector<Establishment*> cards;
-    size_t nbCards;
     size_t nbCardsMax;
     static Board* board_instance;
 public :

@@ -14,7 +14,9 @@ public :
 
     Card* drawCard(){
         if (!cards.empty()){
-            return cards.pop();
+            Card* card=cards.top();
+            cards.pop();
+            return card;
         }
         cout<<"la pile est vide, impossible de piocher";
         return nullptr;
