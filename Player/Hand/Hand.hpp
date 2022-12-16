@@ -17,7 +17,7 @@ using namespace std;
 class Hand{
 
 private:
-    map<EstablishmentsNames,pair<Establishment*,size_t>> establishments;
+    map<EstablishmentsNames,stack<Establishment*>> establishments;
     map<LandmarksNames,Landmark*> landmarks;
 public:
     friend class Establishment;
@@ -32,6 +32,6 @@ public:
     //1 methode qui permet d'acceder à tout les types des cartes qu'il y a dans la main
     //1 methode qui permet d'acceder à toute les couleurs qu'il y a dans la main
     ~Hand();
-   };
+};
 
 #endif //HAND_H_INCLUDED

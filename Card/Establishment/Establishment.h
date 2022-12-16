@@ -15,21 +15,20 @@ protected:
 
 public:
     Establishment(string name, string desc, Colors col, int cos, Expansions exp, Types typ, vector<int> actNum, OriginsOfCoins ori, int num)
-        :Card(name,desc,cos,exp,typ),color(col),activationNumbers(actNum),originOfCoinsEarned(ori),numberOfCoinsEarned(num){}
+            :Card(name,desc,cos,exp,typ),color(col),activationNumbers(actNum),originOfCoinsEarned(ori),numberOfCoinsEarned(num){}
     ~Establishment();
     /* GETTERS & SETTERS */
     Types getType(){ return type ;}
     vector<int> getActivationNumbers() { return activationNumbers; }
     OriginsOfCoins getOrigin() const { return originOfCoinsEarned; }
+    int getEarnedCoins() const{ return numberOfCoinsEarned; }
+    Colors getColor(){ return color; }
+    bool getRenovation(){return underRenovation;}
     EstablishmentsNames getCardName_Enum(){
         EnumParser<EstablishmentsNames> fieldTypeParser;
         EstablishmentsNames val = fieldTypeParser.ParseSomeEnum(cardName);
         return val ;
     }
-    int getEarnedCoins() const{ return numberOfCoinsEarned; }
-    Colors getColor(){ return color; }
-    bool getRenovation(){return underRenovation;}
-
     void setNumberOfCoinsEarned(int num) {numberOfCoinsEarned = num;}
     void setOriginOfCoinsEarned(OriginsOfCoins name){ originOfCoinsEarned = name; }
     void setRenovation(bool r){ underRenovation=r;}
@@ -144,13 +143,9 @@ public:
 };
 
 class TechStartup : public Establishment {
-private:
-    unsigned int investment=0;
 public:
     TechStartup(): Establishment("Tech Startup","At the end of each of your turns, you may place 1 coin on this card. The total placed here is your investment. When activated, get an amount equal to your investment from all player, on your turn only.",PURPLE, 1,GreenValley, tower,{10},OtherPlayers,0){}
     void launchEffect(Game& g,Player& currentPlayer) final;
-    unsigned int getInvestment() { return investment; }
-    void investOneCoin(){ investment++; }
 };
 
 class InternationalExhibitHall : public Establishment {
@@ -182,34 +177,5 @@ public:
 class FrenchRestaurant: public Establishment {
 public:
     FrenchRestaurant(): Establishment("French Restaurant","If the player who rolled this number has 2 or more constructed landmarks, get 5 coins from the player who rolled the dice",RED, 3,GreenValley, coffee,{5},PlayerRolledDice,5){}
-    void launchEffect(Game& g,Player& currentPlayer) final;
-};
-
-class SodaBottlingPlant: public Establishment {
-public:
-    SodaBottlingPlant(): Establishment("Soda Bottling Plant","Get 1 coin from the bank for each coffee type establishments owned by all players (on your turn only)",GREEN, 5,GreenValley, factory,{11},OtherPlayers,1){}
-    void launchEffect(Game& g,Player& currentPlayer) final;
-};
-
-class DemolitionCompany: public Establishment {
-public:
-    DemolitionCompany(): Establishment("Demolition Company","Demolish 1 of your built landmarks (flip it back over). When you do, get 8 coins from the bank (your turn only)",GREEN, 2,GreenValley, suitcase,{4},BankOrigin,8){}
-    void launchEffect(Game& g,Player& currentPlayer) final;
-};
-
-class MovingCompany: public Establishment {
-public:
-    MovingCompany(): Establishment("Moving Company","You must give a non-tower type building that you own to another player. When you do so, get 4 coins from the bank, on your turn only",GREEN, 2,GreenValley, suitcase,{9,10},BankOrigin,4){}
-    void launchEffect(Game& g,Player& currentPlayer) final;
-};
-
-class LoanOffice: public Establishment { //Fait (en vrai il y a pas besoin de faire cette classe mais comme les valeurs sont négative elle est faites au cas ou il y est un pb a gérer
-public:
-    LoanOffice(): Establishment("Loan Office","When you construct this building, get 5 coins from the bank. When this building is activated, pay 2 coins to the bank, on your turn only.",GREEN, -5,GreenValley, suitcase,{5,6},BankOrigin,-2){}
-};
-
-class Winery: public Establishment {
-public:
-    Winery(): Establishment("Winery","Get 6 coins for each vineyard you own, on your turn only. Then, close this building for renovation.",GREEN, 3,GreenValley, factory,{9},BankOrigin,6){}
     void launchEffect(Game& g,Player& currentPlayer) final;
 };
