@@ -1,74 +1,36 @@
-#ifndef BOARD_H_INCLUDED
-#define BOARD_H_INCLUDED
-
 #include <vector>
 #include <iostream>
 #include <string>
 #include <stack>
-#include "../Card/Card.hpp"
-
+#include "../Card/Establishment/Establishment.h"
 using namespace std;
+
+class Establishment;
 
 class Board{
 protected:
-
-    vector<stack<Card>> cards;
-    size_t nbCards;
+    map<EstablishmentsNames,stack<Establishment*>> cards;
     size_t nbCardsMax;
     static Board* board_instance;
-
-    Board(); //a implémenter
-    ~Board();//a implémenter
-    Board(Board&); //a implémenter
-    Board& operator=(Board&); //a implémenter
-
-    // faire méthode affiche qui affiche nom de chaque carte qu'il y a sur board et cbm il y en a de chq type
-        // Board.Affiche()
+    Board():nbCardsMax(0),cards(){}
 public :
-    Board& createBoard(){
-        if (board_instance == nullptr){
-            static Board& b;
-            return b;
+    virtual ~Board();
+    Board(Board&)=delete;
+    virtual void displayCards();
+    virtual void fillBoard();
+    virtual Board& createBoard();
+    static Board* getInstance(){
+        if(board_instance==nullptr){
+            board_instance=new Board();
         }
-        else return board_instance;
-    };
+        return board_instance;
+    }
+    // GETTERS & SETTERS
+    size_t getNbCardsMax(){ return nbCardsMax; }
+    map<EstablishmentsNames,stack<Establishment*>> getCards(){ return cards; }
 
-    void addCard(Card c){
-        bool exist=false;
-        for (auto& it : cards){
-            if(it.top()==c){ //sameCard
-                it.push(c);
-                exist=true;
-            }
-        }
-
-        /*
-        for(stack<Card> card_iter = cards.begin(); card_iter != cards.end(); card_iter++){
-            if(card_iter.top()==c){
-                card_iter.push(c);
-                exist=true;
-            }
-        }
-        */
-        if(!exist){
-            stack<Card> new_pile;
-            new_pile.push(c);
-            cards.push_back(new_pile);
-        }
-        nbCards++;
-    };
-
-    virtual void initBoard(); // à faire
-
-    void removeCard(Card c){
-        for (auto& it : cards){
-            if(it.top()==c){
-                it.pop();
-                nbCards--;
-            }
-        }
-    };
-
+    void setNbCardsMax(size_t nb){ nbCardsMax=nb; }
+    void setCards(map<EstablishmentsNames,stack<Establishment*>> establishments){
+        cards=establishments;
+    }
 };
-
-#endif // BOARD_H_INCLUDED
