@@ -18,6 +18,7 @@ public:
     Landmark(string name, string desc, int cos, Expansions exp, Types typ):Card( name,  desc, cos,  exp, typ),constructed(false){}
     bool isConstructed() const {return constructed;};
     void setConstruction() { constructed=true; }
+    void setDemolition () {constructed = false;}
 };
 
 //Landmark STANDARD

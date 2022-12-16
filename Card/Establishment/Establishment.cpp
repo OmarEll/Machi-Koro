@@ -356,7 +356,7 @@ void FrenchRestaurant::launchEffect(Game& g, Player& currentPlayer) {
     };
 }
 
-void SodaBottlingPlant::launchEffect(Game& g, Player& currentPlayer) { //A REVOIR
+void SodaBottlingPlant::launchEffect(Game& g, Player& currentPlayer) {
     //Get 1 coin from the bank for each coffee type establishments owned by all players (on your turn only)
     int id_Owner=getOwner()->getId();
     int total = 0;
@@ -367,13 +367,60 @@ void SodaBottlingPlant::launchEffect(Game& g, Player& currentPlayer) { //A REVOI
     g.getBank().withdraw(id_Owner,getEarnedCoins());
 }
 
-void DemolitionCompany::launchEffect(Game& g, Player& currentPlayer) { //A FAIRE (il faut pouvoir deconstruire un landmark...)
+void DemolitionCompany::launchEffect(Game& g, Player& currentPlayer) {
     //Demolish 1 of your built landmarks (flip it back over). When you do, get 8 coins from the bank (your turn only)"
+    string choice;
+    LandmarksNames val;
+    do {
+        cout << "Quel monument voulez vous détruire ?" << endl;
+        cin >> choice;
+        EnumParser<LandmarksNames> fieldTypeParser;
+        val = fieldTypeParser.ParseSomeEnum(choice);
+    } while (!getOwner()->hasLandmark(val));
+    Landmark* land_;
+    for (auto Land : getOwner()->getHand().getLandmarks()){
+        if (Land.first == val)
+            land_ = Land.second;
+    }
+    land_->setDemolition();
+    g.getBank().withdraw(getOwner()->getId(),getEarnedCoins());
 }
 
-void MovingCompany::launchEffect(Game& g, Player& currentPlayer) { //A FAIRE
+void MovingCompany::launchEffect(Game& g, Player& currentPlayer) {
     //You must give a non-tower type building that you own to another player. When you do so, get 4 coins from the bank, on your turn only
+    Establishment* CardGiver= nullptr;
+    Player* playerReceiver= nullptr;
+    string nameOfReceiver;
+    string nameOfCardReciver;
+    string nameOfCardGiver;
+    while (playerReceiver == nullptr){
+        cout<<"Entrez le nom du joueur a qui voulez vous donner votre carte :\n";
+        cin>>nameOfReceiver;
+        for ( auto& other_player : g.getPlayers()){
+            if(nameOfReceiver==other_player.getName()){
+                playerReceiver = &other_player;
+            }
+        }
+    }
+
+    while (CardGiver== nullptr){
+        cout<<"Entrez le nom de la carte que vous souhaitez donner (elle ne doit pas être de type tower) :\n";
+        cin>>nameOfCardGiver;
+
+        //Giver
+        for (const auto&  card : currentPlayer.getHand().getEstablishments()){ // On verifie que la carte choisi est dans la main du joueur et qu'elle n'est pas de type tower
+            Establishment* est= (getOwner()->getHand().getEstablishments()[card.first].first);
+            if((nameOfCardGiver==est->getCardName()) && (est->getType()!=tower) ){
+                CardGiver=est;
+            }
+        }
+    }
+    //add
+    playerReceiver->getHand().addEstablishment(CardGiver->getCardName_Enum());
+    //remove
+    currentPlayer.getHand().removeEstablishment(CardGiver->getCardName_Enum());
 }
+
 
 void Winery::launchEffect(Game& g, Player& currentPlayer) {
     //Get 6 coins for each vineyard you own, on your turn only. Then, close this building for renovation.
