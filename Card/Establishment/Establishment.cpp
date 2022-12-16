@@ -19,7 +19,7 @@ bool Establishment::activate(int diceRolled){
 
 void Establishment::launchEffect(Game& g,Player& currentPlayer){ //ne gère pas les cartes violette, a gerer dans des classes filles spécifiques
     int id_Owner=getOwner()->getId();
-    if (getOrigin() == Bank && Card::getOwner()!=nullptr)
+    if (getOrigin() == BankOrigin && Card::getOwner()!=nullptr)
         g.getBank().withdraw(id_Owner,getEarnedCoins());
 
     int id_current=currentPlayer.getId();
@@ -39,7 +39,7 @@ int Establishment::numberGainWithType(Player& currentPlayer, vector<Types> t) co
     // ici on calcule le nb de cartes d'un certain type que possède un joueur et on le multiplie par le gain de la carte
     int nb = getEarnedCoins();
     int sum=0;
-    if(getOrigin()==Bank){
+    if(getOrigin()==BankOrigin){
         for (auto& it : t){
             sum += getOwner()->getHand().getTypeCards(it).size();
         }
@@ -117,9 +117,9 @@ void Office::launchEffect(Game& g, Player& currentPlayer){ //echange une carte a
     while (playerExchanger == nullptr){
         cout<<"Entrez le nom du joueur avec qui vous voulez échanger une carte :\n";
         cin>>nameOfExchanger;
-        for (const auto& other_player : g.getPlayers()){
+        for ( auto& other_player : g.getPlayers()){
             if(nameOfExchanger==other_player.getName()){
-                playerExchanger = other_player;
+                playerExchanger = &other_player;
             }
         }
     }
@@ -211,12 +211,12 @@ void TunaBoat::launchEffect(Game& g, Player& currentPlayer){
 void Publisher::launchEffect(Game& g, Player& currentPlayer){ //A REVOIR
     //Take 1 coins from each opponent for each 'coffee' and 'bread' type establishment they own
     int id_Owner=getOwner()->getId();
-    for (const auto& other_player : g.getPlayers()){
+    for (auto& other_player : g.getPlayers()){
         int id_other = other_player.getId();
         if (id_Owner != id_other){
             int balance_other=g.getBank().getBalance(id_other);
             if ((getOrigin() == OtherPlayers) && getOwner()!=nullptr) { //on va prendre les coins des joueurs adverse et le donner à celui qui possède cette carte (qui est aussi le current_player)
-                setNumberOfCoinsEarned(numberGainWithType(*other_player, {coffee,bread})); //On definit le nombre de piece que le joueur adverse doit payer
+                setNumberOfCoinsEarned(numberGainWithType(other_player, {coffee,bread})); //On definit le nombre de piece que le joueur adverse doit payer
                 if (balance_other >= getEarnedCoins()) { //le joueur qui doit payer a assez de coins pour payer
                     g.getBank().playerPaysPlayer(id_other, id_Owner, getEarnedCoins());
                 } else {                                    //le joueur qui doit payer n'a pas assez de coins pour payer donc il donne ce qu'il a
@@ -300,7 +300,7 @@ void TechStartup::launchEffect(Game& g, Player& currentPlayer) { //A REVOIR
     }
 }
 
-void InternationalExhibitHall::launchEffect(Game& g, Player& currentPlayer) { // A FAIRE
+void InternationalExhibitHall::launchEffect(Game& g, Player& currentPlayer) { // A REVOIR
     //You may choose to activate another of your non tower type establishments in place of this one, on your turn only. If you do, return this card to the market.
     string cardAct;
     bool cardok=false;
@@ -318,9 +318,9 @@ void InternationalExhibitHall::launchEffect(Game& g, Player& currentPlayer) { //
             cout<<"\nErreur: verifiez l'orthographe de la carte tape"<<endl;
         }
     }
-    Establishment est=currentPlayer.hasEstablishment(cardAct);
+    Establishment* est=currentPlayer.hasEstablishment(cardAct);
     est->launchEffect(g,currentPlayer);
-    currentPlayer.getHand().removeEstablishment(est.getCardName_Enum());
+    currentPlayer.getHand().removeEstablishment(est->getCardName_Enum());
     //rajouter la carte au board (market)---------------------------------------------------------
 }
 
@@ -360,8 +360,8 @@ void SodaBottlingPlant::launchEffect(Game& g, Player& currentPlayer) { //A REVOI
     //Get 1 coin from the bank for each coffee type establishments owned by all players (on your turn only)
     int id_Owner=getOwner()->getId();
     int total = 0;
-    for (const auto& other_player : g.getPlayers()){
-        total += numberGainWithType(*other_player, {coffee});
+    for (auto& other_player : g.getPlayers()){
+        total += numberGainWithType(other_player, {coffee});
     }
     setNumberOfCoinsEarned(total);
     g.getBank().withdraw(id_Owner,getEarnedCoins());
