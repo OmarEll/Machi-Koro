@@ -1,14 +1,14 @@
 #include "Deck.h"
 
-Deck::Deck(vector<Card*> cards){
+Deck::Deck(vector<Establishment*> cards){
     for(auto card : cards){
         addCardToDeck(card);
     }
 }
 
-Card* Deck::drawCard(){
+Establishment* Deck::drawCard(){
     if (!cards.empty()){
-        Card* card=cards.top();
+        Establishment* card=cards.top();
         cards.pop();
         return card;
     }
@@ -16,6 +16,6 @@ Card* Deck::drawCard(){
     return nullptr;
 };
 
-void Deck::addCardToDeck(Card* c){
+void Deck::addCardToDeck(Establishment* c){
     cards.push(c);
 }
