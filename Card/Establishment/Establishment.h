@@ -1,6 +1,8 @@
 #pragma once
 #include "../Card.hpp"
+#include "../Game/Game.h"
 #include <vector>
+
 class Card;
 
 /* Classe non abstract */
@@ -180,7 +182,7 @@ public:
     void launchEffect(Game& g,Player& currentPlayer) final;
 };
 
--class SodaBottlingPlant: public Establishment {
+class SodaBottlingPlant: public Establishment {
 public:
     SodaBottlingPlant(): Establishment("Soda Bottling Plant","Get 1 coin from the bank for each coffee type establishments owned by all players (on your turn only)",GREEN, 5,GreenValley, factory,{11},OtherPlayers,1){}
     void launchEffect(Game& g,Player& currentPlayer) final;

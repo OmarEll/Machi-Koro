@@ -1,11 +1,10 @@
-//
-// Created by Omar Elloumi on 08/12/2022.
-//
 
 #ifndef MACHI_KORO_LANDMARK_H
 #define MACHI_KORO_LANDMARK_H
 
 #include "../Card.hpp"
+#include "../Player/Player.hpp"
+#include "../Game/Game.h"
 
 class Card;
 
@@ -15,7 +14,7 @@ class Landmark : public Card {
 protected:
     bool constructed;
 public:
-    Landmark(string name, string desc, int cos, Expansions exp, Types typ):Card( name,  desc, cos,  exp, typ),constructed(false){}
+    Landmark(string name, string desc, int cos, Expansions exp, Types typ): Card(name,  desc, cos,  exp, typ),constructed(false){}
     bool isConstructed() const {return constructed;};
     void setConstruction() { constructed=true; }
     void setDemolition () {constructed = false;}

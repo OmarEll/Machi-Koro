@@ -13,7 +13,7 @@ public:
     {
         auto iValue = enumMap.find(value);
         if (iValue  == enumMap.end())
-            throw runtime_error("");
+            throw std::exception();
         return iValue->second;
     }
 };

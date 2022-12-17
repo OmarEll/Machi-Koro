@@ -14,7 +14,7 @@
 #include "../UTILS/Enums.hpp"
 #include "../Dice/Dice.h"
 #include "../Card/Card.hpp"
-#include "Establishment.h"
+#include "../Card/Establishment/Establishment.h"
 #include "../Player/Hand/Hand.hpp"
 
 using namespace std;

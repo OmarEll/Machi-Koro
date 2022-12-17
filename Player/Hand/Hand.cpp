@@ -1,8 +1,6 @@
-//
-// Created by Omar Elloumi on 04/12/2022.
-//
+
 #include "Hand.hpp"
-#include "Establishment.h"
+#include "../Card/Establishment/Establishment.h"
 
 Hand::Hand(Expansions myExpansion){
     switch (myExpansion) {
