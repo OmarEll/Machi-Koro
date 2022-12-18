@@ -210,3 +210,73 @@ public:
     Winery(): Establishment("Winery","Get 6 coins for each vineyard you own, on your turn only. Then, close this building for renovation.",GREEN, 3,GreenValley, factory,{9},BankOrigin,6){}
     void launchEffect(Game& g,Player& currentPlayer) final;
 };
+
+/* Carte classique standard */
+
+class WheatField: public Establishment {
+public:
+    WheatField(): Establishment("Wheat Field","Receive 1 coin from the bank",BLUE, 1,Standard, wheat,{1},BankOrigin,1){}
+};
+
+class LivestockFarm: public Establishment {
+public:
+    LivestockFarm(): Establishment("Livestock Farm","Receive 1 coin from the bank",BLUE, 1,Standard, cow,{2},BankOrigin,1){}
+};
+
+class Bakery: public Establishment {
+public:
+    Bakery(): Establishment("Bakery","Receive 1 coin from the bank",GREEN, 1,Standard, bread,{2,3},BankOrigin,1){}
+};
+
+class Cafe: public Establishment {
+public:
+    Cafe(): Establishment("Cafe","Receive 1 coin from the player who rolled a '3'.",RED, 2,Standard, coffee,{3},PlayerRolledDice,1){}
+};
+
+class ConvenienceStore: public Establishment {
+public:
+    ConvenienceStore(): Establishment("Convenience Store","Receive 3 coins from the bank.",GREEN, 2,Standard, bread,{4},BankOrigin,3){}
+};
+
+class Forest: public Establishment {
+public:
+    Forest(): Establishment("Forest","Receive 1 coin from the bank.",BLUE, 3,Standard, wheel,{5},BankOrigin,1){}
+};
+
+class Mine: public Establishment {
+public:
+    Mine(): Establishment("Mine","Receive 5 coins from the bank.",BLUE, 6,Standard, wheel,{9},BankOrigin,5){}
+};
+
+class Restaurant: public Establishment {
+public:
+    Restaurant(): Establishment("Restaurant","Receive 2 coins from the player who rolled a '9' or a '10'.",RED, 3,Standard, coffee,{9,10},PlayerRolledDice,2){}
+};
+
+class AppleOrchard: public Establishment {
+public:
+    AppleOrchard(): Establishment("Apple Orchard","Receive 3 coins from the bank.",BLUE, 3,Standard, wheat,{10},BankOrigin,3){}
+};
+
+/* Carte classique Harbor */
+
+class FlowerGarden: public Establishment {
+public:
+    FlowerGarden(): Establishment("Flower Garden","Receive 1 coin from the bank.",BLUE, 2,Standard, wheat,{4},BankOrigin,1){}
+};
+
+class PizzaJoint: public Establishment {
+public:
+    PizzaJoint(): Establishment("Pizza Joint","Receive 1 coin from the player who rolled the dice.",RED, 1,Harbor, coffee,{7},PlayerRolledDice,1){}
+};
+
+class HamburgerStand: public Establishment {
+public:
+    HamburgerStand(): Establishment("Hamburger Stand","Receive 1 coin from the player who rolled the dice.",RED, 1,Harbor, coffee,{8},PlayerRolledDice,1){}
+};
+
+/* Carte classique Green Valley*/
+class Vineyard: public Establishment {
+public:
+    Vineyard(): Establishment("Vineyard","Receive 3 coins from the bank.",BLUE, 3,Harbor, wheat,{7},BankOrigin,3){}
+};
