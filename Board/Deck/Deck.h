@@ -1,7 +1,7 @@
 #ifndef DECK_H_INCLUDED
 #define DECK_H_INCLUDED
 
-#include "Card.hpp"
+#include "../../Card/Card.hpp"
 
 
 class Deck{

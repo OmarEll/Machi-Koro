@@ -13,26 +13,29 @@
 #include "../Board/Board.h"
 #include "../UTILS/Enums.hpp"
 #include "../Dice/Dice.h"
-#include "../Card/Card.hpp"
 #include "../Card/Establishment/Establishment.h"
+#include "../Card/Landmark/Landmark.h"
 #include "../Player/Hand/Hand.hpp"
 
 using namespace std;
 
+class Player;
+class Establishment;
+class Landmark;
 
 class Game {
 private :
-    vector <Player> players;
-    vector <Establishment> Establishments;
-    vector <Landmark> Landmarks;
+    vector <Player*> players;
+    vector <Establishment*> establishments;
+    vector <Landmark*> landmarks;
     size_t minPlayers;
     size_t maxPlayers;
-    Board Board_Game;
-    Dice* Dices [2] ;
-    Bank Bank_Game;
+    Board board_Game;
+    Dice* dices[2] ;
+    Bank bank_game;
     static Game* Game_single;
     list<Colors>Activation_order;
-    string Nom_Extension;
+    Expansions expansionName;
     Game ();
 public:
     void virtual initGame();
@@ -47,7 +50,7 @@ public:
     Bank getBank() {return Bank_Game;}
     void Do_Game();
     //const list<Player>& getPlayers() const {return Players_Game};
-    vector <Player> getPlayers() const {return players;}
+    vector<Player*> getPlayers() const {return players;}
     int dice_turn (Player& current_player);
     static bool CanPay(Player& CurrentPlayer, Bank& bank, int amount);
     Dice * GetDices(){return reinterpret_cast<Dice *>(Dices);}

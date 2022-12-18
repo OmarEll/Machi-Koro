@@ -4,6 +4,7 @@
 
 #ifndef MACHI_KORO_DICE_H
 #define MACHI_KORO_DICE_H
+
 #include "../Player/Player.hpp"
 
 class Dice {
