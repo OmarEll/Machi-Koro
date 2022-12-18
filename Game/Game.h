@@ -24,7 +24,7 @@ class Establishment;
 class Landmark;
 
 class Game {
-private :
+protected :
     vector <Player*> players;
     vector <Establishment*> establishments;
     vector <Landmark*> landmarks;
@@ -32,11 +32,12 @@ private :
     size_t maxPlayers;
     Board board_Game;
     Dice* dices[2] ;
-    Bank bank_game;
+    Bank* bank_game;
     static Game* Game_single;
     list<Colors>Activation_order;
     Expansions expansionName;
     Game ();
+     //+
 public:
     void virtual initGame();
     void virtual DoTurn (Player& current_player);
@@ -48,6 +49,7 @@ public:
     void Buy_Landmark(Player& current_player);
     string Get_Extension() { return Nom_Extension;}
     Bank getBank() {return Bank_Game;}
+    Board* getBoard(){ return board_game; }
     void Do_Game();
     //const list<Player>& getPlayers() const {return Players_Game};
     vector<Player*> getPlayers() const {return players;}

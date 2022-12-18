@@ -1,24 +1,26 @@
-#ifndef MACHIKORO_FICHIER_PLAYER_H
-#define MACHIKORO_FICHIER_PLAYER_H
+#pragma once
 
 #include <string>
 #include <iostream>
-#include "../Player/Hand/Hand.hpp"
+#include "Hand/Hand.hpp"
 #include "../Bank/Bank.hpp"
 #include "../Bank/Wallet.hpp"
 
 class Hand;
+class Establishment;
+class Landmark;
 
 using namespace std;
 
 class Player{
-private:
+protected:
     int idPlayer;
     string name;
     Hand hand;
 public:
     static int id_counter;
-    Player(string nm,Expansions myExpansion):idPlayer(++id_counter),name(nm),hand(myExpansion){};
+
+    Player(string nm,vector<Establishment*> a,vector<Landmark*> b):idPlayer(++id_counter),name(nm),hand(a,b){};
     int getId() const { return idPlayer; };
     string getName() const { return name; };
     Hand getHand() const { return hand;};
@@ -31,20 +33,14 @@ public:
     //
     Establishment* hasEstablishment(EstablishmentsNames name) const{
         auto it=hand.getEstablishments().find(name);
-        if(it!=hand.getEstablishments().end())
-            return (*it).second.first;
-        else return nullptr;
+        return ((it!=hand.getEstablishments().end())? (*it).second.top() : nullptr);
     }
     Establishment* hasEstablishment(string name) const{
         EnumParser<EstablishmentsNames> fieldTypeParser;
         EstablishmentsNames val = fieldTypeParser.ParseSomeEnum(name);
-        auto it=hand.getEstablishments().find(val);
-        if(it!=hand.getEstablishments().end())
-            return (*it).second.first;
-        else return nullptr;
+        return hasEstablishment(val);
     }
 
     virtual ~Player();
 };
 
-#endif //MACHIKORO_FICHIER_PLAYER_H

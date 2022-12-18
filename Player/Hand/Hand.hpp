@@ -1,6 +1,4 @@
-#ifndef HAND_H_INCLUDED
-#define HAND_H_INCLUDED
-
+#pragma once
 #include <map>
 #include <vector>
 #include "../Card/Card.hpp"
@@ -21,17 +19,13 @@ private:
     map<LandmarksNames,Landmark*> landmarks;
 public:
     friend class Establishment;
-    Hand(Expansions myExpansion);
-    void addEstablishment(EstablishmentsNames);
-    void removeEstablishment(EstablishmentsNames);
+    Hand(vector<Establishment*>,vector<Landmark*>);
+    void addEstablishment(Establishment*);
+    void removeEstablishment(Establishment*);
     vector<Establishment*> getColorCards(Colors);
     vector<Establishment*> getTypeCards(Types);
     map<LandmarksNames, Landmark*> getLandmarks() const {return landmarks;}
     map<EstablishmentsNames,stack<Establishment*>> getEstablishments() const {return establishments;}
-    //1 methode qui permet d'acceder à tout les noms des cartes qu'il y a dans la main
-    //1 methode qui permet d'acceder à tout les types des cartes qu'il y a dans la main
-    //1 methode qui permet d'acceder à toute les couleurs qu'il y a dans la main
     ~Hand();
 };
 
-#endif //HAND_H_INCLUDED

@@ -1,4 +1,3 @@
-#pragma once
 #include "../Card.hpp"
 #include "../Game/Game.h"
 #include <vector>
@@ -37,7 +36,8 @@ public:
 
     /* REST */
     bool activate(int);
-    void launchEffect(Game&,Player&) override;
+    void launchEffect(Game&,Player&) override{}
+    int gainWithType() override{return 0;}
     int numberGainWithType(Player&, vector<Types>) const;
     bool hasHarbor();
     int numberOfLandmarks(Player*);

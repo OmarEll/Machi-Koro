@@ -7,7 +7,6 @@
 class Deck{
 private :
     stack<Establishment*> cards;
-
 public :
     // Remarque : finalement pas besoin de m�thode isEmpty()
     // avec stack on a deja cards.empty() qui renvoie bool

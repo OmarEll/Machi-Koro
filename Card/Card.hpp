@@ -1,4 +1,3 @@
-#pragma once
 #include "../UTILS/Enums.hpp"
 #include "../Player/Player.hpp"
 #include "../Game/Game.h"
@@ -33,9 +32,8 @@ class Card
         void setOwner(Player* o) {owner = o;} //a revoir
 
         /* REST */
-        bool sameCard(Card); //a revoir ce qui est mis en paramètre
-        virtual int gainWithType();
-        virtual void launchEffect(Game&,Player& currentPlayer);
+        virtual int gainWithType() =0;
+        virtual void launchEffect(Game&,Player& currentPlayer) =0;
 
 };
 
