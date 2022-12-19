@@ -17,7 +17,7 @@ bool Establishment::activate(int diceRolled){
 
 /* Definition de l'effet de base d'un etablissement (recevoir de l'argent de la banque ou d'un joueur) */
 
-void Establishment::launchEffect(Game& g,Player& currentPlayer){ //ne gère pas les cartes violette, a gerer dans des classes filles spécifiques
+void Establishment::launchEffect(Game& g,Player& currentPlayer) { //ne gère pas les cartes violette, a gerer dans des classes filles spécifiques
     int id_Owner=getOwner()->getId();
     if (getOrigin() == BankOrigin && Card::getOwner()!=nullptr)
         g.getBank().withdraw(id_Owner,getEarnedCoins());
@@ -71,7 +71,7 @@ int Establishment::numberOfLandmarks(Player& p){
 void Stadium::launchEffect(Game& g, Player& currentPlayer){ //méthode redefinie pour permettre de recevoir des coins de la part de l'ensemble des adversaires
     int id_Owner=getOwner()->getId();
     for (const auto& other_player : g.getPlayers()){
-        int id_other = other_player.getId();
+        int id_other = other_player->getId();
         if (id_Owner != id_other){
             int balance_other=g.getBank().getBalance(id_other);
             if ((getOrigin() == OtherPlayers) && getOwner()!=nullptr) { //on va prendre les coins des joueurs adverse et le donner à celui qui possède cette carte (qui est aussi le current_player)
@@ -92,13 +92,13 @@ void TvStation::launchEffect(Game& g, Player& currentPlayer){ //méthode redefin
     while (id_payer==-1){
         cout<<"Choissisez le joueur qui doit vous payer :\n";
         for (const auto& other_player : g.getPlayers()){
-            cout<<other_player.getName()<<" "; //affiche la liste des joueurs
+            cout<<other_player->getName()<<" "; //affiche la liste des joueurs
         }
         cout<<"\n";
         cin>>nameOfPayer;
         for (const auto& other_player : g.getPlayers()){
-            if(nameOfPayer==other_player.getName()){
-                id_payer = other_player.getId();
+            if(nameOfPayer==other_player->getName()){
+                id_payer = other_player->getId();
             }
         }
     }
@@ -118,8 +118,8 @@ void Office::launchEffect(Game& g, Player& currentPlayer){ //echange une carte a
         cout<<"Entrez le nom du joueur avec qui vous voulez échanger une carte :\n";
         cin>>nameOfExchanger;
         for ( auto& other_player : g.getPlayers()){
-            if(nameOfExchanger==other_player.getName()){
-                playerExchanger = &other_player;
+            if(nameOfExchanger==other_player->getName()){
+                playerExchanger = other_player;
             }
         }
     }
@@ -132,14 +132,14 @@ void Office::launchEffect(Game& g, Player& currentPlayer){ //echange une carte a
 
         //Owner
         for (const auto&  card : currentPlayer.getHand().getEstablishments()){ // On verifie que la carte choisi est dans la main du joueur et qu'elle n'est pas de type tower
-            Establishment* est= (getOwner()->getHand().getEstablishments()[card.first].first);
+            Establishment* est= (getOwner()->getHand().getEstablishments()[card.first].top());
             if((nameOfCardOwner==est->getCardName()) && (est->getType()!=tower) ){
                 CardOwner=est;
             }
         }
         //Exchanger
         for (const auto&  card : playerExchanger->getHand().getEstablishments()){ // On verifie que la carte choisi est dans la main du joueur et qu'elle n'est pas de type tower
-            Establishment* est= (playerExchanger->getHand().getEstablishments()[card.first].first);
+            Establishment* est= (playerExchanger->getHand().getEstablishments()[card.first].top());
             if((nameOfCardExchanger==est->getCardName()) && (est->getType()!=tower) ){
                 CardExchanger=est;
             }
@@ -147,11 +147,11 @@ void Office::launchEffect(Game& g, Player& currentPlayer){ //echange une carte a
 
     }
     //add
-    currentPlayer.getHand().addEstablishment(CardExchanger->getCardName_Enum());
-    playerExchanger->getHand().addEstablishment(CardOwner->getCardName_Enum());
+    currentPlayer.getHand().addEstablishment(CardExchanger);
+    playerExchanger->getHand().addEstablishment(CardOwner);
     //remove
-    currentPlayer.getHand().removeEstablishment(CardOwner->getCardName_Enum());
-    playerExchanger->getHand().removeEstablishment(CardExchanger->getCardName_Enum());
+    currentPlayer.getHand().removeEstablishment(CardOwner);
+    playerExchanger->getHand().removeEstablishment(CardExchanger);
 }
 
 
@@ -182,7 +182,7 @@ void FlowerShop::launchEffect(Game& g, Player& currentPlayer){
     //Get 1 coin from the bank for each Flower Garden you own, on your turn only.
     auto establishments=getOwner()->getHand().getEstablishments();
     if (getOwner()->getHand().getEstablishments().find(FlowerGarden)!=getOwner()->getHand().getEstablishments().end()){
-        setNumberOfCoinsEarned(getOwner()->getHand().getEstablishments()[FlowerGarden].second); //Le nombre de coins gagné est le nombre de flower garden possédé
+        setNumberOfCoinsEarned(getOwner()->getHand().getEstablishments()[FlowerGarden].size()); //Le nombre de coins gagné est le nombre de flower garden possédé
     }
     else {
         setNumberOfCoinsEarned(0); //Le joueur ne possède pas de flower garden
@@ -212,11 +212,11 @@ void Publisher::launchEffect(Game& g, Player& currentPlayer){ //A REVOIR
     //Take 1 coins from each opponent for each 'coffee' and 'bread' type establishment they own
     int id_Owner=getOwner()->getId();
     for (auto& other_player : g.getPlayers()){
-        int id_other = other_player.getId();
+        int id_other = other_player->getId();
         if (id_Owner != id_other){
             int balance_other=g.getBank().getBalance(id_other);
             if ((getOrigin() == OtherPlayers) && getOwner()!=nullptr) { //on va prendre les coins des joueurs adverse et le donner à celui qui possède cette carte (qui est aussi le current_player)
-                setNumberOfCoinsEarned(numberGainWithType(other_player, {coffee,bread})); //On definit le nombre de piece que le joueur adverse doit payer
+                setNumberOfCoinsEarned(numberGainWithType(*other_player, {coffee,bread})); //On definit le nombre de piece que le joueur adverse doit payer
                 if (balance_other >= getEarnedCoins()) { //le joueur qui doit payer a assez de coins pour payer
                     g.getBank().playerPaysPlayer(id_other, id_Owner, getEarnedCoins());
                 } else {                                    //le joueur qui doit payer n'a pas assez de coins pour payer donc il donne ce qu'il a
@@ -231,7 +231,7 @@ void TaxOffice::launchEffect(Game& g, Player& currentPlayer){
     //From each opponent with 10 or more coins: take half their coins, rounded down. This only applies in your turn.
     int id_Owner=getOwner()->getId();
     for (const auto& other_player : g.getPlayers()){
-        int id_other = other_player.getId();
+        int id_other = other_player->getId();
         if (id_Owner != id_other && g.getBank().getBalance(id_other)>=10){ //le joueur possède au moins 10 coins
             int balance_other=g.getBank().getBalance(id_other);
             g.getBank().playerPaysPlayer(id_other, id_Owner, balance_other/2); //On prend la moitié de la balance arrondi à l'inférieur (le reste de la divison est ignorée)
@@ -248,7 +248,7 @@ void Park::launchEffect(Game& g, Player& currentPlayer) {
     int new_balance;
 
     for (const auto& all_player : g.getPlayers()){ //On calcul la somme de toutes les balances des joueurs
-        total += g.getBank().getBalance(all_player.getId());
+        total += g.getBank().getBalance(all_player->getId());
     }
 
     if(total % g.getPlayers().size() == 0){ //On calcul quel va être la nouvelle balance de tout les joueurs
@@ -259,7 +259,7 @@ void Park::launchEffect(Game& g, Player& currentPlayer) {
     }
 
     for (const auto& all_player : g.getPlayers()){ //On met à jour toutes les balances
-        g.getBank().setBalance(all_player.getId(), new_balance);
+        g.getBank().setBalance(all_player->getId(), new_balance);
     }
 }
 
@@ -283,10 +283,10 @@ void RenovationCompany::launchEffect(Game& g, Player& currentPlayer) {
     }
 
     for (const auto& player : g.getPlayers()){
-        if (player.hasEstablishment(cardRenov)!= nullptr){
-            player.hasEstablishment(cardRenov)->setRenovation(true);
-            if(player.getId()!=currentPlayer.getId()){
-                g.getBank().playerPaysPlayer(player.getId(),currentPlayer.getId(),1);
+        if (player->hasEstablishment(cardRenov)!= nullptr){
+            player->hasEstablishment(cardRenov)->setRenovation(true);
+            if(player->getId()!=currentPlayer.getId()){
+                g.getBank().playerPaysPlayer(player->getId(),currentPlayer.getId(),1);
             }
         }
     }
@@ -296,7 +296,7 @@ void RenovationCompany::launchEffect(Game& g, Player& currentPlayer) {
 void TechStartup::launchEffect(Game& g, Player& currentPlayer) { //A REVOIR
     //At the end of each of your turns, you may place 1 coin on this card. The total placed here is your investment. When activated, get an amount equal to your investment from all player, on your turn only.
     for(auto& player : g.getPlayers()){
-        g.getBank().playerPaysPlayer(player.getId(),currentPlayer.getId(),investment);
+        g.getBank().playerPaysPlayer(player->getId(),currentPlayer.getId(),getInvestment());
     }
 }
 
@@ -320,7 +320,7 @@ void InternationalExhibitHall::launchEffect(Game& g, Player& currentPlayer) { //
     }
     Establishment* est=currentPlayer.hasEstablishment(cardAct);
     est->launchEffect(g,currentPlayer);
-    currentPlayer.getHand().removeEstablishment(est->getCardName_Enum());
+    currentPlayer.getHand().removeEstablishment(est);
     //rajouter la carte au board (market)---------------------------------------------------------
 }
 
@@ -361,7 +361,7 @@ void SodaBottlingPlant::launchEffect(Game& g, Player& currentPlayer) {
     int id_Owner=getOwner()->getId();
     int total = 0;
     for (auto& other_player : g.getPlayers()){
-        total += numberGainWithType(other_player, {coffee});
+        total += numberGainWithType(*other_player, {coffee});
     }
     setNumberOfCoinsEarned(total);
     g.getBank().withdraw(id_Owner,getEarnedCoins());
@@ -397,8 +397,8 @@ void MovingCompany::launchEffect(Game& g, Player& currentPlayer) {
         cout<<"Entrez le nom du joueur a qui voulez vous donner votre carte :\n";
         cin>>nameOfReceiver;
         for ( auto& other_player : g.getPlayers()){
-            if(nameOfReceiver==other_player.getName()){
-                playerReceiver = &other_player;
+            if(nameOfReceiver==other_player->getName()){
+                playerReceiver = other_player;
             }
         }
     }
@@ -409,16 +409,16 @@ void MovingCompany::launchEffect(Game& g, Player& currentPlayer) {
 
         //Giver
         for (const auto&  card : currentPlayer.getHand().getEstablishments()){ // On verifie que la carte choisi est dans la main du joueur et qu'elle n'est pas de type tower
-            Establishment* est= (getOwner()->getHand().getEstablishments()[card.first].first);
+            Establishment* est= (getOwner()->getHand().getEstablishments()[card.first].top());
             if((nameOfCardGiver==est->getCardName()) && (est->getType()!=tower) ){
                 CardGiver=est;
             }
         }
     }
     //add
-    playerReceiver->getHand().addEstablishment(CardGiver->getCardName_Enum());
+    playerReceiver->getHand().addEstablishment(CardGiver);
     //remove
-    currentPlayer.getHand().removeEstablishment(CardGiver->getCardName_Enum());
+    currentPlayer.getHand().removeEstablishment(CardGiver);
 }
 
 
@@ -426,7 +426,7 @@ void Winery::launchEffect(Game& g, Player& currentPlayer) {
     //Get 6 coins for each vineyard you own, on your turn only. Then, close this building for renovation.
     auto establishments=getOwner()->getHand().getEstablishments();
     if (getOwner()->getHand().getEstablishments().find(Vineyard)!=getOwner()->getHand().getEstablishments().end()){
-        setNumberOfCoinsEarned(getOwner()->getHand().getEstablishments()[Vineyard].second); //Le nombre de coins gagné est le nombre de vineyard possédées
+        setNumberOfCoinsEarned(getOwner()->getHand().getEstablishments()[Vineyard].size()); //Le nombre de coins gagné est le nombre de vineyard possédées
     }
     else {
         setNumberOfCoinsEarned(0); //Le joueur ne possède pas de winery
