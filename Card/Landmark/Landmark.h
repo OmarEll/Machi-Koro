@@ -1,4 +1,4 @@
-
+#pragma once
 #ifndef MACHI_KORO_LANDMARK_H
 #define MACHI_KORO_LANDMARK_H
 

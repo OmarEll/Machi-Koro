@@ -1,3 +1,5 @@
+#pragma once
+
 #include "../Card.hpp"
 #include "../Game/Game.h"
 #include <vector>
