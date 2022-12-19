@@ -47,15 +47,15 @@ void Game::DoTurn(Player& current_player) {
                 }
             // On regarde les cartes rouges des autres joueurs
             for (auto other_player : players){
-                if (other_player.getId() != current_player.getId()) {
+                if (other_player->getId() != current_player.getId()) {
 
                     // On regarde si le nombre correspond à la carte rouge d'un autre joueur;
-                    for (vector <Establishment*>::iterator vIter = other_player.getHand().getColorCards(RED).begin();
-                            vIter != other_player.getHand().getColorCards(RED).end() ||
-                            CanPay(current_player,Bank_Game,(**vIter).getCost());
+                    for (vector <Establishment*>::iterator vIter = other_player->getHand().getColorCards(RED).begin();
+                            vIter != other_player->getHand().getColorCards(RED).end() &&
+                            bank_game->getBalance(current_player.getId()) >0;
                             (*vIter)++) {
                         if ((**vIter).activate(dice) ){
-                            (**vIter).launchEffect();
+                            (**vIter).launchEffect(*this, *other_player);
 
                         }
                     }
@@ -67,43 +67,51 @@ void Game::DoTurn(Player& current_player) {
             for (auto all_players : players){
 
                 // On regarde les établissement de tout le monde
-                for ( Establishment cards : all_players.getHand().getEstablishments().){
-
+                for ( auto pair_cards : all_players->getHand().getEstablishments()){
+                    Establishment* cards = pair_cards.second.top();
                     // Si le joueur est le current player et que sa cartes n'est pas rouge et doit être activé
-                    if (current_player.getId() == all_players.getId() &&
-                        cards.getColor() != RED &&
-                        cards.activate(dice)){
+                    if (current_player.getId() == all_players->getId() &&
+                        cards->getColor() != RED &&
+                        cards->activate(dice)){
 
-                        cards.launchEffect();
+                        cards->launchEffect(*this,current_player);
                     }
 
                     // Si le joueur est différent du current player et que la carte est bleue et qu'elle doit être activé
-                    if (current_player.getId() != all_players.getId() &&
-                        cards.getColor() == BLUE &&
-                        cards.activate(dice))
+                    if (current_player.getId() != all_players->getId() &&
+                        cards->getColor() == BLUE &&
+                        cards->activate(dice))
 
-                        cards.launchEffect();
+                        cards->launchEffect(*this,*all_players);
                 }
             }
             // On regarde si le joueur veut acheter un landmark
             choice = "";
-            cout<< "Voulez vous achetez un établissement ou un landmark ?\nEstablishment\nLandmark\nNothing" << endl;
+            cout<< "Voulez-vous acheter un établissement ou un landmark ?\nEstablishment\nLandmark\nNothing" << endl;
             cin >> choice;
             if (choice == "Establishment"){
-                cout << "Quelle Establishment voulez vous achetez ?" << endl;
-                Board_Game.Affiche();
+                cout << "Quel Establishment voulez-vous acheter ?" << endl;
+                board_Game->displayCards();
                 cin >> choice;
-                Buy_Establishment(current_player);
+                Establishment* tmp = board_Game->foundEstablishmentOnBoard(choice);
+                EnumParser<EstablishmentsNames> fieldTypeParser;
+                EstablishmentsNames val2 = fieldTypeParser.ParseSomeEnum(choice);
+                if (tmp && bank_game->getBalance(current_player.getId()) - establishments[val2]->getCost()>=0)
+                    current_player.getHand().addEstablishment(board_Game->foundEstablishmentOnBoard(choice));
+                else
+                    cout << "L etablissement n'existe pas ! " << endl;
             }
             else {
                 if (choice == "Landmark"){
                     cout << "Quel Landmark voulez-vous acheter ?" << endl;
                     cout << "Trainstation\nRadiotower\nAmusementPark\nCommercialCenter\n"<< endl;
                     cin >> choice;
+                    EnumParser<LandmarksNames> fieldTypeParser;
+                    LandmarksNames val = fieldTypeParser.ParseSomeEnum(choice);
                     // On regarde si l'établissement existe et qu'il a l'argent nécessaire
-                    if (!current_player.hasLandmark(static_cast<LandmarksNames>(choice)) &&
-                    Bank_Game.getBalance(current_player.getId()) - FoundPriceLandmark(choice) >= 0 )
-                        Buy_Landmark(current_player);
+                    if (!current_player.hasLandmark(val) &&
+                    bank_game->getBalance(current_player.getId()) - landmarks[val]->getCost()>=0)
+                    current_player.getHand().addLandmark(val);
                     else
                         cout << "Impossible : soit l'établissement n'existe pas soit vous n'avez pas l'argent" << endl;
                 }
@@ -114,41 +122,32 @@ void Game::DoTurn(Player& current_player) {
         // Fin du tour d'un joueur
 
 void Game::Do_Game(){
-    vector <Player>::iterator current_player = players.begin();
+    vector <Player*>::iterator current_player = players.begin();
     do{
         if (current_player == players.end()){
             current_player = players.begin();
         }
-        DoTurn(*current_player);
-        if (current_player->hasLandmark(AmusementPark) &&
-        Dices[0]->GetResult() == Dices[1]->GetResult()){
-            DoTurn(*current_player);
+        DoTurn(**current_player);
+        if ((*current_player)->hasLandmark(AmusementPark) &&
+        dices.front().GetResult() == dices.back().GetResult()){
+            DoTurn(**current_player);
         }
         current_player++;
-    } while (Iswin(*current_player));
-}
-
-
-
-static bool Game::CanPay(Player &CurrentPlayer, class Bank &bank, int amount) {
-    if (bank.getBalance(CurrentPlayer.getId()) - amount >= 0 )
-        return true;
-    else
-        return false;
+    } while (Iswin(**current_player));
 }
 
 int Game::dice_turn(Player& current_player) {
     string choice;
-    Dices[0]->rollDice();
+    dices.front().rollDice();
     if (current_player.hasLandmark(TrainStation)){
         cout << "Voulez vous relancer un dé ? " << endl;
         cin >> choice;
         if (choice == "oui"){
-            Dices[1]->rollDice();
-            return Dices[0]->GetResult()+Dices[1]->GetResult() ;
+            dices.back().rollDice();
+            return dices.front().GetResult()+dices.back().GetResult() ;
         }
     }
-    return Dices[0]->GetResult();
+    return dices.front().GetResult();
 }
 
 

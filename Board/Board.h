@@ -13,13 +13,13 @@ protected:
     map<EstablishmentsNames,stack<Establishment*>> cards;
     size_t nbCardsMax;
     static Board* board_instance;
-    Board():nbCardsMax(0),cards(){}
 public :
     virtual ~Board();
     Board(Board&)=delete;
     virtual void displayCards();
     virtual void fillBoard();
     virtual Board& createBoard();
+    Establishment* foundEstablishmentOnBoard(string choice);
     static Board* getInstance(){
         if(board_instance==nullptr){
             board_instance=new Board();
@@ -34,4 +34,6 @@ public :
     void setCards(map<EstablishmentsNames,stack<Establishment*>> establishments){
         cards=establishments;
     }
+
+    Board():nbCardsMax(0),cards(){}
 };

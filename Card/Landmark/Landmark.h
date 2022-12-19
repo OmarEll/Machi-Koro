@@ -50,21 +50,21 @@ public:
 class CityHall : public Landmark {
 public:
     CityHall(): Landmark("City Hall", "Immediately before buying establishments, if you have 0 coins, get 1 from the bank.",0,Harbor, tower){}
-    void launchEffect(Game g,Player& currentPlayer) override;
+    void launchEffect(Game& g,Player& currentPlayer) override;
     //Immediately before buying establishments, if you have 0 coins, get 1 from the bank.
 };
 
 class HarborCard : public Landmark {
 public:
     HarborCard(): Landmark("Harbor", "If the dice total is 10 or more, you may add 2 to the total, on your turn only.",2,Harbor, tower){}
-    void launchEffect(Game g,Player& currentPlayer) override;
+    void launchEffect(Game& g,Player& currentPlayer) override;
     //If the dice total is 10 or more, you may add 2 to the total, on your turn only.
 };
 
 class Airport : public Landmark {
 public:
     Airport():Landmark("Airport","If you build nothing on your turn, you get 10 coins from the bank.",30,Harbor, tower){}
-    void launchEffect(Game g,Player& currentPlayer) override;
+    void launchEffect(Game& g,Player& currentPlayer) override;
     //If you build nothing on your turn, you get 10 coins from the bank.
 };
 

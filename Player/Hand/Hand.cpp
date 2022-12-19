@@ -63,3 +63,12 @@ vector<Establishment*> Hand::getTypeCards(Types type){
     }
     return cards;
 }
+
+void Hand::addLandmark(LandmarksNames name) {
+    for (auto Land : landmarks){
+        if (name == Land.first){
+            Land.second->setConstruction();
+        }
+    }
+
+}

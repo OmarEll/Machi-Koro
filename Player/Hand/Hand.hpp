@@ -22,6 +22,7 @@ public:
     Hand(vector<Establishment*>,vector<Landmark*>);
     void addEstablishment(Establishment*);
     void removeEstablishment(Establishment*);
+    void addLandmark(LandmarksNames name);
     vector<Establishment*> getColorCards(Colors);
     vector<Establishment*> getTypeCards(Types);
     map<LandmarksNames, Landmark*> getLandmarks() const {return landmarks;}

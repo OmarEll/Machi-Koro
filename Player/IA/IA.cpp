@@ -12,7 +12,7 @@ Card* IA::chooseCard(Game& game){
 }
 
 Card* IA::easyLevelCard(Game& game){
-    int iaBalance=game.getBank().getBalance(idPlayer);
+    int iaBalance=game.getBank()->getBalance(idPlayer);
 
         for(auto landmark : hand.getLandmarks()){
             if(!landmark.second->isConstructed() && (landmark.second->getCost() <= iaBalance)){

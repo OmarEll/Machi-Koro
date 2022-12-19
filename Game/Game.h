@@ -31,8 +31,8 @@ protected :
     vector <Landmark*> landmarks;
     size_t minPlayers;
     size_t maxPlayers;
-    Board board_Game;
-    Dice* dices[2] ;
+    Board* board_Game;
+    list<Dice> dices ;
     Bank* bank_game;
     static Game* Game_single;
     list<Colors>Activation_order;
@@ -46,26 +46,24 @@ public:
     void virtual Destructor ();
     ostream& Afficher_etat_partie (ostream& standard);
     static Game* Singleton (string NomEdition);
-    Establishment& Buy_Establishment(Player& current_player);
-    void Buy_Landmark(Player& current_player);
-    string Get_Extension() { return Nom_Extension;}
-    Bank getBank() {return Bank_Game;}
-    Board* getBoard(){ return board_game; }
+    Expansions Get_Extension() { return expansionName;}
+    Bank* getBank() {return bank_game;}
+    Board* getBoard(){ return board_Game; }
     void Do_Game();
     //const list<Player>& getPlayers() const {return Players_Game};
     vector<Player*> getPlayers() const {return players;}
     int dice_turn (Player& current_player);
-    static bool CanPay(Player& CurrentPlayer, Bank& bank, int amount);
-    Dice * GetDices(){return reinterpret_cast<Dice *>(Dices);}
-    vector<Establishment> getEstablishments(){return Establishments;}
+    //Dice * GetDices(){return reinterpret_cast<Dice *>(dices);}
+    list <Dice> GetDices(){return dices; }
+    vector<Establishment*> getEstablishments(){return establishments;}
     Establishment* getEstablishmentByName(string estName){
-        for (auto e : Establishments){
-            if (e.getCardName()==estName)
-                return &e;
+        for (auto e : establishments){
+            if (e->getCardName()==estName)
+                return e;
         }
         return nullptr;
     }
-    vector<Landmark> getLandmarks(){return Landmarks;}
+    vector<Landmark*> getLandmarks(){return landmarks;}
 };
 
 
