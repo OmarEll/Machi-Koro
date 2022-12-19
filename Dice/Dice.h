@@ -2,8 +2,7 @@
 // Created by mabur on 03/12/2022.
 //
 
-#ifndef MACHI_KORO_DICE_H
-#define MACHI_KORO_DICE_H
+#pragma once
 
 #include "../Player/Player.hpp"
 
@@ -19,4 +18,3 @@ public :
 };
 
 
-#endif //MACHI_KORO_DICE_H

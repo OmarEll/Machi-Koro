@@ -42,3 +42,8 @@ void Bank::freeInstance(){
     delete uniqueBank;
     uniqueBank= nullptr;
 }
+
+Bank &Bank::getInstance(int nbP, int def) {
+    if (!uniqueBank)
+        uniqueBank = new Bank(nbP,def);
+    return *uniqueBank; }

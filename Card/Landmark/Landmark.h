@@ -1,7 +1,4 @@
 #pragma once
-#ifndef MACHI_KORO_LANDMARK_H
-#define MACHI_KORO_LANDMARK_H
-
 #include "../Card.hpp"
 #include "../Player/Player.hpp"
 #include "../Game/Game.h"
@@ -68,4 +65,3 @@ public:
     //If you build nothing on your turn, you get 10 coins from the bank.
 };
 
-#endif //MACHI_KORO_LANDMARK_H

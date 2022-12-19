@@ -150,6 +150,14 @@ int Game::dice_turn(Player& current_player) {
     return dices.front().GetResult();
 }
 
+Establishment *Game::getEstablishmentByName(string estName) {
+    for (auto e : establishments){
+        if (e->getCardName()==estName)
+            return e;
+    }
+    return nullptr;
+}
+
 
 /*
  int somme = red_cards.laucheffect()

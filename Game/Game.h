@@ -1,9 +1,7 @@
 //
 // Created by mabur on 02/12/2022.
 
-#ifndef MACHIKORO_FICHIER_GAME_H
-#define MACHIKORO_FICHIER_GAME_H
-
+#pragma once
 #include <iostream>
 #include <list>
 #include <string>
@@ -23,6 +21,7 @@ using namespace std;
 class Player;
 class Establishment;
 class Landmark;
+class Board;
 
 class Game {
 protected :
@@ -56,15 +55,7 @@ public:
     //Dice * GetDices(){return reinterpret_cast<Dice *>(dices);}
     list <Dice> GetDices(){return dices; }
     vector<Establishment*> getEstablishments(){return establishments;}
-    Establishment* getEstablishmentByName(string estName){
-        for (auto e : establishments){
-            if (e->getCardName()==estName)
-                return e;
-        }
-        return nullptr;
-    }
+    Establishment* getEstablishmentByName(string estName);
     vector<Landmark*> getLandmarks(){return landmarks;}
 };
 
-
-#endif //MACHIKORO_FICHIER_GAME_H

@@ -30,9 +30,7 @@ class Card
         Player* getOwner() const {return owner;};
         int getCost() { return cost; }
         Expansions getExpansion() { return expansion;}
-
         void setOwner(Player* o) {owner = o;} //a revoir
-
         /* REST */
         virtual int gainWithType() =0;
         virtual void launchEffect(Game&,Player& currentPlayer) =0;

@@ -1,6 +1,4 @@
-#ifndef HARBORBOARD_H_INCLUDED
-#define HARBORBOARD_H_INCLUDED
-
+#pragma once
 #include "../Board/Board.h"
 #include "Deck/Deck.h"
 

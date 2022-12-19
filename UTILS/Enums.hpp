@@ -1,5 +1,4 @@
-#ifndef MACHIKORO_FICHIER_ENUMS_H
-#define MACHIKORO_FICHIER_ENUMS_H
+#pragma once
 #include <string>
 #include <map>
 using namespace std;
@@ -60,5 +59,3 @@ enum Types{
     wheat, cow, bread, coffee, wheel, tower, factory, apple, boat, suitcase
 };
 
-
-#endif //MACHIKORO_FICHIER_ENUMS_H

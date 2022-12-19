@@ -20,20 +20,13 @@ public :
     virtual void fillBoard();
     virtual Board& createBoard();
     Establishment* foundEstablishmentOnBoard(string choice);
-    static Board* getInstance(){
-        if(board_instance==nullptr){
-            board_instance=new Board();
-        }
-        return board_instance;
-    }
+    static Board* getInstance();
     // GETTERS & SETTERS
     size_t getNbCardsMax(){ return nbCardsMax; }
     map<EstablishmentsNames,stack<Establishment*>> getCards(){ return cards; }
-
     void setNbCardsMax(size_t nb){ nbCardsMax=nb; }
     void setCards(map<EstablishmentsNames,stack<Establishment*>> establishments){
         cards=establishments;
     }
-
     Board():nbCardsMax(0),cards(){}
 };

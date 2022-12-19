@@ -1,6 +1,4 @@
-#ifndef MACHIKORO_FICHIER_IA_H
-#define MACHIKORO_FICHIER_IA_H
-
+#pragma once
 #include "Player.hpp"
 
 class IA : public Player {
@@ -14,5 +12,3 @@ public:
     Card* chooseCard(Game& game);
     ~IA();
 };
-
-#endif //MACHIKORO_FICHIER_IA_H

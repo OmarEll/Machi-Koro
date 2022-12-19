@@ -17,3 +17,10 @@ Establishment *Board::foundEstablishmentOnBoard(string choice) {
     return nullptr;
 }
 
+Board *Board::getInstance() {
+    if(board_instance==nullptr){
+        board_instance=new Board();
+    }
+    return board_instance;
+}
+

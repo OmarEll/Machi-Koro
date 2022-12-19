@@ -1,5 +1,4 @@
-#ifndef DELUXEBOARD_H_INCLUDED
-#define DELUXEBOARD_H_INCLUDED
+#pragma once
 
 #include "Deck/Deck.h"
 #include "Harbor/HarborBoard.h"
@@ -11,4 +10,4 @@ public :
     void initBoard();
 };
 
-#endif // DELUXEBOARD_H_INCLUDED
+

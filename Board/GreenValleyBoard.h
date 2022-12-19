@@ -1,20 +1,11 @@
-#ifndef GREENVALLEYBOARD_H_INCLUDED
-#define GREENVALLEYBOARD_H_INCLUDED
-
+#pragma once
 #include "../Board/Board.h"
 
 class GreenValleyBoard : public Board {
 
 public :
     virtual void initBoard();
-    void addEstablishmentToBoard(Establishment* e){  // pour international exibit hall
-        for (auto& establishment : cards){
-            if(establishment.first == e->getCardName_Enum()){
-                establishment.second.push(e);
-            }
-        }
-    }
+    void addEstablishmentToBoard(Establishment* e);
 };
 
 
-#endif // GREENVALLEYBOARD_H_INCLUDED

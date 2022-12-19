@@ -1,6 +1,4 @@
-#ifndef DECK_H_INCLUDED
-#define DECK_H_INCLUDED
-
+#pragma once;
 #include "../../Card/Card.hpp"
 
 
@@ -14,5 +12,3 @@ public :
     Establishment* drawCard();
     void addCardToDeck(Establishment* c);
 };
-
-#endif // DECK_H_INCLUDED

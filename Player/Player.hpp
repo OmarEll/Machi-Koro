@@ -24,23 +24,9 @@ public:
     int getId() const { return idPlayer; };
     string getName() const { return name; };
     Hand getHand() const { return hand;};
-    Landmark* hasLandmark(LandmarksNames name) const{
-        auto it=hand.getLandmarks().find(name);
-        if(it!=hand.getLandmarks().end())
-            return (*it).second;
-        else return nullptr;
-    }
-    //
-    Establishment* hasEstablishment(EstablishmentsNames name) const{
-        auto it=hand.getEstablishments().find(name);
-        return ((it!=hand.getEstablishments().end())? (*it).second.top() : nullptr);
-    }
-    Establishment* hasEstablishment(string name) const{
-        EnumParser<EstablishmentsNames> fieldTypeParser;
-        EstablishmentsNames val = fieldTypeParser.ParseSomeEnum(name);
-        return hasEstablishment(val);
-    }
-
+    Landmark* hasLandmark(LandmarksNames name) const;
+    Establishment* hasEstablishment(EstablishmentsNames name) const;
+    Establishment* hasEstablishment(string name) const;
     virtual ~Player();
 };
 
