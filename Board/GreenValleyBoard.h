@@ -7,7 +7,7 @@ class GreenValleyBoard : public Board {
 
 public :
     virtual void initBoard();
-    void addEstablishmentToBoard(Establishment* e){
+    void addEstablishmentToBoard(Establishment* e){  // pour international exibit hall
         for (auto& establishment : cards){
             if(establishment.first == e->getCardName_Enum()){
                 establishment.second.push(e);
