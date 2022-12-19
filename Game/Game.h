@@ -16,6 +16,7 @@
 #include "../Card/Establishment/Establishment.h"
 #include "../Card/Landmark/Landmark.h"
 #include "../Player/Hand/Hand.hpp"
+#include "Landmark.h"
 
 using namespace std;
 
