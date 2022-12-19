@@ -3,6 +3,7 @@
 #include "../Game/Game.h"
 #include "../../UTILS/Enums.hpp"
 #include "../Dice/Dice.h"
+#include "GreenValleyBoard.h"
 #include <string>
 
 bool Establishment::activate(int diceRolled){
@@ -321,7 +322,8 @@ void InternationalExhibitHall::launchEffect(Game& g, Player& currentPlayer) { //
     Establishment* est=currentPlayer.hasEstablishment(cardAct);
     est->launchEffect(g,currentPlayer);
     currentPlayer.getHand().removeEstablishment(est);
-    //rajouter la carte au board (market)---------------------------------------------------------
+    GreenValleyBoard* board = dynamic_cast<GreenValleyBoard*>(g.getBoard());
+    board->addEstablishmentToBoard(est);
 }
 
 /* Redéfinition des cartes spéciales GREEN VALLEY */
