@@ -4,6 +4,7 @@
 
 #include "Bank.hpp"
 
+Bank* Bank::uniqueBank = nullptr;
 
 Bank::Bank(size_t nbPlayers, int defaultValueWallet,int b):balance(b){
         for(auto i=0;i<nbPlayers;i++){

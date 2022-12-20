@@ -44,10 +44,9 @@ protected :
      //+
 public:
     void virtual initGame();
-    ~Game() = default;
+    virtual  ~Game() = default;
     void virtual DoTurn (Player& current_player);
     bool Iswin(Player& current_player);
-    void virtual Destructor ();
     ostream& Afficher_etat_partie (ostream& standard);
     static Game* Singleton (string NomEdition);
     Expansions Get_Extension() { return expansionName;}

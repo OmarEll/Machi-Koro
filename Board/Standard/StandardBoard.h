@@ -10,7 +10,7 @@ class StandardBoard : public Board {
 
 public :
     StandardBoard(int,map<EstablishmentsNames,stack<Establishment*>>);
-    ~StandardBoard();
-    void displayCards();
-    Board& createBoard();
+    ~StandardBoard() = default;
+    void displayCards() override;
+    //Board& createBoard() override; A FAIRE
 };

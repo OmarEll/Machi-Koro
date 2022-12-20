@@ -3,6 +3,8 @@
 //
 #include "Board.h"
 
+Board* Board::board_instance = nullptr;
+
 Establishment *Board::foundEstablishmentOnBoard(string choice) {
     EnumParser<EstablishmentsNames> fieldTypeParser;
     EstablishmentsNames val = fieldTypeParser.ParseSomeEnum(choice);
@@ -17,10 +19,12 @@ Establishment *Board::foundEstablishmentOnBoard(string choice) {
     return nullptr;
 }
 
+/*
 Board *Board::getInstance() {
     if(board_instance==nullptr){
         board_instance=new Board();
     }
     return board_instance;
 }
+ */
 

@@ -161,6 +161,10 @@ Establishment *Game::getEstablishmentByName(string estName) {
     return nullptr;
 }
 
+void Game::initGame() {
+
+}
+
 
 /*
  int somme = red_cards.laucheffect()

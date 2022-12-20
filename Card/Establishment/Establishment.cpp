@@ -6,6 +6,7 @@
 #include "GreenValleyBoard.h"
 #include "Bank.hpp"
 #include "Landmark.h"
+#include "Enums.hpp"
 #include <string>
 
 bool Establishment::activate(int diceRolled){
@@ -57,7 +58,7 @@ int Establishment::numberGainWithType(Player& currentPlayer, vector<Types> t) co
 
 bool Establishment::hasHarbor(){ //fonction qui permet de regarder si le joueur propriétaire de la carte possède un Harbor dans sa main
     //utilisée pour les effets avec "If you have a harbor"
-    return (getOwner()->hasLandmark(HarborCard) != nullptr);
+    return getOwner()->hasLandmark(HarborCard) != nullptr;
 }
 
 int Establishment::numberOfLandmarks(Player* p){

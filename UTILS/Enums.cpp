@@ -13,3 +13,14 @@ template<> EnumParser<EstablishmentsNames>::EnumParser()
     enumMap["Forest"] = Forest;
     enumMap["Stadium"] = Stadium;
 }
+
+template<> EnumParser<LandmarksNames>::EnumParser()
+{
+    enumMap["Radio Tower"] = RadioTower;
+    enumMap["Train Station"] = TrainStation;
+    enumMap["Shopping Mall"] = ShoppingMall;
+    enumMap["Amusement Park"] = AmusementPark;
+    enumMap["City Hall"] = CityHall;
+    enumMap["Harbor Card"] = HarborCard;
+    enumMap["Airport"] = Airport;
+}

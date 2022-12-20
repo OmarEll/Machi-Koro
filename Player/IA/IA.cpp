@@ -7,6 +7,9 @@
 #include "Landmark.h"
 #include "Board.h"
 #include "Establishment.h"
+
+using namespace std;
+
 Card* IA::chooseCard(Game& game){
     switch (level) {
         case Easy: return easyLevelCard(game);break;
@@ -32,3 +35,11 @@ Card* IA::easyLevelCard(Game& game){
         }
     return nullptr;
     }
+
+Card *IA::mediumLevelCard(Game & game) {
+    return nullptr;
+}
+
+Card *IA::hardLevelCard(Game & game) {
+    return nullptr;
+}

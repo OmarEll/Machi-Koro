@@ -21,7 +21,7 @@ protected:
 public:
     Establishment(string name, string desc, Colors col, int cos, Expansions exp, Types typ, vector<int> actNum, OriginsOfCoins ori, int num)
             :Card(name,desc,cos,exp,typ),color(col),activationNumbers(actNum),originOfCoinsEarned(ori),numberOfCoinsEarned(num){}
-    ~Establishment();
+    ~Establishment() = default;
     /* GETTERS & SETTERS */
     Types getType(){ return type ;}
     vector<int> getActivationNumbers() { return activationNumbers; }
@@ -217,6 +217,7 @@ class Winery: public Establishment {
 public:
     Winery(): Establishment("Winery","Get 6 coins for each vineyard you own, on your turn only. Then, close this building for renovation.",GREEN, 3,GreenValley, factory,{9},BankOrigin,6){}
     void launchEffect(Game& g,Player& currentPlayer) final;
+
 };
 
 /* Carte classique standard */

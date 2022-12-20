@@ -16,12 +16,12 @@ protected:
     static Board* board_instance;
 public :
     virtual ~Board() = default;
-    Board(Board&)=delete;
-    virtual void displayCards();
-    virtual void fillBoard();
-    virtual Board& createBoard();
+    Board(Board&) = default;
+    virtual void displayCards()=0;
+    virtual void fillBoard() = 0;
+    virtual Board& createBoard() = 0;
     Establishment* foundEstablishmentOnBoard(string choice);
-    static Board* getInstance();
+    //static Board* getInstance(); // A REVOIR IMPERATIVEMENT ENSEMBLE (VALABLE POUR GAME AUSSI)
     // GETTERS & SETTERS
     size_t getNbCardsMax(){ return nbCardsMax; }
     map<EstablishmentsNames,stack<Establishment*>> getCards(){ return cards; }
