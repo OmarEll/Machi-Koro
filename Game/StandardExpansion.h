@@ -8,8 +8,12 @@
 class StandardExpansion : public Game {
 private :
 
-public:
 
+public:
+    StandardExpansion(vector<Player*>);
+    ~StandardExpansion() = default;
+    void DoTurn(Player& current_player) override;
+    void Do_Game() override;
 
 };
 
