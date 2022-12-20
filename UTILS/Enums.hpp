@@ -1,12 +1,13 @@
 #pragma once
 #include <string>
 #include <map>
+
 using namespace std;
 
 template <typename T> class EnumParser{
     map <string, T> enumMap;
 public:
-    EnumParser(){};
+    EnumParser();
 
     T ParseSomeEnum(const string &value)
     {
@@ -37,16 +38,7 @@ enum EstablishmentsNames{
     FoodWarehouse, SushiBar, PizzaJoint, HamburgerStand, Publisher, TaxOffice, Diamine, InternationalExhibitHall,
     Vineyard
 };
-template<> EnumParser<EstablishmentsNames>::EnumParser()
-{
-    enumMap["Wheat Field"] = WheatField;
-    enumMap["Livestock Farm"] = LivestockFarm;
-    enumMap["Bakery"] = Bakery;
-    enumMap["Cafe"] = Cafe;
-    enumMap["Convenience Store"] = ConvenienceStore;
-    enumMap["Forest"] = Forest;
-    enumMap["Stadium"] = Stadium;
-}
+
 enum Expansions{
     Standard, Harbor, GreenValley, Deluxe
 };

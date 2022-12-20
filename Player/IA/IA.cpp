@@ -2,12 +2,17 @@
 // Created by Omar Elloumi on 18/12/2022.
 //
 #include "IA.hpp"
+#include "Game.h"
+#include "Bank.hpp"
+#include "Landmark.h"
+#include "Board.h"
+#include "Establishment.h"
 Card* IA::chooseCard(Game& game){
     switch (level) {
-        case Easy: easyLevelCard(game);break;
-        case Medium:mediumLevelCard(game);break;
-        case Hard:hardLevelCard(game);break;
-        default:break;
+        case Easy: return easyLevelCard(game);break;
+        case Medium: return mediumLevelCard(game);break;
+        case Hard: return hardLevelCard(game);break;
+        default: return nullptr;break;
     }
 }
 
@@ -25,5 +30,5 @@ Card* IA::easyLevelCard(Game& game){
                 return possibleCard.second.top();
             }
         }
-
+    return nullptr;
     }

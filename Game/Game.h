@@ -6,18 +6,22 @@
 #include <list>
 #include <string>
 #include <vector>
+#include "../UTILS/Enums.hpp"
+#include "../Dice/Dice.h"
+/*
 #include "../Bank/Bank.hpp"
 #include "../Player/Player.hpp"
 #include "../Board/Board.h"
-#include "../UTILS/Enums.hpp"
 #include "../Dice/Dice.h"
 #include "../Card/Establishment/Establishment.h"
 #include "../Card/Landmark/Landmark.h"
 #include "../Player/Hand/Hand.hpp"
-#include "Landmark.h"
+#include "Landmark.h"*/
 
 using namespace std;
-
+class Bank;
+class Board;
+class Hand;
 class Player;
 class Establishment;
 class Landmark;
@@ -40,6 +44,7 @@ protected :
      //+
 public:
     void virtual initGame();
+    ~Game() = default;
     void virtual DoTurn (Player& current_player);
     bool Iswin(Player& current_player);
     void virtual Destructor ();

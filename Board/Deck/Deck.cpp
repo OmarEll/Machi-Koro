@@ -1,4 +1,7 @@
+#include <iostream>
 #include "Deck.h"
+
+using namespace std;
 
 Deck::Deck(vector<Establishment*> cards){
     for(auto card : cards){

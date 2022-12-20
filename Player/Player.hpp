@@ -3,12 +3,13 @@
 #include <string>
 #include <iostream>
 #include "Hand/Hand.hpp"
-#include "../Bank/Bank.hpp"
-#include "../Bank/Wallet.hpp"
+/*#include "../Bank/Bank.hpp"
+#include "../Bank/Wallet.hpp"*/
 
-class Hand;
+//class Hand;
 class Establishment;
 class Landmark;
+class Wallet;
 
 using namespace std;
 
@@ -24,9 +25,9 @@ public:
     int getId() const { return idPlayer; };
     string getName() const { return name; };
     Hand getHand() const { return hand;};
-    Landmark* hasLandmark(LandmarksNames name) const;
-    Establishment* hasEstablishment(EstablishmentsNames name) const;
-    Establishment* hasEstablishment(string name) const;
-    virtual ~Player();
+    Landmark* hasLandmark(LandmarksNames) const;
+    Establishment* hasEstablishment(EstablishmentsNames) const;
+    Establishment* hasEstablishment(string) const ;
+    virtual ~Player() = default;
 };
 

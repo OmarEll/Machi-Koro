@@ -1,9 +1,10 @@
 #pragma once
 #include <map>
 #include <vector>
-#include "../Card/Card.hpp"
+#include "Enums.hpp"
+/*#include "../Card/Card.hpp"
 #include "../Card/Establishment/Establishment.h"
-#include "../Card/Landmark/Landmark.h"
+#include "../Card/Landmark/Landmark.h"*/
 #include <stack>
 
 class  Establishment;
@@ -27,6 +28,6 @@ public:
     vector<Establishment*> getTypeCards(Types);
     map<LandmarksNames, Landmark*> getLandmarks() const {return landmarks;}
     map<EstablishmentsNames,stack<Establishment*>> getEstablishments() const {return establishments;}
-    ~Hand();
+    ~Hand() = default;
 };
 

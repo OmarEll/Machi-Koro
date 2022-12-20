@@ -3,7 +3,8 @@
 #include <iostream>
 #include <string>
 #include <stack>
-#include "../Card/Establishment/Establishment.h"
+//#include "../Card/Establishment/Establishment.h"
+#include "Enums.hpp"
 using namespace std;
 
 class Establishment;
@@ -14,7 +15,7 @@ protected:
     size_t nbCardsMax;
     static Board* board_instance;
 public :
-    virtual ~Board();
+    virtual ~Board() = default;
     Board(Board&)=delete;
     virtual void displayCards();
     virtual void fillBoard();

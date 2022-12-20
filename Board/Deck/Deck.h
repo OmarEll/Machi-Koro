@@ -1,6 +1,13 @@
-#pragma once;
-#include "../../Card/Card.hpp"
+#pragma once
 
+#include <stack>
+#include <vector>
+//#include "../../Card/Card.hpp"
+
+class Card;
+class Establishment;
+
+using namespace std;
 
 class Deck{
 private :

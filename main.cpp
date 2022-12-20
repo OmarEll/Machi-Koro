@@ -26,6 +26,7 @@ using namespace std;
 int main(){
     //Player player=*new Player("Omar");
     //cout<<player.getName();
+    cout << "Hello World" << endl;
     return 0;
 }
 

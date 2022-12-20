@@ -1,12 +1,13 @@
 #pragma once
 
 #include "../UTILS/Enums.hpp"
-#include "../Player/Player.hpp"
-#include "../Game/Game.h"
+/*#include "../Player/Player.hpp"
+#include "../Game/Game.h"*/
 #include <string>
 #include <vector>
 
 using namespace std;
+
 
 class Player;
 class Game;

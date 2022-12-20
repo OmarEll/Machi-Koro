@@ -1,6 +1,9 @@
 #pragma once
-#include "../Board/Board.h"
-#include "Deck/Deck.h"
+/*#include "../Board/Board.h"
+#include "Deck/Deck.h"*/
+
+class Board;
+class Deck;
 
 class HarborBoard : public Board {
 private :
@@ -17,4 +20,3 @@ public :
 };
 
 
-#endif // HARBORBOARD_H_INCLUDED

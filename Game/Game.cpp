@@ -6,6 +6,9 @@
 #include "Establishment/Establishment.h"
 #include "Landmark/Landmark.h"
 #include "Enums.hpp"
+#include "Player.hpp"
+#include "Board.h"
+#include "Bank.hpp"
 #include <iterator>
 
 using namespace std;

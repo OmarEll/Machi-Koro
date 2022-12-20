@@ -4,7 +4,9 @@
 
 #pragma once
 
-#include "../Player/Player.hpp"
+//#include "../Player/Player.hpp"
+
+class Player;
 
 class Dice {
 private :
@@ -12,7 +14,7 @@ private :
     int result;
 public :
     Dice() : faces(6) {};
-    ~Dice();
+    ~Dice() = default;
     void rollDice();
     int GetResult(){return result;}
 };

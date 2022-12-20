@@ -1,4 +1,6 @@
 #include "Hand.hpp"
+#include "Establishment.h"
+#include "Landmark.h"
 
 Hand::Hand(vector<Establishment*> a,vector<Landmark*> b){
 

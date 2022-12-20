@@ -1,5 +1,9 @@
 #pragma once
+
 #include "Player.hpp"
+
+class Game;
+class Card;
 
 class IA : public Player {
 private:

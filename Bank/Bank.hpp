@@ -4,6 +4,8 @@
 #include "Wallet.hpp"
 using namespace std;
 
+//class Wallet;
+
 class Bank{
 private:
     int balance;

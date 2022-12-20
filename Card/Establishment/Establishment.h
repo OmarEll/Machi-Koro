@@ -1,10 +1,12 @@
 #pragma once
 
 #include "../Card.hpp"
-#include "../Game/Game.h"
+//#include "../Game/Game.h"
 #include <vector>
+//#include "Enums.hpp"
 
-class Card;
+
+class Game;
 
 /* Classe non abstract */
 class Establishment : public Card
