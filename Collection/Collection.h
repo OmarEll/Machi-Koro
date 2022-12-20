@@ -13,13 +13,14 @@
 using namespace std;
 
 class Collection {
-private:
+protected:
     vector<Establishment*> Establishment_Collection;
     vector<Landmark*> Landmark_Collection;
 public:
     vector<Establishment*> GetEstablishment(){return Establishment_Collection;}
     vector<Landmark*> GetLandmark(){ return Landmark_Collection;}
-    Collection();
+    virtual ~Collection();
+    virtual void Clone(vector<Establishment*>,vector<Landmark*>) = 0;
 };
 
 
