@@ -20,7 +20,7 @@ Establishment *Board::foundEstablishmentOnBoard(string choice) {
 }
 
 /*
-Board *Board::getInstance() {
+Board *Board::getInstance() { // faire switch avec en paramètre en string ou enum pour extension
     if(board_instance==nullptr){
         board_instance=new Board();
     }

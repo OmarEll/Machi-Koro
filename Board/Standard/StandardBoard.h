@@ -2,7 +2,7 @@
 
 #include "Board.h"
 
-//class Board;
+class Board;
 class Establishment;
 using namespace std;
 

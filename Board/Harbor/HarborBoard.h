@@ -2,16 +2,17 @@
 /*#include "../Board/Board.h"
 #include "Deck/Deck.h"*/
 
-class Board;
+
 class Deck;
+class Board;
 
 class HarborBoard : public Board {
 private :
     Deck* deck;
 
 public :
+    HarborBoard(int,map<EstablishmentsNames,stack<Establishment*>>);
     //from super class
-    void initBoard();
     void displayCards();
     void fillBoard(); //initialisation de marketplace
     Board& createBoard();
