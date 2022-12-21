@@ -16,6 +16,8 @@ public:
     bool isConstructed() const {return constructed;};
     void setConstruction() { constructed=true; }
     void setDemolition () {constructed = false;}
+    int gainWithType() override{};
+    virtual void launchEffect(Game&,Player& currentPlayer) override {};
 };
 
 //Landmark STANDARD

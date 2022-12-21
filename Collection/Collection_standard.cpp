@@ -43,6 +43,14 @@ Collection_standard::Collection_standard() {
     Establishment_Collection.push_back(new class TvStation());
 
     Establishment_Collection.push_back(new class Office());
+
+    Landmark_Collection.push_back(new class TrainStation());
+
+    Landmark_Collection.push_back(new class ShoppingMall());
+
+    Landmark_Collection.push_back(new class AmusementPark());
+
+    Landmark_Collection.push_back(new class RadioTower());
 }
 
 Collection_standard::~Collection_standard() {
