@@ -17,7 +17,10 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3da67ed3-7362-4cda-8ab6-ab4fa015e1ca" name="Changes" comment="Maj from test to main" />
+    <list default="true" id="3da67ed3-7362-4cda-8ab6-ab4fa015e1ca" name="Changes" comment="Maj from test to main">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/.qtc_clangd/.cache/clangd/index/mainwindow.cpp.050225DDCE3E2076.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/.qtc_clangd/.cache/clangd/index/mainwindow.cpp.050225DDCE3E2076.idx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -72,11 +75,6 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -88,6 +86,7 @@
       <updated>1671184563754</updated>
       <workItem from="1671184564885" duration="3663000" />
       <workItem from="1671202555365" duration="1706000" />
+      <workItem from="1671459693241" duration="17000" />
     </task>
     <task id="LOCAL-00001" summary="Maj from test to main">
       <created>1671204160642</created>
