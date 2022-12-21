@@ -19,7 +19,7 @@ protected:
 public:
     vector<Establishment*> GetEstablishment(){return Establishment_Collection;}
     vector<Landmark*> GetLandmark(){ return Landmark_Collection;}
-    virtual ~Collection();
+    virtual ~Collection() = default;
     virtual void Clone(vector<Establishment*>,vector<Landmark*>) = 0;
 };
 

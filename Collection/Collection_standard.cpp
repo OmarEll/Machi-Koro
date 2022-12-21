@@ -5,9 +5,8 @@
 #include "Collection_standard.h"
 #include "Card.hpp"
 #include "Landmark.h"
-#include "Establishment.h"
+#include "../Establishment/Establishment.h"
 #include "Enums.hpp"
-
 
 void Collection_standard::Clone(vector<Establishment *>, vector<Landmark *>) {
 
@@ -29,5 +28,28 @@ Collection_standard::Collection_standard() {
                                                          vector<int>{2,3},BankOrigin,1));
     Establishment_Collection.push_back(new Establishment("Convenience Store","When the card's activation number of 4 is rolled by the player with the card, the player with the card gets 3 coins from the bank",GREEN,2,Standard,bread,
                                                          vector<int>{4},BankOrigin,3));
-    //Establishment_Collection.push_back(new CheeseFactory());
+    Establishment_Collection.push_back(new class CheeseFactory());
+
+    Establishment_Collection.push_back(new class FurnitureFactory());
+
+    Establishment_Collection.push_back(new class ProduceMarket());
+
+    Establishment_Collection.push_back(new Establishment("Coffee","Get 1 coin from the player who rolled the dice",RED,2,Standard,coffee,
+                                                         vector<int>{3},PlayerRolledDice,1));
+    Establishment_Collection.push_back(new Establishment("Family Restaurant","Get 2 coins from the player who rolled the dice",RED,3,Standard,coffee,
+                                                         vector<int>{9,10},PlayerRolledDice,2));
+    Establishment_Collection.push_back(new class Stadium());
+
+    Establishment_Collection.push_back(new class TvStation());
+
+    Establishment_Collection.push_back(new class Office());
 }
+
+Collection_standard::~Collection_standard() {
+    for (auto Est : Establishment_Collection){
+        free (Est);
+    }
+
+}
+
+

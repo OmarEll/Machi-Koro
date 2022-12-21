@@ -20,6 +20,8 @@
 #include "Player/IA/IA.hpp"
 #include "Player/Player.hpp"
 #include "UTILS/Enums.hpp"
+#include "Collection/Collection.h"
+#include "Collection/Collection_standard.h"
 using namespace std;
 // C'est Marius
 // C'est Sarah
@@ -27,6 +29,10 @@ int main(){
     //Player player=*new Player("Omar");
     //cout<<player.getName();
     cout << "Hello World" << endl;
+    Collection_standard* test = new Collection_standard ();
+    for (auto est : test->GetEstablishment()){
+       cout << "Le nom de l etablissement est :" << est->getCardName()<<endl;
+    }
     return 0;
 }
 
