@@ -1,19 +1,19 @@
-#ifndef MACHIKORO_FICHIER_ENUMS_H
-#define MACHIKORO_FICHIER_ENUMS_H
+#pragma once
 #include <string>
 #include <map>
+
 using namespace std;
 
 template <typename T> class EnumParser{
     map <string, T> enumMap;
 public:
-    EnumParser(){};
+    EnumParser();
 
     T ParseSomeEnum(const string &value)
-    {
+   {
         auto iValue = enumMap.find(value);
         if (iValue  == enumMap.end())
-            throw runtime_error("");
+            throw std::exception();
         return iValue->second;
     }
 };
@@ -38,31 +38,10 @@ enum EstablishmentsNames{
     FoodWarehouse, SushiBar, PizzaJoint, HamburgerStand, Publisher, TaxOffice, Diamine, InternationalExhibitHall,
     Vineyard
 };
-template<> EnumParser<EstablishmentsNames>::EnumParser()
-{
-    enumMap["Wheat Field"] = WheatField;
-    enumMap["Livestock Farm"] = LivestockFarm;
-    enumMap["Bakery"] = Bakery;
-    enumMap["Cafe"] = Cafe;
-    enumMap["Convenience Store"] = ConvenienceStore;
-    enumMap["Forest"] = Forest;
-    enumMap["Stadium"] = Stadium;
-}
+
 enum Expansions{
     Standard, Harbor, GreenValley, Deluxe
 };
-
-
-std::string getExpansionName(Expansions expansion)
-{
-    switch (expansion) {
-        case Standard: return "Standard";
-        case Harbor: return "Harbor";
-        case GreenValley: return "Green Valley";
-        case Deluxe: return "Deluxe";
-        default: return "Unknown";
-    }
-}
 
 enum OriginsOfCoins{
     BankOrigin,PlayerRolledDice,OtherPlayers
@@ -72,5 +51,3 @@ enum Types{
     wheat, cow, bread, coffee, wheel, tower, factory, apple, boat, suitcase
 };
 
-
-#endif //MACHIKORO_FICHIER_ENUMS_H

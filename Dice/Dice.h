@@ -2,9 +2,11 @@
 // Created by mabur on 03/12/2022.
 //
 
-#ifndef MACHI_KORO_DICE_H
-#define MACHI_KORO_DICE_H
-#include "../Player/Player.hpp"
+#pragma once
+
+//#include "../Player/Player.hpp"
+
+class Player;
 
 class Dice {
 private :
@@ -12,10 +14,9 @@ private :
     int result;
 public :
     Dice() : faces(6) {};
-    ~Dice();
+    ~Dice() = default;
     void rollDice();
     int GetResult(){return result;}
 };
 
 
-#endif //MACHI_KORO_DICE_H

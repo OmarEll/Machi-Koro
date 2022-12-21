@@ -3,7 +3,7 @@
 
 #include "ui_gameinterface.h"
 #include <QDialog>
-//#include "../Game/Game.h"
+#include "../Game/StandardExpansion.h"
 #include "../UTILS/Enums.hpp"
 
 namespace Ui {
@@ -22,7 +22,7 @@ public:
     }
     void chooseGame(){
         if(expansion=="Standard"){
-
+            game=new StandardExpansion();
         }else if(expansion=="Harbor"){
         }
         else if(expansion=="Deluxe"){
@@ -38,7 +38,7 @@ public:
 
 private:
     Ui::GameInterface *ui;
-    //Game* game=nullptr;
+    Game* game=nullptr;
     QString expansion;
     QStringList names;
 };

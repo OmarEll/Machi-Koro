@@ -1,13 +1,16 @@
-#ifndef STANDARDBOARD_H_INCLUDED
-#define STANDARDBOARD_H_INCLUDED
+#pragma once
+
 #include "Board.h"
+
+//class Board;
+class Establishment;
+using namespace std;
 
 class StandardBoard : public Board {
 
 public :
     StandardBoard(int,map<EstablishmentsNames,stack<Establishment*>>);
-    void displayCards();
-    Board& createBoard();
+    ~StandardBoard() = default;
+    void displayCards() override;
+    //Board& createBoard() override; A FAIRE
 };
-
-#endif // STANDARDBOARD_H_INCLUDED

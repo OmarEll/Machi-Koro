@@ -1,51 +1,44 @@
-//
-// Created by Omar Elloumi on 04/12/2022.
-//
 #include "Hand.hpp"
 #include "Establishment.h"
+#include "Landmark.h"
 
-Hand::Hand(Expansions myExpansion){
-    switch (myExpansion) {
-        case Standard:
-            //establishments : add bakery + wheat field
-            //landmarks: Train Station, Shopping Mall, Amusement Park & Radio Tower – face down (Under Construction).
-            break;
-        case Harbor:
-            //establishments : add bakery + wheat field
-            //landmarks: city hall (already built), harbor, airport, Train Station, Shopping Mall, Amusement Park & Radio Tower
-            break;
-        case GreenValley:
-            //establishments : add bakery + wheat field
-            //landmarks: Train Station, Shopping Mall, Amusement Park & Radio Tower – face down (Under Construction).
-            break;
-        case Deluxe:
-            //landmarks: Train Station, Shopping Mall, Amusement Park & Radio Tower – face down (Under Construction).
-            break;
-        default:break;
-    }
+Hand::Hand(vector<Establishment*> a,vector<Landmark*> b){
+
 }
-void Hand::addEstablishment(EstablishmentsNames cardName){
-    if(establishments.find(cardName)!=establishments.end())
-        establishments[cardName].second++;
-    else
-        cout<< cardName << "n'existe pas.";
+void Hand::addEstablishment(Establishment* card){
+    EstablishmentsNames cardName=card->getCardName_Enum();
+    if(establishments.find(card->getCardName_Enum())!=establishments.end())
+        establishments[cardName].push(card);
 }
 
-void Hand::removeEstablishment(EstablishmentsNames cardName){
+void Hand::removeEstablishment(Establishment* card){
+    EstablishmentsNames cardName=card->getCardName_Enum();
     if(establishments.find(cardName)!=establishments.end()){
-        establishments[cardName].second--;
-        if(establishments[cardName].second<=0){
-            establishments.erase(cardName);
-        }
+        establishments[cardName].pop();
     }
-    else
-        cout<< cardName << "n'existe pas.";
 }
+
+
 vector<Establishment*> Hand::getColorCards(Colors color){
     vector<Establishment*> cards;
     for(auto establishment : establishments){
-        if((establishment.second.first)->getColor()==color)
-            cards.push_back(establishment.second.first);
+        if((establishment.second.top())->getColor()==color){
+            stack<Establishment*> tmp;
+            //ajouter tout les cartes identique dans cards (resultat)
+            while(!establishment.second.empty()){
+                auto est=establishment.second.top();
+                cards.push_back(est);
+                establishment.second.pop();
+                tmp.push(est);
+            }
+            //rajouter tout les cartes enlever dans l'iteration precedente dans la pile de hand
+            while(!tmp.empty()){
+                establishment.second.push(tmp.top());
+                tmp.pop();
+            }
+
+        }
+
     }
     return cards;
 }
@@ -53,8 +46,31 @@ vector<Establishment*> Hand::getColorCards(Colors color){
 vector<Establishment*> Hand::getTypeCards(Types type){
     vector<Establishment*> cards;
     for(auto establishment : establishments){
-        if(establishment.second.first->getType()==type)
-            cards.push_back(establishment.second.first);
+        if((establishment.second.top())->getType()==type){
+            stack<Establishment*> tmp;
+            //ajouter tout les cartes identique dans cards (resultat)
+            while(!establishment.second.empty()){
+                auto est=establishment.second.top();
+                cards.push_back(est);
+                establishment.second.pop();
+                tmp.push(est);
+            }
+            //rajouter tout les cartes enlever dans l'iteration precedente dans la pile de hand
+            while(!tmp.empty()){
+                establishment.second.push(tmp.top());
+                tmp.pop();
+            }
+        }
+
     }
     return cards;
+}
+
+void Hand::addLandmark(LandmarksNames name) {
+    for (auto Land : landmarks){
+        if (name == Land.first){
+            Land.second->setConstruction();
+        }
+    }
+
 }

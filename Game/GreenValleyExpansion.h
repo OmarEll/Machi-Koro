@@ -1,10 +1,7 @@
 //
 // Created by mabur on 02/12/2022.
 //
-
-#ifndef MACHIKORO_FICHIER_GREENVALEYEXPANSION_H
-#define MACHIKORO_FICHIER_GREENVALEYEXPANSION_H
-
+#pragma once
 
 #include "Game.h"
 
@@ -12,5 +9,3 @@ class GreenValleyExpansion : public Game{
 
 };
 
-
-#endif //MACHIKORO_FICHIER_GREENVALEYEXPANSION_H

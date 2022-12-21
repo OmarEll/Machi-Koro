@@ -1,19 +1,21 @@
-#ifndef DECK_H_INCLUDED
-#define DECK_H_INCLUDED
+#pragma once
 
-#include "Card.hpp"
+#include <stack>
+#include <vector>
+//#include "../../Card/Card.hpp"
 
+class Card;
+class Establishment;
+
+using namespace std;
 
 class Deck{
 private :
-    stack<Card*> cards;
-
+    stack<Establishment*> cards;
 public :
     // Remarque : finalement pas besoin de m�thode isEmpty()
     // avec stack on a deja cards.empty() qui renvoie bool
-    explicit Deck(vector<Card*>);
-    Card* drawCard();
-    void addCardToDeck(Card* c);
+    explicit Deck(vector<Establishment*>);
+    Establishment* drawCard();
+    void addCardToDeck(Establishment* c);
 };
-
-#endif // DECK_H_INCLUDED

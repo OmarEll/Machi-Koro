@@ -4,3 +4,13 @@ StandardBoard::StandardBoard(int nbCardsMax, map<EstablishmentsNames,stack<Estab
     setNbCardsMax(nbCardsMax);
     setCards(cards);
 }
+
+void StandardBoard::displayCards() {
+
+}
+
+/*
+Board& StandardBoard::createBoard() {
+    return nullptr;
+}
+*/

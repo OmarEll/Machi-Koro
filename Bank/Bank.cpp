@@ -4,6 +4,7 @@
 
 #include "Bank.hpp"
 
+Bank* Bank::uniqueBank = nullptr;
 
 Bank::Bank(size_t nbPlayers, int defaultValueWallet,int b):balance(b){
         for(auto i=0;i<nbPlayers;i++){
@@ -42,3 +43,8 @@ void Bank::freeInstance(){
     delete uniqueBank;
     uniqueBank= nullptr;
 }
+
+Bank &Bank::getInstance(int nbP, int def) {
+    if (!uniqueBank)
+        uniqueBank = new Bank(nbP,def);
+    return *uniqueBank; }

@@ -7,7 +7,7 @@
 #include <QMessageBox>
 #include <cctype>
 #include <QComboBox>
-#include "../UTILS/Enums.hpp"
+#include "../UTILS/Enums.cpp"
 #include <QPixmap>
 #include <QDir>
 

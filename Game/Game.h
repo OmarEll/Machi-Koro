@@ -1,66 +1,65 @@
 //
 // Created by mabur on 02/12/2022.
 
-#ifndef MACHIKORO_FICHIER_GAME_H
-#define MACHIKORO_FICHIER_GAME_H
-
+#pragma once
 #include <iostream>
 #include <list>
 #include <string>
 #include <vector>
+#include "../UTILS/Enums.hpp"
+#include "../Dice/Dice.h"
+/*
 #include "../Bank/Bank.hpp"
 #include "../Player/Player.hpp"
 #include "../Board/Board.h"
-#include "../UTILS/Enums.hpp"
 #include "../Dice/Dice.h"
-#include "../Card/Card.hpp"
-#include "Establishment.h"
+#include "../Card/Establishment/Establishment.h"
+#include "../Card/Landmark/Landmark.h"
 #include "../Player/Hand/Hand.hpp"
+#include "Landmark.h"*/
 
 using namespace std;
-
+class Bank;
+class Board;
+class Hand;
+class Player;
+class Establishment;
+class Landmark;
+class Board;
 
 class Game {
-private :
-    vector <Player> players;
-    vector <Establishment> Establishments;
-    vector <Landmark> Landmarks;
+protected :
+    vector <Player*> players;
+    vector <Establishment*> establishments;
+    vector <Landmark*> landmarks;
     size_t minPlayers;
     size_t maxPlayers;
-    Board Board_Game;
-    Dice* Dices [2] ;
-    Bank Bank_Game;
+    Board* board_Game;
+    list<Dice> dices ;
+    Bank* bank_game;
     static Game* Game_single;
     list<Colors>Activation_order;
-    string Nom_Extension;
+    Expansions expansionName;
     Game ();
+     //+
 public:
     void virtual initGame();
-    void virtual DoTurn (Player& current_player);
+    virtual  ~Game() = default;
+    void virtual DoTurn (Player& current_player) = 0;
+    void virtual Do_Game() = 0;
     bool Iswin(Player& current_player);
-    void virtual Destructor ();
     ostream& Afficher_etat_partie (ostream& standard);
-    static Game* Singleton (string NomEdition);
-    Establishment& Buy_Establishment(Player& current_player);
-    void Buy_Landmark(Player& current_player);
-    string Get_Extension() { return Nom_Extension;}
-    Bank getBank() {return Bank_Game;}
-    void Do_Game();
+    static Game* Singleton (string NomEdition, vector<Player*>);
+    Expansions Get_Extension() { return expansionName;}
+    Bank* getBank() {return bank_game;}
+    Board* getBoard(){ return board_Game; }
     //const list<Player>& getPlayers() const {return Players_Game};
-    vector <Player> getPlayers() const {return players;}
+    vector<Player*> getPlayers() const {return players;}
     int dice_turn (Player& current_player);
-    static bool CanPay(Player& CurrentPlayer, Bank& bank, int amount);
-    Dice * GetDices(){return reinterpret_cast<Dice *>(Dices);}
-    vector<Establishment> getEstablishments(){return Establishments;}
-    Establishment* getEstablishmentByName(string estName){
-        for (auto e : Establishments){
-            if (e.getCardName()==estName)
-                return &e;
-        }
-        return nullptr;
-    }
-    vector<Landmark> getLandmarks(){return Landmarks;}
+    //Dice * GetDices(){return reinterpret_cast<Dice *>(dices);}
+    list <Dice> GetDices(){return dices; }
+    vector<Establishment*> getEstablishments(){return establishments;}
+    Establishment* getEstablishmentByName(string estName);
+    vector<Landmark*> getLandmarks(){return landmarks;}
 };
 
-
-#endif //MACHIKORO_FICHIER_GAME_H
