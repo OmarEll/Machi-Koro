@@ -52,12 +52,17 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = ../MachiKoro-UI-App/main.cpp \
-		../MachiKoro-UI-App/mainwindow.cpp moc_mainwindow.cpp
-OBJECTS       = main.o \
+SOURCES       = ../MachiKoro-UI-App/gameinterface.cpp \
+		../MachiKoro-UI-App/main.cpp \
+		../MachiKoro-UI-App/mainwindow.cpp moc_gameinterface.cpp \
+		moc_mainwindow.cpp
+OBJECTS       = gameinterface.o \
+		main.o \
 		mainwindow.o \
+		moc_gameinterface.o \
 		moc_mainwindow.o
-DIST          = ../../../Qt2/6.4.1/macos/mkspecs/features/spec_pre.prf \
+DIST          = ../MachiKoro-UI-App/style.css \
+		../../../Qt2/6.4.1/macos/mkspecs/features/spec_pre.prf \
 		../../../Qt2/6.4.1/macos/mkspecs/features/device_config.prf \
 		../../../Qt2/6.4.1/macos/mkspecs/common/unix.conf \
 		../../../Qt2/6.4.1/macos/mkspecs/common/mac.conf \
@@ -337,7 +342,9 @@ DIST          = ../../../Qt2/6.4.1/macos/mkspecs/features/spec_pre.prf \
 		../../../Qt2/6.4.1/macos/mkspecs/features/exceptions.prf \
 		../../../Qt2/6.4.1/macos/mkspecs/features/yacc.prf \
 		../../../Qt2/6.4.1/macos/mkspecs/features/lex.prf \
-		../MachiKoro-UI-App/MachiKoro-UI-App.pro ../MachiKoro-UI-App/mainwindow.h ../MachiKoro-UI-App/main.cpp \
+		../MachiKoro-UI-App/MachiKoro-UI-App.pro ../MachiKoro-UI-App/gameinterface.h \
+		../MachiKoro-UI-App/mainwindow.h ../MachiKoro-UI-App/gameinterface.cpp \
+		../MachiKoro-UI-App/main.cpp \
 		../MachiKoro-UI-App/mainwindow.cpp
 QMAKE_TARGET  = MachiKoro-UI-App
 DESTDIR       = 
@@ -359,7 +366,7 @@ include /Users/omarelloumi/Qt2/6.4.1/macos/mkspecs/features/mac/sdk.mk
 first: all
 ####### Build rules
 
-MachiKoro-UI-App.app/Contents/MacOS/MachiKoro-UI-App: ui_mainwindow.h $(OBJECTS)  
+MachiKoro-UI-App.app/Contents/MacOS/MachiKoro-UI-App: ui_gameinterface.h ui_mainwindow.h $(OBJECTS)  
 	@test -d MachiKoro-UI-App.app/Contents/MacOS/ || mkdir -p MachiKoro-UI-App.app/Contents/MacOS/
 	$(LINK) $(LFLAGS) -o $(TARGET)  $(OBJECTS) $(OBJCOMP) $(LIBS)
 
@@ -961,9 +968,9 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../MachiKoro-UI-App/mainwindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../MachiKoro-UI-App/main.cpp ../MachiKoro-UI-App/mainwindow.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../MachiKoro-UI-App/mainwindow.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../MachiKoro-UI-App/gameinterface.h ../MachiKoro-UI-App/mainwindow.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../MachiKoro-UI-App/gameinterface.cpp ../MachiKoro-UI-App/main.cpp ../MachiKoro-UI-App/mainwindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../MachiKoro-UI-App/gameinterface.ui ../MachiKoro-UI-App/mainwindow.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -992,12 +999,23 @@ benchmark: first
 
 compiler_rcc_make_all:
 compiler_rcc_clean:
-compiler_moc_header_make_all: moc_mainwindow.cpp
+compiler_moc_header_make_all: moc_gameinterface.cpp moc_mainwindow.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp
+	-$(DEL_FILE) moc_gameinterface.cpp moc_mainwindow.cpp
+moc_gameinterface.cpp: ../MachiKoro-UI-App/gameinterface.h \
+		../../../Qt2/6.4.1/macos/lib/QtWidgets.framework/Headers/QDialog \
+		../../../Qt2/6.4.1/macos/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../Qt2/6.4.1/macos/libexec/moc
+	/Users/omarelloumi/Qt2/6.4.1/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=14 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/omarelloumi/Qt2/6.4.1/macos/mkspecs/macx-clang -I/Users/omarelloumi/Documents/MachiKoroV1/MachiKoro-UI-App -I/Users/omarelloumi/Qt2/6.4.1/macos/lib/QtWidgets.framework/Headers -I/Users/omarelloumi/Qt2/6.4.1/macos/lib/QtGui.framework/Headers -I/Users/omarelloumi/Qt2/6.4.1/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/omarelloumi/Qt2/6.4.1/macos/lib ../MachiKoro-UI-App/gameinterface.h -o moc_gameinterface.cpp
+
 moc_mainwindow.cpp: ../MachiKoro-UI-App/mainwindow.h \
 		../../../Qt2/6.4.1/macos/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../../Qt2/6.4.1/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		../../../Qt2/6.4.1/macos/lib/QtWidgets.framework/Headers/QPushButton \
+		../../../Qt2/6.4.1/macos/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		../MachiKoro-UI-App/gameinterface.h \
+		../../../Qt2/6.4.1/macos/lib/QtWidgets.framework/Headers/QDialog \
+		../../../Qt2/6.4.1/macos/lib/QtWidgets.framework/Headers/qdialog.h \
 		../../../Qt2/6.4.1/macos/libexec/moc
 	/Users/omarelloumi/Qt2/6.4.1/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=14 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/omarelloumi/Qt2/6.4.1/macos/mkspecs/macx-clang -I/Users/omarelloumi/Documents/MachiKoroV1/MachiKoro-UI-App -I/Users/omarelloumi/Qt2/6.4.1/macos/lib/QtWidgets.framework/Headers -I/Users/omarelloumi/Qt2/6.4.1/macos/lib/QtGui.framework/Headers -I/Users/omarelloumi/Qt2/6.4.1/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/omarelloumi/Qt2/6.4.1/macos/lib ../MachiKoro-UI-App/mainwindow.h -o moc_mainwindow.cpp
 
@@ -1005,9 +1023,13 @@ compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwindow.h
+compiler_uic_make_all: ui_gameinterface.h ui_mainwindow.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwindow.h
+	-$(DEL_FILE) ui_gameinterface.h ui_mainwindow.h
+ui_gameinterface.h: ../MachiKoro-UI-App/gameinterface.ui \
+		../../../Qt2/6.4.1/macos/libexec/uic
+	/Users/omarelloumi/Qt2/6.4.1/macos/libexec/uic ../MachiKoro-UI-App/gameinterface.ui -o ui_gameinterface.h
+
 ui_mainwindow.h: ../MachiKoro-UI-App/mainwindow.ui \
 		../../../Qt2/6.4.1/macos/libexec/uic
 	/Users/omarelloumi/Qt2/6.4.1/macos/libexec/uic ../MachiKoro-UI-App/mainwindow.ui -o ui_mainwindow.h
@@ -1024,22 +1046,50 @@ compiler_clean: compiler_moc_header_clean compiler_uic_clean
 
 ####### Compile
 
+gameinterface.o: ../MachiKoro-UI-App/gameinterface.cpp ../MachiKoro-UI-App/gameinterface.h \
+		../../../Qt2/6.4.1/macos/lib/QtWidgets.framework/Headers/QDialog \
+		../../../Qt2/6.4.1/macos/lib/QtWidgets.framework/Headers/qdialog.h \
+		ui_gameinterface.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o gameinterface.o ../MachiKoro-UI-App/gameinterface.cpp
+
 main.o: ../MachiKoro-UI-App/main.cpp ../MachiKoro-UI-App/mainwindow.h \
 		../../../Qt2/6.4.1/macos/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../../Qt2/6.4.1/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		../../../Qt2/6.4.1/macos/lib/QtWidgets.framework/Headers/QPushButton \
+		../../../Qt2/6.4.1/macos/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		../MachiKoro-UI-App/gameinterface.h \
+		../../../Qt2/6.4.1/macos/lib/QtWidgets.framework/Headers/QDialog \
+		../../../Qt2/6.4.1/macos/lib/QtWidgets.framework/Headers/qdialog.h \
 		../../../Qt2/6.4.1/macos/lib/QtWidgets.framework/Headers/QApplication \
-		../../../Qt2/6.4.1/macos/lib/QtWidgets.framework/Headers/qapplication.h
+		../../../Qt2/6.4.1/macos/lib/QtWidgets.framework/Headers/qapplication.h \
+		../../../Qt2/6.4.1/macos/lib/QtCore.framework/Headers/QFile \
+		../../../Qt2/6.4.1/macos/lib/QtCore.framework/Headers/qfile.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../MachiKoro-UI-App/main.cpp
 
 mainwindow.o: ../MachiKoro-UI-App/mainwindow.cpp ../MachiKoro-UI-App/mainwindow.h \
 		../../../Qt2/6.4.1/macos/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../../Qt2/6.4.1/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
-		ui_mainwindow.h \
 		../../../Qt2/6.4.1/macos/lib/QtWidgets.framework/Headers/QPushButton \
 		../../../Qt2/6.4.1/macos/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		../MachiKoro-UI-App/gameinterface.h \
+		../../../Qt2/6.4.1/macos/lib/QtWidgets.framework/Headers/QDialog \
+		../../../Qt2/6.4.1/macos/lib/QtWidgets.framework/Headers/qdialog.h \
+		ui_mainwindow.h \
 		../../../Qt2/6.4.1/macos/lib/QtWidgets.framework/Headers/QTextEdit \
-		../../../Qt2/6.4.1/macos/lib/QtWidgets.framework/Headers/qtextedit.h
+		../../../Qt2/6.4.1/macos/lib/QtWidgets.framework/Headers/qtextedit.h \
+		../../../Qt2/6.4.1/macos/lib/QtWidgets.framework/Headers/QMessageBox \
+		../../../Qt2/6.4.1/macos/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		../../../Qt2/6.4.1/macos/lib/QtWidgets.framework/Headers/QComboBox \
+		../../../Qt2/6.4.1/macos/lib/QtWidgets.framework/Headers/qcombobox.h \
+		../UTILS/Enums.hpp \
+		../../../Qt2/6.4.1/macos/lib/QtGui.framework/Headers/QPixmap \
+		../../../Qt2/6.4.1/macos/lib/QtGui.framework/Headers/qpixmap.h \
+		../../../Qt2/6.4.1/macos/lib/QtCore.framework/Headers/QDir \
+		../../../Qt2/6.4.1/macos/lib/QtCore.framework/Headers/qdir.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../MachiKoro-UI-App/mainwindow.cpp
+
+moc_gameinterface.o: moc_gameinterface.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_gameinterface.o moc_gameinterface.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

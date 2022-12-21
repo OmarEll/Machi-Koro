@@ -52,6 +52,18 @@ enum Expansions{
     Standard, Harbor, GreenValley, Deluxe
 };
 
+
+std::string getExpansionName(Expansions expansion)
+{
+    switch (expansion) {
+        case Standard: return "Standard";
+        case Harbor: return "Harbor";
+        case GreenValley: return "Green Valley";
+        case Deluxe: return "Deluxe";
+        default: return "Unknown";
+    }
+}
+
 enum OriginsOfCoins{
     BankOrigin,PlayerRolledDice,OtherPlayers
 };

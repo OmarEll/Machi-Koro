@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include <QPushButton>
+#include "gameinterface.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -18,13 +20,17 @@ public:
 private slots:
     QWidget* createDeleteButton();
 
-    void on_delete_btn_clicked();
+    void on_deleteBtnClicked();
 
     void on_new_btn_clicked();
 
     void on_next_btn_clicked();
 
+    void initWindow();
+    void on_expansions_cb_currentTextChanged(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
+    GameInterface *game;
 };
 #endif // MAINWINDOW_H
