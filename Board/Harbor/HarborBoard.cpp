@@ -3,25 +3,39 @@
 //
 #include <stack>
 #include "HarborBoard.h"
+#include "Establishment.h"
 
 
-/*
-5x Airport
-5x Harbor
-5x City Hall
-6x Flower Garden
-6x Mackerel Boat
-6x Tuna Boat
-6x Flower Shop
-6x Food Warehouse
-6x Hamburger Stand
-6x Pizza Joint
-6x Sushi Bar
-5x Publisher
-5x Tax Office
- */
 
-HarborBoard::HarborBoard(int nb, map<EstablishmentsNames,stack<Establishment*>> cards):Board() {
-        setNbCardsMax(nb);   // inutile dans le standard non?
-        // a faire quand on a les méthodes de board
+HarborBoard::HarborBoard(Collection_harbor& col):Board() {   // pb : comment on fait pour que les cartes soient aléatoires
+                                                                // il faut que elles soient toutes dans la pioche et ensuite
+                                                                // qu'on les lire et qu'on les mette sur board
+                                                                //-------------------------------------------------------------
+    stack<Establishment*>* pile = nullptr;
+    for (auto est : col.GetEstablishment()){
+        pile = new stack<Establishment*>;
+        if (est->getColor() != PURPLE){
+            for (int i = 0; i < 6 ; i++){
+                pile->push(est->Clone());}
+        }
+        else{
+            for (int i = 0; i < 5 ; i++){
+                pile->push(est->Clone());}
+        }
+        cards.insert(pair<EstablishmentsNames,stack<Establishment*>>(est->getCardName_Enum(),*pile));
     }
+}
+
+void HarborBoard::fillBoard() {
+    while(cards.size()<10){
+        Establishment * cardOffDeck = this->getDeck()->drawCard();  // marche pas incomplete type --------------------------
+        if (cardOffDeck== nullptr) {   // pioche vide donc on ne peut pas remplir le board
+            return;
+        }
+        for(auto pair : cards){
+            if (pair.first == cardOffDeck->getCardName_Enum()){
+                pair.second.push(cardOffDeck);
+            }
+        }
+    }
+}

@@ -10,9 +10,9 @@ Deck::Deck(vector<Establishment*> cards){
 }
 
 Establishment* Deck::drawCard(){
-    if (!cards.empty()){
-        Establishment* card=cards.top();
-        cards.pop();
+    if (!cardsDeck.empty()){
+        Establishment* card=cardsDeck.top();
+        cardsDeck.pop();
         return card;
     }
     cout<<"la pile est vide, impossible de piocher";
@@ -20,5 +20,5 @@ Establishment* Deck::drawCard(){
 };
 
 void Deck::addCardToDeck(Establishment* c){
-    cards.push(c);
+    cardsDeck.push(c);
 }

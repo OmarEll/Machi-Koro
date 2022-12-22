@@ -11,8 +11,5 @@ class StandardBoard : public Board {
 
 public :
     StandardBoard(Collection_standard&);
-    ~StandardBoard() = default;
-    virtual void fillBoard() {};
-    virtual Board& createBoard() {};
-    //Board& createBoard() override; A FAIRE
+    ~StandardBoard() = default;   // a faire ou on laisse le par défaut?
 };

@@ -10,8 +10,8 @@ class Establishment;
 using namespace std;
 
 class Deck{
-private :
-    stack<Establishment*> cards;
+protected :
+    stack<Establishment*> cardsDeck;
 public :
     explicit Deck(vector<Establishment*>);
     Establishment* drawCard();

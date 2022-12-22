@@ -1,6 +1,5 @@
 #include "StandardBoard.h"
 #include "Establishment.h"
-#include "../Collection/Collection_standard.h"
 #include <string>
 
 
@@ -20,10 +19,3 @@ StandardBoard::StandardBoard(Collection_standard& col):Board() {
     }
 }
 
-
-
-/*
-Board& StandardBoard::createBoard() {
-    return nullptr;
-}
-*/
