@@ -8,10 +8,6 @@
 #include "../Establishment/Establishment.h"
 #include "Enums.hpp"
 
-void Collection_standard::Clone(vector<Establishment *>, vector<Landmark *>) {
-
-
-}
 
 Collection_standard::Collection_standard() {
     Establishment_Collection.push_back(new Establishment("Wheat Field","You get 1 coin from the bank, on anyone's turn",BLUE,1,Standard,wheat,
@@ -34,7 +30,7 @@ Collection_standard::Collection_standard() {
 
     Establishment_Collection.push_back(new class ProduceMarket());
 
-    Establishment_Collection.push_back(new Establishment("Coffee","Get 1 coin from the player who rolled the dice",RED,2,Standard,coffee,
+    Establishment_Collection.push_back(new Establishment("Cafe","Get 1 coin from the player who rolled the dice",RED,2,Standard,coffee,
                                                          vector<int>{3},PlayerRolledDice,1));
     Establishment_Collection.push_back(new Establishment("Family Restaurant","Get 2 coins from the player who rolled the dice",RED,3,Standard,coffee,
                                                          vector<int>{9,10},PlayerRolledDice,2));

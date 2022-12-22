@@ -24,6 +24,7 @@ class Card
     public:
         Card(string name, string desc, int cos, Expansions exp, Types typ)
             :cardName(name),description(desc),cost(cos),expansion(exp), type(typ){}
+        Card(){};
         virtual ~Card()=default; //destructeur en virtual parcque Card est abstraite
         /* GETTERS & SETTERS */
         string getCardName(){ return cardName;}

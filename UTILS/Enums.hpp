@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <map>
+#include <iostream>
 
 using namespace std;
 
@@ -12,8 +13,9 @@ public:
     T ParseSomeEnum(const string &value)
     {
         auto iValue = enumMap.find(value);
-        if (iValue  == enumMap.end())
+        if (iValue  == enumMap.end()) {
             throw std::exception();
+        }
         return iValue->second;
     }
 };
@@ -36,7 +38,7 @@ enum EstablishmentsNames{
     WheatField, LivestockFarm, Bakery, Cafe, ConvenienceStore, Forest, Stadium, TvStation, Office, CheeseFactory,
     FurnitureFactory, Mine, Restaurant, AppleOrchard, ProduceMarket, FlowerGarden, MackerelBoat, TunaBoat, FlowerShop,
     FoodWarehouse, SushiBar, PizzaJoint, HamburgerStand, Publisher, TaxOffice, Diamine, InternationalExhibitHall,
-    Vineyard
+    Vineyard, Ranch, FamilyRestaurant
 };
 
 enum Expansions{

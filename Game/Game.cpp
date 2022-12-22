@@ -20,9 +20,9 @@ Game :: Game() {
 
 }
 
-Game* Game::Singleton(string NomEdition, vector<Player*> joueurs) {
+Game* Game::Singleton(string NomEdition, vector<Player*> joueurs, Collection&g) {
     if (Game::Game_single == nullptr)
-        Game::Game_single = new StandardExpansion(joueurs);
+        Game::Game_single = new StandardExpansion(joueurs, dynamic_cast<Collection_standard&>(g));
     return Game::Game_single;
 }
 

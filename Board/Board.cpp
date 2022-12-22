@@ -2,6 +2,8 @@
 // Created by mabur on 19/12/2022.
 //
 #include "Board.h"
+#include "Establishment.h"
+#include "Standard/StandardBoard.h"
 
 Board* Board::board_instance = nullptr;
 
@@ -30,12 +32,12 @@ void Board::displayCards() {
     }
 }
 
-/*
-Board *Board::getInstance() { // faire switch avec en paramètre en string ou enum pour extension
+
+Board *Board::getInstance(Collection& g) { // faire switch avec en paramètre en string ou enum pour extension
     if(board_instance==nullptr){
-        board_instance=new Board();
+        board_instance=new StandardBoard(dynamic_cast<Collection_standard&>(g));
     }
     return board_instance;
 }
- */
+
 

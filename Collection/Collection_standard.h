@@ -11,7 +11,6 @@
 class Collection_standard : public Collection{
 public :
     Collection_standard();
-    void Clone (vector<Establishment*>,vector<Landmark*>) override;
     ~Collection_standard();
 };
 

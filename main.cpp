@@ -30,9 +30,11 @@ int main(){
     //cout<<player.getName();
     cout << "Hello World" << endl;
     Collection_standard* test = new Collection_standard ();
-    for (auto est : test->GetEstablishment()){
-       cout << "Le nom de l etablissement est :" << est->getCardName()<<endl;
-    }
+    Board* test2 = new StandardBoard(*test);
+    test2->displayCards();
+    //test2->displayCards();
+
+
     return 0;
 }
 

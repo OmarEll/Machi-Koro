@@ -67,6 +67,22 @@ int Establishment::numberOfLandmarks(Player* p){
 
 int Establishment::numberOfLandmarks(Player& p){
     return p.getHand().getLandmarks().size();
+}
+
+Establishment *Establishment::Clone() {
+    Establishment* res = new Establishment();
+    res->cardName = this->getCardName();
+    res->description = this->getDescription();
+    res->owner = this->getOwner();
+    res->cost = this->getCost();
+    res->expansion = this->getExpansion();
+    res->type=this->getType();
+    res->color = this->getColor();
+    res->activationNumbers = this->getActivationNumbers();
+    res->originOfCoinsEarned = this->getOrigin();
+    res->numberOfCoinsEarned = this ->getEarnedCoins();
+    res->underRenovation = this->getRenovation();
+    return res;
 };
 
 

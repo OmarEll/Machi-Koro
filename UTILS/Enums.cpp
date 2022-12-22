@@ -3,15 +3,40 @@
 //
 #include "Enums.hpp"
 
+
+
 template<> EnumParser<EstablishmentsNames>::EnumParser()
 {
+    enumMap["Tv Station"] = TvStation;
     enumMap["Wheat Field"] = WheatField;
+    enumMap["Ranch"] = Ranch;
     enumMap["Livestock Farm"] = LivestockFarm;
     enumMap["Bakery"] = Bakery;
     enumMap["Cafe"] = Cafe;
     enumMap["Convenience Store"] = ConvenienceStore;
     enumMap["Forest"] = Forest;
     enumMap["Stadium"] = Stadium;
+    enumMap["Office"] = Office;
+    enumMap["Cheese Factory"] = CheeseFactory;
+    enumMap["Furniture Factory"] = FurnitureFactory;
+    enumMap["Mine"] = Mine;
+    enumMap["Restaurant"] = Restaurant;
+    enumMap["Apple Orchard"] = AppleOrchard;
+    enumMap["Produce Market"] = ProduceMarket;
+    enumMap["Flower Garden"] = FlowerGarden;
+    enumMap["Mackerel Boat"] = MackerelBoat;
+    enumMap["Tuna Boat"] = TunaBoat;
+    enumMap["Flower Shop"] = FlowerShop;
+    enumMap["Food Warehouse"] = FoodWarehouse;
+    enumMap["Sushi Bar"] = SushiBar;
+    enumMap["Pizza Joint"] = PizzaJoint;
+    enumMap["Hamburger Stand"] = HamburgerStand;
+    enumMap["Publisher"] = Publisher;
+    enumMap["Tax Office"] = TaxOffice;
+    enumMap["Diamine"] = Diamine;
+    enumMap["International Exhibit Hall"] = InternationalExhibitHall;
+    enumMap["Vineyard"] = Vineyard;
+    enumMap["Family Restaurant"] = FamilyRestaurant;
 }
 
 template<> EnumParser<LandmarksNames>::EnumParser()

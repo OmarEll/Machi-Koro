@@ -8,6 +8,8 @@
 #include <vector>
 #include "../UTILS/Enums.hpp"
 #include "../Dice/Dice.h"
+#include "../Collection/Collection.h"
+#include "../Collection/Collection_standard.h"
 /*
 #include "../Bank/Bank.hpp"
 #include "../Player/Player.hpp"
@@ -49,7 +51,7 @@ public:
     void virtual Do_Game() = 0;
     bool Iswin(Player& current_player);
     ostream& Afficher_etat_partie (ostream& standard);
-    static Game* Singleton (string NomEdition, vector<Player*>);
+    static Game* Singleton (string NomEdition, vector<Player*>, Collection&);
     Expansions Get_Extension() { return expansionName;}
     Bank* getBank() {return bank_game;}
     Board* getBoard(){ return board_Game; }

@@ -1,11 +1,23 @@
 #include "StandardBoard.h"
 #include "Establishment.h"
+#include "../Collection/Collection_standard.h"
 #include <string>
 
 
-StandardBoard::StandardBoard(int nbCardsMax, map<EstablishmentsNames,stack<Establishment*>> cards):Board() {
-    setNbCardsMax(nbCardsMax);   // inutile dans le standard non?
-    setCards(cards);
+StandardBoard::StandardBoard(Collection_standard& col):Board() {
+    stack<Establishment*>* pile = nullptr;
+    for (auto est : col.GetEstablishment()){
+        pile = new stack<Establishment*>;
+        if (est->getColor() != PURPLE){
+            for (int i = 0; i < 6 ; i++){
+                pile->push(est->Clone());}
+            }
+        else{
+            for (int i = 0; i < 4 ; i++){
+                pile->push(est->Clone());}
+        }
+        cards.insert(pair<EstablishmentsNames,stack<Establishment*>>(est->getCardName_Enum(),*pile));
+    }
 }
 
 

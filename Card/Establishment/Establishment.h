@@ -21,6 +21,7 @@ protected:
 public:
     Establishment(string name, string desc, Colors col, int cos, Expansions exp, Types typ, vector<int> actNum, OriginsOfCoins ori, int num)
             :Card(name,desc,cos,exp,typ),color(col),activationNumbers(actNum),originOfCoinsEarned(ori),numberOfCoinsEarned(num){}
+    Establishment (): Card(){};
     ~Establishment() = default;
     /* GETTERS & SETTERS */
     Types getType(){ return type ;}
@@ -46,6 +47,7 @@ public:
     bool hasHarbor();
     int numberOfLandmarks(Player*);
     int numberOfLandmarks(Player&);
+    virtual Establishment* Clone ();
 };
 
 
@@ -58,7 +60,7 @@ public:
 
 class TvStation : public Establishment {
 public:
-    TvStation(): Establishment("TV Station","Choose one player who has to give you 5 coins.",PURPLE, 6,Standard, tower,{6},OtherPlayers,5){}
+    TvStation(): Establishment("Tv Station","Choose one player who has to give you 5 coins.",PURPLE, 6,Standard, tower,{6},OtherPlayers,5){}
     void launchEffect(Game& g,Player& currentPlayer) final;
 };
 
@@ -149,13 +151,15 @@ public:
 };
 
 class TechStartup : public Establishment {
+private :
+    int investment = 0;
 public:
     TechStartup(): Establishment("Tech Startup","At the end of each of your turns, you may place 1 coin on this card. The total placed here is your investment. When activated, get an amount equal to your investment from all player, on your turn only.",PURPLE, 1,GreenValley, tower,{10},OtherPlayers,0){}
     void launchEffect(Game& g,Player& currentPlayer) final;
     void oneCoinInvestment(int val){ investment ++; }
     int getInvestment() { return investment;}
-private :
-    int investment = 0;
+    Establishment* Clone () override{TechStartup* res = dynamic_cast<TechStartup *>(Establishment::Clone());res->investment = this->investment;}
+
 };
 
 class InternationalExhibitHall : public Establishment {

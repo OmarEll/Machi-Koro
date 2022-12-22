@@ -8,6 +8,25 @@
 #include "Bank.hpp"
 #include "StandardExpansion.h"
 
+
+StandardExpansion::StandardExpansion (vector<Player*> joueur, Collection_standard& col){
+    players = joueur;
+    establishments = col.GetEstablishment();
+    landmarks = col.GetLandmark();
+    minPlayers = 2;
+    maxPlayers = 4;
+    board_Game = Board::getInstance(col);
+    dices.push_back(Dice());
+    dices.push_back(Dice());
+    bank_game = Bank::getInstance(joueur.size(),2);
+    Activation_order.push_back(RED);
+    Activation_order.push_back(BLUE);
+    Activation_order.push_back(GREEN);
+    Activation_order.push_back(PURPLE);
+    expansionName = Standard;
+
+}
+
 void StandardExpansion::DoTurn(Player &current_player) {
     // Variables
     int dice = 0;
@@ -112,11 +131,6 @@ void StandardExpansion::Do_Game() {
     } while (Iswin(**current_player));
 }
 
-StandardExpansion::StandardExpansion(vector<Player*> joueurs) {
-    players = joueurs;
-
-
-}
 // Fin du tour d'un joueur
 
 
