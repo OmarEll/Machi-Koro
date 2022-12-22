@@ -5,7 +5,7 @@
 class GreenValleyBoard : public Board {
 
 public :
-    virtual void initBoard();
+    GreenValleyBoard();
     void addEstablishmentToBoard(Establishment* e);
 };
 

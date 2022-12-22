@@ -17,7 +17,7 @@ protected:
 public :
     virtual ~Board() = default;
     Board(Board&) = default;
-    virtual void displayCards()=0;
+    void displayCards();
     virtual void fillBoard() = 0;
     virtual Board& createBoard() = 0;
     Establishment* foundEstablishmentOnBoard(string choice);

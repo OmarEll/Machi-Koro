@@ -1,7 +1,7 @@
 #pragma once
 /*#include "../Board/Board.h"
 #include "Deck/Deck.h"*/
-
+#include "Board.h"
 
 class Deck;
 class Board;

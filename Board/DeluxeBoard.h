@@ -7,9 +7,8 @@
 class Deck;
 
 class DeluxeBoard : public HarborBoard, public GreenValleyBoard {
-
-public :
-    void initBoard();
+public:
+    DeluxeBoard();
 };
 
 

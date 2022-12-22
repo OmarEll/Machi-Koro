@@ -5,7 +5,7 @@
 
 Board* Board::board_instance = nullptr;
 
-Establishment *Board::foundEstablishmentOnBoard(string choice) {
+Establishment* Board::foundEstablishmentOnBoard(string choice) {
     EnumParser<EstablishmentsNames> fieldTypeParser;
     EstablishmentsNames val = fieldTypeParser.ParseSomeEnum(choice);
     Establishment* tmp = nullptr;
@@ -17,6 +17,17 @@ Establishment *Board::foundEstablishmentOnBoard(string choice) {
         }
     }
     return nullptr;
+}
+
+void Board::displayCards() {
+    for (auto card : cards){
+        cout<<card.second.size()<<" "<<card.second.top()->getCardName()<<"\n" ;
+        cout<<"   Color : "<<card.second.top()->getColor()<<"\n" ;
+        cout<<"   Type : "<<card.second.top()->getType()<<"\n" ;
+        cout<<"   Earned coins : "<<card.second.top()->getEarnedCoins()<<"\n" ;
+        cout<<"   Price : "<<card.second.top()->getCost()<<"\n" ;
+        cout<<"   "<<card.second.top()->getDescription()<<"\n" ;
+    }
 }
 
 /*
