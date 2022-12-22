@@ -11,6 +11,7 @@ public:
     ~StandardExpansion() = default;
     void DoTurn(Player& current_player) override;
     void Do_Game() override;
+    void initGame() override;
 
 };
 

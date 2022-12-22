@@ -20,8 +20,7 @@ protected:
     Hand hand;
 public:
     static int id_counter;
-
-    Player(string nm,vector<Establishment*> a,vector<Landmark*> b):idPlayer(++id_counter),name(nm),hand(a,b){};
+    Player(string nm,Collection& g):idPlayer(++id_counter),name(nm),hand(g){};
     int getId() const { return idPlayer; };
     string getName() const { return name; };
     Hand getHand() const { return hand;};

@@ -26,12 +26,18 @@ using namespace std;
 // C'est Marius
 // C'est Sarah
 int main(){
-    //Player player=*new Player("Omar");
-    //cout<<player.getName();
-    cout << "Hello World" << endl;
+    vector<Player*> Gamer;
     Collection_standard* test = new Collection_standard ();
-    Board* test2 = new StandardBoard(*test);
-    test2->displayCards();
+    Gamer.push_back(new Player("Omar",*test));
+    Gamer.push_back(new Player("Sarah",*test));
+    Gamer.push_back(new Player("Julie",*test));
+    Gamer.push_back(new Player("Marius",*test));
+    cout << "Hello World" << endl;
+
+    //Board* test2 = new StandardBoard(*test);
+    //test2->displayCards();
+    StandardExpansion party(Gamer,*test);
+    party.Do_Game();
     //test2->displayCards();
 
 

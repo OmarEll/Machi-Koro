@@ -1,8 +1,12 @@
 #include "Hand.hpp"
 #include "Establishment.h"
 #include "Landmark.h"
+#include "../Collection/Collection_standard.h"
 
-Hand::Hand(vector<Establishment*> a,vector<Landmark*> b){
+Hand::Hand(Collection& g){
+    for (auto est : g.GetLandmark()){
+        landmarks.insert(pair<LandmarksNames,Landmark*>(est->getLandmarks(),est->Clone()));
+    }
 
 }
 void Hand::addEstablishment(Establishment* card){

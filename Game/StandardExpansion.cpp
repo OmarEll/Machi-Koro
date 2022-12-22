@@ -35,12 +35,14 @@ void StandardExpansion::DoTurn(Player &current_player) {
     // Fonction
     // Lance le dés
     dice = dice_turn(current_player);
-    if (current_player.hasLandmark(RadioTower))
+    if (current_player.hasLandmark(RadioTower) != nullptr){
         cout << "Voulez vous relancez vos dés ?" << endl;
-    cin >> choice;
-    if (choice == "oui"){
-        dice = dice_turn(current_player);
+        cin >> choice;
+        if (choice == "oui"){
+            dice = dice_turn(current_player);
+        }
     }
+
     // On regarde les cartes rouges des autres joueurs
     for (auto other_player : players){
         if (other_player->getId() != current_player.getId()) {
@@ -95,7 +97,7 @@ void StandardExpansion::DoTurn(Player &current_player) {
         if (tmp && bank_game->getBalance(current_player.getId()) - establishments[val2]->getCost()>=0)
             current_player.getHand().addEstablishment(board_Game->foundEstablishmentOnBoard(choice));
         else
-            cout << "L etablissement n'existe pas ! " << endl;
+            cout << "L etablissement n'existe pas && il n'a pas assez de money ! " << endl;
     }
     else {
         if (choice == "Landmark"){
@@ -117,6 +119,7 @@ void StandardExpansion::DoTurn(Player &current_player) {
 }
 
 void StandardExpansion::Do_Game() {
+    initGame();
     vector <Player*>::iterator current_player = players.begin();
     do{
         if (current_player == players.end()){
@@ -129,6 +132,22 @@ void StandardExpansion::Do_Game() {
         }
         current_player++;
     } while (Iswin(**current_player));
+}
+
+void StandardExpansion::initGame() {
+    Establishment* baker= nullptr;
+    Establishment* wheat= nullptr;
+    for (auto bak : establishments){
+        if (bak->getCardName_Enum() == Bakery)
+            baker = bak;
+        if (bak->getCardName_Enum() == WheatField)
+            wheat = bak;
+    }
+    for(auto joueur : players){
+        joueur->getHand().addEstablishment(baker->Clone());
+        joueur->getHand().addEstablishment(wheat->Clone());
+    }
+
 }
 
 // Fin du tour d'un joueur

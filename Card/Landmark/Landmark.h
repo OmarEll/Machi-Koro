@@ -15,6 +15,11 @@ public:
     Landmark() : Card(){};
     Landmark(string name, string desc, int cos, Expansions exp, Types typ): Card(name,  desc, cos,  exp, typ),constructed(false){}
     bool isConstructed() const {return constructed;};
+    LandmarksNames getLandmarks(){
+        EnumParser<LandmarksNames> fieldTypeParser;
+        LandmarksNames val = fieldTypeParser.ParseSomeEnum(cardName);
+        return val ;
+    }
     void setConstruction() { constructed=true; }
     void setDemolition () {constructed = false;}
     int gainWithType() override{};

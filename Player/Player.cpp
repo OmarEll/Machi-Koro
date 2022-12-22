@@ -5,6 +5,8 @@
 #include "Player.hpp"
 #include "Landmark.h"
 
+int Player::id_counter = 1;
+
 Landmark* Player::hasLandmark(LandmarksNames name) const {
     auto it=hand.getLandmarks().find(name);
     Landmark* est = (*it).second;

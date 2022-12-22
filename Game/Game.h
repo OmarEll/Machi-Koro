@@ -45,7 +45,7 @@ protected :
     Game ();
      //+
 public:
-    void virtual initGame();
+    void virtual initGame() = 0;
     virtual  ~Game() = default;
     void virtual DoTurn (Player& current_player) = 0;
     void virtual Do_Game() = 0;

@@ -10,7 +10,7 @@ private:
     Level level;
 
 public:
-    IA(vector<Establishment*> a,vector<Landmark*> b, Level lvl) : Player(("IA"+std::to_string(Player::id_counter)),a,b),level(lvl) {}
+    IA(Level lvl,Collection& g) : Player(("IA"+std::to_string(Player::id_counter)),g),level(lvl){}
     Card* chooseCard(Game&);
     Card* easyLevelCard(Game&);
     Card* mediumLevelCard(Game&);

@@ -6,7 +6,7 @@
 #include "../Card/Establishment/Establishment.h"
 #include "../Card/Landmark/Landmark.h"*/
 #include <stack>
-
+#include "../Collection/Collection.h"
 class  Establishment;
 class Landmark;
 
@@ -20,7 +20,7 @@ private:
     map<LandmarksNames,Landmark*> landmarks;
 public:
     friend class Establishment;
-    Hand(vector<Establishment*>,vector<Landmark*>);
+    Hand(Collection&);
     void addEstablishment(Establishment*);
     void removeEstablishment(Establishment*);
     void addLandmark(LandmarksNames name);
