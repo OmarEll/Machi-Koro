@@ -34,6 +34,7 @@ void StandardExpansion::DoTurn(Player &current_player) {
     string choice;
     // Fonction
     // Lance le dés
+    cout << "C'est au tou de " << current_player.getName() << "de jouer" << endl;
     dice = dice_turn(current_player);
     if (current_player.hasLandmark(RadioTower) != nullptr){
         cout << "Voulez vous relancez vos dés ?" << endl;
@@ -42,6 +43,8 @@ void StandardExpansion::DoTurn(Player &current_player) {
             dice = dice_turn(current_player);
         }
     }
+
+    cout << "Le résultat du lancer de dé donne " << dice << endl;
 
     // On regarde les cartes rouges des autres joueurs
     for (auto other_player : players){
@@ -120,18 +123,20 @@ void StandardExpansion::DoTurn(Player &current_player) {
 
 void StandardExpansion::Do_Game() {
     initGame();
+    Player* test = nullptr;
     vector <Player*>::iterator current_player = players.begin();
     do{
         if (current_player == players.end()){
             current_player = players.begin();
         }
+        test = *current_player;
         DoTurn(**current_player);
         if ((*current_player)->hasLandmark(AmusementPark) &&
             dices.front().GetResult() == dices.back().GetResult()){
             DoTurn(**current_player);
         }
         current_player++;
-    } while (Iswin(**current_player));
+    } while (!Iswin(*test));
 }
 
 void StandardExpansion::initGame() {
