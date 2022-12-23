@@ -1,7 +1,7 @@
 #pragma once
 #include <map>
 #include <vector>
-#include "Enums.hpp"
+#include "../UTILS/Enums.hpp"
 /*#include "../Card/Card.hpp"
 #include "../Card/Establishment/Establishment.h"
 #include "../Card/Landmark/Landmark.h"*/

@@ -10,7 +10,7 @@
 #include "../UTILS/Enums.cpp"
 #include <QPixmap>
 #include <QDir>
-#include "../Player/Player.hpp"
+//#include "../Player/Player.hpp"
 using namespace std;
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)

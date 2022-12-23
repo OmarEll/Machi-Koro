@@ -5,21 +5,6 @@
 
 using namespace std;
 
-template <typename T> class EnumParser{
-    map <string, T> enumMap;
-public:
-    EnumParser();
-
-    T ParseSomeEnum(const string &value)
-    {
-        auto iValue = enumMap.find(value);
-        if (iValue  == enumMap.end()) {
-            throw std::exception();
-        }
-        return iValue->second;
-    }
-};
-
 enum Colors{
     RED,
     BLUE,
@@ -53,3 +38,20 @@ enum Types{
     wheat, cow, bread, coffee, wheel, tower, factory, apple, boat, suitcase
 };
 
+template <typename T> class EnumParser{
+    map <string, T> enumMap;
+public:
+    EnumParser();
+
+    T ParseSomeEnum(const string &value)
+    {
+        auto iValue = enumMap.find(value);
+        if (iValue  == enumMap.end()) {
+            throw std::exception();
+        }
+        return iValue->second;
+    }
+};
+
+template<> EnumParser<EstablishmentsNames>::EnumParser();
+template<> EnumParser<LandmarksNames>::EnumParser();

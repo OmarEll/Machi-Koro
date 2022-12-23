@@ -4,7 +4,6 @@
 #include "Enums.hpp"
 
 
-
 template<> EnumParser<EstablishmentsNames>::EnumParser()
 {
     enumMap["Tv Station"] = TvStation;
@@ -48,4 +47,15 @@ template<> EnumParser<LandmarksNames>::EnumParser()
     enumMap["City Hall"] = CityHall;
     enumMap["Harbor Card"] = HarborCard;
     enumMap["Airport"] = Airport;
+}
+
+std::string getExpansionName(Expansions expansion)
+{
+    switch (expansion) {
+        case Standard: return "Standard";
+        case Harbor: return "Harbor";
+        case GreenValley: return "Green Valley";
+        case Deluxe: return "Deluxe";
+        default: return "Unknown";
+    }
 }
