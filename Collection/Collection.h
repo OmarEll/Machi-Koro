@@ -2,8 +2,8 @@
 // Created by mabur on 20/12/2022.
 //
 #include <vector>
-#include "Establishment.h"
-#include "Landmark.h"
+#include "../Card/Establishment/Establishment.h"
+#include "../Card/Landmark/Landmark.h"
 
 #ifndef MACHI_KORO_COLLECTION_H
 #define MACHI_KORO_COLLECTION_H
