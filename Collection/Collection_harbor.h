@@ -5,9 +5,9 @@
 #ifndef MACHI_KORO_COLLECTION_HARBOR_H
 #define MACHI_KORO_COLLECTION_HARBOR_H
 
-#include "Collection.h"
+#include "Collection_standard.h"
 
-class Collection_harbor : public Collection{
+class Collection_harbor : public Collection_standard {
 public :
     Collection_harbor();
     ~Collection_harbor();

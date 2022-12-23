@@ -5,7 +5,7 @@
 #include "Collection_harbor.h"
 
 
-Collection_harbor::Collection_harbor() {   // et faire héritage standard
+Collection_harbor::Collection_harbor() {
 
     Establishment_Collection.push_back(new Establishment("Flower Garden","When the card's activation number of four is rolled by any player, the player with the card gets 1 coin from the bank on anyone's turn.",BLUE,2,Harbor,wheat,
                                                          vector<int>{4},BankOrigin,1));
@@ -30,7 +30,10 @@ Collection_harbor::Collection_harbor() {   // et faire héritage standard
 
     Establishment_Collection.push_back(new class TaxOffice());
 
-// rajouter landmarks
+    Landmark_Collection.push_back(new class HarborCard());
+
+    Landmark_Collection.push_back(new class Airport());
+
 }
 
 Collection_harbor::~Collection_harbor() {
