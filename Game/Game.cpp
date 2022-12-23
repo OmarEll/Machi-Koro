@@ -28,7 +28,7 @@ Game* Game::Singleton(string NomEdition, vector<Player*> joueurs, Collection&g) 
 
 bool Game::Iswin(Player& current_player) {
     for (auto land_check : current_player.getHand().getLandmarks() ){
-        if (!land_check.second->isConstructed())
+        if (!(land_check.second->isConstructed()))
             return false;
     }
     return true;
