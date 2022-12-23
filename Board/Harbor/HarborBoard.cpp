@@ -22,13 +22,14 @@ HarborBoard::HarborBoard(Collection_harbor& col):Board() {   // pb : comment on 
             for (int i = 0; i < 5 ; i++){
                 pile->push(est->Clone());}
         }
+
         cards.insert(pair<EstablishmentsNames,stack<Establishment*>>(est->getCardName_Enum(),*pile));
     }
 }
 
 void HarborBoard::fillBoard() {
     while(cards.size()<10){
-        Establishment * cardOffDeck = this->getDeck()->drawCard();  // marche pas incomplete type --------------------------
+        Establishment * cardOffDeck = this->getDeck()->drawCard();
         if (cardOffDeck== nullptr) {   // pioche vide donc on ne peut pas remplir le board
             return;
         }
