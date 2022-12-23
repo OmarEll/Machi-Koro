@@ -7,7 +7,9 @@
 
 
 class Collection_GreenValley : public Collection_standard{
-
+public:
+    Collection_GreenValley();
+    ~Collection_GreenValley();
 };
 
 
