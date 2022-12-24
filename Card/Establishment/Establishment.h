@@ -158,7 +158,10 @@ public:
     void launchEffect(Game& g,Player& currentPlayer) final;
     void oneCoinInvestment(int val){ investment ++; }
     int getInvestment() { return investment;}
-    Establishment* Clone () override{TechStartup* res = dynamic_cast<TechStartup *>(Establishment::Clone());res->investment = this->investment;}
+    Establishment* Clone () override{
+        TechStartup* res = dynamic_cast<TechStartup *>(Establishment::Clone());res->investment = this->investment;
+        return res;
+    }
 
 };
 

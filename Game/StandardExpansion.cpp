@@ -1,11 +1,9 @@
-#include "Card.hpp"
-#include "Game.h"
-#include "Establishment/Establishment.h"
-#include "Landmark/Landmark.h"
-#include "Enums.hpp"
-#include "Player.hpp"
-#include "Board.h"
-#include "Bank.hpp"
+#include "../Card/Establishment/Establishment.h"
+#include "../Card/Landmark/Landmark.h"
+#include "../UTILS/Enums.hpp"
+#include "../Player/Player.hpp"
+#include "../Board/Board.h"
+#include "../Bank/Bank.hpp"
 #include "StandardExpansion.h"
 
 
@@ -48,7 +46,7 @@ void StandardExpansion::DoTurn(Player &current_player) {
         if (other_player->getId() != current_player.getId()) {
 
             // On regarde si le nombre correspond à la carte rouge d'un autre joueur;
-            for (vector <Establishment*>::iterator vIter = other_player->getHand().getColorCards(RED).begin();
+            for (auto vIter = other_player->getHand().getColorCards(RED).begin();
                  vIter != other_player->getHand().getColorCards(RED).end() &&
                  bank_game->getBalance(current_player.getId()) >0;
                  (*vIter)++) {
