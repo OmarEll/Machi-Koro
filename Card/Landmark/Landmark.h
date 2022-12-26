@@ -22,7 +22,9 @@ public:
     }
     void setConstruction() { constructed=true; }
     void setDemolition () {constructed = false;}
-    int gainWithType() override{};
+    int gainWithType() override{
+        return 0;
+    };
     virtual void launchEffect(Game&,Player& currentPlayer) override {};
     Landmark* Clone();
 };

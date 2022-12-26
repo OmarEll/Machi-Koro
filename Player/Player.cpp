@@ -3,7 +3,6 @@
 //
 
 #include "Player.hpp"
-#include "Landmark.h"
 
 int Player::id_counter = 1;
 

@@ -63,5 +63,7 @@ public:
     vector<Establishment*> getEstablishments(){return establishments;}
     Establishment* getEstablishmentByName(string estName);
     vector<Landmark*> getLandmarks(){return landmarks;}
+    //
+
 };
 

@@ -18,7 +18,7 @@
 #include "Game/StandardExpansion.h"
 #include "Player/Hand/Hand.hpp"
 #include "Player/IA/IA.hpp"
-#include "Player/Player.hpp"
+#include "Player/Human/Human.h"
 #include "UTILS/Enums.hpp"
 #include "Collection/Collection.h"
 #include "Collection/Collection_standard.h"
@@ -28,10 +28,10 @@ using namespace std;
 int main(){
     vector<Player*> Gamer;
     Collection_standard* test = new Collection_standard ();
-    Gamer.push_back(new Player("Omar",*test));
-    Gamer.push_back(new Player("Sarah",*test));
-    Gamer.push_back(new Player("Julie",*test));
-    Gamer.push_back(new Player("Marius",*test));
+    Gamer.push_back(new Human("Omar",*test));
+    Gamer.push_back(new Human("Sarah",*test));
+    Gamer.push_back(new Human("Julie",*test));
+    Gamer.push_back(new Human("Marius",*test));
     cout << "Hello World" << endl;
 
     //Board* test2 = new StandardBoard(*test);
