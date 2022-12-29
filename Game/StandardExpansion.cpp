@@ -16,7 +16,7 @@ StandardExpansion::StandardExpansion (vector<Player*> joueur, Collection_standar
     board_Game = Board::getInstance(col);
     dices.push_back(Dice());
     dices.push_back(Dice());
-    bank_game = Bank::getInstance(joueur.size(),2);
+    bank_game = Bank::getInstance(joueur,2);
     Activation_order.push_back(RED);
     Activation_order.push_back(BLUE);
     Activation_order.push_back(GREEN);
@@ -35,14 +35,14 @@ void StandardExpansion::DoTurn(Player &current_player) {
     cout << "C'est au tou de " << current_player.getName() << "de jouer" << endl;
     dice = dice_turn(current_player);
     if (current_player.hasLandmark(RadioTower) != nullptr){
-        cout << "Voulez vous relancez vos dés ?" << endl;
+        cout << "Voulez vous relancez vos des ?" << endl;
         cin >> choice;
         if (choice == "oui"){
             dice = dice_turn(current_player);
         }
     }
 
-    cout << "Le résultat du lancer de dé donne " << dice << endl;
+    cout << "Le résultat du lancer de des donne " << dice << endl;
 
     // On regarde les cartes rouges des autres joueurs
     for (auto other_player : players){
@@ -55,7 +55,7 @@ void StandardExpansion::DoTurn(Player &current_player) {
                  (*vIter)++) {
                 if ((**vIter).activate(dice) ){
                     (**vIter).launchEffect(*this, *other_player);
-
+                    cout << (*vIter)->getOwner() << " recois " << (*vIter)->getEarnedCoins() << " de " << current_player.getName() << endl;
                 }
             }
         }
@@ -72,7 +72,7 @@ void StandardExpansion::DoTurn(Player &current_player) {
             if (current_player.getId() == all_players->getId() &&
                 cards->getColor() != RED &&
                 cards->activate(dice)){
-
+                cout << current_player.getName() << " gagne " << cards->getEarnedCoins() << " coins " << endl;
                 cards->launchEffect(*this,current_player);
             }
 
@@ -80,12 +80,13 @@ void StandardExpansion::DoTurn(Player &current_player) {
             if (current_player.getId() != all_players->getId() &&
                 cards->getColor() == BLUE &&
                 cards->activate(dice))
-
+                cout << all_players->getName() << " gagne " << cards->getEarnedCoins() << " coins " << endl;
                 cards->launchEffect(*this,*all_players);
         }
     }
     // On regarde si le joueur veut acheter un landmark
     choice = "";
+    cout << current_player.getName() << " vous disposez de " << bank_game->getBalance(current_player.getId()) << "euros" << endl;
     cout<< "Voulez-vous acheter un établissement ou un landmark ?\nEstablishment\nLandmark\nNothing" << endl;
     cin >> choice;
     if (choice == "Establishment"){
@@ -95,8 +96,11 @@ void StandardExpansion::DoTurn(Player &current_player) {
         Establishment* tmp = board_Game->foundEstablishmentOnBoard(choice);
         EnumParser<EstablishmentsNames> fieldTypeParser;
         EstablishmentsNames val2 = fieldTypeParser.ParseSomeEnum(choice);
-        if (tmp && bank_game->getBalance(current_player.getId()) - establishments[val2]->getCost()>=0)
+        cout << tmp->getCardName()<< endl;
+        if (tmp != nullptr && bank_game->getBalance(current_player.getId()) - tmp->getCost()>=0){
             current_player.getHand().addEstablishment(board_Game->foundEstablishmentOnBoard(choice));
+            bank_game->deposit(current_player.getId(),tmp->getCost());
+        }
         else
             cout << "L etablissement n'existe pas && il n'a pas assez de money ! " << endl;
     }
@@ -109,8 +113,10 @@ void StandardExpansion::DoTurn(Player &current_player) {
             LandmarksNames val = fieldTypeParser.ParseSomeEnum(choice);
             // On regarde si l'établissement existe et qu'il a l'argent nécessaire
             if (!current_player.hasLandmark(val) &&
-                bank_game->getBalance(current_player.getId()) - landmarks[val]->getCost()>=0)
+                bank_game->getBalance(current_player.getId()) - landmarks[val]->getCost()>=0){
                 current_player.getHand().addLandmark(val);
+                bank_game->deposit(current_player.getId(),landmarks[val]->getCost());
+            }
             else
                 cout << "Impossible : soit l'établissement n'existe pas soit vous n'avez pas l'argent" << endl;
         }

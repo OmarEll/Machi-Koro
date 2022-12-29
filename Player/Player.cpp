@@ -4,7 +4,7 @@
 
 #include "Player.hpp"
 
-int Player::id_counter = 1;
+int Player::id_counter = 0;
 
 Landmark* Player::hasLandmark(LandmarksNames name) const {
     auto it=hand.getLandmarks().find(name);

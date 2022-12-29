@@ -9,8 +9,9 @@ class Wallet
     
 private:
     int balance;
+    std::size_t id_player;
 public:
-    explicit Wallet(int defaultValue):balance(defaultValue){};
+    explicit Wallet(int defaultValue, std::size_t id):balance(defaultValue), id_player(id){};
     int getBalance(){ return balance; };
     void setBalance(int num) { balance = num; };
     void addCoins(int nbCoins) { balance +=nbCoins; };

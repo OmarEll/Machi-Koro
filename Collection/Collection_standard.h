@@ -8,7 +8,7 @@
 
 #include "Collection.h"
 
-class Collection_standard : public Collection{
+class Collection_standard : virtual public Collection{
 public :
     Collection_standard();
     ~Collection_standard();

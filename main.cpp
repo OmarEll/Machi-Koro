@@ -22,6 +22,9 @@
 #include "UTILS/Enums.hpp"
 #include "Collection/Collection.h"
 #include "Collection/Collection_standard.h"
+#include "Collection/Collection_GreenValley.h"
+#include "Collection/Collection_harbor.h"
+#include "Collection/Collection_deluxe.h"
 using namespace std;
 // C'est Marius
 // C'est Sarah

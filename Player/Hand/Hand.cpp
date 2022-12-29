@@ -2,6 +2,9 @@
 #include "Establishment.h"
 #include "Landmark.h"
 #include "../Collection/Collection_standard.h"
+#include "Card.hpp"
+#include "Player.hpp"
+
 
 Hand::Hand(Collection& g){
     for (auto est : g.GetLandmark()){
@@ -11,8 +14,10 @@ Hand::Hand(Collection& g){
 
 void Hand::addEstablishment(Establishment* card){
     EstablishmentsNames cardName=card->getCardName_Enum();
-    if(establishments.find(card->getCardName_Enum())!=establishments.end())
+    if(establishments.find(card->getCardName_Enum())!=establishments.end()){
         establishments[cardName].push(card);
+    }
+
 }
 
 void Hand::removeEstablishment(Establishment* card){

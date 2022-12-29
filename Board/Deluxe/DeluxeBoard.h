@@ -2,7 +2,8 @@
 
 //#include "Deck/Deck.h"
 #include "Harbor/HarborBoard.h"
-#include "Collection_deluxe.h"
+#include "../../Collection/Collection_deluxe.h"
+
 
 class Deck;
 

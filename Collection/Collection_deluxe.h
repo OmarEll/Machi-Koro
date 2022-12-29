@@ -8,9 +8,9 @@
 #include "Collection_harbor.h"
 #include "Collection_GreenValley.h"
 
-class Collection_deluxe : public Collection {
+class Collection_deluxe : public Collection_harbor, public Collection_GreenValley{
 public:
-    Collection_deluxe();
+    Collection_deluxe() : Collection_standard(), Collection_harbor(), Collection_GreenValley(){};
     ~Collection_deluxe(){};
 };
 

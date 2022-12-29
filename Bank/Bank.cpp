@@ -3,13 +3,17 @@
 //
 
 #include "Bank.hpp"
+#include "Player.hpp"
 
 Bank* Bank::uniqueBank = nullptr;
 
-Bank::Bank(size_t nbPlayers, int defaultValueWallet,int b):balance(b){
-        for(auto i=0;i<nbPlayers;i++){
-            wallets.push_back(new Wallet(defaultValueWallet));
+Bank::Bank(vector<Player*> player, int defaultValueWallet,int b):balance(b){
+    auto init = player.begin();
+        for(auto i=0;i<player.size();i++){
+            wallets.push_back(new Wallet(defaultValueWallet,(*init)->getId()));
+            init++;
         }
+        cout << "Il y a " << wallets.size() << " wallets" << endl;
 };
 
 int Bank::deposit(size_t idPlayer,int amount){
@@ -44,7 +48,7 @@ void Bank::freeInstance(){
     uniqueBank= nullptr;
 }
 
-Bank *Bank::getInstance(int nbP, int def) {
+Bank *Bank::getInstance(vector<Player*> g, int def) {
     if (!uniqueBank)
-        uniqueBank = new Bank(nbP,def);
+        uniqueBank = new Bank(g,def);
     return uniqueBank; }
