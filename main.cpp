@@ -3,7 +3,7 @@
 #include "Bank/Wallet.hpp"
 #include "Board/Board.h"
 #include "Board/GreenValleyBoard.h"
-#include "Board/DeluxeBoard.h"
+#include "Deluxe/DeluxeBoard.h"
 #include "Board/Deck/Deck.h"
 #include "Board/Harbor/HarborBoard.h"
 #include "Standard/StandardBoard.h"
