@@ -7,8 +7,8 @@ Hand::Hand(Collection& g){
     for (auto est : g.GetLandmark()){
         landmarks.insert(pair<LandmarksNames,Landmark*>(est->getLandmarks(),est->Clone()));
     }
-
 }
+
 void Hand::addEstablishment(Establishment* card){
     EstablishmentsNames cardName=card->getCardName_Enum();
     if(establishments.find(card->getCardName_Enum())!=establishments.end())

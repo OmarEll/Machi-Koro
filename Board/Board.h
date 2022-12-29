@@ -22,7 +22,7 @@ public :
     Establishment* foundEstablishmentOnBoard(string choice);
     // GETTERS & SETTERS
     map<EstablishmentsNames,stack<Establishment*>> getCards(){ return cards; }
-    void setCards(map<EstablishmentsNames,stack<Establishment*>> establishments){
+    void setCards(map<EstablishmentsNames,stack<Establishment*>> establishments){  // inutile? a sup?
         cards=establishments;
     }
     static Board* getInstance(Collection& g);
