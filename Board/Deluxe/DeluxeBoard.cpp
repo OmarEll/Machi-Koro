@@ -2,12 +2,16 @@
 // Created by sarah on 29/12/2022.
 //
 #include "DeluxeBoard.h"
+#include <stack>
+#include <vector>
+#include <cstdlib>
+#include "Establishment.h"
 
-DeluxeBoard::DeluxeBoard(Collection_harbor& colHarbor, Collection_deluxe& colGV): HarborBoard(colHarbor){
+DeluxeBoard::DeluxeBoard(Collection_deluxe& col) : Board(){
 
     vector<Establishment*>* v = new vector<Establishment*>;
 
-    for(auto est : colGV.GetEstablishment()){
+    for(auto est : col.GetEstablishment()){
         if (est->getColor() != PURPLE){
             for (int i = 0; i < 6 ; i++){
                 v->push_back(est->Clone());}
@@ -25,6 +29,27 @@ DeluxeBoard::DeluxeBoard(Collection_harbor& colHarbor, Collection_deluxe& colGV)
         v->erase(v->begin() + j);
     }
 
-    fillBoard();  // pb le constructeur de Harbor à déjà fillBoard non?-----------------------------------------------
-                    // et idem pour le deck ... on peut pas utiliser le constructeur de harbor non? mais du coup on enlève héritage?
+    fillBoard();
 }
+
+
+
+void DeluxeBoard::fillBoard() {
+    while(cards.size()<10){
+        Establishment * cardOffDeck = getDeck()->drawCard();
+        if (cardOffDeck== nullptr) {   // pioche vide donc on ne peut pas remplir le board
+            return;
+        }
+        for(auto pair : cards){
+            if (pair.first == cardOffDeck->getCardName_Enum()){
+                pair.second.push(cardOffDeck);
+                return;
+            }
+        }
+        stack<Establishment*>* newPile = nullptr;
+        newPile->push(cardOffDeck);
+        cards.insert(pair<EstablishmentsNames,stack<Establishment*>>(cardOffDeck->getCardName_Enum(),*newPile));
+    }
+}
+
+
