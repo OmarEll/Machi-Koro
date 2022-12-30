@@ -19,7 +19,7 @@ private:
 public:
     friend class Establishment;
     Hand(Collection&);
-    void addEstablishment(Establishment*);
+    void addEstablishment(Establishment*, Player&);
     void removeEstablishment(Establishment*);
     void addLandmark(LandmarksNames name);
 

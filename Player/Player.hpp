@@ -25,10 +25,10 @@ public:
     /* GETTERS & SETTERS*/
     const int& getId() const { return idPlayer; };
     const string& getName() const { return name; };
-    Hand getHand() const { return hand;};
+    Hand* getHand() { return &hand;};
 
     /* OTHER */
-    Landmark* hasLandmark(LandmarksNames) const;
+    Landmark* hasLandmark (LandmarksNames) const;
     Establishment* hasEstablishment(EstablishmentsNames) const;
     Establishment* hasEstablishment(string) const ;
 

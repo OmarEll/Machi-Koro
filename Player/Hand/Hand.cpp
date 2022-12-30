@@ -12,13 +12,19 @@ Hand::Hand(Collection& g){
     }
 }
 
-void Hand::addEstablishment(Establishment* card){
+void Hand::addEstablishment(Establishment* card, Player& p){
     EstablishmentsNames cardName=card->getCardName_Enum();
+    card->setOwner(&p);
     if(establishments.find(card->getCardName_Enum())!=establishments.end()){
         establishments[cardName].push(card);
     }
-
+    else{
+        stack<Establishment*>* pile = new stack<Establishment*>;
+        pile->push(card);
+        establishments.insert(pair<EstablishmentsNames,stack<Establishment*>>(card->getCardName_Enum(),*pile));
+    }
 }
+
 
 void Hand::removeEstablishment(Establishment* card){
     EstablishmentsNames cardName=card->getCardName_Enum();

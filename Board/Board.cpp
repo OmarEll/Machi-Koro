@@ -14,7 +14,7 @@ Establishment* Board::foundEstablishmentOnBoard(string choice) {
     for (auto establishment : cards){
         if (val == establishment.first){
             tmp = establishment.second.top();
-            establishment.second.pop();
+            this->cards[val].pop();
             return tmp;
         }
     }

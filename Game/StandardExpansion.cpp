@@ -28,34 +28,36 @@ StandardExpansion::StandardExpansion (vector<Player*> joueur, Collection_standar
 void StandardExpansion::DoTurn(Player &current_player) {
     // Variables
     int dice = 0;
-
     string choice;
     // Fonction
     // Lance le dés
-    cout << "C'est au tou de " << current_player.getName() << "de jouer" << endl;
+cout << "C est au tour de " << current_player.getName() << endl;
     dice = dice_turn(current_player);
     if (current_player.hasLandmark(RadioTower) != nullptr){
-        cout << "Voulez vous relancez vos des ?" << endl;
+        cout << "Voulez vous relancer vos des ?" << endl;
         cin >> choice;
         if (choice == "oui"){
             dice = dice_turn(current_player);
         }
     }
 
-    cout << "Le résultat du lancer de des donne " << dice << endl;
+    cout << "Le resultat du lancer de des donne " << dice << endl;
 
     // On regarde les cartes rouges des autres joueurs
     for (auto other_player : players){
         if (other_player->getId() != current_player.getId()) {
 
             // On regarde si le nombre correspond à la carte rouge d'un autre joueur;
-            for (auto vIter = other_player->getHand().getColorCards(RED).begin();
-                 vIter != other_player->getHand().getColorCards(RED).end() &&
+            for (auto vIter = other_player->getHand()->getColorCards(RED).begin();
+                 vIter != other_player->getHand()->getColorCards(RED).end() &&
                  bank_game->getBalance(current_player.getId()) >0;
                  (*vIter)++) {
+                if ((*vIter)->activate(dice))
                 if ((**vIter).activate(dice) ){
-                    (**vIter).launchEffect(*this, *other_player);
-                    cout << (*vIter)->getOwner() << " recois " << (*vIter)->getEarnedCoins() << " de " << current_player.getName() << endl;
+                    for (int i = 0 ; i < other_player->getHand()->getEstablishments()[(*vIter)->getCardName_Enum()].size();i++){
+                        (**vIter).launchEffect(*this, *other_player);
+                        cout << (*vIter)->getOwner() << " recoit " << (*vIter)->getEarnedCoins() << " de " << current_player.getName() << "par" << (*vIter)->getCardName() << endl;
+                    }
                 }
             }
         }
@@ -66,39 +68,39 @@ void StandardExpansion::DoTurn(Player &current_player) {
     for (auto all_players : players){
 
         // On regarde les établissement de tout le monde
-        for ( auto pair_cards : all_players->getHand().getEstablishments()){
+        for ( auto pair_cards : all_players->getHand()->getEstablishments()){
             Establishment* cards = pair_cards.second.top();
             // Si le joueur est le current player et que sa cartes n'est pas rouge et doit être activé
             if (current_player.getId() == all_players->getId() &&
                 cards->getColor() != RED &&
                 cards->activate(dice)){
-                cout << current_player.getName() << " gagne " << cards->getEarnedCoins() << " coins " << endl;
-                cards->launchEffect(*this,current_player);
+                cout << current_player.getName() << " gagne " << cards->getEarnedCoins() << " coins grace a " << cards->getCardName()<< endl;
+                for (int i = 0 ; i < current_player.getHand()->getEstablishments()[cards->getCardName_Enum()].size();i++)
+                    cards->launchEffect(*this,current_player);
             }
 
             // Si le joueur est différent du current player et que la carte est bleue et qu'elle doit être activé
             if (current_player.getId() != all_players->getId() &&
                 cards->getColor() == BLUE &&
-                cards->activate(dice))
-                cout << all_players->getName() << " gagne " << cards->getEarnedCoins() << " coins " << endl;
-                cards->launchEffect(*this,*all_players);
+                cards->activate(dice)){
+                cout << all_players->getName() << " gagne " << cards->getEarnedCoins() << " coins " <<cards->getCardName()<< endl;
+                for (int i = 0 ; i < all_players->getHand()->getEstablishments()[cards->getCardName_Enum()].size();i++)
+                    cards->launchEffect(*this,*all_players);
+            }
         }
     }
     // On regarde si le joueur veut acheter un landmark
     choice = "";
-    cout << current_player.getName() << " vous disposez de " << bank_game->getBalance(current_player.getId()) << "euros" << endl;
-    cout<< "Voulez-vous acheter un établissement ou un landmark ?\nEstablishment\nLandmark\nNothing" << endl;
+    cout << current_player.getName() << " vous disposez de " << bank_game->getBalance(current_player.getId()) << " coins" << endl;
+    cout<< "Voulez-vous acheter un etablissement ou un landmark ?\nEstablishment\nLandmark\nNothing" << endl;
     cin >> choice;
     if (choice == "Establishment"){
         cout << "Quel Establishment voulez-vous acheter ?" << endl;
         board_Game->displayCards();
         cin >> choice;
         Establishment* tmp = board_Game->foundEstablishmentOnBoard(choice);
-        EnumParser<EstablishmentsNames> fieldTypeParser;
-        EstablishmentsNames val2 = fieldTypeParser.ParseSomeEnum(choice);
-        cout << tmp->getCardName()<< endl;
         if (tmp != nullptr && bank_game->getBalance(current_player.getId()) - tmp->getCost()>=0){
-            current_player.getHand().addEstablishment(board_Game->foundEstablishmentOnBoard(choice));
+            current_player.getHand()->addEstablishment(tmp,current_player);
             bank_game->deposit(current_player.getId(),tmp->getCost());
         }
         else
@@ -107,14 +109,15 @@ void StandardExpansion::DoTurn(Player &current_player) {
     else {
         if (choice == "Landmark"){
             cout << "Quel Landmark voulez-vous acheter ?" << endl;
-            cout << "Trainstation\nRadiotower\nAmusementPark\nCommercialCenter\n"<< endl;
-            cin >> choice;
+            cout << "Train Station\nRadio Tower\nAmusement Park\nShopping Mall"<< endl;
+            ::fflush(stdin);
+            getline(cin,choice);
             EnumParser<LandmarksNames> fieldTypeParser;
             LandmarksNames val = fieldTypeParser.ParseSomeEnum(choice);
             // On regarde si l'établissement existe et qu'il a l'argent nécessaire
             if (!current_player.hasLandmark(val) &&
                 bank_game->getBalance(current_player.getId()) - landmarks[val]->getCost()>=0){
-                current_player.getHand().addLandmark(val);
+                current_player.getHand()->addLandmark(val);
                 bank_game->deposit(current_player.getId(),landmarks[val]->getCost());
             }
             else
@@ -147,17 +150,18 @@ void StandardExpansion::initGame() {
     Establishment* baker= nullptr;
     Establishment* wheat= nullptr;
     for (auto bak : establishments){
-        if (bak->getCardName_Enum() == Bakery)
+        if (bak->getCardName_Enum() == Bakery){
             baker = bak;
+        }
         if (bak->getCardName_Enum() == WheatField)
             wheat = bak;
     }
     for(auto joueur : players){
-        joueur->getHand().addEstablishment(baker->Clone());
-        joueur->getHand().addEstablishment(wheat->Clone());
-    }
-
+        joueur->getHand()->addEstablishment(baker->Clone(),*joueur);
+        joueur->getHand()->addEstablishment(wheat->Clone(),*joueur);
+        }
 }
+
 
 // Fin du tour d'un joueur
 

@@ -45,12 +45,12 @@ int Establishment::numberGainWithType(Player& currentPlayer, vector<Types> t) co
     int sum=0;
     if(getOrigin()==BankOrigin){
         for (auto& it : t){
-            sum += getOwner()->getHand().getTypeCards(it).size();
+            sum += getOwner()->getHand()->getTypeCards(it).size();
         }
     }
     else{
         for (auto& it : t){
-            sum += currentPlayer.getHand().getTypeCards(it).size();
+            sum += currentPlayer.getHand()->getTypeCards(it).size();
         }
     }
     return sum*nb;
@@ -62,11 +62,11 @@ bool Establishment::hasHarbor(){ //fonction qui permet de regarder si le joueur 
 }
 
 int Establishment::numberOfLandmarks(Player* p){
-    return p->getHand().getLandmarks().size();
+    return p->getHand()->getLandmarks().size();
 };
 
 int Establishment::numberOfLandmarks(Player& p){
-    return p.getHand().getLandmarks().size();
+    return p.getHand()->getLandmarks().size();
 }
 
 Establishment *Establishment::Clone() {
@@ -151,15 +151,15 @@ void Office::launchEffect(Game& g, Player& currentPlayer){ //echange une carte a
         cin>>nameOfCardOwner;
 
         //Owner
-        for (const auto&  card : currentPlayer.getHand().getEstablishments()){ // On verifie que la carte choisi est dans la main du joueur et qu'elle n'est pas de type tower
-            Establishment* est= (getOwner()->getHand().getEstablishments()[card.first].top());
+        for (const auto&  card : currentPlayer.getHand()->getEstablishments()){ // On verifie que la carte choisi est dans la main du joueur et qu'elle n'est pas de type tower
+            Establishment* est= (getOwner()->getHand()->getEstablishments()[card.first].top());
             if((nameOfCardOwner==est->getCardName()) && (est->getType()!=tower) ){
                 CardOwner=est;
             }
         }
         //Exchanger
-        for (const auto&  card : playerExchanger->getHand().getEstablishments()){ // On verifie que la carte choisi est dans la main du joueur et qu'elle n'est pas de type tower
-            Establishment* est= (playerExchanger->getHand().getEstablishments()[card.first].top());
+        for (const auto&  card : playerExchanger->getHand()->getEstablishments()){ // On verifie que la carte choisi est dans la main du joueur et qu'elle n'est pas de type tower
+            Establishment* est= (playerExchanger->getHand()->getEstablishments()[card.first].top());
             if((nameOfCardExchanger==est->getCardName()) && (est->getType()!=tower) ){
                 CardExchanger=est;
             }
@@ -167,11 +167,11 @@ void Office::launchEffect(Game& g, Player& currentPlayer){ //echange une carte a
 
     }
     //add
-    currentPlayer.getHand().addEstablishment(CardExchanger);
-    playerExchanger->getHand().addEstablishment(CardOwner);
+    currentPlayer.getHand()->addEstablishment(CardExchanger,currentPlayer);
+    playerExchanger->getHand()->addEstablishment(CardOwner,*playerExchanger);
     //remove
-    currentPlayer.getHand().removeEstablishment(CardOwner);
-    playerExchanger->getHand().removeEstablishment(CardExchanger);
+    currentPlayer.getHand()->removeEstablishment(CardOwner);
+    playerExchanger->getHand()->removeEstablishment(CardExchanger);
 }
 
 
@@ -200,9 +200,9 @@ void FoodWarehouse::launchEffect(Game& g, Player& currentPlayer){
 
 void FlowerShop::launchEffect(Game& g, Player& currentPlayer){
     //Get 1 coin from the bank for each Flower Garden you own, on your turn only.
-    auto establishments=getOwner()->getHand().getEstablishments();
-    if (getOwner()->getHand().getEstablishments().find(FlowerGarden)!=getOwner()->getHand().getEstablishments().end()){
-        setNumberOfCoinsEarned(getOwner()->getHand().getEstablishments()[FlowerGarden].size()); //Le nombre de coins gagné est le nombre de flower garden possédé
+    auto establishments=getOwner()->getHand()->getEstablishments();
+    if (getOwner()->getHand()->getEstablishments().find(FlowerGarden)!=getOwner()->getHand()->getEstablishments().end()){
+        setNumberOfCoinsEarned(getOwner()->getHand()->getEstablishments()[FlowerGarden].size()); //Le nombre de coins gagné est le nombre de flower garden possédé
     }
     else {
         setNumberOfCoinsEarned(0); //Le joueur ne possède pas de flower garden
@@ -340,7 +340,7 @@ void InternationalExhibitHall::launchEffect(Game& g, Player& currentPlayer) {
     }
     Establishment* est=currentPlayer.hasEstablishment(cardAct);
     est->launchEffect(g,currentPlayer);
-    currentPlayer.getHand().removeEstablishment(est);
+    currentPlayer.getHand()->removeEstablishment(est);
     GreenValleyBoard* board = dynamic_cast<GreenValleyBoard*>(g.getBoard());
     board->addEstablishmentToBoard(est);
 }
@@ -399,7 +399,7 @@ void DemolitionCompany::launchEffect(Game& g, Player& currentPlayer) {
         val = fieldTypeParser.ParseSomeEnum(choice);
     } while (!getOwner()->hasLandmark(val));
     Landmark* land_;
-    for (auto Land : getOwner()->getHand().getLandmarks()){
+    for (auto Land : getOwner()->getHand()->getLandmarks()){
         if (Land.first == val)
             land_ = Land.second;
     }
@@ -429,25 +429,25 @@ void MovingCompany::launchEffect(Game& g, Player& currentPlayer) {
         cin>>nameOfCardGiver;
 
         //Giver
-        for (const auto&  card : currentPlayer.getHand().getEstablishments()){ // On verifie que la carte choisi est dans la main du joueur et qu'elle n'est pas de type tower
-            Establishment* est= (getOwner()->getHand().getEstablishments()[card.first].top());
+        for (const auto&  card : currentPlayer.getHand()->getEstablishments()){ // On verifie que la carte choisi est dans la main du joueur et qu'elle n'est pas de type tower
+            Establishment* est= (getOwner()->getHand()->getEstablishments()[card.first].top());
             if((nameOfCardGiver==est->getCardName()) && (est->getType()!=tower) ){
                 CardGiver=est;
             }
         }
     }
     //add
-    playerReceiver->getHand().addEstablishment(CardGiver);
+    playerReceiver->getHand()->addEstablishment(CardGiver,*playerReceiver);
     //remove
-    currentPlayer.getHand().removeEstablishment(CardGiver);
+    currentPlayer.getHand()->removeEstablishment(CardGiver);
 }
 
 
 void Winery::launchEffect(Game& g, Player& currentPlayer) {
     //Get 6 coins for each vineyard you own, on your turn only. Then, close this building for renovation.
-    auto establishments=getOwner()->getHand().getEstablishments();
-    if (getOwner()->getHand().getEstablishments().find(Vineyard)!=getOwner()->getHand().getEstablishments().end()){
-        setNumberOfCoinsEarned(getOwner()->getHand().getEstablishments()[Vineyard].size()); //Le nombre de coins gagné est le nombre de vineyard possédées
+    auto establishments=getOwner()->getHand()->getEstablishments();
+    if (getOwner()->getHand()->getEstablishments().find(Vineyard)!=getOwner()->getHand()->getEstablishments().end()){
+        setNumberOfCoinsEarned(getOwner()->getHand()->getEstablishments()[Vineyard].size()); //Le nombre de coins gagné est le nombre de vineyard possédées
     }
     else {
         setNumberOfCoinsEarned(0); //Le joueur ne possède pas de winery

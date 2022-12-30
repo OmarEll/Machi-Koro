@@ -6,11 +6,10 @@
 
 int Player::id_counter = 0;
 
-Landmark* Player::hasLandmark(LandmarksNames name) const {
-    auto it=hand.getLandmarks().find(name);
-    Landmark* est = (*it).second;
-    if(it!=hand.getLandmarks().end() && est->isConstructed())
-        return (*it).second;
+Landmark* Player::hasLandmark(LandmarksNames name) const{
+    auto it=hand.getLandmarks()[name];
+    if(it!= nullptr && it->isConstructed())
+        return it;
     else return nullptr;
 }
 

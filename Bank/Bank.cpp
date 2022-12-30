@@ -13,7 +13,6 @@ Bank::Bank(vector<Player*> player, int defaultValueWallet,int b):balance(b){
             wallets.push_back(new Wallet(defaultValueWallet,(*init)->getId()));
             init++;
         }
-        cout << "Il y a " << wallets.size() << " wallets" << endl;
 };
 
 int Bank::deposit(size_t idPlayer,int amount){
