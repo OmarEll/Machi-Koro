@@ -234,9 +234,9 @@ public:
     WheatField(): Establishment("Wheat Field","Receive 1 coin from the bank",BLUE, 1,Standard, wheat,{1},BankOrigin,1){}
 };
 
-class LivestockFarm: public Establishment {
+class Ranch: public Establishment {
 public:
-    LivestockFarm(): Establishment("Livestock Farm","Receive 1 coin from the bank",BLUE, 1,Standard, cow,{2},BankOrigin,1){}
+    Ranch(): Establishment("Livestock Farm","Receive 1 coin from the bank",BLUE, 1,Standard, cow,{2},BankOrigin,1){}
 };
 
 class Bakery: public Establishment {

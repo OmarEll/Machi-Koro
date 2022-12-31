@@ -74,16 +74,16 @@ cout << "C est au tour de " << current_player.getName() << endl;
             if (current_player.getId() == all_players->getId() &&
                 cards->getColor() != RED &&
                 cards->activate(dice)){
-                cout << current_player.getName() << " gagne " << cards->getEarnedCoins() << " coins grace a " << cards->getCardName()<< endl;
+                cout << current_player.getName() << " gagne " << cards->getEarnedCoins() * current_player.getHand()->getEstablishments()[cards->getCardName_Enum()].size() << " coins grace a " << cards->getCardName()<< endl;
                 for (int i = 0 ; i < current_player.getHand()->getEstablishments()[cards->getCardName_Enum()].size();i++)
                     cards->launchEffect(*this,current_player);
-            }
+                }
 
             // Si le joueur est différent du current player et que la carte est bleue et qu'elle doit être activé
             if (current_player.getId() != all_players->getId() &&
                 cards->getColor() == BLUE &&
                 cards->activate(dice)){
-                cout << all_players->getName() << " gagne " << cards->getEarnedCoins() << " coins " <<cards->getCardName()<< endl;
+                cout << all_players->getName() << " gagne " << cards->getEarnedCoins() * current_player.getHand()->getEstablishments()[cards->getCardName_Enum()].size() << " coins " <<cards->getCardName()<< endl;
                 for (int i = 0 ; i < all_players->getHand()->getEstablishments()[cards->getCardName_Enum()].size();i++)
                     cards->launchEffect(*this,*all_players);
             }
@@ -95,33 +95,41 @@ cout << "C est au tour de " << current_player.getName() << endl;
     cout<< "Voulez-vous acheter un etablissement ou un landmark ?\nEstablishment\nLandmark\nNothing" << endl;
     cin >> choice;
     if (choice == "Establishment"){
-        cout << "Quel Establishment voulez-vous acheter ?" << endl;
-        board_Game->displayCards();
-        cin >> choice;
-        Establishment* tmp = board_Game->foundEstablishmentOnBoard(choice);
-        if (tmp != nullptr && bank_game->getBalance(current_player.getId()) - tmp->getCost()>=0){
-            current_player.getHand()->addEstablishment(tmp,current_player);
-            bank_game->deposit(current_player.getId(),tmp->getCost());
+        int test = 0;
+        while(test == 0) {
+            cout << "Quel Establishment voulez-vous acheter ?" << endl;
+            board_Game->displayCards();
+            ::fflush(stdin);
+            getline(cin, choice);
+            Establishment *tmp = board_Game->foundEstablishmentOnBoard(choice);
+            if (tmp != nullptr && bank_game->getBalance(current_player.getId()) - tmp->getCost() >= 0) {
+                current_player.getHand()->addEstablishment(tmp, current_player);
+                bank_game->deposit(current_player.getId(), tmp->getCost());
+                test = 1;
+            } else
+                cout << "L etablissement n'existe pas && il n'a pas assez de money ! " << endl;
         }
-        else
-            cout << "L etablissement n'existe pas && il n'a pas assez de money ! " << endl;
     }
     else {
         if (choice == "Landmark"){
-            cout << "Quel Landmark voulez-vous acheter ?" << endl;
-            cout << "Train Station\nRadio Tower\nAmusement Park\nShopping Mall"<< endl;
-            ::fflush(stdin);
-            getline(cin,choice);
-            EnumParser<LandmarksNames> fieldTypeParser;
-            LandmarksNames val = fieldTypeParser.ParseSomeEnum(choice);
-            // On regarde si l'établissement existe et qu'il a l'argent nécessaire
-            if (!current_player.hasLandmark(val) &&
-                bank_game->getBalance(current_player.getId()) - landmarks[val]->getCost()>=0){
-                current_player.getHand()->addLandmark(val);
-                bank_game->deposit(current_player.getId(),landmarks[val]->getCost());
+            int test = 0;
+            while(test == 0) {
+                cout << "Quel Landmark voulez-vous acheter ?" << endl;
+                cout << "Train Station\nRadio Tower\nAmusement Park\nShopping Mall"<< endl;
+                ::fflush(stdin);
+                getline(cin,choice);
+                EnumParser<LandmarksNames> fieldTypeParser;
+                LandmarksNames val = fieldTypeParser.ParseSomeEnum(choice);
+                // On regarde si l'établissement existe et qu'il a l'argent nécessaire
+                if (!current_player.hasLandmark(val) &&
+                    bank_game->getBalance(current_player.getId()) - landmarks[val]->getCost() >= 0) {
+                    current_player.getHand()->addLandmark(val);
+                    bank_game->deposit(current_player.getId(), landmarks[val]->getCost());
+                    test = 1;
+                } else {
+                    cout << "Impossible : soit l'etablissement n'existe pas soit vous n'avez pas l'argent" << endl;
+                }
             }
-            else
-                cout << "Impossible : soit l'établissement n'existe pas soit vous n'avez pas l'argent" << endl;
         }
         else
             cout << "Vous choisissez de ne faire aucune action" << endl;

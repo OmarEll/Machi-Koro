@@ -19,6 +19,7 @@ public :
     virtual ~Board() = default;
     Board(Board&) = default;
     void displayCards();
+    void displayVector(vector<int> v);
     Establishment* foundEstablishmentOnBoard(string choice);
     // GETTERS & SETTERS
     map<EstablishmentsNames,stack<Establishment*>> getCards(){ return cards; }
