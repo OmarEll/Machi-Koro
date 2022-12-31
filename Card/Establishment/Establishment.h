@@ -41,7 +41,7 @@ public:
 
     /* REST */
     bool activate(int);
-    void launchEffect(Game&,Player&) override;
+    virtual void launchEffect(Game&,Player&);
     int gainWithType() override{return 0;}
     int numberGainWithType(Player&, vector<Types>) const;
     bool hasHarbor();

@@ -4,6 +4,7 @@
 #include "../Player/Player.hpp"
 #include "../Board/Board.h"
 #include "../Bank/Bank.hpp"
+#include "../Card/Card.hpp"
 #include "StandardExpansion.h"
 
 
@@ -30,8 +31,18 @@ void StandardExpansion::DoTurn(Player &current_player) {
     int dice = 0;
     string choice;
     // Fonction
+    for (auto pl : players) {
+        cout << pl->getName() << " dispose de " << bank_game->getBalance(pl->getId()) << endl;
+    }
+    //bank_game->playerPaysPlayer(current_player.getId(),players.at(2)->getId(),1);
     // Lance le dés
 cout << "\n\nC est au tour de " << current_player.getName() << endl;
+for (auto car : current_player.getHand()->getEstablishments())
+    cout <<"\n" <<  car.second.top()->getCardName() << "\t quantite : " << car.second.size() << "\n" << endl;
+
+for (auto pl : players){
+    cout << pl->getName()<< " dispose de "<< bank_game->getBalance(pl->getId()) << endl;
+}
     dice = dice_turn(current_player);
     if (current_player.hasLandmark(RadioTower) != nullptr){
         cout << "Voulez vous relancer vos des ?" << endl;
@@ -46,15 +57,12 @@ cout << "\n\nC est au tour de " << current_player.getName() << endl;
         if (other_player->getId() != current_player.getId()) {
 
             // On regarde si le nombre correspond à la carte rouge d'un autre joueur;
-            for (auto vIter = other_player->getHand()->getColorCards(RED).begin();
-                 vIter != other_player->getHand()->getColorCards(RED).end() &&
-                 bank_game->getBalance(current_player.getId()) >0;
-                 (*vIter)++) {
-                if ((*vIter)->activate(dice))
-                if ((**vIter).activate(dice) ){
-                    for (int i = 0 ; i < other_player->getHand()->getEstablishments()[(*vIter)->getCardName_Enum()].size();i++){
-                        (**vIter).launchEffect(*this, *other_player);
-                        cout << (*vIter)->getOwner() << " recoit " << (*vIter)->getEarnedCoins() << " de " << current_player.getName() << "par" << (*vIter)->getCardName() << endl;
+            for (auto red_card : other_player->getHand()->getColorCards(RED)){
+                if (red_card->activate(dice)){
+                    cout << red_card->getOwner()->getName() << " recoit " << red_card->getEarnedCoins() * other_player->getHand()->
+                    getEstablishments()[red_card->getCardName_Enum()].size() << " de " << current_player.getName() << "par" << red_card->getCardName() << endl;
+                    for (int i = 0 ; i < other_player->getHand()->getEstablishments()[red_card->getCardName_Enum()].size();i++){
+                        red_card->launchEffect(*this, current_player);
                     }
                 }
             }
@@ -68,20 +76,26 @@ cout << "\n\nC est au tour de " << current_player.getName() << endl;
         // On regarde les établissement de tout le monde
         for ( auto pair_cards : all_players->getHand()->getEstablishments()){
             Establishment* cards = pair_cards.second.top();
+
             // Si le joueur est le current player et que sa cartes n'est pas rouge et doit être activé
             if (current_player.getId() == all_players->getId() &&
                 cards->getColor() != RED &&
                 cards->activate(dice)){
-                cout << current_player.getName() << " gagne " << cards->getEarnedCoins() * current_player.getHand()->getEstablishments()[cards->getCardName_Enum()].size() << " coins grace a " << cards->getCardName()<< endl;
-                for (int i = 0 ; i < current_player.getHand()->getEstablishments()[cards->getCardName_Enum()].size();i++)
+                if (cards->getColor() != PURPLE){
+                    cout << current_player.getName() << " gagne " << cards->getEarnedCoins() * current_player.getHand()->getEstablishments()[cards->getCardName_Enum()].size() << " coins grace a " << cards->getCardName()<< endl;
+                    for (int i = 0 ; i < current_player.getHand()->getEstablishments()[cards->getCardName_Enum()].size();i++)
+                        cards->launchEffect(*this,current_player);
+                }
+                else {
                     cards->launchEffect(*this,current_player);
+                }
                 }
 
             // Si le joueur est différent du current player et que la carte est bleue et qu'elle doit être activé
             if (current_player.getId() != all_players->getId() &&
                 cards->getColor() == BLUE &&
                 cards->activate(dice)){
-                cout << all_players->getName() << " gagne " << cards->getEarnedCoins() * current_player.getHand()->getEstablishments()[cards->getCardName_Enum()].size() << " coins " <<cards->getCardName()<< endl;
+                cout << all_players->getName() << " gagne " << cards->getEarnedCoins() * (all_players->getHand()->getEstablishments()[cards->getCardName_Enum()].size()) << " coins " <<cards->getCardName()<< endl;
                 for (int i = 0 ; i < all_players->getHand()->getEstablishments()[cards->getCardName_Enum()].size();i++)
                     cards->launchEffect(*this,*all_players);
             }
