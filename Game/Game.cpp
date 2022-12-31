@@ -37,11 +37,13 @@ bool Game::Iswin(Player& current_player) {
 int Game::dice_turn(Player& current_player) {
     string choice;
     dices.front().rollDice();
+    cout << " Le resultat du de donne " << dices.front().GetResult() << endl;
     if (current_player.hasLandmark(TrainStation)){
-        cout << "Voulez vous relancer un dé ? " << endl;
+        cout << "Voulez vous lancer un autre de ? " << endl;
         cin >> choice;
         if (choice == "oui"){
             dices.back().rollDice();
+            cout << " Le resultat des des donnent " << dices.front().GetResult()+dices.back().GetResult() << endl;
             return dices.front().GetResult()+dices.back().GetResult() ;
         }
     }
@@ -58,5 +60,13 @@ Establishment *Game::getEstablishmentByName(string estName) {
 
 void Game::initGame() {
 
+}
+
+int Game::GetCostLandmark(LandmarksNames name) {
+    for (auto Land : landmarks){
+        if (Land->getLandmarks() == name)
+            return Land->getCost();
+    }
+    return 0;
 }
 

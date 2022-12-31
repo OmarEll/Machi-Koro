@@ -47,6 +47,7 @@ protected :
 public:
     void virtual initGame() = 0;
     virtual  ~Game() = default;
+    int GetCostLandmark (LandmarksNames);
     void virtual DoTurn (Player& current_player) = 0;
     void virtual Do_Game() = 0;
     bool Iswin(Player& current_player);
