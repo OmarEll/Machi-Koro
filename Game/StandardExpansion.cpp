@@ -78,19 +78,17 @@ for (auto pl : players){
             Establishment* cards = pair_cards.second.top();
 
             // Si le joueur est le current player et que sa cartes n'est pas rouge et doit être activé
-            if (current_player.getId() == all_players->getId() &&
-                cards->getColor() != RED &&
-                cards->activate(dice)){
+            if (current_player.getId() == all_players->getId() && cards->getColor() != RED && cards->activate(dice)){
                 if (cards->getColor() != PURPLE){
                     cout << current_player.getName() << " gagne " << cards->getEarnedCoins() * current_player.getHand()->getEstablishments()[cards->getCardName_Enum()].size() << " coins grace a " << cards->getCardName()<< endl;
                     for (int i = 0 ; i < current_player.getHand()->getEstablishments()[cards->getCardName_Enum()].size();i++){
                         cards->launchEffect(*this,current_player);
                     }
                 }
-                else { // PB ON NE VA PAS DANS LE ELSE QUAND C'EST UNE CARTE VIOLETTE ALORS QU'ON DEVRAIT POURQUOI ?
+                else {// PB ON NE VA PAS DANS LE ELSE QUAND C'EST UNE CARTE VIOLETTE ALORS QU'ON DEVRAIT POURQUOI ?
                     cards->launchEffect(*this,current_player); //si la carte est violette l'affichage est gérée directement dans le launch effect
                 }
-                }
+            }
 
             // Si le joueur est différent du current player et que la carte est bleue et qu'elle doit être activé
             if (current_player.getId() != all_players->getId() &&
