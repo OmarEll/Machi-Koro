@@ -28,7 +28,7 @@ public:
     vector<int> getActivationNumbers() { return activationNumbers; }
     OriginsOfCoins getOrigin() const { return originOfCoinsEarned; }
     int getEarnedCoins() const{ return numberOfCoinsEarned; }
-    Colors getColor(){ return color; }
+    virtual Colors getColor(){ return color; }
     bool getRenovation(){return underRenovation;}
     EstablishmentsNames getCardName_Enum(){
         EnumParser<EstablishmentsNames> fieldTypeParser;
@@ -55,19 +55,23 @@ public:
 class Stadium : public Establishment {
 public:
     Stadium(): Establishment("Stadium","Receive 2 coins from each of your fellow players.",PURPLE, 6,Standard, tower,{6},OtherPlayers,2){}
-    void launchEffect(Game& g,Player& currentPlayer) final;
+    ~Stadium() = default;
+    virtual void launchEffect(Game& g,Player& currentPlayer) final;
+    Stadium* Clone()override;
 };
 
 class TvStation : public Establishment {
 public:
     TvStation(): Establishment("Tv Station","Choose one player who has to give you 5 coins.",PURPLE, 6,Standard, tower,{6},OtherPlayers,5){}
     void launchEffect(Game& g,Player& currentPlayer) final;
+    TvStation* Clone()override;
 };
 
 class Office : public Establishment {
 public:
     Office(): Establishment("Office","Exchange a card with another player. No tower type establishment.",PURPLE, 8,Standard, tower,{6},OtherPlayers,0){}
     void launchEffect(Game& g,Player& currentPlayer) final;
+    Office* Clone() override;
 };
 
 /* Definition des establishments avec un effet de type "For each of your 'type' establishments, gain x coins"*/
@@ -76,18 +80,21 @@ class CheeseFactory : public Establishment {
 public:
     CheeseFactory(): Establishment("Cheese Factory","Receive 3 coins from the bank for each of your 'cow' type establishments.",GREEN, 5,Standard, factory,{7},BankOrigin,3){}
     void launchEffect(Game& g,Player& currentPlayer) final;
+    CheeseFactory* Clone() override;
 };
 
 class FurnitureFactory : public Establishment {
 public:
     FurnitureFactory(): Establishment("Furniture Factory","Receive 3 coins from the bank for each of your 'wheel' type establishments.",GREEN, 3,Standard, factory,{8},BankOrigin,3){}
     void launchEffect(Game& g,Player& currentPlayer) final;
+    FurnitureFactory* Clone() override;
 };
 
 class ProduceMarket : public Establishment {
 public:
     ProduceMarket(): Establishment("Produce Market","Receive 2 coins from the bank for each of your 'wheat' type establishments.",GREEN, 2,Standard, apple,{11,12},BankOrigin,2){}
     void launchEffect(Game& g,Player& currentPlayer) final;
+    ProduceMarket* Clone() override;
 };
 
 //Harbor

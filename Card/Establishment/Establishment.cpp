@@ -109,6 +109,22 @@ void Stadium::launchEffect(Game& g, Player& currentPlayer){ //méthode redefinie
     cout << currentPlayer.getName() << " gagne " << coinsEarned << " coins grace a Stadium"<< endl;
 }
 
+class Stadium* Stadium::Clone() {
+    Stadium* res = new Stadium();
+    res->cardName = this->getCardName();
+    res->description = this->getDescription();
+    res->owner = this->getOwner();
+    res->cost = this->getCost();
+    res->expansion = this->getExpansion();
+    res->type=this->getType();
+    res->color = this->getColor();
+    res->activationNumbers = this->getActivationNumbers();
+    res->originOfCoinsEarned = this->getOrigin();
+    res->numberOfCoinsEarned = this ->getEarnedCoins();
+    res->underRenovation = this->getRenovation();
+    return res;
+}
+
 void TvStation::launchEffect(Game& g, Player& currentPlayer){ //méthode redefinie pour permettre de choisir l'adversaire qui donne les coins au propriétaire de la carte (automatique si 2 joueurs)
     string nameOfPayer;
     int id_payer = -1;
@@ -139,6 +155,21 @@ void TvStation::launchEffect(Game& g, Player& currentPlayer){ //méthode redefin
     cout << currentPlayer.getName() << " gagne " << earnedCoins << " coins grace a Tv Station"<< endl;
 }
 
+class TvStation *TvStation::Clone() {
+    TvStation* res = new TvStation();
+    res->cardName = this->getCardName();
+    res->description = this->getDescription();
+    res->owner = this->getOwner();
+    res->cost = this->getCost();
+    res->expansion = this->getExpansion();
+    res->type=this->getType();
+    res->color = this->getColor();
+    res->activationNumbers = this->getActivationNumbers();
+    res->originOfCoinsEarned = this->getOrigin();
+    res->numberOfCoinsEarned = this ->getEarnedCoins();
+    res->underRenovation = this->getRenovation();
+    return res;
+}
 
 
 void Office::launchEffect(Game& g, Player& currentPlayer){ //echange une carte avec un autre joueur sauf de type tower (ie.les cartes violettes)
@@ -189,6 +220,22 @@ void Office::launchEffect(Game& g, Player& currentPlayer){ //echange une carte a
     cout<< currentPlayer.getName()<<" a echange sa carte " << CardOwner->getCardName() << " avec la carte " << CardExchanger->getCardName() << " de " << playerExchanger->getName();
 }
 
+class Office *Office::Clone() {
+    Office* res = new Office();
+    res->cardName = this->getCardName();
+    res->description = this->getDescription();
+    res->owner = this->getOwner();
+    res->cost = this->getCost();
+    res->expansion = this->getExpansion();
+    res->type=this->getType();
+    res->color = this->getColor();
+    res->activationNumbers = this->getActivationNumbers();
+    res->originOfCoinsEarned = this->getOrigin();
+    res->numberOfCoinsEarned = this ->getEarnedCoins();
+    res->underRenovation = this->getRenovation();
+    return res;
+}
+
 
 /* Redefinition des establishments avec un effet de type "For each of your 'type' establishments, gain x coins"*/
 //Standard
@@ -197,14 +244,62 @@ void CheeseFactory::launchEffect(Game& g, Player& currentPlayer){
     Establishment::launchEffect(g, currentPlayer);
 }
 
+class CheeseFactory *CheeseFactory::Clone() {
+    CheeseFactory* res = new CheeseFactory();
+    res->cardName = this->getCardName();
+    res->description = this->getDescription();
+    res->owner = this->getOwner();
+    res->cost = this->getCost();
+    res->expansion = this->getExpansion();
+    res->type=this->getType();
+    res->color = this->getColor();
+    res->activationNumbers = this->getActivationNumbers();
+    res->originOfCoinsEarned = this->getOrigin();
+    res->numberOfCoinsEarned = this ->getEarnedCoins();
+    res->underRenovation = this->getRenovation();
+    return res;
+}
+
 void FurnitureFactory::launchEffect(Game& g, Player& currentPlayer){
     setNumberOfCoinsEarned(numberGainWithType(currentPlayer, {wheel}));
     Establishment::launchEffect(g, currentPlayer);
 }
 
+class FurnitureFactory *FurnitureFactory::Clone() {
+    FurnitureFactory* res = new FurnitureFactory();
+    res->cardName = this->getCardName();
+    res->description = this->getDescription();
+    res->owner = this->getOwner();
+    res->cost = this->getCost();
+    res->expansion = this->getExpansion();
+    res->type=this->getType();
+    res->color = this->getColor();
+    res->activationNumbers = this->getActivationNumbers();
+    res->originOfCoinsEarned = this->getOrigin();
+    res->numberOfCoinsEarned = this ->getEarnedCoins();
+    res->underRenovation = this->getRenovation();
+    return res;
+}
+
 void ProduceMarket::launchEffect(Game& g, Player& currentPlayer){
     setNumberOfCoinsEarned(numberGainWithType(currentPlayer, {wheat}));
     Establishment::launchEffect(g, currentPlayer);
+}
+
+class ProduceMarket *ProduceMarket::Clone() {
+    ProduceMarket* res = new ProduceMarket();
+    res->cardName = this->getCardName();
+    res->description = this->getDescription();
+    res->owner = this->getOwner();
+    res->cost = this->getCost();
+    res->expansion = this->getExpansion();
+    res->type=this->getType();
+    res->color = this->getColor();
+    res->activationNumbers = this->getActivationNumbers();
+    res->originOfCoinsEarned = this->getOrigin();
+    res->numberOfCoinsEarned = this ->getEarnedCoins();
+    res->underRenovation = this->getRenovation();
+    return res;
 }
 
 //Harbor

@@ -85,7 +85,7 @@ for (auto pl : players){
                         cards->launchEffect(*this,current_player);
                     }
                 }
-                else {// PB ON NE VA PAS DANS LE ELSE QUAND C'EST UNE CARTE VIOLETTE ALORS QU'ON DEVRAIT POURQUOI ?
+                else {
                     cards->launchEffect(*this,current_player); //si la carte est violette l'affichage est gérée directement dans le launch effect
                 }
             }
@@ -172,16 +172,37 @@ void StandardExpansion::Do_Game() {
 void StandardExpansion::initGame() {
     Establishment* baker= nullptr;
     Establishment* wheat= nullptr;
+
+    // A ENELVER A LA FIN
+    Establishment* stad= nullptr;
+    Establishment* cheese= nullptr;
+    Establishment* ran = nullptr;
+
+
     for (auto bak : establishments){
         if (bak->getCardName_Enum() == Bakery){
             baker = bak;
         }
         if (bak->getCardName_Enum() == WheatField)
             wheat = bak;
+
+        // POUR TEST A ENLEVER A LA FIN
+        if (bak->getCardName_Enum() == Stadium)
+            stad = bak;
+        if (bak->getCardName_Enum() == FurnitureFactory)
+            cheese = bak;
+        if (bak->getCardName_Enum() == Forest)
+            ran = bak;
     }
     for(auto joueur : players){
         joueur->getHand()->addEstablishment(baker->Clone(),*joueur);
         joueur->getHand()->addEstablishment(wheat->Clone(),*joueur);
+
+        // A SUPPRIMER
+        joueur->getHand()->addEstablishment(stad->Clone(),*joueur);
+        joueur->getHand()->addEstablishment(cheese->Clone(),*joueur);
+        joueur->getHand()->addEstablishment(ran->Clone(),*joueur);
+        joueur->getHand()->addLandmark(TrainStation);
         }
 }
 

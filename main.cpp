@@ -36,7 +36,6 @@ int main(){
     Gamer.push_back(new Human("Julie",*test));
     Gamer.push_back(new Human("Marius",*test));
     cout << "Hello World" << endl;
-
     //Board* test2 = new StandardBoard(*test);
     //test2->displayCards();
     StandardExpansion party(Gamer,*test);
