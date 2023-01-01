@@ -90,6 +90,7 @@ Establishment *Establishment::Clone() {
 
 void Stadium::launchEffect(Game& g, Player& currentPlayer){ //méthode redefinie pour permettre de recevoir des coins de la part de l'ensemble des adversaires
     int id_Owner=getOwner()->getId();
+    int coinsEarned = 0;
     for (const auto& other_player : g.getPlayers()){
         int id_other = other_player->getId();
         if (id_Owner != id_other){
@@ -97,20 +98,24 @@ void Stadium::launchEffect(Game& g, Player& currentPlayer){ //méthode redefinie
             if ((getOrigin() == OtherPlayers) && getOwner()!=nullptr) { //on va prendre les coins des joueurs adverse et le donner à celui qui possède cette carte (qui est aussi le current_player)
                 if (balance_other >= getEarnedCoins()) { //le joueur qui doit payer a assez de coins pour payer
                     g.getBank()->playerPaysPlayer(id_other, id_Owner, getEarnedCoins());
+                    coinsEarned = coinsEarned + getEarnedCoins();
                 } else {                                    //le joueur qui doit payer n'a pas assez de coins pour payer donc il donne ce qu'il a
                     g.getBank()->playerPaysPlayer(id_other, id_Owner, balance_other);
+                    coinsEarned = coinsEarned + balance_other;
                 }
             }
         }
     }
+    cout << currentPlayer.getName() << " gagne " << coinsEarned << " coins grace a Stadium"<< endl;
 }
 
 void TvStation::launchEffect(Game& g, Player& currentPlayer){ //méthode redefinie pour permettre de choisir l'adversaire qui donne les coins au propriétaire de la carte (automatique si 2 joueurs)
     string nameOfPayer;
     int id_payer = -1;
+    int balance_payer = 0;
     int id_Owner=getOwner()->getId();
     while (id_payer==-1){
-        cout<<"Choissisez le joueur qui doit vous payer :\n";
+        cout<<"Choississez le joueur qui doit vous payer :\n";
         for (const auto& other_player : g.getPlayers()){
             cout<<other_player->getName()<<" "; //affiche la liste des joueurs
         }
@@ -122,7 +127,16 @@ void TvStation::launchEffect(Game& g, Player& currentPlayer){ //méthode redefin
             }
         }
     }
-    g.getBank()->playerPaysPlayer(id_payer, id_Owner, getEarnedCoins());
+    balance_payer = g.getBank()->getBalance(id_payer);
+    int earnedCoins;
+    if (balance_payer >= getEarnedCoins()) { //le joueur qui doit payer a assez de coins pour payer
+        g.getBank()->playerPaysPlayer(id_payer, id_Owner, getEarnedCoins());
+        earnedCoins = getEarnedCoins();
+    } else {                                    //le joueur qui doit payer n'a pas assez de coins pour payer donc il donne ce qu'il a
+        g.getBank()->playerPaysPlayer(id_payer, id_Owner, balance_payer);
+        earnedCoins = balance_payer;
+    }
+    cout << currentPlayer.getName() << " gagne " << earnedCoins << " coins grace a Tv Station"<< endl;
 }
 
 
@@ -172,6 +186,7 @@ void Office::launchEffect(Game& g, Player& currentPlayer){ //echange une carte a
     //remove
     currentPlayer.getHand()->removeEstablishment(CardOwner);
     playerExchanger->getHand()->removeEstablishment(CardExchanger);
+    cout<< currentPlayer.getName()<<" a echange sa carte " << CardOwner->getCardName() << " avec la carte " << CardExchanger->getCardName() << " de " << playerExchanger->getName();
 }
 
 

@@ -83,11 +83,12 @@ for (auto pl : players){
                 cards->activate(dice)){
                 if (cards->getColor() != PURPLE){
                     cout << current_player.getName() << " gagne " << cards->getEarnedCoins() * current_player.getHand()->getEstablishments()[cards->getCardName_Enum()].size() << " coins grace a " << cards->getCardName()<< endl;
-                    for (int i = 0 ; i < current_player.getHand()->getEstablishments()[cards->getCardName_Enum()].size();i++)
+                    for (int i = 0 ; i < current_player.getHand()->getEstablishments()[cards->getCardName_Enum()].size();i++){
                         cards->launchEffect(*this,current_player);
+                    }
                 }
-                else {
-                    cards->launchEffect(*this,current_player);
+                else { // PB ON NE VA PAS DANS LE ELSE QUAND C'EST UNE CARTE VIOLETTE ALORS QU'ON DEVRAIT POURQUOI ?
+                    cards->launchEffect(*this,current_player); //si la carte est violette l'affichage est gérée directement dans le launch effect
                 }
                 }
 
