@@ -242,6 +242,7 @@ class Office *Office::Clone() {
 void CheeseFactory::launchEffect(Game& g, Player& currentPlayer){
     setNumberOfCoinsEarned(numberGainWithType(currentPlayer, {cow}));
     Establishment::launchEffect(g, currentPlayer);
+    cout << currentPlayer.getName() << " gagne " << getEarnedCoins() << " coins grace a "<< getCardName() << endl;
 }
 
 class CheeseFactory *CheeseFactory::Clone() {
@@ -263,6 +264,7 @@ class CheeseFactory *CheeseFactory::Clone() {
 void FurnitureFactory::launchEffect(Game& g, Player& currentPlayer){
     setNumberOfCoinsEarned(numberGainWithType(currentPlayer, {wheel}));
     Establishment::launchEffect(g, currentPlayer);
+    cout << currentPlayer.getName() << " gagne " << getEarnedCoins() << " coins grace a "<< getCardName() << endl;
 }
 
 class FurnitureFactory *FurnitureFactory::Clone() {
@@ -284,6 +286,7 @@ class FurnitureFactory *FurnitureFactory::Clone() {
 void ProduceMarket::launchEffect(Game& g, Player& currentPlayer){
     setNumberOfCoinsEarned(numberGainWithType(currentPlayer, {wheat}));
     Establishment::launchEffect(g, currentPlayer);
+    cout << currentPlayer.getName() << " gagne " << getEarnedCoins() << " coins grace a "<< getCardName() << endl;
 }
 
 class ProduceMarket *ProduceMarket::Clone() {

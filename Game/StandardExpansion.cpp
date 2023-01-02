@@ -79,14 +79,14 @@ for (auto pl : players){
 
             // Si le joueur est le current player et que sa cartes n'est pas rouge et doit être activé
             if (current_player.getId() == all_players->getId() && cards->getColor() != RED && cards->activate(dice)){
-                if (cards->getColor() != PURPLE){
+                if (cards->getColor() != PURPLE && cards->getCardName_Enum() != FurnitureFactory && cards->getCardName_Enum() != CheeseFactory && cards->getCardName_Enum() != ProduceMarket){
                     cout << current_player.getName() << " gagne " << cards->getEarnedCoins() * current_player.getHand()->getEstablishments()[cards->getCardName_Enum()].size() << " coins grace a " << cards->getCardName()<< endl;
                     for (int i = 0 ; i < current_player.getHand()->getEstablishments()[cards->getCardName_Enum()].size();i++){
                         cards->launchEffect(*this,current_player);
                     }
                 }
                 else {
-                    cards->launchEffect(*this,current_player); //si la carte est violette l'affichage est gérée directement dans le launch effect
+                    cards->launchEffect(*this,current_player); //si la carte est violette ou verte avec un gain avec type l'affichage est gérée directement dans le launch effect
                 }
             }
 
