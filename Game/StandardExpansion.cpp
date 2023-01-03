@@ -118,7 +118,7 @@ for (auto pl : players){
                 bank_game->deposit(current_player.getId(), tmp->getCost());
                 test = 1;
             } else
-                cout << "L etablissement n'existe pas && il n'a pas assez de money ! " << endl;
+                cout << "L etablissement n'existe pas ou il n'a pas assez de money ! " << endl;
         }
     }
     else {
@@ -163,6 +163,7 @@ void StandardExpansion::Do_Game() {
         DoTurn(**current_player);
         if ((*current_player)->hasLandmark(AmusementPark) &&
             dices.front().GetResult() == dices.back().GetResult()){
+            cout << "Vous avez joue un double et vous possedez Amusement Park, vous avez donc droit a un tour supplementaire " <<endl;
             DoTurn(**current_player);
         }
         current_player++;
@@ -189,7 +190,7 @@ void StandardExpansion::initGame() {
         // POUR TEST A ENLEVER A LA FIN
         if (bak->getCardName_Enum() == Stadium)
             stad = bak;
-        if (bak->getCardName_Enum() == FurnitureFactory)
+        if (bak->getCardName_Enum() == ProduceMarket)
             cheese = bak;
         if (bak->getCardName_Enum() == Forest)
             ran = bak;
@@ -202,6 +203,7 @@ void StandardExpansion::initGame() {
         joueur->getHand()->addEstablishment(stad->Clone(),*joueur);
         joueur->getHand()->addEstablishment(cheese->Clone(),*joueur);
         joueur->getHand()->addEstablishment(ran->Clone(),*joueur);
+        joueur->getHand()->addLandmark(AmusementPark);
         joueur->getHand()->addLandmark(TrainStation);
         }
 }

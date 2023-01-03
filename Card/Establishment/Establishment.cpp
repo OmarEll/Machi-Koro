@@ -133,7 +133,9 @@ void TvStation::launchEffect(Game& g, Player& currentPlayer){ //méthode redefin
     while (id_payer==-1){
         cout<<"Choississez le joueur qui doit vous payer :\n";
         for (const auto& other_player : g.getPlayers()){
-            cout<<other_player->getName()<<" "; //affiche la liste des joueurs
+            if (other_player->getName() != currentPlayer.getName()){
+                cout<<other_player->getName()<<" "; //affiche la liste des joueurs adverses
+            }
         }
         cout<<"\n";
         cin>>nameOfPayer;
@@ -144,7 +146,7 @@ void TvStation::launchEffect(Game& g, Player& currentPlayer){ //méthode redefin
         }
     }
     balance_payer = g.getBank()->getBalance(id_payer);
-    int earnedCoins;
+    int earnedCoins = 0;
     if (balance_payer >= getEarnedCoins()) { //le joueur qui doit payer a assez de coins pour payer
         g.getBank()->playerPaysPlayer(id_payer, id_Owner, getEarnedCoins());
         earnedCoins = getEarnedCoins();
@@ -180,36 +182,61 @@ void Office::launchEffect(Game& g, Player& currentPlayer){ //echange une carte a
     string nameOfCardExchanger;
     string nameOfCardOwner;
     while (playerExchanger == nullptr){
-        cout<<"Entrez le nom du joueur avec qui vous voulez échanger une carte :\n";
+        cout<<"Entrez le nom du joueur avec qui vous voulez echanger une carte :\n";
         cin>>nameOfExchanger;
         for ( auto& other_player : g.getPlayers()){
-            if(nameOfExchanger==other_player->getName()){
+            if(nameOfExchanger==other_player->getName() && nameOfExchanger != owner->getName()){
                 playerExchanger = other_player;
             }
         }
+        if (playerExchanger == nullptr){
+            cout << "Le nom du joueur n'existe pas ou c'est vous meme et vous ne pouvez pas echanger de carte avec vous meme" << endl;
+        }
     }
 
-    while (CardExchanger== nullptr || CardOwner== nullptr){
-        cout<<"Entrez le nom de la carte que vous souhaitez récupérer (elle ne doit pas être de type tower) :\n";
-        cin>>nameOfCardExchanger;
-        cout<<"Entrez le nom de la carte que vous souhaitez donner (elle ne doit pas être de type tower) :\n";
-        cin>>nameOfCardOwner;
-
+    while (CardOwner== nullptr) {
+        cout<<"Entrez le nom de la carte que vous souhaitez donner (elle ne doit pas etre de type tower) :\n";
+        cin >> nameOfCardOwner;
         //Owner
-        for (const auto&  card : currentPlayer.getHand()->getEstablishments()){ // On verifie que la carte choisi est dans la main du joueur et qu'elle n'est pas de type tower
-            Establishment* est= (getOwner()->getHand()->getEstablishments()[card.first].top());
-            if((nameOfCardOwner==est->getCardName()) && (est->getType()!=tower) ){
-                CardOwner=est;
+        CardOwner = nullptr;
+        for (const auto &card: currentPlayer.getHand()->getEstablishments()) { // On verifie que la carte choisi est dans la main du joueur et qu'elle n'est pas de type tower
+            Establishment *est = (getOwner()->getHand()->getEstablishments()[card.first].top());
+            if ((nameOfCardOwner == est->getCardName()) && (est->getType() != tower)) {
+                CardOwner = est;
             }
         }
+        if (CardOwner == nullptr){
+            cout << "1. La carte n'est pas dans votre main ou est de type tower" << endl;
+        }
+    }
+
+    while (CardExchanger== nullptr) {
+        cout << "Entrez le nom de la carte que vous souhaitez recuperer (elle ne doit pas etre de type tower) :\n";
+        cin>>nameOfCardExchanger;
         //Exchanger
+        /*
+        EnumParser<EstablishmentsNames> fieldTypeParser;
+        EstablishmentsNames val = fieldTypeParser.ParseSomeEnum(nameOfCardExchanger);
+        Establishment* tmp = nullptr;
+        for (auto establishment : cards){
+            if (val == establishment.first){
+                tmp = establishment.second.top();
+                this->cards[val].pop();
+                return tmp;
+            }
+        }
+        return nullptr;
+        */
+        CardExchanger=nullptr;
         for (const auto&  card : playerExchanger->getHand()->getEstablishments()){ // On verifie que la carte choisi est dans la main du joueur et qu'elle n'est pas de type tower
             Establishment* est= (playerExchanger->getHand()->getEstablishments()[card.first].top());
             if((nameOfCardExchanger==est->getCardName()) && (est->getType()!=tower) ){
                 CardExchanger=est;
             }
         }
-
+        if (CardExchanger == nullptr) {
+            cout << "2. La carte n'est pas dans la main de" << playerExchanger->getName() << "ou est de type tower" << endl;
+        }
     }
     //add
     currentPlayer.getHand()->addEstablishment(CardExchanger,currentPlayer);
