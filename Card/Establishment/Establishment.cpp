@@ -311,6 +311,22 @@ void FoodWarehouse::launchEffect(Game& g, Player& currentPlayer){
     Establishment::launchEffect(g, currentPlayer);
 }
 
+class FoodWarehouse *FoodWarehouse::Clone() {
+    FoodWarehouse* res = new FoodWarehouse();
+    res->cardName = this->getCardName();
+    res->description = this->getDescription();
+    res->owner = this->getOwner();
+    res->cost = this->getCost();
+    res->expansion = this->getExpansion();
+    res->type=this->getType();
+    res->color = this->getColor();
+    res->activationNumbers = this->getActivationNumbers();
+    res->originOfCoinsEarned = this->getOrigin();
+    res->numberOfCoinsEarned = this ->getEarnedCoins();
+    res->underRenovation = this->getRenovation();
+    return res;
+}
+
 void FlowerShop::launchEffect(Game& g, Player& currentPlayer){
     //Get 1 coin from the bank for each Flower Garden you own, on your turn only.
     auto establishments=getOwner()->getHand()->getEstablishments();
@@ -323,13 +339,61 @@ void FlowerShop::launchEffect(Game& g, Player& currentPlayer){
     g.getBank()->withdraw(getOwner()->getId(), getEarnedCoins());
 }
 
+class FlowerShop *FlowerShop::Clone() {
+    FlowerShop* res = new FlowerShop();
+    res->cardName = this->getCardName();
+    res->description = this->getDescription();
+    res->owner = this->getOwner();
+    res->cost = this->getCost();
+    res->expansion = this->getExpansion();
+    res->type=this->getType();
+    res->color = this->getColor();
+    res->activationNumbers = this->getActivationNumbers();
+    res->originOfCoinsEarned = this->getOrigin();
+    res->numberOfCoinsEarned = this ->getEarnedCoins();
+    res->underRenovation = this->getRenovation();
+    return res;
+}
+
 /* Redefinition des establishments avec un effet de type "If you have a Harbor, gain x coins"*/
 void MackerelBoat::launchEffect(Game& g, Player& currentPlayer){
     if (hasHarbor()) Establishment::launchEffect(g, currentPlayer);
 }
 
+class MackerelBoat *MackerelBoat::Clone() {
+    MackerelBoat* res = new MackerelBoat();
+    res->cardName = this->getCardName();
+    res->description = this->getDescription();
+    res->owner = this->getOwner();
+    res->cost = this->getCost();
+    res->expansion = this->getExpansion();
+    res->type=this->getType();
+    res->color = this->getColor();
+    res->activationNumbers = this->getActivationNumbers();
+    res->originOfCoinsEarned = this->getOrigin();
+    res->numberOfCoinsEarned = this ->getEarnedCoins();
+    res->underRenovation = this->getRenovation();
+    return res;
+}
+
 void SushiBar::launchEffect(Game& g, Player& currentPlayer){
     if (hasHarbor()) Establishment::launchEffect(g, currentPlayer);
+}
+
+class SushiBar *SushiBar::Clone() {
+    SushiBar* res = new SushiBar();
+    res->cardName = this->getCardName();
+    res->description = this->getDescription();
+    res->owner = this->getOwner();
+    res->cost = this->getCost();
+    res->expansion = this->getExpansion();
+    res->type=this->getType();
+    res->color = this->getColor();
+    res->activationNumbers = this->getActivationNumbers();
+    res->originOfCoinsEarned = this->getOrigin();
+    res->numberOfCoinsEarned = this ->getEarnedCoins();
+    res->underRenovation = this->getRenovation();
+    return res;
 }
 
 void TunaBoat::launchEffect(Game& g, Player& currentPlayer){
@@ -337,6 +401,22 @@ void TunaBoat::launchEffect(Game& g, Player& currentPlayer){
     list<Dice> tab = g.GetDices();
     setNumberOfCoinsEarned( tab.front().GetResult() + tab.back().GetResult());
     if (hasHarbor() && tab.back().GetResult() != 0) Establishment::launchEffect(g, currentPlayer);
+}
+
+class TunaBoat *TunaBoat::Clone() {
+    TunaBoat* res = new TunaBoat();
+    res->cardName = this->getCardName();
+    res->description = this->getDescription();
+    res->owner = this->getOwner();
+    res->cost = this->getCost();
+    res->expansion = this->getExpansion();
+    res->type=this->getType();
+    res->color = this->getColor();
+    res->activationNumbers = this->getActivationNumbers();
+    res->originOfCoinsEarned = this->getOrigin();
+    res->numberOfCoinsEarned = this ->getEarnedCoins();
+    res->underRenovation = this->getRenovation();
+    return res;
 }
 
 /* Redéfinition des cartes violettes HARBOR */
@@ -360,6 +440,22 @@ void Publisher::launchEffect(Game& g, Player& currentPlayer){ //A REVOIR
     }
 }
 
+class Publisher *Publisher::Clone() {
+    Publisher* res = new Publisher();
+    res->cardName = this->getCardName();
+    res->description = this->getDescription();
+    res->owner = this->getOwner();
+    res->cost = this->getCost();
+    res->expansion = this->getExpansion();
+    res->type=this->getType();
+    res->color = this->getColor();
+    res->activationNumbers = this->getActivationNumbers();
+    res->originOfCoinsEarned = this->getOrigin();
+    res->numberOfCoinsEarned = this ->getEarnedCoins();
+    res->underRenovation = this->getRenovation();
+    return res;
+}
+
 void TaxOffice::launchEffect(Game& g, Player& currentPlayer){
     //From each opponent with 10 or more coins: take half their coins, rounded down. This only applies in your turn.
     int id_Owner=getOwner()->getId();
@@ -371,6 +467,22 @@ void TaxOffice::launchEffect(Game& g, Player& currentPlayer){
         }
     }
 
+}
+
+class TaxOffice *TaxOffice::Clone() {
+    TaxOffice* res = new TaxOffice();
+    res->cardName = this->getCardName();
+    res->description = this->getDescription();
+    res->owner = this->getOwner();
+    res->cost = this->getCost();
+    res->expansion = this->getExpansion();
+    res->type=this->getType();
+    res->color = this->getColor();
+    res->activationNumbers = this->getActivationNumbers();
+    res->originOfCoinsEarned = this->getOrigin();
+    res->numberOfCoinsEarned = this ->getEarnedCoins();
+    res->underRenovation = this->getRenovation();
+    return res;
 }
 
 /* Redéfinition des cartes violettes GREEN VALLEY */
@@ -394,6 +506,22 @@ void Park::launchEffect(Game& g, Player& currentPlayer) {
     for (const auto& all_player : g.getPlayers()){ //On met à jour toutes les balances
         g.getBank()->setBalance(all_player->getId(), new_balance);
     }
+}
+
+class Park *Park::Clone() {
+    Park* res = new Park();
+    res->cardName = this->getCardName();
+    res->description = this->getDescription();
+    res->owner = this->getOwner();
+    res->cost = this->getCost();
+    res->expansion = this->getExpansion();
+    res->type=this->getType();
+    res->color = this->getColor();
+    res->activationNumbers = this->getActivationNumbers();
+    res->originOfCoinsEarned = this->getOrigin();
+    res->numberOfCoinsEarned = this ->getEarnedCoins();
+    res->underRenovation = this->getRenovation();
+    return res;
 }
 
 void RenovationCompany::launchEffect(Game& g, Player& currentPlayer) {
@@ -426,11 +554,43 @@ void RenovationCompany::launchEffect(Game& g, Player& currentPlayer) {
 
 }
 
+class RenovationCompany *RenovationCompany::Clone() {
+    RenovationCompany* res = new RenovationCompany();
+    res->cardName = this->getCardName();
+    res->description = this->getDescription();
+    res->owner = this->getOwner();
+    res->cost = this->getCost();
+    res->expansion = this->getExpansion();
+    res->type=this->getType();
+    res->color = this->getColor();
+    res->activationNumbers = this->getActivationNumbers();
+    res->originOfCoinsEarned = this->getOrigin();
+    res->numberOfCoinsEarned = this ->getEarnedCoins();
+    res->underRenovation = this->getRenovation();
+    return res;
+}
+
 void TechStartup::launchEffect(Game& g, Player& currentPlayer) { //A Gerer dans game pour l'investissement
     //At the end of each of your turns, you may place 1 coin on this card. The total placed here is your investment. When activated, get an amount equal to your investment from all player, on your turn only.
     for(auto& player : g.getPlayers()){
         g.getBank()->playerPaysPlayer(player->getId(),currentPlayer.getId(),getInvestment());
     }
+}
+
+class TechStartup *TechStartup::Clone() {
+    TechStartup* res = new TechStartup();
+    res->cardName = this->getCardName();
+    res->description = this->getDescription();
+    res->owner = this->getOwner();
+    res->cost = this->getCost();
+    res->expansion = this->getExpansion();
+    res->type=this->getType();
+    res->color = this->getColor();
+    res->activationNumbers = this->getActivationNumbers();
+    res->originOfCoinsEarned = this->getOrigin();
+    res->numberOfCoinsEarned = this ->getEarnedCoins();
+    res->underRenovation = this->getRenovation();
+    return res;
 }
 
 void InternationalExhibitHall::launchEffect(Game& g, Player& currentPlayer) {
@@ -458,6 +618,22 @@ void InternationalExhibitHall::launchEffect(Game& g, Player& currentPlayer) {
     board->addEstablishmentToBoard(est);
 }
 
+class InternationalExhibitHall *InternationalExhibitHall::Clone() {
+    InternationalExhibitHall* res = new InternationalExhibitHall();
+    res->cardName = this->getCardName();
+    res->description = this->getDescription();
+    res->owner = this->getOwner();
+    res->cost = this->getCost();
+    res->expansion = this->getExpansion();
+    res->type=this->getType();
+    res->color = this->getColor();
+    res->activationNumbers = this->getActivationNumbers();
+    res->originOfCoinsEarned = this->getOrigin();
+    res->numberOfCoinsEarned = this ->getEarnedCoins();
+    res->underRenovation = this->getRenovation();
+    return res;
+}
+
 /* Redéfinition des cartes spéciales GREEN VALLEY */
 
 void CornField::launchEffect(Game& g, Player& currentPlayer) {
@@ -467,11 +643,43 @@ void CornField::launchEffect(Game& g, Player& currentPlayer) {
     };
 }
 
+class CornField *CornField::Clone() {
+    CornField* res = new CornField();
+    res->cardName = this->getCardName();
+    res->description = this->getDescription();
+    res->owner = this->getOwner();
+    res->cost = this->getCost();
+    res->expansion = this->getExpansion();
+    res->type=this->getType();
+    res->color = this->getColor();
+    res->activationNumbers = this->getActivationNumbers();
+    res->originOfCoinsEarned = this->getOrigin();
+    res->numberOfCoinsEarned = this ->getEarnedCoins();
+    res->underRenovation = this->getRenovation();
+    return res;
+}
+
 void GeneralStore::launchEffect(Game& g, Player& currentPlayer) {
     //If you have less than 2 constructed landmarks, get 2 coins from the bank, on your turn only
     if(numberOfLandmarks(getOwner())<2) {
         Establishment::launchEffect(g, currentPlayer);
     };
+}
+
+class GeneralStore *GeneralStore::Clone() {
+    GeneralStore* res = new GeneralStore();
+    res->cardName = this->getCardName();
+    res->description = this->getDescription();
+    res->owner = this->getOwner();
+    res->cost = this->getCost();
+    res->expansion = this->getExpansion();
+    res->type=this->getType();
+    res->color = this->getColor();
+    res->activationNumbers = this->getActivationNumbers();
+    res->originOfCoinsEarned = this->getOrigin();
+    res->numberOfCoinsEarned = this ->getEarnedCoins();
+    res->underRenovation = this->getRenovation();
+    return res;
 }
 
 void MembersOnlyClub::launchEffect(Game& g, Player& currentPlayer) {
@@ -483,11 +691,43 @@ void MembersOnlyClub::launchEffect(Game& g, Player& currentPlayer) {
     };
 }
 
+class MembersOnlyClub *MembersOnlyClub::Clone() {
+    MembersOnlyClub* res = new MembersOnlyClub();
+    res->cardName = this->getCardName();
+    res->description = this->getDescription();
+    res->owner = this->getOwner();
+    res->cost = this->getCost();
+    res->expansion = this->getExpansion();
+    res->type=this->getType();
+    res->color = this->getColor();
+    res->activationNumbers = this->getActivationNumbers();
+    res->originOfCoinsEarned = this->getOrigin();
+    res->numberOfCoinsEarned = this ->getEarnedCoins();
+    res->underRenovation = this->getRenovation();
+    return res;
+}
+
 void FrenchRestaurant::launchEffect(Game& g, Player& currentPlayer) {
     //If the player who rolled this number has 2 or more constructed landmarks, get 5 coins from the player who rolled the dice
     if(numberOfLandmarks(currentPlayer)>=2) {
         Establishment::launchEffect(g, currentPlayer);
     };
+}
+
+class FrenchRestaurant *FrenchRestaurant::Clone() {
+    FrenchRestaurant* res = new FrenchRestaurant();
+    res->cardName = this->getCardName();
+    res->description = this->getDescription();
+    res->owner = this->getOwner();
+    res->cost = this->getCost();
+    res->expansion = this->getExpansion();
+    res->type=this->getType();
+    res->color = this->getColor();
+    res->activationNumbers = this->getActivationNumbers();
+    res->originOfCoinsEarned = this->getOrigin();
+    res->numberOfCoinsEarned = this ->getEarnedCoins();
+    res->underRenovation = this->getRenovation();
+    return res;
 }
 
 void SodaBottlingPlant::launchEffect(Game& g, Player& currentPlayer) {
@@ -499,6 +739,22 @@ void SodaBottlingPlant::launchEffect(Game& g, Player& currentPlayer) {
     }
     setNumberOfCoinsEarned(total);
     g.getBank()->withdraw(id_Owner,getEarnedCoins());
+}
+
+class SodaBottlingPlant *SodaBottlingPlant::Clone() {
+    SodaBottlingPlant* res = new SodaBottlingPlant();
+    res->cardName = this->getCardName();
+    res->description = this->getDescription();
+    res->owner = this->getOwner();
+    res->cost = this->getCost();
+    res->expansion = this->getExpansion();
+    res->type=this->getType();
+    res->color = this->getColor();
+    res->activationNumbers = this->getActivationNumbers();
+    res->originOfCoinsEarned = this->getOrigin();
+    res->numberOfCoinsEarned = this ->getEarnedCoins();
+    res->underRenovation = this->getRenovation();
+    return res;
 }
 
 void DemolitionCompany::launchEffect(Game& g, Player& currentPlayer) {
@@ -518,6 +774,22 @@ void DemolitionCompany::launchEffect(Game& g, Player& currentPlayer) {
     }
     land_->setDemolition();
     g.getBank()->withdraw(getOwner()->getId(),getEarnedCoins());
+}
+
+class DemolitionCompany *DemolitionCompany::Clone() {
+    DemolitionCompany* res = new DemolitionCompany();
+    res->cardName = this->getCardName();
+    res->description = this->getDescription();
+    res->owner = this->getOwner();
+    res->cost = this->getCost();
+    res->expansion = this->getExpansion();
+    res->type=this->getType();
+    res->color = this->getColor();
+    res->activationNumbers = this->getActivationNumbers();
+    res->originOfCoinsEarned = this->getOrigin();
+    res->numberOfCoinsEarned = this ->getEarnedCoins();
+    res->underRenovation = this->getRenovation();
+    return res;
 }
 
 void MovingCompany::launchEffect(Game& g, Player& currentPlayer) {
@@ -555,6 +827,22 @@ void MovingCompany::launchEffect(Game& g, Player& currentPlayer) {
     currentPlayer.getHand()->removeEstablishment(CardGiver);
 }
 
+class MovingCompany *MovingCompany::Clone() {
+    MovingCompany* res = new MovingCompany();
+    res->cardName = this->getCardName();
+    res->description = this->getDescription();
+    res->owner = this->getOwner();
+    res->cost = this->getCost();
+    res->expansion = this->getExpansion();
+    res->type=this->getType();
+    res->color = this->getColor();
+    res->activationNumbers = this->getActivationNumbers();
+    res->originOfCoinsEarned = this->getOrigin();
+    res->numberOfCoinsEarned = this ->getEarnedCoins();
+    res->underRenovation = this->getRenovation();
+    return res;
+}
+
 
 void Winery::launchEffect(Game& g, Player& currentPlayer) {
     //Get 6 coins for each vineyard you own, on your turn only. Then, close this building for renovation.
@@ -567,4 +855,36 @@ void Winery::launchEffect(Game& g, Player& currentPlayer) {
     }
     g.getBank()->withdraw(getOwner()->getId(), getEarnedCoins());
     setRenovation(true);
+}
+
+class Winery *Winery::Clone() {
+    Winery* res = new Winery();
+    res->cardName = this->getCardName();
+    res->description = this->getDescription();
+    res->owner = this->getOwner();
+    res->cost = this->getCost();
+    res->expansion = this->getExpansion();
+    res->type=this->getType();
+    res->color = this->getColor();
+    res->activationNumbers = this->getActivationNumbers();
+    res->originOfCoinsEarned = this->getOrigin();
+    res->numberOfCoinsEarned = this ->getEarnedCoins();
+    res->underRenovation = this->getRenovation();
+    return res;
+}
+
+class LoanOffice *LoanOffice::Clone() {
+    LoanOffice* res = new LoanOffice();
+    res->cardName = this->getCardName();
+    res->description = this->getDescription();
+    res->owner = this->getOwner();
+    res->cost = this->getCost();
+    res->expansion = this->getExpansion();
+    res->type=this->getType();
+    res->color = this->getColor();
+    res->activationNumbers = this->getActivationNumbers();
+    res->originOfCoinsEarned = this->getOrigin();
+    res->numberOfCoinsEarned = this ->getEarnedCoins();
+    res->underRenovation = this->getRenovation();
+    return res;
 }

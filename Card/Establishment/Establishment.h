@@ -102,12 +102,14 @@ class FoodWarehouse : public Establishment {
 public:
     FoodWarehouse(): Establishment("Food Warehouse","Get 2 coins from the bank for each 'coffee' type establishment that you own, on your turn only.",GREEN, 2,Harbor, factory,{12,13},BankOrigin,2){}
     void launchEffect(Game& g,Player& currentPlayer) final;
+    FoodWarehouse* Clone() override;
 };
 
 class FlowerShop : public Establishment {
 public:
     FlowerShop(): Establishment("Flower Shop","Get 1 coin from the bank for Flower Garden you own, on your turn only.",GREEN, 1,Harbor, bread,{6},BankOrigin,1){}
     void launchEffect(Game& g,Player& currentPlayer) final;
+    FlowerShop* Clone() override;
 };
 
 /* Definition des establishments avec un effet de type "If you have a Harbor, gain x coins"*/
@@ -115,18 +117,21 @@ class MackerelBoat : public Establishment {
 public:
     MackerelBoat(): Establishment("Mackerel Boat","If you have a Harbor, get 3 coins from the bank on anyone's turn.",BLUE, 2,Harbor, boat,{8},BankOrigin,3){}
     void launchEffect(Game& g,Player& currentPlayer) final;
+    MackerelBoat* Clone() override;
 };
 
 class SushiBar : public Establishment {
 public:
     SushiBar(): Establishment("Sushi Bar","If you have a Harbor, get 3 coins from the player who rolled the dice.",RED, 4,Harbor, coffee,{1},PlayerRolledDice,3){}
     void launchEffect(Game& g,Player& currentPlayer) final;
+    SushiBar* Clone () override;
 };
 
 class TunaBoat : public Establishment {
 public:
     TunaBoat(): Establishment("Tuna Boat","On anyone's turn: The current player rolls 2 dice. If you have a harbor you get as many coins as the dice total.",BLUE, 5,Harbor, boat,{12, 14},BankOrigin,0){}
     void launchEffect(Game& g,Player& currentPlayer) final;
+    TunaBoat* Clone() override;
 };
 
 
@@ -135,12 +140,14 @@ class Publisher : public Establishment {
 public:
     Publisher(): Establishment("Publisher","Take 1 coins from each opponent for each 'coffee' and 'bread' type establishment they own, on your turn only.",PURPLE, 5,Harbor, tower,{7},OtherPlayers,1){}
     void launchEffect(Game& g,Player& currentPlayer) final;
+    Publisher* Clone() override;
 };
 
 class TaxOffice : public Establishment {
 public:
     TaxOffice(): Establishment("Tax Office","From each opponent with 10 or more coins: take half their coins, rounded down. This only applies in your turn.",PURPLE, 4,Harbor, tower,{8,9},OtherPlayers,0){}
     void launchEffect(Game& g,Player& currentPlayer) final;
+    TaxOffice* Clone() override;
 };
 
 /* Définition des cartes violettes Green Valley */
@@ -149,12 +156,14 @@ class Park : public Establishment { //Arboretum dans la version francaise
 public:
     Park(): Establishment("Park","Redistribute all players' coins evenly among all players, on your turn only. If there is an uneven amount of coins, take coins from the bank to make up the difference.",PURPLE, 3,GreenValley, tower,{11,13},OtherPlayers,0){}
     void launchEffect(Game& g,Player& currentPlayer) final;
+    Park* Clone() override;
 };
 
 class RenovationCompany : public Establishment {
 public:
     RenovationCompany(): Establishment("Renovation Company","Choose a non-tower type building. All buildings owned by any player of that type are closed for renovations. Get 1 coin from each player for each of their buildings closed for renovation, on your turn only.",PURPLE, 4, GreenValley, tower,{8},OtherPlayers,1){}
     void launchEffect(Game& g,Player& currentPlayer) final;
+    RenovationCompany* Clone() override;
 };
 
 class TechStartup : public Establishment {
@@ -165,10 +174,7 @@ public:
     void launchEffect(Game& g,Player& currentPlayer) final;
     void oneCoinInvestment(int val){ investment ++; }
     int getInvestment() { return investment;}
-    Establishment* Clone () override{
-        TechStartup* res = dynamic_cast<TechStartup *>(Establishment::Clone());res->investment = this->investment;
-        return res;
-    }
+    TechStartup* Clone() override;
 
 };
 
@@ -176,6 +182,7 @@ class InternationalExhibitHall : public Establishment {
 public:
     InternationalExhibitHall(): Establishment("International Exhibit Hall","You may choose to activate another of your non tower type establishments in place of this one, on your turn only. If you do, return this card to the market.",PURPLE, 7,GreenValley, tower,{10},OtherPlayers,0){}
     void launchEffect(Game& g,Player& currentPlayer) final;
+    InternationalExhibitHall* Clone()override;
 };
 
 /* Définition des cartes spéciales GREEN VALLEY */
@@ -184,53 +191,62 @@ class CornField : public Establishment {
 public:
     CornField(): Establishment("Corn Field","If you have less than 2 landmarks built, get 1 coin from the bank",BLUE, 2,GreenValley, wheat,{3,4},BankOrigin,1){}
     void launchEffect(Game& g,Player& currentPlayer) final;
+    CornField* Clone() override;
 };
 
 class GeneralStore: public Establishment {
 public:
     GeneralStore(): Establishment("General Store","If you have less than 2 constructed landmarks, get 2 coins from the bank, on your turn only",GREEN, 0,GreenValley, bread,{2},BankOrigin,2){}
     void launchEffect(Game& g,Player& currentPlayer) final;
+    GeneralStore* Clone() override;
 };
 
 class MembersOnlyClub: public Establishment {
 public:
     MembersOnlyClub(): Establishment("Members Only Club","If the player who rolled this number has 3 or more constructed landmarks, get all of their coins",RED, 4,GreenValley, coffee,{12, 14},PlayerRolledDice,0){}
     void launchEffect(Game& g,Player& currentPlayer) final;
+    MembersOnlyClub* Clone() override;
 };
 
 class FrenchRestaurant: public Establishment {
 public:
     FrenchRestaurant(): Establishment("French Restaurant","If the player who rolled this number has 2 or more constructed landmarks, get 5 coins from the player who rolled the dice",RED, 3,GreenValley, coffee,{5},PlayerRolledDice,5){}
     void launchEffect(Game& g,Player& currentPlayer) final;
+    FrenchRestaurant* Clone()override;
 };
 
 class SodaBottlingPlant: public Establishment {
 public:
     SodaBottlingPlant(): Establishment("Soda Bottling Plant","Get 1 coin from the bank for each coffee type establishments owned by all players (on your turn only)",GREEN, 5,GreenValley, factory,{11},OtherPlayers,1){}
     void launchEffect(Game& g,Player& currentPlayer) final;
+    SodaBottlingPlant* Clone() override;
 };
 
 class DemolitionCompany: public Establishment {
 public:
     DemolitionCompany(): Establishment("Demolition Company","Demolish 1 of your built landmarks (flip it back over). When you do, get 8 coins from the bank (your turn only)",GREEN, 2,GreenValley, suitcase,{4},BankOrigin,8){}
     void launchEffect(Game& g,Player& currentPlayer) final;
+    DemolitionCompany* Clone() override;
 };
 
 class MovingCompany: public Establishment {
 public:
     MovingCompany(): Establishment("Moving Company","You must give a non-tower type building that you own to another player. When you do so, get 4 coins from the bank, on your turn only",GREEN, 2,GreenValley, suitcase,{9,10},BankOrigin,4){}
     void launchEffect(Game& g,Player& currentPlayer) final;
+    MovingCompany* Clone() override;
 };
 
 class LoanOffice: public Establishment { //Fait (en vrai il y a pas besoin de faire cette classe mais comme les valeurs sont négative elle est faites au cas ou il y est un pb a gérer
 public:
     LoanOffice(): Establishment("Loan Office","When you construct this building, get 5 coins from the bank. When this building is activated, pay 2 coins to the bank, on your turn only.",GREEN, -5,GreenValley, suitcase,{5,6},BankOrigin,-2){}
+    LoanOffice* Clone() override;
 };
 
 class Winery: public Establishment {
 public:
     Winery(): Establishment("Winery","Get 6 coins for each vineyard you own, on your turn only. Then, close this building for renovation.",GREEN, 3,GreenValley, factory,{9},BankOrigin,6){}
     void launchEffect(Game& g,Player& currentPlayer) final;
+    Winery* Clone() override;
 
 };
 
