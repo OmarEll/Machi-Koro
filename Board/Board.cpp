@@ -42,6 +42,7 @@ void Board::displayCards() {
     string typeName;
 
     for (auto card : cards){
+        if (card.second.top()!= nullptr){
         cout<<card.second.size()<<" "<<card.second.top()->getCardName()<<"\n" ;
         switch(card.second.top()->getColor()){
             case 0:
@@ -92,7 +93,7 @@ void Board::displayCards() {
                 typeName = "suitcase";
                 break;
             default :
-                typeName = "Type inconnue";
+                typeName = "Type inconnu";
         }
         cout<<"   Type : "<<typeName<<"\n" ;
         cout<<"   Earned coins : "<<card.second.top()->getEarnedCoins()<<"\n" ;
@@ -100,6 +101,7 @@ void Board::displayCards() {
         cout<<"   Activation Number(s) : ";
         displayVector(card.second.top()->getActivationNumbers());
         cout<<"   "<<card.second.top()->getDescription()<<"\n" ;
+        }
     }
 }
 
