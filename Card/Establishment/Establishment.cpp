@@ -184,7 +184,8 @@ void Office::launchEffect(Game& g, Player& currentPlayer){ //echange une carte a
     string nameOfCardOwner;
     while (playerExchanger == nullptr){
         cout<<"Entrez le nom du joueur avec qui vous voulez echanger une carte :\n";
-        cin>>nameOfExchanger;
+        ::fflush(stdin);
+        getline(cin,nameOfExchanger);
         for ( auto& other_player : g.getPlayers()){
             if(nameOfExchanger==other_player->getName() && nameOfExchanger != owner->getName()){
                 playerExchanger = other_player;
@@ -247,7 +248,7 @@ void Office::launchEffect(Game& g, Player& currentPlayer){ //echange une carte a
     //remove
     currentPlayer.getHand()->removeEstablishment(CardOwner);
     playerExchanger->getHand()->removeEstablishment(CardExchanger);
-    cout<< currentPlayer.getName()<<" a echange sa carte " << CardOwner->getCardName() << " avec la carte " << CardExchanger->getCardName() << " de " << playerExchanger->getName();
+    cout<< currentPlayer.getName()<<" a echange sa carte " << CardOwner->getCardName() << " avec la carte " << CardExchanger->getCardName() << " de " << playerExchanger->getName() <<endl;
 }
 
 class Office *Office::Clone() {

@@ -42,7 +42,7 @@ void Board::displayCards() {
     string typeName;
 
     for (auto card : cards){
-        if (card.second.top()!= nullptr){
+        if (card.second.size() != 0){
         cout<<card.second.size()<<" "<<card.second.top()->getCardName()<<"\n" ;
         switch(card.second.top()->getColor()){
             case 0:

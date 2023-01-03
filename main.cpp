@@ -30,6 +30,7 @@ using namespace std;
 // C'est Sarah
 int main(){
     vector<Player*> Gamer;
+    /*
     Collection_standard* test = new Collection_standard ();
     Gamer.push_back(new Human("Omar",*test));
     Gamer.push_back(new Human("Sarah",*test));
@@ -43,6 +44,55 @@ int main(){
     party->getBoard()->displayCards();
     party->Do_Game();
     //test2->displayCards();
+    */
+    
+    //main general
+    Collection_standard* test = new Collection_standard ();
+    Game *party = Game::Singleton("Standard",Gamer);
+    string choixExtension;
+    cout << "A quelle extension du jeu Machi Koro voulez-vous jouer ? (Standard, Harbor, Green Valley ou Deluxe) \n";
+    ::fflush(stdin);
+    getline(cin,choixExtension);
+    bool bonChoixExtension = false;
+    while (!bonChoixExtension){
+        if (choixExtension == "Standard") {
+            Collection_standard* test = new Collection_standard ();
+            Game *party = Game::Singleton("Standard",Gamer);
+            bonChoixExtension = true;
+        }
+        else if (choixExtension == "Harbor") {
+            Collection_harbor* test = new Collection_harbor ();
+            Game *party = Game::Singleton("Harbor",Gamer);
+            bonChoixExtension = true;
+        }
+        else if (choixExtension == "Green Valley") {
+            Collection_GreenValley* test = new Collection_GreenValley();
+            Game *party = Game::Singleton("Green Valley",Gamer);
+            bonChoixExtension = true;
+        }
+        else if (choixExtension == "Deluxe") {
+            Collection_deluxe* test = new Collection_deluxe();
+            Game *party = Game::Singleton("Deluxe",Gamer);
+            bonChoixExtension = true;
+        }
+        else cout << "Le choix d'extension est invalide\n";
+    }
+
+    int nbJoueurs = 0;
+    cout << "Quel est le nombre de joueurs ?\n";
+    ::fflush(stdin);
+    cin >> nbJoueurs;
+
+    for (int i = 1; i <= nbJoueurs; i++){
+        string nomJoueur;
+        cout << "Entrez le nom du " << i << "e joueur : \n";
+        ::fflush(stdin);
+        getline(cin,nomJoueur);
+        Gamer.push_back(new Human(nomJoueur,*test));
+    }
+
+    party->getBoard()->displayCards();
+    party->Do_Game();
 
 
     return 0;

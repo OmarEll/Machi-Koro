@@ -93,6 +93,7 @@ int Game::dice_turn(Player& current_player) {
         cin >> choice;
         if (choice == "oui"){
             dices.back().rollDice();
+            cout << "Vous avez lance " << dices.front().GetResult() << " et " << dices.back().GetResult() << endl;
             cout << " Le resultat des des donnent " << dices.front().GetResult()+dices.back().GetResult() << endl;
             return dices.front().GetResult()+dices.back().GetResult() ;
         }
