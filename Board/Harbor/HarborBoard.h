@@ -6,9 +6,9 @@
 class HarborBoard : public Board {
 private :
     Deck* deck;
-
+    HarborBoard(Collection_harbor&){};     /////// A VOIR AVEC SARAH
 public :
-    HarborBoard(Collection_harbor& col);
+    friend class Board;
     void fillBoard();
     Deck* getDeck() { return deck;}
 };

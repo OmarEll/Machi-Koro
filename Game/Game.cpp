@@ -11,6 +11,13 @@
 #include "Bank.hpp"
 #include <iterator>
 #include "StandardExpansion.h"
+#include "../Collection/Collection_harbor.h"
+#include "../Collection/Collection_standard.h"
+#include "../Collection/Collection_GreenValley.h"
+#include "../Collection/Collection_deluxe.h"
+#include "HarborExpansion.h"
+#include "GreenValleyExpansion.h"
+#include "DeluxeExpansion.h"
 
 using namespace std;
 
@@ -20,9 +27,51 @@ Game :: Game() {
 
 }
 
-Game* Game::Singleton(string NomEdition, vector<Player*> joueurs, Collection&g) {
-    if (Game::Game_single == nullptr)
-        Game::Game_single = new StandardExpansion(joueurs, dynamic_cast<Collection_standard&>(g));
+// Conversion string en int pour switch
+constexpr unsigned int str2int(const char* str, int h = 0)
+{
+    return !str[h] ? 5381 : (str2int(str, h+1) * 33) ^ str[h];
+}
+
+Game* Game::Singleton(const char *const NomEdition, vector<Player*> joueurs) {
+    if (Game::Game_single == nullptr){
+    Collection *g = nullptr;
+        switch (str2int(NomEdition))
+        {
+            case str2int("Standard"):{
+                g = new Collection_standard();
+                break;
+            }
+            case str2int("Harbor"):{
+                g = new Collection_harbor();
+                break;
+            }
+            case str2int("Green Valley"):{
+                g = new Collection_GreenValley();
+                break;
+            }
+            case str2int("Deluxe"):{
+                g = new Collection_deluxe();
+                break;
+            }
+        }
+
+        Collection_standard *pt1 = dynamic_cast<Collection_standard*>(g);
+        if (pt1)
+            Game::Game_single = new StandardExpansion(joueurs, dynamic_cast<Collection_standard&>(*g));
+
+        Collection_harbor *pt2 = dynamic_cast<Collection_harbor*>(g);
+        if (pt2)
+            Game::Game_single = new HarborExpansion(joueurs, dynamic_cast<Collection_harbor&>(*g));
+
+        Collection_GreenValley* pt3 = dynamic_cast<Collection_GreenValley*>(g);
+        if (pt3)
+            Game::Game_single = new GreenValleyExpansion(joueurs, dynamic_cast<Collection_GreenValley&>(*g));
+
+        Collection_deluxe* pt4 = dynamic_cast<Collection_deluxe*>(g);
+        if (pt4)
+            Game::Game_single = new DeluxeExpansion(joueurs, dynamic_cast<Collection_deluxe&>(*g));
+    }
     return Game::Game_single;
 }
 
@@ -36,6 +85,7 @@ bool Game::Iswin(Player& current_player) {
 
 int Game::dice_turn(Player& current_player) {
     string choice;
+    dices.back().reset_dice();
     dices.front().rollDice();
     cout << " Le resultat du de donne " << dices.front().GetResult() << endl;
     if (current_player.hasLandmark(TrainStation)){

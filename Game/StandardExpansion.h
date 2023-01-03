@@ -4,10 +4,10 @@
 #include "../Collection/Collection_standard.h"
 class StandardExpansion : public Game {
 private :
-
+    StandardExpansion(vector<Player*>,Collection_standard&);
 
 public:
-    StandardExpansion(vector<Player*>,Collection_standard&);
+    friend class Game;
     ~StandardExpansion() = default;
     void DoTurn(Player& current_player) override;
     void Do_Game() override;

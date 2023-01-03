@@ -16,6 +16,7 @@ HarborExpansion::HarborExpansion(vector<Player *> joueur, Collection_harbor &col
     board_Game = Board::getInstance(col);
     dices.push_back(Dice());
     dices.push_back(Dice());
+    dices.push_back(Dice());
     bank_game = Bank::getInstance(joueur,2);
     Activation_order.push_back(RED);
     Activation_order.push_back(BLUE);
@@ -151,7 +152,64 @@ void HarborExpansion::DoTurn(Player &current_player) {
 }
 
 void HarborExpansion::Do_Game() {
+    initGame();
+    Player* test = nullptr;
+    vector <Player*>::iterator current_player = players.begin();
+    do{
+        if (current_player == players.end()){
+            current_player = players.begin();
+        }
+        test = *current_player;
+        DoTurn(**current_player);
+        if ((*current_player)->hasLandmark(AmusementPark) &&
+            dices.front().GetResult() == dices.back().GetResult()){
+            DoTurn(**current_player);
+        }
+        current_player++;
+    } while (!Iswin(*test));
 }
 
 void HarborExpansion::initGame() {
+    Establishment* baker= nullptr;
+    Establishment* wheat= nullptr;
+
+    for (auto bak : establishments){
+        if (bak->getCardName_Enum() == Bakery){
+            baker = bak;
+        }
+        if (bak->getCardName_Enum() == WheatField)
+            wheat = bak;
+    }
+    for(auto joueur : players){
+        joueur->getHand()->addEstablishment(baker->Clone(),*joueur);
+        joueur->getHand()->addEstablishment(wheat->Clone(),*joueur);
+        joueur->getHand()->addLandmark(CityHall);
+    }
+
+}
+
+int HarborExpansion::dice_turn(Player &current_player) {
+    string choice;
+    dices.front().rollDice();
+    cout << " Le resultat du de donne " << dices.front().GetResult() << endl;
+    if (current_player.hasLandmark(TrainStation)){
+        cout << "Voulez vous lancer un autre de ? " << endl;
+        cin >> choice;
+        if (choice == "oui"){
+            dices.back().rollDice();
+            if (current_player.hasLandmark(MoonTower)){
+                auto l = dices.begin();
+                //advance()
+            }
+            cout << " Le resultat des des donnent " << dices.front().GetResult()+dices.back().GetResult() << endl;
+            if (dices.front().GetResult()+dices.back().GetResult() >= 10 && current_player.hasLandmark(harbor)){
+                cout << "Vu que vous avez harbor on rajoute +2 ce qui donne " << 2+dices.front().GetResult()+dices.back().GetResult() << endl;
+                return 2+dices.front().GetResult()+dices.back().GetResult() ;
+            }
+            else{
+                return dices.front().GetResult()+dices.back().GetResult() ;
+            }
+        }
+    }
+    return dices.front().GetResult();
 }

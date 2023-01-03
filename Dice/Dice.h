@@ -16,6 +16,7 @@ public :
     Dice() : faces(6) {};
     ~Dice() = default;
     void rollDice();
+    void reset_dice(){result = 0;}
     int GetResult(){return result;}
 };
 
