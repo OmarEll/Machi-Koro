@@ -188,7 +188,7 @@ void StandardExpansion::initGame() {
             wheat = bak;
 
         // POUR TEST A ENLEVER A LA FIN
-        if (bak->getCardName_Enum() == Stadium)
+        if (bak->getCardName_Enum() == Office)
             stad = bak;
         if (bak->getCardName_Enum() == ProduceMarket)
             cheese = bak;

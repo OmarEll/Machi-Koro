@@ -30,6 +30,9 @@ void Hand::removeEstablishment(Establishment* card){
     EstablishmentsNames cardName=card->getCardName_Enum();
     if(establishments.find(cardName)!=establishments.end()){
         establishments[cardName].pop();
+        if (establishments[cardName].size()==0){
+            establishments.erase(cardName);
+        }
     }
 }
 

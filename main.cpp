@@ -30,7 +30,7 @@ using namespace std;
 // C'est Sarah
 int main(){
     vector<Player*> Gamer;
-    Collection_harbor* test = new Collection_harbor ();
+    Collection_standard* test = new Collection_standard ();
     Gamer.push_back(new Human("Omar",*test));
     Gamer.push_back(new Human("Sarah",*test));
     Gamer.push_back(new Human("Julie",*test));
@@ -38,7 +38,7 @@ int main(){
     cout << "Hello World" << endl;
     //Board* test2 = new StandardBoard(*test);
     //test2->displayCards();
-    Game *party = Game::Singleton("Harbor",Gamer);
+    Game *party = Game::Singleton("Standard",Gamer);
     cout << party->Get_Extension()<< endl;
     party->getBoard()->displayCards();
     party->Do_Game();

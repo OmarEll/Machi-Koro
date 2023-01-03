@@ -7,6 +7,7 @@
 #include "Bank.hpp"
 #include "Landmark.h"
 #include "Enums.hpp"
+#include <ostream>
 #include <string>
 
 bool Establishment::activate(int diceRolled){
@@ -196,7 +197,8 @@ void Office::launchEffect(Game& g, Player& currentPlayer){ //echange une carte a
 
     while (CardOwner== nullptr) {
         cout<<"Entrez le nom de la carte que vous souhaitez donner (elle ne doit pas etre de type tower) :\n";
-        cin >> nameOfCardOwner;
+        ::fflush(stdin);
+        getline(cin,nameOfCardOwner);
         //Owner
         CardOwner = nullptr;
         for (const auto &card: currentPlayer.getHand()->getEstablishments()) { // On verifie que la carte choisi est dans la main du joueur et qu'elle n'est pas de type tower
@@ -212,7 +214,8 @@ void Office::launchEffect(Game& g, Player& currentPlayer){ //echange une carte a
 
     while (CardExchanger== nullptr) {
         cout << "Entrez le nom de la carte que vous souhaitez recuperer (elle ne doit pas etre de type tower) :\n";
-        cin>>nameOfCardExchanger;
+        ::fflush(stdin);
+        getline(cin,nameOfCardExchanger);
         //Exchanger
         /*
         EnumParser<EstablishmentsNames> fieldTypeParser;
