@@ -51,20 +51,18 @@ public:
     void virtual DoTurn (Player& current_player) = 0;
     void virtual Do_Game() = 0;
     bool Iswin(Player& current_player);
-    ostream& Afficher_etat_partie (ostream& standard);
-    static Game* Singleton (string NomEdition, vector<Player*>, Collection&);
+    static Game* Singleton (const char *const NomEdition, vector<Player*>);
     Expansions Get_Extension() { return expansionName;}
     Bank* getBank() {return bank_game;}
     Board* getBoard(){ return board_Game; }
     //const list<Player>& getPlayers() const {return Players_Game};
     vector<Player*> getPlayers() const {return players;}
-    int dice_turn (Player& current_player);
+    virtual int dice_turn (Player& current_player);
     //Dice * GetDices(){return reinterpret_cast<Dice *>(dices);}
     list <Dice> GetDices(){return dices; }
     vector<Establishment*> getEstablishments(){return establishments;}
     Establishment* getEstablishmentByName(string estName);
     vector<Landmark*> getLandmarks(){return landmarks;}
     //
-
 };
 

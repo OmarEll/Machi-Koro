@@ -8,10 +8,10 @@ class Deck;
 
 class DeluxeBoard : public Board {
 private :
-    Deck* deck;
-
+    Deck* deck;; /////// A VOIR AVEC SARAH
+    DeluxeBoard(Collection_deluxe& col){};
 public:
-    DeluxeBoard(Collection_deluxe&);
+    friend class Board;
     void fillBoard();
     Deck* getDeck() { return deck;}
 };

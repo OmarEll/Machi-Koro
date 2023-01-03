@@ -17,7 +17,7 @@ enum Level{
     Hard
 };
 enum LandmarksNames{
-    RadioTower,TrainStation,ShoppingMall,AmusementPark, CityHall, HarborCard, Airport
+    RadioTower,TrainStation,ShoppingMall,AmusementPark, CityHall, HarborCard, Airport, harbor, MoonTower
 };
 enum EstablishmentsNames{
     WheatField, LivestockFarm, Bakery, Cafe, ConvenienceStore, Forest, Stadium, TvStation, Office, CheeseFactory,
