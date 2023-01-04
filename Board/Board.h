@@ -26,6 +26,6 @@ public :
     void setCards(map<EstablishmentsNames,stack<Establishment*>> establishments){  // inutile? a sup?
         cards=establishments;
     }
-    static Board* getInstance(Collection& g);
+    static Board* getInstance(Collection& g, Expansions);
     Board():cards(){}
 };

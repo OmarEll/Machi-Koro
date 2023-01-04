@@ -5,7 +5,6 @@
 #include "Establishment.h"
 #include "Standard/StandardBoard.h"
 #include "../Collection/Collection_harbor.h"
-#include "HarborExpansion.h"
 #include "Harbor/HarborBoard.h"
 #include "../Collection/Collection_GreenValley.h"
 #include "GreenValleyBoard.h"
@@ -116,24 +115,22 @@ void Board::displayCards() {
 }
 
 
-Board *Board::getInstance(Collection& g) { // faire switch avec en paramètre en string ou enum pour extension
+Board *Board::getInstance(Collection& g, Expansions test) { // faire switch avec en paramètre en string ou enum pour extension
     if(board_instance==nullptr){
-
-        Collection_standard *pt1 = dynamic_cast<Collection_standard*>(&g);
-        if (pt1)
-            board_instance= new StandardBoard(dynamic_cast<Collection_standard&>(g));
-
-        Collection_harbor *pt2 = dynamic_cast<Collection_harbor*>(&g);
-        if (pt2)
-            board_instance =new HarborBoard(dynamic_cast<Collection_harbor&>(g));
-
-        Collection_GreenValley* pt3 = dynamic_cast<Collection_GreenValley*>(&g);
-        if (pt3)
-            board_instance= new GreenValleyBoard(dynamic_cast<Collection_GreenValley&>(g));
-
-        Collection_deluxe* pt4 = dynamic_cast<Collection_deluxe*>(&g);
-        if (pt4)
-            board_instance = new DeluxeBoard(dynamic_cast<Collection_deluxe&>(g));
+        switch (test) {
+            case Standard :
+                board_instance= new StandardBoard(dynamic_cast<Collection_standard&>(g));
+                break;
+            case Harbor :
+                board_instance =new HarborBoard(dynamic_cast<Collection_harbor&>(g));
+                break;
+            case GreenValley:
+                board_instance= new GreenValleyBoard(dynamic_cast<Collection_GreenValley&>(g));
+                break;
+            case Deluxe :
+                board_instance = new DeluxeBoard(dynamic_cast<Collection_deluxe&>(g));
+                break;
+        }
     }
     return board_instance;
 }

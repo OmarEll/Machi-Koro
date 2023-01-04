@@ -3,6 +3,7 @@
 #include "../Collection/Collection_GreenValley.h"
 
 class GreenValleyBoard : public Board {
+private :
     GreenValleyBoard(Collection_GreenValley&);
 public :
     friend class Board;

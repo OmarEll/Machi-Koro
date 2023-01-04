@@ -11,10 +11,11 @@
 StandardExpansion::StandardExpansion (vector<Player*> joueur, Collection_standard& col){
     players = joueur;
     establishments = col.GetEstablishment();
+    expansionName = Standard;
     landmarks = col.GetLandmark();
     minPlayers = 2;
     maxPlayers = 4;
-    board_Game = Board::getInstance(col);
+    board_Game = Board::getInstance(col,expansionName);
     dices.push_back(Dice());
     dices.push_back(Dice());
     bank_game = Bank::getInstance(joueur,2);
@@ -22,7 +23,6 @@ StandardExpansion::StandardExpansion (vector<Player*> joueur, Collection_standar
     Activation_order.push_back(BLUE);
     Activation_order.push_back(GREEN);
     Activation_order.push_back(PURPLE);
-    expansionName = Standard;
 
 }
 

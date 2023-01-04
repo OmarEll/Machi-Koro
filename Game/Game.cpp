@@ -34,43 +34,30 @@ constexpr unsigned int str2int(const char* str, int h = 0)
 }
 
 Game* Game::Singleton(const char *const NomEdition, vector<Player*> joueurs) {
-    if (Game::Game_single == nullptr){
-    Collection *g = nullptr;
-        switch (str2int(NomEdition))
-        {
-            case str2int("Standard"):{
+    if (Game::Game_single == nullptr) {
+        Collection *g = nullptr;
+        switch (str2int(NomEdition)) {
+            case str2int("Standard"): {
                 g = new Collection_standard();
+                Game::Game_single = new StandardExpansion(joueurs, dynamic_cast<Collection_standard &>(*g));
                 break;
             }
-            case str2int("Harbor"):{
+            case str2int("Harbor"): {
                 g = new Collection_harbor();
+                Game::Game_single = new HarborExpansion(joueurs, dynamic_cast<Collection_harbor &>(*g));
                 break;
             }
-            case str2int("Green Valley"):{
+            case str2int("Green Valley"): {
                 g = new Collection_GreenValley();
+                Game::Game_single = new GreenValleyExpansion(joueurs, dynamic_cast<Collection_GreenValley &>(*g));
                 break;
             }
-            case str2int("Deluxe"):{
+            case str2int("Deluxe"): {
                 g = new Collection_deluxe();
+                Game::Game_single = new DeluxeExpansion(joueurs, dynamic_cast<Collection_deluxe &>(*g));
                 break;
             }
         }
-
-        Collection_standard *pt1 = dynamic_cast<Collection_standard*>(g);
-        if (pt1)
-            Game::Game_single = new StandardExpansion(joueurs, dynamic_cast<Collection_standard&>(*g));
-
-        Collection_harbor *pt2 = dynamic_cast<Collection_harbor*>(g);
-        if (pt2)
-            Game::Game_single = new HarborExpansion(joueurs, dynamic_cast<Collection_harbor&>(*g));
-
-        Collection_GreenValley* pt3 = dynamic_cast<Collection_GreenValley*>(g);
-        if (pt3)
-            Game::Game_single = new GreenValleyExpansion(joueurs, dynamic_cast<Collection_GreenValley&>(*g));
-
-        Collection_deluxe* pt4 = dynamic_cast<Collection_deluxe*>(g);
-        if (pt4)
-            Game::Game_single = new DeluxeExpansion(joueurs, dynamic_cast<Collection_deluxe&>(*g));
     }
     return Game::Game_single;
 }

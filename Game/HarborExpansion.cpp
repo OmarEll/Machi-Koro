@@ -11,9 +11,10 @@ HarborExpansion::HarborExpansion(vector<Player *> joueur, Collection_harbor &col
     players = joueur;
     establishments = col.GetEstablishment();
     landmarks = col.GetLandmark();
+    expansionName = Harbor;
     minPlayers = 2;
     maxPlayers = 5;
-    board_Game = Board::getInstance(col);
+    board_Game = Board::getInstance(col,expansionName);
     dices.push_back(Dice());
     dices.push_back(Dice());
     dices.push_back(Dice());
@@ -22,7 +23,6 @@ HarborExpansion::HarborExpansion(vector<Player *> joueur, Collection_harbor &col
     Activation_order.push_back(BLUE);
     Activation_order.push_back(GREEN);
     Activation_order.push_back(PURPLE);
-    expansionName = Harbor;
 
 }
 
