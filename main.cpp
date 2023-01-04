@@ -48,7 +48,6 @@ int main(){
 
 
     //main general
-    Collection_standard* test = new Collection_standard ();
     string choixExtension;
     cout << "A quelle extension du jeu Machi Koro voulez-vous jouer ? (Standard, Harbor, Green Valley ou Deluxe) \n";
     while(choixExtension != "Standard" && choixExtension != "Harbor" && choixExtension != "Green Valley" && choixExtension != "Deluxe"){
