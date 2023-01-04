@@ -4,7 +4,7 @@
 #include "../Collection/Collection_standard.h"
 class StandardExpansion : public Game {
 private :
-    StandardExpansion(vector<Player*>,Collection_standard&);
+    StandardExpansion(Collection_standard&);
 
 public:
     friend class Game;

@@ -55,19 +55,6 @@ int main(){
         ::fflush(stdin);
         getline(cin,choixExtension);
     }
-
-    int nbJoueurs = 0;
-    cout << "Quel est le nombre de joueurs ?\n";
-    ::fflush(stdin);
-    cin >> nbJoueurs;
-
-    for (int i = 1; i <= nbJoueurs; i++){
-        string nomJoueur;
-        cout << "Entrez le nom du " << i << "e joueur : \n";
-        ::fflush(stdin);
-        getline(cin,nomJoueur);
-        Gamer.push_back(new Human(nomJoueur,*test));
-    }
     const char * c = choixExtension.c_str();
     Game *party = Game::Singleton(c,Gamer);
     party->getBoard()->displayCards();

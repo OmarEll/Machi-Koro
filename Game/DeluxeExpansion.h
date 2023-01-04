@@ -8,7 +8,7 @@
 
 class DeluxeExpansion : public Game{
 public:
-    DeluxeExpansion(vector<Player*>,Collection_deluxe&){};
+    DeluxeExpansion(Collection_deluxe&){};
     ~DeluxeExpansion(){};
     void DoTurn(Player& current_player) override{};
     void Do_Game() override{};

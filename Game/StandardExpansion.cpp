@@ -6,10 +6,23 @@
 #include "../Bank/Bank.hpp"
 #include "../Card/Card.hpp"
 #include "StandardExpansion.h"
+#include "Human/Human.h"
 
 
-StandardExpansion::StandardExpansion (vector<Player*> joueur, Collection_standard& col){
-    players = joueur;
+StandardExpansion::StandardExpansion ( Collection_standard& col){
+    vector<Player*> Gamer;
+    int nbJoueurs = 0;
+    cout << "Quel est le nombre de joueurs ?\n";
+    ::fflush(stdin);
+    cin >> nbJoueurs;
+    for (int i = 1; i <= nbJoueurs; i++){
+        string nomJoueur;
+        cout << "Entrez le nom du " << i << "e joueur : \n";
+        ::fflush(stdin);
+        getline(cin,nomJoueur);
+        Gamer.push_back(new Human(nomJoueur,col));
+    }
+    players = Gamer;
     establishments = col.GetEstablishment();
     expansionName = Standard;
     landmarks = col.GetLandmark();
@@ -18,7 +31,7 @@ StandardExpansion::StandardExpansion (vector<Player*> joueur, Collection_standar
     board_Game = Board::getInstance(col,expansionName);
     dices.push_back(Dice());
     dices.push_back(Dice());
-    bank_game = Bank::getInstance(joueur,2);
+    bank_game = Bank::getInstance(players);
     Activation_order.push_back(RED);
     Activation_order.push_back(BLUE);
     Activation_order.push_back(GREEN);

@@ -6,9 +6,22 @@
 #include "../Collection/Collection_harbor.h"
 #include "../Board/Harbor/HarborBoard.h"
 #include "../Bank/Bank.hpp"
+#include "Human/Human.h"
 
-HarborExpansion::HarborExpansion(vector<Player *> joueur, Collection_harbor &col) {
-    players = joueur;
+HarborExpansion::HarborExpansion( Collection_harbor &col) {
+    vector<Player*> Gamer;
+    int nbJoueurs = 0;
+    cout << "Quel est le nombre de joueurs ?\n";
+    ::fflush(stdin);
+    cin >> nbJoueurs;
+    for (int i = 1; i <= nbJoueurs; i++){
+        string nomJoueur;
+        cout << "Entrez le nom du " << i << "e joueur : \n";
+        ::fflush(stdin);
+        getline(cin,nomJoueur);
+        Gamer.push_back(new Human(nomJoueur,col));
+    }
+    players = Gamer;
     establishments = col.GetEstablishment();
     landmarks = col.GetLandmark();
     expansionName = Harbor;
@@ -18,7 +31,7 @@ HarborExpansion::HarborExpansion(vector<Player *> joueur, Collection_harbor &col
     dices.push_back(Dice());
     dices.push_back(Dice());
     dices.push_back(Dice());
-    bank_game = Bank::getInstance(joueur,2);
+    bank_game = Bank::getInstance(players,2);
     Activation_order.push_back(RED);
     Activation_order.push_back(BLUE);
     Activation_order.push_back(GREEN);

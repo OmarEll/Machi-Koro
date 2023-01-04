@@ -10,7 +10,7 @@
 
 
 class HarborExpansion : public Game {
-    HarborExpansion(vector<Player*>,Collection_harbor&);
+    HarborExpansion(Collection_harbor&);
 public :
     friend class Game;
     ~HarborExpansion(){};

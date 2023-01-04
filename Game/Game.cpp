@@ -18,6 +18,7 @@
 #include "HarborExpansion.h"
 #include "GreenValleyExpansion.h"
 #include "DeluxeExpansion.h"
+#include "Human/Human.h"
 
 using namespace std;
 
@@ -39,22 +40,22 @@ Game* Game::Singleton(const char *const NomEdition, vector<Player*> joueurs) {
         switch (str2int(NomEdition)) {
             case str2int("Standard"): {
                 g = new Collection_standard();
-                Game::Game_single = new StandardExpansion(joueurs, dynamic_cast<Collection_standard &>(*g));
+                Game::Game_single = new StandardExpansion(dynamic_cast<Collection_standard &>(*g));
                 break;
             }
             case str2int("Harbor"): {
                 g = new Collection_harbor();
-                Game::Game_single = new HarborExpansion(joueurs, dynamic_cast<Collection_harbor &>(*g));
+                Game::Game_single = new HarborExpansion(dynamic_cast<Collection_harbor &>(*g));
                 break;
             }
             case str2int("Green Valley"): {
                 g = new Collection_GreenValley();
-                Game::Game_single = new GreenValleyExpansion(joueurs, dynamic_cast<Collection_GreenValley &>(*g));
+                Game::Game_single = new GreenValleyExpansion(dynamic_cast<Collection_GreenValley &>(*g));
                 break;
             }
             case str2int("Deluxe"): {
                 g = new Collection_deluxe();
-                Game::Game_single = new DeluxeExpansion(joueurs, dynamic_cast<Collection_deluxe &>(*g));
+                Game::Game_single = new DeluxeExpansion(dynamic_cast<Collection_deluxe &>(*g));
                 break;
             }
         }

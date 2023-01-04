@@ -9,7 +9,7 @@
 class GreenValleyExpansion : public Game{
 public:
     friend class Game;
-    GreenValleyExpansion(vector<Player*>,Collection_GreenValley&){};
+    GreenValleyExpansion(Collection_GreenValley&){};
     ~GreenValleyExpansion(){};
     void DoTurn(Player& current_player) override{};
     void Do_Game() override{};
