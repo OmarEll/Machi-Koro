@@ -59,7 +59,8 @@ for (auto pl : players){
             for (const auto &card: other_player->getHand()->getEstablishments()) { // Si la carte est de type 'bread' ou 'coffee' elle permet de gagner 1 coin de plus
                 Establishment *est = (other_player->getHand()->getEstablishments()[card.first].top());
                 if (est->getType() == bread || est->getType() == coffee) {
-                    est->setNumberOfCoinsEarned(est->getEarnedCoins() + other_player->getHand()->getEstablishments()[card.first].size());
+                    //est->setNumberOfCoinsEarned(est->getEarnedCoins() + other_player->getHand()->getEstablishments()[card.first].size());
+                    est->setNumberOfCoinsEarned(est->getEarnedCoins()+1);
                     cout << "je suis passée pour augmenter \n";
                 }
             }
@@ -128,7 +129,8 @@ for (auto pl : players){
             for (const auto &card: other_player->getHand()->getEstablishments()) { // Si la carte est de type 'bread' ou 'coffee' elle permet de gagner 1 coin de plus
                 Establishment *est = (other_player->getHand()->getEstablishments()[card.first].top());
                 if (est->getType() == bread || est->getType() == coffee) {
-                    est->setNumberOfCoinsEarned(est->getEarnedCoins() - other_player->getHand()->getEstablishments()[card.first].size());
+                    est->setNumberOfCoinsEarned(est->getEarnedCoins() - 1);
+                    //est->setNumberOfCoinsEarned(est->getEarnedCoins() - other_player->getHand()->getEstablishments()[card.first].size());
                     cout << "je suis passée pour diminuer \n";
                 }
             }
@@ -235,8 +237,10 @@ void StandardExpansion::initGame() {
             ran = bak;
     }
     for(auto joueur : players){
-        joueur->getHand()->addEstablishment(baker->Clone(),*joueur);
-        joueur->getHand()->addEstablishment(wheat->Clone(),*joueur);
+        for (int i =0 ; i < 2; i++){
+            joueur->getHand()->addEstablishment(baker->Clone(),*joueur);
+            joueur->getHand()->addEstablishment(wheat->Clone(),*joueur);
+        }
 
         // A SUPPRIMER
         joueur->getHand()->addEstablishment(stad->Clone(),*joueur);

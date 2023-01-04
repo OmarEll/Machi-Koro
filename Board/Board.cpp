@@ -15,14 +15,24 @@
 Board* Board::board_instance = nullptr;
 
 Establishment* Board::foundEstablishmentOnBoard(string choice) {
-    EnumParser<EstablishmentsNames> fieldTypeParser;
-    EstablishmentsNames val = fieldTypeParser.ParseSomeEnum(choice);
-    Establishment* tmp = nullptr;
-    for (auto establishment : cards){
-        if (val == establishment.first){
-            tmp = establishment.second.top();
-            this->cards[val].pop();
-            return tmp;
+    bool exist = false ;
+    for (auto str : cards){
+        if (choice == str.second.top()->getCardName())
+            exist =true;
+    }
+    if (exist){
+        EnumParser<EstablishmentsNames> fieldTypeParser;
+        EstablishmentsNames val = fieldTypeParser.ParseSomeEnum(choice);
+        Establishment* tmp = nullptr;
+        for (auto establishment : cards){
+            if (val == establishment.first){
+                tmp = establishment.second.top();
+                this->cards[val].pop();
+                if (cards[val].size() == 0){
+                    cards.erase(val);
+                }
+                return tmp;
+            }
         }
     }
     return nullptr;
