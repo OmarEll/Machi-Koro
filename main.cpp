@@ -30,7 +30,7 @@ using namespace std;
 // C'est Sarah
 int main(){
     vector<Player*> Gamer;
-
+/*
     Collection_standard* test = new Collection_standard ();
     Gamer.push_back(new Human("Omar",*test));
     Gamer.push_back(new Human("Sarah",*test));
@@ -44,39 +44,16 @@ int main(){
     party->getBoard()->displayCards();
     party->Do_Game();
     //test2->displayCards();
+*/
 
 
-    /*
     //main general
     Collection_standard* test = new Collection_standard ();
-    Game *party = Game::Singleton("Standard",Gamer);
     string choixExtension;
     cout << "A quelle extension du jeu Machi Koro voulez-vous jouer ? (Standard, Harbor, Green Valley ou Deluxe) \n";
-    ::fflush(stdin);
-    getline(cin,choixExtension);
-    bool bonChoixExtension = false;
-    while (!bonChoixExtension){
-        if (choixExtension == "Standard") {
-            Collection_standard* test = new Collection_standard ();
-            Game *party = Game::Singleton("Standard",Gamer);
-            bonChoixExtension = true;
-        }
-        else if (choixExtension == "Harbor") {
-            Collection_harbor* test = new Collection_harbor ();
-            Game *party = Game::Singleton("Harbor",Gamer);
-            bonChoixExtension = true;
-        }
-        else if (choixExtension == "Green Valley") {
-            Collection_GreenValley* test = new Collection_GreenValley();
-            Game *party = Game::Singleton("Green Valley",Gamer);
-            bonChoixExtension = true;
-        }
-        else if (choixExtension == "Deluxe") {
-            Collection_deluxe* test = new Collection_deluxe();
-            Game *party = Game::Singleton("Deluxe",Gamer);
-            bonChoixExtension = true;
-        }
-        else cout << "Le choix d'extension est invalide\n";
+    while(choixExtension != "Standard" && choixExtension != "Harbor" && choixExtension != "Green Valley" && choixExtension != "Deluxe"){
+        ::fflush(stdin);
+        getline(cin,choixExtension);
     }
 
     int nbJoueurs = 0;
@@ -91,11 +68,11 @@ int main(){
         getline(cin,nomJoueur);
         Gamer.push_back(new Human(nomJoueur,*test));
     }
-
+    const char * c = choixExtension.c_str();
+    Game *party = Game::Singleton(c,Gamer);
     party->getBoard()->displayCards();
     party->Do_Game();
 
-    */
     return 0;
 }
 
