@@ -58,9 +58,8 @@ for (auto pl : players){
         if (other_player->hasLandmark(ShoppingMall) != nullptr) {
             for (const auto &card: other_player->getHand()->getEstablishments()) { // Si la carte est de type 'bread' ou 'coffee' elle permet de gagner 1 coin de plus
                 Establishment *est = (other_player->getHand()->getEstablishments()[card.first].top());
-                int nbDeCartes=other_player->getHand()->getEstablishments()[card.first].size();
                 if (est->getType() == bread || est->getType() == coffee) {
-                    est->setNumberOfCoinsEarned(est->getEarnedCoins() + nbDeCartes);
+                    est->setNumberOfCoinsEarned(est->getEarnedCoins() + other_player->getHand()->getEstablishments()[card.first].size());
                     cout << "je suis passée pour augmenter \n";
                 }
             }
@@ -123,6 +122,19 @@ for (auto pl : players){
             }
         }
     }
+
+    for (auto other_player : players) {
+        if (other_player->hasLandmark(ShoppingMall) != nullptr) {
+            for (const auto &card: other_player->getHand()->getEstablishments()) { // Si la carte est de type 'bread' ou 'coffee' elle permet de gagner 1 coin de plus
+                Establishment *est = (other_player->getHand()->getEstablishments()[card.first].top());
+                if (est->getType() == bread || est->getType() == coffee) {
+                    est->setNumberOfCoinsEarned(est->getEarnedCoins() - other_player->getHand()->getEstablishments()[card.first].size());
+                    cout << "je suis passée pour diminuer \n";
+                }
+            }
+        }
+    }
+
     // On regarde si le joueur veut acheter un landmark
     choice = "";
     cout << current_player.getName() << " vous disposez de " << bank_game->getBalance(current_player.getId()) << " coins" << endl;
@@ -175,18 +187,6 @@ for (auto pl : players){
     }
     else cout << "Vous n'avez pas d'argent pour faire une action" << endl;
 
-
-    for (auto other_player : players) {
-        if (other_player->hasLandmark(ShoppingMall) != nullptr) {
-            for (const auto &card: other_player->getHand()->getEstablishments()) { // Si la carte est de type 'bread' ou 'coffee' elle permet de gagner 1 coin de plus
-                Establishment *est = (other_player->getHand()->getEstablishments()[card.first].top());
-                if (est->getType() == bread || est->getType() == coffee) {
-                    est->setNumberOfCoinsEarned(est->getEarnedCoins() - other_player->getHand()->getEstablishments()[card.first].size());
-                    cout << "je suis passée pour diminuer \n";
-                }
-            }
-        }
-    }
 
 }
 
