@@ -52,7 +52,7 @@ for (auto pl : players){
         }
     }
 
-    if (current_player.hasLandmark(AmusementPark) != nullptr){
+    if (current_player.hasLandmark(ShoppingMall) != nullptr){
         for (const auto&  card : current_player.getHand()->getEstablishments()){ // Si la carte est de type 'bread' ou 'coffee' elle permet de gagner 1 coin de plus
             Establishment* est= (current_player.getHand()->getEstablishments()[card.first].top());
             if(est->getType() == bread || est->getType() == coffee){
@@ -169,6 +169,17 @@ for (auto pl : players){
         }
     }
     else cout << "Vous n'avez pas d'argent pour faire une action" << endl;
+
+    if (current_player.hasLandmark(ShoppingMall) != nullptr){
+        for (const auto&  card : current_player.getHand()->getEstablishments()){ // Si la carte est de type 'bread' ou 'coffee' elle permet de gagner 1 coin de plus
+            Establishment* est= (current_player.getHand()->getEstablishments()[card.first].top());
+            if(est->getType() == bread || est->getType() == coffee){
+                est->setNumberOfCoinsEarned(est->getEarnedCoins() - 1);
+                cout << "je suis passée pour diminuer \n";
+            }
+        }
+    }
+
 }
 
 void StandardExpansion::Do_Game() {
@@ -223,7 +234,7 @@ void StandardExpansion::initGame() {
         joueur->getHand()->addEstablishment(stad->Clone(),*joueur);
         joueur->getHand()->addEstablishment(cheese->Clone(),*joueur);
         joueur->getHand()->addEstablishment(ran->Clone(),*joueur);
-        //joueur->getHand()->addLandmark(AmusementPark);
+        joueur->getHand()->addLandmark(ShoppingMall);
         //joueur->getHand()->addLandmark(TrainStation);
         }
 }

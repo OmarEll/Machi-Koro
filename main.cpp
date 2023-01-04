@@ -30,7 +30,7 @@ using namespace std;
 // C'est Sarah
 int main(){
     vector<Player*> Gamer;
-    /*
+
     Collection_standard* test = new Collection_standard ();
     Gamer.push_back(new Human("Omar",*test));
     Gamer.push_back(new Human("Sarah",*test));
@@ -44,8 +44,9 @@ int main(){
     party->getBoard()->displayCards();
     party->Do_Game();
     //test2->displayCards();
-    */
-    
+
+
+    /*
     //main general
     Collection_standard* test = new Collection_standard ();
     Game *party = Game::Singleton("Standard",Gamer);
@@ -94,7 +95,7 @@ int main(){
     party->getBoard()->displayCards();
     party->Do_Game();
 
-
+    */
     return 0;
 }
 
