@@ -6,7 +6,7 @@
 #include "Player.hpp"
 
 
-Hand::Hand(Collection& g){
+Hand::Hand(Collection_standard& g){
     for (auto est : g.GetLandmark()){
         landmarks.insert(pair<LandmarksNames,Landmark*>(est->getLandmarks(),est->Clone()));
     }

@@ -11,7 +11,7 @@ DeluxeBoard::DeluxeBoard(Collection_deluxe& col) : Board(){
 
     vector<Establishment*>* v = new vector<Establishment*>;
 
-    for(auto est : col.GetEstablishment()){
+    for(auto est : col.Collection_harbor::GetEstablishment()){
         if (est->getColor() != PURPLE){
             for (int i = 0; i < 6 ; i++){
                 v->push_back(est->Clone());}

@@ -6,12 +6,20 @@
 #define MACHI_KORO_COLLECTION_STANDARD_H
 
 
-#include "Collection.h"
+#include "../Collection/Collection_standard.h"
+#include "Establishment.h"
+#include "Landmark.h"
 
-class Collection_standard : virtual public Collection{
+class Collection_standard {
+protected:
+    vector<Establishment*> Establishment_Collection;
+    vector<Landmark*> Landmark_Collection;
 public :
     Collection_standard();
-    ~Collection_standard();
+    virtual ~Collection_standard();
+    vector<Establishment*> GetEstablishment(){return Establishment_Collection;}
+    vector<Landmark*> GetLandmark(){ return Landmark_Collection;}
+
 };
 
 

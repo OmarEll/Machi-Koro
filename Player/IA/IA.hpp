@@ -13,7 +13,7 @@ private:
     Strategy* strategy;
 public:
     friend class Game;
-    IA(Level lvl,Collection& g) : Player(("IA"+std::to_string(Player::id_counter)),g){
+    IA(Level lvl,Collection_standard& g) : Player(("IA"+std::to_string(Player::id_counter)),g){
         switch (lvl) {
             case Easy: strategy=new EasyLevel();break;
             case Medium: strategy=new MediumLevel();break;

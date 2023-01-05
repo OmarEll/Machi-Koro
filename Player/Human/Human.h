@@ -9,7 +9,7 @@ class Player;
 
 class Human : public Player{
 public:
-    Human(const string& nm,Collection& g): Player(nm,g){};
+    Human(const string& nm,Collection_standard& g): Player(nm,g){};
     bool isAI() override { return false;}
 };
 

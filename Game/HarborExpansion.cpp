@@ -8,6 +8,23 @@
 #include "../Bank/Bank.hpp"
 #include "Human/Human.h"
 
+HarborExpansion::HarborExpansion(vector<Player*> joueur, Collection_standard& col){
+    players = joueur;
+    establishments = col.GetEstablishment();
+    landmarks = col.GetLandmark();
+    minPlayers = 2;
+    maxPlayers = 4;
+    expansionName = Harbor;
+    board_Game = Board::getInstance(col,expansionName);
+    dices.push_back(Dice());
+    dices.push_back(Dice());
+    bank_game = Bank::getInstance(joueur,2);
+    Activation_order.push_back(RED);
+    Activation_order.push_back(BLUE);
+    Activation_order.push_back(GREEN);
+    Activation_order.push_back(PURPLE);
+
+}
 HarborExpansion::HarborExpansion( Collection_harbor &col) {
     vector<Player*> Gamer;
     int nbJoueurs = 0;

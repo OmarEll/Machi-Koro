@@ -5,7 +5,7 @@
 #include <stack>
 //#include "../Card/Establishment/Establishment.h"
 #include "Enums.hpp"
-#include "../Collection/Collection.h"
+#include "../Collection/Collection_standard.h"
 
 using namespace std;
 
@@ -26,6 +26,6 @@ public :
     void setCards(map<EstablishmentsNames,stack<Establishment*>> establishments){  // inutile? a sup?
         cards=establishments;
     }
-    static Board* getInstance(Collection& g, Expansions);
+    static Board* getInstance(Collection_standard& g, Expansions);
     Board():cards(){}
 };

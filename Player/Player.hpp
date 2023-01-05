@@ -20,7 +20,7 @@ protected:
     Hand hand;
 public:
     static int id_counter;
-    Player(const string& nm,Collection& g):idPlayer(id_counter++),name(nm),hand(g){};
+    Player(const string& nm,Collection_standard& g):idPlayer(id_counter++),name(nm),hand(g){};
 
     /* GETTERS & SETTERS*/
     const int& getId() const { return idPlayer; };

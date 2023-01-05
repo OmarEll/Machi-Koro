@@ -6,7 +6,7 @@
 class HarborBoard : public Board {
 private :
     Deck* deck;
-    HarborBoard(Collection_harbor&);     /////// A VOIR AVEC SARAH
+    HarborBoard(Collection_harbor&);
 public :
     friend class Board;
     void fillBoard();

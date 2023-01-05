@@ -20,7 +20,6 @@
 #include "Player/IA/IA.hpp"
 #include "Player/Human/Human.h"
 #include "UTILS/Enums.hpp"
-#include "Collection/Collection.h"
 #include "Collection/Collection_standard.h"
 #include "Collection/Collection_GreenValley.h"
 #include "Collection/Collection_harbor.h"

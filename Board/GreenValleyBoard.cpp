@@ -1,7 +1,7 @@
 
 #include "GreenValleyBoard.h"
 #include "Establishment.h"
-#include "../Collection/Collection.h"
+#include "../Collection/Collection_standard.h"
 
 void GreenValleyBoard::addEstablishmentToBoard(Establishment *e) {  // pour international exibit hall
     for (auto& establishment : cards){

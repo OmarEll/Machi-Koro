@@ -115,7 +115,7 @@ void Board::displayCards() {
 }
 
 
-Board *Board::getInstance(Collection& g, Expansions test) { // faire switch avec en paramètre en string ou enum pour extension
+Board *Board::getInstance(Collection_standard& g, Expansions test) { // faire switch avec en paramètre en string ou enum pour extension
     if(board_instance==nullptr){
         switch (test) {
             case Standard :

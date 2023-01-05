@@ -13,7 +13,7 @@ class Deck{
 protected :
     stack<Establishment*> cardsDeck;
 public :
-    explicit Deck(vector<Establishment*>);
+    explicit Deck(vector<Establishment*>*);
     Establishment* drawCard();
     void addCardToDeck(Establishment* c);
 };

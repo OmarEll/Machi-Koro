@@ -7,6 +7,7 @@ private :
     StandardExpansion(Collection_standard&);
 
 public:
+    StandardExpansion(vector<Player *> joueur, Collection_standard &col);
     friend class Game;
     ~StandardExpansion() = default;
     void DoTurn(Player& current_player) override;

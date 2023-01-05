@@ -13,15 +13,18 @@ void HarborBoard::fillBoard() {
         if (cardOffDeck== nullptr) {   // pioche vide donc on ne peut pas remplir le board
             return;
         }
+        bool found = false;
         for(auto pair : cards){
             if (pair.first == cardOffDeck->getCardName_Enum()){
+                found = true;
                 pair.second.push(cardOffDeck);
-                return;
             }
         }
-        stack<Establishment*>* newPile = nullptr;
-        newPile->push(cardOffDeck);
-        cards.insert(pair<EstablishmentsNames,stack<Establishment*>>(cardOffDeck->getCardName_Enum(),*newPile));
+        if (found == false){
+            stack<Establishment*>* newPile = new stack<Establishment*>;
+            newPile->push(cardOffDeck);
+            cards.insert(pair<EstablishmentsNames,stack<Establishment*>>(cardOffDeck->getCardName_Enum(),*newPile));
+        }
     }
 }
 
@@ -40,14 +43,7 @@ HarborBoard::HarborBoard(Collection_harbor& col):Board() {
                  v->push_back(est->Clone());}
          }
      }
-
-     size_t nb = v->size();
-     for (size_t i=0; i<nb;i++){
-         size_t j = rand()%v->size() +1;
-         getDeck()->addCardToDeck(v[j].back());
-         v->erase(v->begin() + j);
-     }
-
+    deck = new Deck(v);
      fillBoard();
 }
 

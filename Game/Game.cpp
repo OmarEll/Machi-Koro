@@ -36,7 +36,7 @@ constexpr unsigned int str2int(const char* str, int h = 0)
 
 Game* Game::Singleton(const char *const NomEdition) {
     if (Game::Game_single == nullptr) {
-        Collection *g = nullptr;
+        Collection_standard *g = nullptr;
         switch (str2int(NomEdition)) {
             case str2int("Standard"): {
                 g = new Collection_standard();
@@ -54,8 +54,8 @@ Game* Game::Singleton(const char *const NomEdition) {
                 break;
             }
             case str2int("Deluxe"): {
-                g = new Collection_deluxe();
-                Game::Game_single = new DeluxeExpansion(dynamic_cast<Collection_deluxe &>(*g));
+                /*g = new Collection_deluxe();
+                Game::Game_single = new DeluxeExpansion(dynamic_cast<Collection_deluxe &>(*g));*/
                 break;
             }
         }

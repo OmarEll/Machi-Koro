@@ -4,7 +4,7 @@
 #include <stack>
 //-------------
 #include "../UTILS/Enums.hpp"
-#include "../Collection/Collection.h"
+#include "../Collection/Collection_standard.h"
 
 class  Establishment;
 class Landmark;
@@ -18,7 +18,7 @@ private:
     map<LandmarksNames,Landmark*> landmarks;
 public:
     friend class Establishment;
-    Hand(Collection&);
+    Hand(Collection_standard&);
     void addEstablishment(Establishment*, Player&);
     void removeEstablishment(Establishment*);
     void addLandmark(LandmarksNames name);
