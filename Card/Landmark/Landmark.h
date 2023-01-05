@@ -64,7 +64,7 @@ public:
 
 class HarborCard : public Landmark {
 public:
-    HarborCard(): Landmark("Harbor", "If the dice total is 10 or more, you may add 2 to the total, on your turn only.",2,Harbor, tower){}
+    HarborCard(): Landmark("Harbor Card", "If the dice total is 10 or more, you may add 2 to the total, on your turn only.",2,Harbor, tower){}
     //If the dice total is 10 or more, you may add 2 to the total, on your turn only.
 };
 

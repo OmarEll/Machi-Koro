@@ -30,7 +30,6 @@ HarborExpansion::HarborExpansion( Collection_harbor &col) {
     board_Game = Board::getInstance(col,expansionName);
     dices.push_back(Dice());
     dices.push_back(Dice());
-    dices.push_back(Dice());
     bank_game = Bank::getInstance(players,2);
     Activation_order.push_back(RED);
     Activation_order.push_back(BLUE);
@@ -113,6 +112,10 @@ void HarborExpansion::DoTurn(Player &current_player) {
             }
         }
     }
+
+    if (current_player.hasLandmark(CityHall) && bank_game->getBalance(current_player.getId()) == 0){
+        bank_game->withdraw(current_player.getId(),1);
+    }
     // On regarde si le joueur veut acheter un landmark
     choice = "";
     cout << current_player.getName() << " vous disposez de " << bank_game->getBalance(current_player.getId()) << " coins" << endl;
@@ -159,8 +162,14 @@ void HarborExpansion::DoTurn(Player &current_player) {
                 }
             }
         }
-        else
+        else{
             cout << "Vous choisissez de ne faire aucune action" << endl;
+            if (current_player.hasLandmark(Airport)){
+                bank_game->withdraw(current_player.getId(),10);
+                cout << current_player.getName() << " gagne 10 coins grace a airport" << endl;
+            }
+        }
+
     }
 }
 
@@ -210,14 +219,17 @@ int HarborExpansion::dice_turn(Player &current_player) {
         cin >> choice;
         if (choice == "oui"){
             dices.back().rollDice();
-            if (current_player.hasLandmark(MoonTower)){
-                auto l = dices.begin();
-                //advance()
-            }
             cout << " Le resultat des des donnent " << dices.front().GetResult()+dices.back().GetResult() << endl;
-            if (dices.front().GetResult()+dices.back().GetResult() >= 10 && current_player.hasLandmark(harbor)){
-                cout << "Vu que vous avez harbor on rajoute +2 ce qui donne " << 2+dices.front().GetResult()+dices.back().GetResult() << endl;
-                return 2+dices.front().GetResult()+dices.back().GetResult() ;
+            if (dices.front().GetResult()+dices.back().GetResult() >= 10 && current_player.hasLandmark(HarborCard)){
+                cout << "Voulez vous rajoutez +2 à vos des ? " << endl;
+                cin >> choice;
+                if (choice == "oui"){
+                    cout << "Vu que vous avez harbor on rajoute +2 ce qui donne " << 2+dices.front().GetResult()+dices.back().GetResult() << endl;
+                    return 2+dices.front().GetResult()+dices.back().GetResult() ;
+                }
+                else {
+                    return dices.front().GetResult()+dices.back().GetResult() ;
+                }
             }
             else{
                 return dices.front().GetResult()+dices.back().GetResult() ;

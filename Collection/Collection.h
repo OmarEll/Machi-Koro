@@ -8,8 +8,7 @@
 #ifndef MACHI_KORO_COLLECTION_H
 #define MACHI_KORO_COLLECTION_H
 
-// A METTRE EN SINGLETON
-// Et mettre en abstraite non??
+
 
 using namespace std;
 

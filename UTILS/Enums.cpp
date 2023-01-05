@@ -48,7 +48,6 @@ template<> EnumParser<LandmarksNames>::EnumParser()
     enumMap["Harbor Card"] = HarborCard;
     enumMap["Airport"] = Airport;
     enumMap["Moon Tower"]= MoonTower;
-    enumMap["Harbor"] = harbor;
 }
 
 std::string getExpansionName(Expansions expansion)
