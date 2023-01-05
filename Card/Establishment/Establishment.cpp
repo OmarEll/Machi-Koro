@@ -388,7 +388,13 @@ class FlowerShop *FlowerShop::Clone() {
 
 /* Redefinition des establishments avec un effet de type "If you have a Harbor, gain x coins"*/
 void MackerelBoat::launchEffect(Game& g, Player& currentPlayer){
-    if (hasHarbor()) Establishment::launchEffect(g, currentPlayer);
+    if (hasHarbor()) {
+        cout << currentPlayer.getName() << " gagne " << getEarnedCoins()<< " coins grace a " << getCardName()<< endl;
+        Establishment::launchEffect(g, currentPlayer);
+    }
+    else{
+        cout << currentPlayer.getName() << " ne possedant pas de Harbor Card, le joueur ne gagne pas de coins avec " << getCardName() <<endl;
+    };
 }
 
 class MackerelBoat *MackerelBoat::Clone() {
@@ -408,7 +414,18 @@ class MackerelBoat *MackerelBoat::Clone() {
 }
 
 void SushiBar::launchEffect(Game& g, Player& currentPlayer){
-    if (hasHarbor()) Establishment::launchEffect(g, currentPlayer);
+    if (hasHarbor()) {
+        int balance_current= g.getBank()->getBalance(currentPlayer.getId());
+        if (balance_current >= getEarnedCoins()) { //le joueur qui doit payer a assez de coins pour payer
+            cout << getOwner()->getName() << " recoit " << getEarnedCoins() << " de " << currentPlayer.getName() << " par " << getCardName() << endl;
+        } else {                                    //le joueur qui doit payer n'a pas assez de coins pour payer donc il donne ce qu'il a
+            cout << getOwner()->getName() << " recoit uniquement " << balance_current << " de " << currentPlayer.getName() << " par " << getCardName() << " parce que ce joueur n'a pas assee pour payer entierement" << endl;
+        }
+        Establishment::launchEffect(g, currentPlayer);
+    }
+    else{
+        cout << currentPlayer.getName() << " ne possedant pas de Harbor Card, le joueur ne gagne pas de coins avec " << getCardName() <<endl;
+    };
 }
 
 class SushiBar *SushiBar::Clone() {
@@ -431,7 +448,15 @@ void TunaBoat::launchEffect(Game& g, Player& currentPlayer){
     //On anyone's turn: The current player rolls 2 dice. If you have a harbor you get as many coins as the dice total.
     list<Dice> tab = g.GetDices();
     setNumberOfCoinsEarned( tab.front().GetResult() + tab.back().GetResult());
-    if (hasHarbor() && tab.back().GetResult() != 0) Establishment::launchEffect(g, currentPlayer);
+    //if (hasHarbor() && tab.back().GetResult() != 0) Establishment::launchEffect(g, currentPlayer);
+
+    if (hasHarbor()) {
+        cout << currentPlayer.getName() << " gagne " << getEarnedCoins()<< " coins grace a " << getCardName()<< endl;
+        Establishment::launchEffect(g, currentPlayer);
+    }
+    else{
+        cout << currentPlayer.getName() << " ne possedant pas de Harbor Card, le joueur ne gagne pas de coins avec " << getCardName() <<endl;
+    };
 }
 
 class TunaBoat *TunaBoat::Clone() {

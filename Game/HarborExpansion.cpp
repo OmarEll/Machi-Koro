@@ -29,8 +29,10 @@ HarborExpansion::HarborExpansion( Collection_harbor &col) {
     vector<Player*> Gamer;
     int nbJoueurs = 0;
     cout << "Quel est le nombre de joueurs ?\n";
-    ::fflush(stdin);
-    cin >> nbJoueurs;
+    //::fflush(stdin);
+    //cin >> nbJoueurs;
+    nbJoueurs = 2; //test
+    /*
     for (int i = 1; i <= nbJoueurs; i++){
         string nomJoueur;
         cout << "Entrez le nom du " << i << "e joueur : \n";
@@ -38,6 +40,11 @@ HarborExpansion::HarborExpansion( Collection_harbor &col) {
         getline(cin,nomJoueur);
         Gamer.push_back(new Human(nomJoueur,col));
     }
+    */
+    //test
+    Gamer.push_back(new Human("Julie",col));
+    Gamer.push_back(new Human("Sarah",col));
+    //fin test
     players = Gamer;
     establishments = col.GetEstablishment();
     landmarks = col.GetLandmark();
@@ -88,11 +95,19 @@ void HarborExpansion::DoTurn(Player &current_player) {
             // On regarde si le nombre correspond à la carte rouge d'un autre joueur;
             for (auto red_card : other_player->getHand()->getColorCards(RED)){
                 if (red_card->activate(dice)){
-                    cout << red_card->getOwner()->getName() << " recoit " << red_card->getEarnedCoins() * other_player->getHand()->
-                            getEstablishments()[red_card->getCardName_Enum()].size() << " de " << current_player.getName() << "par" << red_card->getCardName() << endl;
+                    if (red_card->getCardName_Enum() != SushiBar){
+                        int balance_current= getBank()->getBalance(current_player.getId());
+                        if (balance_current >= red_card->getEarnedCoins()) { //le joueur qui doit payer a assez de coins pour payer
+                            cout << red_card->getOwner()->getName() << " recoit " << red_card->getEarnedCoins() * other_player->getHand()->
+                                    getEstablishments()[red_card->getCardName_Enum()].size() << " de " << current_player.getName() << " par " << red_card->getCardName() << endl;
+                        } else {                                    //le joueur qui doit payer n'a pas assez de coins pour payer donc il donne ce qu'il a
+                            cout << red_card->getOwner()->getName() << " recoit uniquement " << balance_current << " de " << current_player.getName() << " par " << red_card->getCardName() << " parce que ce joueur n'a pas assee pour payer entierement" << endl;
+                        }
+                    }
                     for (int i = 0 ; i < other_player->getHand()->getEstablishments()[red_card->getCardName_Enum()].size();i++){
                         red_card->launchEffect(*this, current_player);
                     }
+
                 }
             }
         }
@@ -108,7 +123,7 @@ void HarborExpansion::DoTurn(Player &current_player) {
 
             // Si le joueur est le current player et que sa cartes n'est pas rouge et doit être activé
             if (current_player.getId() == all_players->getId() && cards->getColor() != RED && cards->activate(dice)){
-                if (cards->getColor() != PURPLE && cards->getCardName_Enum() != FurnitureFactory && cards->getCardName_Enum() != CheeseFactory && cards->getCardName_Enum() != ProduceMarket){
+                if (cards->getColor() != PURPLE && cards->getCardName_Enum() != FurnitureFactory && cards->getCardName_Enum() != CheeseFactory && cards->getCardName_Enum() != ProduceMarket && cards->getCardName_Enum() != MackerelBoat && cards->getCardName_Enum() != TunaBoat && cards->getCardName_Enum() != SushiBar){
                     cout << current_player.getName() << " gagne " << cards->getEarnedCoins() * current_player.getHand()->getEstablishments()[cards->getCardName_Enum()].size() << " coins grace a " << cards->getCardName()<< endl;
                     for (int i = 0 ; i < current_player.getHand()->getEstablishments()[cards->getCardName_Enum()].size();i++){
                         cards->launchEffect(*this,current_player);
@@ -123,7 +138,8 @@ void HarborExpansion::DoTurn(Player &current_player) {
             if (current_player.getId() != all_players->getId() &&
                 cards->getColor() == BLUE &&
                 cards->activate(dice)){
-                cout << all_players->getName() << " gagne " << cards->getEarnedCoins() * (all_players->getHand()->getEstablishments()[cards->getCardName_Enum()].size()) << " coins " <<cards->getCardName()<< endl;
+                if (cards->getCardName_Enum() != MackerelBoat && cards->getCardName_Enum() != TunaBoat && !current_player.hasLandmark(HarborCard))
+                    cout << all_players->getName() << " gagne " << cards->getEarnedCoins() * (all_players->getHand()->getEstablishments()[cards->getCardName_Enum()].size()) << " coins " <<cards->getCardName()<< endl;
                 for (int i = 0 ; i < all_players->getHand()->getEstablishments()[cards->getCardName_Enum()].size();i++)
                     cards->launchEffect(*this,*all_players);
             }
@@ -155,17 +171,17 @@ void HarborExpansion::DoTurn(Player &current_player) {
         }
     }
     else {
-        if (choice == "Landmark"){
+        if (choice == "Landmark") {
             int test = 0;
-            while(test == 0) {
+            while (test == 0) {
                 cout << "Quel Landmark voulez-vous acheter ?" << endl;
-                for (auto Land : current_player.getHand()->getLandmarks()){
-                    if (!Land.second->isConstructed()){
+                for (auto Land: current_player.getHand()->getLandmarks()) {
+                    if (!Land.second->isConstructed()) {
                         cout << Land.second->getCardName() << "\nPrix = " << Land.second->getCost() << endl;
                     }
                 }
                 ::fflush(stdin);
-                getline(cin,choice);
+                getline(cin, choice);
                 EnumParser<LandmarksNames> fieldTypeParser;
                 LandmarksNames val = fieldTypeParser.ParseSomeEnum(choice);
                 // On regarde si l'établissement existe et qu'il a l'argent nécessaire
@@ -178,20 +194,18 @@ void HarborExpansion::DoTurn(Player &current_player) {
                     cout << "Impossible : soit l'etablissement n'existe pas soit vous n'avez pas l'argent" << endl;
                 }
             }
-        }
-        else{
+        } else {
             cout << "Vous choisissez de ne faire aucune action" << endl;
-            if (current_player.hasLandmark(Airport)){
-                bank_game->withdraw(current_player.getId(),10);
+            if (current_player.hasLandmark(Airport)) {
+                bank_game->withdraw(current_player.getId(), 10);
                 cout << current_player.getName() << " gagne 10 coins grace a airport" << endl;
             }
-            if (board_Game->getCards().size() < 10 ){
-                while (!(dynamic_cast<HarborBoard*>(board_Game)->getDeck()->is_empty()) && board_Game->getCards().size() < 10){
-                    dynamic_cast<HarborBoard*>(board_Game)->getDeck()->drawCard();
-                }
-            }
         }
-
+    }
+    if (board_Game->getCards().size() < 10 ){
+        while (!(dynamic_cast<HarborBoard*>(board_Game)->getDeck()->is_empty()) && board_Game->getCards().size() < 10){
+            dynamic_cast<HarborBoard*>(board_Game)->getDeck()->drawCard();
+        }
     }
 }
 
@@ -224,18 +238,39 @@ void HarborExpansion::initGame() {
         if (bak->getCardName_Enum() == WheatField)
             wheat = bak;
     }
+
     for(auto joueur : players){
         joueur->getHand()->addEstablishment(baker->Clone(),*joueur);
         joueur->getHand()->addEstablishment(wheat->Clone(),*joueur);
         joueur->getHand()->addLandmark(CityHall);
     }
 
+    //A RETIRER APRES TEST
+    Establishment* baker1= nullptr;
+    Establishment* wheat1= nullptr;
+    for (auto bak1 : establishments){
+        if (bak1->getCardName_Enum() == SushiBar){
+            baker1 = bak1;
+        }
+        if (bak1->getCardName_Enum() == HamburgerStand)
+            wheat1 = bak1;
+    }
+
+    for(auto joueur : players){
+        joueur->getHand()->addEstablishment(baker1->Clone(),*joueur);
+        //joueur->getHand()->addEstablishment(baker1->Clone(),*joueur);
+        //joueur->getHand()->addEstablishment(wheat1->Clone(),*joueur);
+        //joueur->getHand()->addLandmark(HarborCard);
+    }
+
+
 }
 
 int HarborExpansion::dice_turn(Player &current_player) {
+    int test = 1; //a retirer apres test
     string choice;
     dices.front().rollDice();
-    cout << " Le resultat du de donne " << dices.front().GetResult() << endl;
+    cout << " Le resultat du de donne " << test << endl; //apres test remettre : dices.front().GetResult()
     if (current_player.hasLandmark(TrainStation)){
         cout << "Voulez vous lancer un autre de ? " << endl;
         cin >> choice;
@@ -258,5 +293,7 @@ int HarborExpansion::dice_turn(Player &current_player) {
             }
         }
     }
-    return dices.front().GetResult();
+    //a remettre apres test
+    //return dices.front().GetResult();
+    return test;
 }
