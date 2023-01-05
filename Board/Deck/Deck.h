@@ -16,4 +16,5 @@ public :
     explicit Deck(vector<Establishment*>*);
     Establishment* drawCard();
     void addCardToDeck(Establishment* c);
+    bool is_empty(){ return cardsDeck.empty();}
 };

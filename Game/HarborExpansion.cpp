@@ -185,6 +185,11 @@ void HarborExpansion::DoTurn(Player &current_player) {
                 bank_game->withdraw(current_player.getId(),10);
                 cout << current_player.getName() << " gagne 10 coins grace a airport" << endl;
             }
+            if (board_Game->getCards().size() < 10 ){
+                while (!(dynamic_cast<HarborBoard*>(board_Game)->getDeck()->is_empty()) && board_Game->getCards().size() < 10){
+                    dynamic_cast<HarborBoard*>(board_Game)->getDeck()->drawCard();
+                }
+            }
         }
 
     }
