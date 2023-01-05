@@ -34,7 +34,7 @@ constexpr unsigned int str2int(const char* str, int h = 0)
     return !str[h] ? 5381 : (str2int(str, h+1) * 33) ^ str[h];
 }
 
-Game* Game::Singleton(const char *const NomEdition, vector<Player*> joueurs) {
+Game* Game::Singleton(const char *const NomEdition) {
     if (Game::Game_single == nullptr) {
         Collection *g = nullptr;
         switch (str2int(NomEdition)) {

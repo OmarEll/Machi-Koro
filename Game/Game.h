@@ -51,7 +51,7 @@ public:
     void virtual DoTurn (Player& current_player) = 0;
     void virtual Do_Game() = 0;
     bool Iswin(Player& current_player);
-    static Game* Singleton (const char *const NomEdition, vector<Player*>);
+    static Game* Singleton (const char *const NomEdition);
     Expansions Get_Extension() { return expansionName;}
     Bank* getBank() {return bank_game;}
     Board* getBoard(){ return board_Game; }

@@ -29,22 +29,7 @@ using namespace std;
 // C'est Marius
 // C'est Sarah
 int main(){
-    vector<Player*> Gamer;
-/*
-    Collection_standard* test = new Collection_standard ();
-    Gamer.push_back(new Human("Omar",*test));
-    Gamer.push_back(new Human("Sarah",*test));
-    Gamer.push_back(new Human("Julie",*test));
-    Gamer.push_back(new Human("Marius",*test));
-    cout << "Hello World" << endl;
-    //Board* test2 = new StandardBoard(*test);
-    //test2->displayCards();
-    Game *party = Game::Singleton("Standard",Gamer);
-    cout << party->Get_Extension()<< endl;
-    party->getBoard()->displayCards();
-    party->Do_Game();
-    //test2->displayCards();
-*/
+
 
 
     //main general
@@ -55,7 +40,7 @@ int main(){
         getline(cin,choixExtension);
     }
     const char * c = choixExtension.c_str();
-    Game *party = Game::Singleton(c,Gamer);
+    Game *party = Game::Singleton(c);
     party->getBoard()->displayCards();
     party->Do_Game();
 
