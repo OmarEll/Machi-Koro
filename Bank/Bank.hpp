@@ -24,4 +24,5 @@ public:
     int getBalance(size_t id) const { return wallets[id]->getBalance(); }
     void setBalance(size_t id, int num) { wallets[id]->setBalance(num);}
     void playerPaysPlayer(size_t idPlayer1,size_t idPlayer2,int amount);
+    friend class Game;
 };

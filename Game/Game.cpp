@@ -109,3 +109,33 @@ int Game::GetCostLandmark(LandmarksNames name) {
     return 0;
 }
 
+
+
+
+
+static Game* Game_single;
+
+Game::~Game() {
+    for (auto pl : players){
+        delete (pl);
+    }
+
+    Game::players.clear();
+    for (auto est : Game::establishments){
+        delete (est);
+    }
+    Game::establishments.clear();
+
+    for (auto lan : Game::landmarks){
+        delete (lan);
+    }
+    Game::landmarks.clear();
+    delete(Game::board_Game);
+    Board::board_instance = nullptr;
+    Game::dices.clear();
+    delete (Game::bank_game);
+    Bank::uniqueBank = nullptr;
+    delete (Game::Game_single);
+    Game::Game_single = nullptr;
+}
+

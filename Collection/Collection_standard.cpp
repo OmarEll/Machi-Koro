@@ -51,10 +51,10 @@ Collection_standard::Collection_standard() {
 
 Collection_standard::~Collection_standard() {
     for (auto Est : Establishment_Collection){
-        free (Est);
+        delete (Est);
     }
     for (auto Lan : Landmark_Collection){
-        free (Lan);
+        delete (Lan);
     }
 
 

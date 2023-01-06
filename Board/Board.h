@@ -16,7 +16,17 @@ protected:
     map<EstablishmentsNames,stack<Establishment*>> cards;
     static Board* board_instance;
 public :
-    virtual ~Board() = default;
+    virtual ~Board() {
+    for (auto pair : cards){
+        auto card = pair.second;
+            while (!card.empty()){
+                Establishment* dele = card.top();
+                card.pop();
+                delete (dele);
+            }
+            cards.erase(pair.first);
+    }
+};
     Board(Board&) = default;
     void displayCards();
     void displayVector(vector<int> v);
@@ -28,4 +38,5 @@ public :
     }
     static Board* getInstance(Collection_standard& g, Expansions);
     Board():cards(){}
+    friend class Game;
 };
