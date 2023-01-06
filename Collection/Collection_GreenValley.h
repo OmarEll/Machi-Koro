@@ -6,7 +6,7 @@
 #define MACHI_KORO_COLLECTION_GREENVALLEY_H
 
 
-class Collection_GreenValley : public Collection_standard{
+class Collection_GreenValley : virtual public Collection_standard{
 public:
     Collection_GreenValley();
     ~Collection_GreenValley(){};
