@@ -250,7 +250,7 @@ int HarborExpansion::dice_turn(Player &current_player) {
             dices.back().rollDice();
             cout << " Le resultat des des donnent " << dices.front().GetResult()+dices.back().GetResult() << endl;
             if (dices.front().GetResult()+dices.back().GetResult() >= 10 && current_player.hasLandmark(HarborCard)){
-                cout << "Voulez vous rajoutez +2 a vos des ? " << endl;
+                cout << "Puisque vous avez une carte Harbor Card, voulez vous rajoutez +2 a vos des ? " << endl;
                 cin >> choice;
                 if (choice == "oui"){
                     cout << "Vu que vous avez harbor on rajoute +2 ce qui donne " << 2+dices.front().GetResult()+dices.back().GetResult() << endl;

@@ -92,3 +92,13 @@ void Hand::addLandmark(LandmarksNames name) {
     }
 
 }
+
+int Hand::numberOfConstructedLandmarks(){
+    int nb = 0;
+    for (auto Land : landmarks){
+        if (Land.second->isConstructed()){
+            nb++;
+        }
+    }
+    return nb;
+}

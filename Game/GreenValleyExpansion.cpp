@@ -9,6 +9,12 @@
 
 GreenValleyExpansion::GreenValleyExpansion(Collection_GreenValley &col) {
     vector<Player*> Gamer;
+    //POUR TEST
+    int nbJoueurs = 2;
+    Gamer.push_back(new Human("Julie",col));
+    Gamer.push_back(new Human("Sarah",col));
+
+    /*
     int nbJoueurs = 0;
     cout << "Quel est le nombre de joueurs ?\n";
     ::fflush(stdin);
@@ -19,7 +25,7 @@ GreenValleyExpansion::GreenValleyExpansion(Collection_GreenValley &col) {
         ::fflush(stdin);
         getline(cin,nomJoueur);
         Gamer.push_back(new Human(nomJoueur,col));
-    }
+    } */
     players = Gamer;
     establishments = col.GetEstablishment();
     expansionName = GreenValley;
@@ -72,7 +78,8 @@ void GreenValleyExpansion::DoTurn(Player &current_player) {
     for (auto pl : players){
         cout << pl->getName()<< " dispose de "<< bank_game->getBalance(pl->getId()) << endl;
     }
-    dice = dice_turn(current_player);
+    dice = 2; // POUR TEST
+    //dice = dice_turn(current_player);
     if (current_player.hasLandmark(RadioTower) != nullptr){
         cout << "Voulez vous relancer vos des ?" << endl;
         cin >> choice;
@@ -107,15 +114,14 @@ void GreenValleyExpansion::DoTurn(Player &current_player) {
                         if (red_card->activate(dice) && !red_card->getRenovation()){
                             int balance_current= getBank()->getBalance(current_player.getId());
                             if (balance_current >= red_card->getEarnedCoins()) { //le joueur qui doit payer a assez de coins pour payer
-                                cout << red_card->getOwner()->getName() << " recoit " << red_card->getEarnedCoins() * other_player->getHand()->
-                                        getEstablishments()[red_card->getCardName_Enum()].size() << " de " << current_player.getName() << " par " << red_card->getCardName() << endl;
+                                cout << red_card->getOwner()->getName() << " recoit " << red_card->getEarnedCoins() << " de " << current_player.getName() << " par " << red_card->getCardName() << endl;
                             } else {                                    //le joueur qui doit payer n'a pas assez de coins pour payer donc il donne ce qu'il a
                                 cout << red_card->getOwner()->getName() << " recoit uniquement " << balance_current << " de " << current_player.getName() << " par " << red_card->getCardName() << " parce que ce joueur n'a pas assee pour payer entierement" << endl;
 
                             }
-                            for (int i = 0 ; i < other_player->getHand()->getEstablishments()[red_card->getCardName_Enum()].size();i++){
+
                                 red_card->launchEffect(*this, current_player);
-                            }
+
                         }
                         else {
                             if (red_card->activate(dice) && red_card->getRenovation()){
@@ -142,16 +148,16 @@ void GreenValleyExpansion::DoTurn(Player &current_player) {
 
                 // Si le joueur est le current player et que sa cartes n'est pas rouge et doit être activé
                 if (current_player.getId() == all_players->getId() && cards->getColor() != RED && cards->activate(dice) && !cards->getRenovation()){
-                    if (cards->getColor() != PURPLE && cards->getCardName_Enum() != FurnitureFactory && cards->getCardName_Enum() != CheeseFactory && cards->getCardName_Enum() != ProduceMarket){
-                        cout << current_player.getName() << " gagne " << cards->getEarnedCoins() * current_player.getHand()->getEstablishments()[cards->getCardName_Enum()].size() << " coins grace a " << cards->getCardName()<< endl;
-                        for (int i = 0 ; i < current_player.getHand()->getEstablishments()[cards->getCardName_Enum()].size();i++){
+                    if (cards->getColor() != PURPLE && cards->getCardName_Enum() != FurnitureFactory && cards->getCardName_Enum() != CheeseFactory && cards->getCardName_Enum() != ProduceMarket && cards->getCardName_Enum() != CornField && cards->getCardName_Enum() != GeneralStore){
+                        cout << current_player.getName() << " gagne " << cards->getEarnedCoins() << " coins grace a " << cards->getCardName()<< endl;
+
                             cards->launchEffect(*this,current_player);
-                        }
+
                     }
-                    else { //a tester
-                        for (int i = 0 ; i < current_player.getHand()->getEstablishments()[cards->getCardName_Enum()].size();i++){
+                    else {
+
                             cards->launchEffect(*this,current_player); //si la carte est violette ou verte avec un gain avec type l'affichage est gérée directement dans le launch effect
-                        }
+
                     }
                 }
                 else {
@@ -165,8 +171,8 @@ void GreenValleyExpansion::DoTurn(Player &current_player) {
                     cards->getColor() == BLUE &&
                     cards->activate(dice) &&
                     !cards->getRenovation()){
-                    cout << all_players->getName() << " gagne " << cards->getEarnedCoins() * (all_players->getHand()->getEstablishments()[cards->getCardName_Enum()].size()) << " coins " <<cards->getCardName()<< endl;
-                    for (int i = 0 ; i < all_players->getHand()->getEstablishments()[cards->getCardName_Enum()].size();i++)
+                    cout << all_players->getName() << " gagne " << cards->getEarnedCoins() << " coins " <<cards->getCardName()<< endl;
+
                         cards->launchEffect(*this,*all_players);
                 }
                 else {
@@ -293,5 +299,21 @@ void GreenValleyExpansion::initGame() {
             joueur->getHand()->addEstablishment(baker->Clone(),*joueur);
             joueur->getHand()->addEstablishment(wheat->Clone(),*joueur);
     }
+
+    //POUR TEST
+    for (auto bak : establishments){
+        if (bak->getCardName_Enum() == GeneralStore){
+            baker = bak;
+        }
+        if (bak->getCardName_Enum() == Vineyard)
+            wheat = bak;
+    }
+    for(auto joueur : players){
+        joueur->getHand()->addEstablishment(baker->Clone(),*joueur);
+        joueur->getHand()->addEstablishment(wheat->Clone(),*joueur);
+        joueur->getHand()->addLandmark(CityHall);
+        //joueur->getHand()->addLandmark(TrainStation);
+    }
+
 
 }

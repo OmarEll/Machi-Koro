@@ -28,6 +28,7 @@ public:
     vector<Establishment*> getTypeCards(Types);
     map<LandmarksNames, Landmark*> getLandmarks() const {return landmarks;}
     map<EstablishmentsNames,stack<Establishment*>> getEstablishments() const {return establishments;}
+    int numberOfConstructedLandmarks();
     ~Hand() = default;
 };
 

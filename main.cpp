@@ -31,11 +31,14 @@ int main(){
 
     //main general
     string choixExtension;
+    /*
     cout << "A quelle extension du jeu Machi Koro voulez-vous jouer ? (Standard, Harbor, Green Valley ou Deluxe) \n";
     while(choixExtension != "Standard" && choixExtension != "Harbor" && choixExtension != "Green Valley" && choixExtension != "Deluxe"){
         ::fflush(stdin);
         getline(cin,choixExtension);
     }
+    */
+    choixExtension = "Green Valley"; //POUR TEST
     const char * c = choixExtension.c_str();
     Game *party = Game::Singleton(c);
     party->getBoard()->displayCards();

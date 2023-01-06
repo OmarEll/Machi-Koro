@@ -703,9 +703,13 @@ class InternationalExhibitHall *InternationalExhibitHall::Clone() {
 
 void CornField::launchEffect(Game& g, Player& currentPlayer) {
     //If you have less than 2 landmarks built, get 1 coin from the bank
-    if(numberOfLandmarks(getOwner())<2) {
+    if(getOwner()->getHand()->numberOfConstructedLandmarks()<2) {
         Establishment::launchEffect(g, currentPlayer);
-    };
+        cout << currentPlayer.getName() << " gagne " << getEarnedCoins() << " coins grace a " << getCardName()<< endl;
+    }
+    else{
+        cout << getCardName() << " ne permet pas de gagner de coins car " << getOwner()->getName() << " possedent au moins 2 landmarks" <<endl;
+    }
 }
 
 class CornField *CornField::Clone() {
@@ -726,9 +730,13 @@ class CornField *CornField::Clone() {
 
 void GeneralStore::launchEffect(Game& g, Player& currentPlayer) {
     //If you have less than 2 constructed landmarks, get 2 coins from the bank, on your turn only
-    if(numberOfLandmarks(getOwner())<2) {
+    if(getOwner()->getHand()->numberOfConstructedLandmarks()<2) {
         Establishment::launchEffect(g, currentPlayer);
-    };
+        cout << currentPlayer.getName() << " gagne " << getEarnedCoins() << " coins grace a " << getCardName()<< endl;
+    }
+    else{
+        cout << getCardName() <<" ne permet pas de gagner de coins car " << getOwner()->getName() << " possedent au moins 2 landmarks" <<endl;
+    }
 }
 
 class GeneralStore *GeneralStore::Clone() {
@@ -774,9 +782,12 @@ class MembersOnlyClub *MembersOnlyClub::Clone() {
 
 void FrenchRestaurant::launchEffect(Game& g, Player& currentPlayer) {
     //If the player who rolled this number has 2 or more constructed landmarks, get 5 coins from the player who rolled the dice
-    if(numberOfLandmarks(currentPlayer)>=2) {
+    if(numberOfLandmarks(getOwner())<=2) {
         Establishment::launchEffect(g, currentPlayer);
-    };
+    }
+    else{
+        cout << getCardName() <<" ne permet pas de gagner de coins car " << getOwner()->getName() << " possedent au moins 2 landmarks" <<endl;
+    }
 }
 
 class FrenchRestaurant *FrenchRestaurant::Clone() {
