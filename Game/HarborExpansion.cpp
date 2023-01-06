@@ -29,10 +29,9 @@ HarborExpansion::HarborExpansion( Collection_harbor &col) {
     vector<Player*> Gamer;
     int nbJoueurs = 0;
     cout << "Quel est le nombre de joueurs ?\n";
-    //::fflush(stdin);
-    //cin >> nbJoueurs;
+    ::fflush(stdin);
+    cin >> nbJoueurs;
     nbJoueurs = 2; //test
-    /*
     for (int i = 1; i <= nbJoueurs; i++){
         string nomJoueur;
         cout << "Entrez le nom du " << i << "e joueur : \n";
@@ -40,11 +39,6 @@ HarborExpansion::HarborExpansion( Collection_harbor &col) {
         getline(cin,nomJoueur);
         Gamer.push_back(new Human(nomJoueur,col));
     }
-    */
-    //test
-    Gamer.push_back(new Human("Julie",col));
-    Gamer.push_back(new Human("Sarah",col));
-    //fin test
     players = Gamer;
     establishments = col.GetEstablishment();
     landmarks = col.GetLandmark();
@@ -70,7 +64,6 @@ void HarborExpansion::DoTurn(Player &current_player) {
     for (auto pl : players) {
         cout << pl->getName() << " dispose de " << bank_game->getBalance(pl->getId()) << endl;
     }
-    //bank_game->playerPaysPlayer(current_player.getId(),players.at(2)->getId(),1);
     // Lance le dés
     cout << "\n\nC est au tour de " << current_player.getName() << endl;
     for (auto car : current_player.getHand()->getEstablishments())
@@ -243,31 +236,7 @@ void HarborExpansion::initGame() {
         joueur->getHand()->addEstablishment(baker->Clone(),*joueur);
         joueur->getHand()->addEstablishment(wheat->Clone(),*joueur);
         joueur->getHand()->addLandmark(CityHall);
-        joueur->getHand()->addLandmark(Airport);
-        joueur->getHand()->addLandmark(TrainStation);
-        joueur->getHand()->addLandmark(HarborCard);
     }
-
-    //A RETIRER APRES TEST
-    Establishment* baker1= nullptr;
-    Establishment* wheat1= nullptr;
-    for (auto bak1 : establishments){
-        if (bak1->getCardName_Enum() == MackerelBoat){
-            baker1 = bak1;
-        }
-        if (bak1->getCardName_Enum() == Cafe)
-            wheat1 = bak1;
-    }
-
-    for(auto joueur : players){
-        joueur->getHand()->addEstablishment(baker1->Clone(),*joueur);
-        joueur->getHand()->addEstablishment(baker1->Clone(),*joueur);
-        joueur->getHand()->addEstablishment(wheat1->Clone(),*joueur);
-        //joueur->getHand()->addEstablishment(wheat1->Clone(),*joueur);
-        //joueur->getHand()->addLandmark(HarborCard);
-    }
-
-
 }
 
 int HarborExpansion::dice_turn(Player &current_player) {

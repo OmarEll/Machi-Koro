@@ -65,7 +65,7 @@ void StandardExpansion::DoTurn(Player &current_player) {
     for (auto pl : players) {
         cout << pl->getName() << " dispose de " << bank_game->getBalance(pl->getId()) << endl;
     }
-    //bank_game->playerPaysPlayer(current_player.getId(),players.at(2)->getId(),1);
+
     // Lance le dés
 cout << "\n\nC'est au tour de " << current_player.getName() << endl;
 for (auto car : current_player.getHand()->getEstablishments())
@@ -242,12 +242,6 @@ void StandardExpansion::initGame() {
     Establishment* baker= nullptr;
     Establishment* wheat= nullptr;
 
-    // A ENELVER A LA FIN
-    Establishment* stad= nullptr;
-    Establishment* cheese= nullptr;
-    Establishment* ran = nullptr;
-
-
     for (auto bak : establishments){
         if (bak->getCardName_Enum() == Bakery){
             baker = bak;
@@ -255,27 +249,13 @@ void StandardExpansion::initGame() {
         if (bak->getCardName_Enum() == WheatField)
             wheat = bak;
 
-        // POUR TEST A ENLEVER A LA FIN
-        if (bak->getCardName_Enum() == Cafe)
-            stad = bak;
-        if (bak->getCardName_Enum() == ProduceMarket)
-            cheese = bak;
-        if (bak->getCardName_Enum() == Forest)
-            ran = bak;
     }
     for(auto joueur : players){
         for (int i =0 ; i < 2; i++){
             joueur->getHand()->addEstablishment(baker->Clone(),*joueur);
             joueur->getHand()->addEstablishment(wheat->Clone(),*joueur);
         }
-
-        // A SUPPRIMER
-        joueur->getHand()->addEstablishment(stad->Clone(),*joueur);
-        joueur->getHand()->addEstablishment(cheese->Clone(),*joueur);
-        joueur->getHand()->addEstablishment(ran->Clone(),*joueur);
-        joueur->getHand()->addLandmark(ShoppingMall);
-        //joueur->getHand()->addLandmark(TrainStation);
-        }
+    }
 }
 
 

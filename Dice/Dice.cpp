@@ -11,6 +11,5 @@ using std::cin;
 
 void Dice::rollDice() {
     srand(time(NULL));
-    result = 8;
-    //result = rand()%faces+1;
+    result = rand()%faces+1;
 }
