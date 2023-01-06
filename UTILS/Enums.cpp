@@ -36,6 +36,18 @@ template<> EnumParser<EstablishmentsNames>::EnumParser()
     enumMap["International Exhibit Hall"] = InternationalExhibitHall;
     enumMap["Vineyard"] = Vineyard;
     enumMap["Family Restaurant"] = FamilyRestaurant;
+    enumMap["Tech Startup"] =TechStartup;
+    enumMap["Corn Field"] = CornField;
+    enumMap["General Store"] = GeneralStore;
+    enumMap["Moving Company"] = MovingCompany;
+    enumMap["Loan Office"] = LoanOffice;
+    enumMap["Demolition Company"] = DemolitionCompany;
+    enumMap["Soda Bottling Plant"] =SodaBottlingPlant;
+    enumMap["French Restaurant"] = FrenchRestaurant;
+    enumMap["Members Only Club"] = MembersOnlyClub;
+    enumMap["Park"] = Park;
+    enumMap["Renovation Company"] = RenovationCompany;
+    enumMap["Winery"] = Winery;
 }
 
 template<> EnumParser<LandmarksNames>::EnumParser()

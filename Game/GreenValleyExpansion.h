@@ -7,14 +7,15 @@
 #include "../Collection/Collection_GreenValley.h"
 
 class GreenValleyExpansion : public Game{
+private :
+    GreenValleyExpansion(Collection_GreenValley&);
 public:
     friend class Game;
-    GreenValleyExpansion(Collection_GreenValley&){};
+    GreenValleyExpansion(Collection_GreenValley&,vector<Player*>);
     ~GreenValleyExpansion(){};
-    void DoTurn(Player& current_player) override{};
-    void Do_Game() override{};
-    void initGame() override{};
-    int dice_turn (Player& current_player) override{};
+    void DoTurn(Player& current_player) override;
+    void Do_Game() override;
+    void initGame() override;
 
 };
 

@@ -251,10 +251,8 @@ void StandardExpansion::initGame() {
 
     }
     for(auto joueur : players){
-        for (int i =0 ; i < 2; i++){
             joueur->getHand()->addEstablishment(baker->Clone(),*joueur);
             joueur->getHand()->addEstablishment(wheat->Clone(),*joueur);
-        }
     }
 }
 

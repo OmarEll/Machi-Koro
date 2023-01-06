@@ -172,8 +172,7 @@ private :
 public:
     TechStartup(): Establishment("Tech Startup","At the end of each of your turns, you may place 1 coin on this card. The total placed here is your investment. When activated, get an amount equal to your investment from all player, on your turn only.",PURPLE, 1,GreenValley, tower,{10},OtherPlayers,0){}
     void launchEffect(Game& g,Player& currentPlayer) final;
-    void oneCoinInvestment(int val){ investment ++; }
-    int getInvestment() { return investment;}
+    void oneCoinInvestment(){ numberOfCoinsEarned ++; }
     TechStartup* Clone() override;
 
 };

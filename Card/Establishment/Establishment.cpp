@@ -602,16 +602,21 @@ void RenovationCompany::launchEffect(Game& g, Player& currentPlayer) {
             cout<<"\nErreur: verifiez l'orthographe de la carte tape"<<endl;
         }
     }
+    EnumParser<EstablishmentsNames> fieldTypeParser;
+    EstablishmentsNames val = fieldTypeParser.ParseSomeEnum(cardRenov);
 
     for (const auto& player : g.getPlayers()){
-        if (player->hasEstablishment(cardRenov)!= nullptr){
-            player->hasEstablishment(cardRenov)->setRenovation(true);
-            if(player->getId()!=currentPlayer.getId()){
-                g.getBank()->playerPaysPlayer(player->getId(),currentPlayer.getId(),1);
+        if (player->hasEstablishment(cardRenov) != nullptr){
+            stack <Establishment*> tmp = player->getHand()->getEstablishments().find(val)->second;
+            while (!tmp.empty()){
+                Establishment * card = tmp.top();
+                if (!card->getRenovation()){
+                    card->setRenovation(true);
+                }
+                tmp.pop();
             }
         }
     }
-
 }
 
 class RenovationCompany *RenovationCompany::Clone() {
@@ -633,7 +638,7 @@ class RenovationCompany *RenovationCompany::Clone() {
 void TechStartup::launchEffect(Game& g, Player& currentPlayer) { //A Gerer dans game pour l'investissement
     //At the end of each of your turns, you may place 1 coin on this card. The total placed here is your investment. When activated, get an amount equal to your investment from all player, on your turn only.
     for(auto& player : g.getPlayers()){
-        g.getBank()->playerPaysPlayer(player->getId(),currentPlayer.getId(),getInvestment());
+        g.getBank()->playerPaysPlayer(player->getId(),currentPlayer.getId(),getEarnedCoins());
     }
 }
 

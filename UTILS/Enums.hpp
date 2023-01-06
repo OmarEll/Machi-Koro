@@ -23,7 +23,8 @@ enum EstablishmentsNames{
     WheatField, LivestockFarm, Bakery, Cafe, ConvenienceStore, Forest, Stadium, TvStation, Office, CheeseFactory,
     FurnitureFactory, Mine, Restaurant, AppleOrchard, ProduceMarket, FlowerGarden, MackerelBoat, TunaBoat, FlowerShop,
     FoodWarehouse, SushiBar, PizzaJoint, HamburgerStand, Publisher, TaxOffice, Diamine, InternationalExhibitHall,
-    Vineyard, Ranch, FamilyRestaurant
+    Vineyard, Ranch, FamilyRestaurant,TechStartup, CornField, GeneralStore, MovingCompany, LoanOffice, DemolitionCompany,
+    SodaBottlingPlant, FrenchRestaurant,MembersOnlyClub, Park, RenovationCompany, Winery
 };
 
 enum Expansions{
