@@ -340,6 +340,7 @@ class ProduceMarket *ProduceMarket::Clone() {
 void FoodWarehouse::launchEffect(Game& g, Player& currentPlayer){
     setNumberOfCoinsEarned(numberGainWithType(currentPlayer, {coffee}));
     Establishment::launchEffect(g, currentPlayer);
+    cout << currentPlayer.getName() << " gagne " << getEarnedCoins() << " coins grace a "<< getCardName() << endl;
 }
 
 class FoodWarehouse *FoodWarehouse::Clone() {
@@ -393,7 +394,7 @@ void MackerelBoat::launchEffect(Game& g, Player& currentPlayer){
         Establishment::launchEffect(g, currentPlayer);
     }
     else{
-        cout << currentPlayer.getName() << " ne possedant pas de Harbor Card, le joueur ne gagne pas de coins avec " << getCardName() <<endl;
+        cout << currentPlayer.getName() << " ne possedant pas de Harbor Card, iel ne gagne pas de coins avec " << getCardName() <<endl;
     };
 }
 
@@ -424,7 +425,7 @@ void SushiBar::launchEffect(Game& g, Player& currentPlayer){
         Establishment::launchEffect(g, currentPlayer);
     }
     else{
-        cout << currentPlayer.getName() << " ne possedant pas de Harbor Card, le joueur ne gagne pas de coins avec " << getCardName() <<endl;
+        cout << currentPlayer.getName() << " ne possedant pas de Harbor Card, iel ne gagne pas de coins avec " << getCardName() <<endl;
     };
 }
 
@@ -455,7 +456,7 @@ void TunaBoat::launchEffect(Game& g, Player& currentPlayer){
         Establishment::launchEffect(g, currentPlayer);
     }
     else{
-        cout << currentPlayer.getName() << " ne possedant pas de Harbor Card, le joueur ne gagne pas de coins avec " << getCardName() <<endl;
+        cout << currentPlayer.getName() << " ne possedant pas de Harbor Card, iel ne gagne pas de coins avec " << getCardName() <<endl;
     };
 }
 
@@ -488,8 +489,10 @@ void Publisher::launchEffect(Game& g, Player& currentPlayer){ //A REVOIR
                 setNumberOfCoinsEarned(numberGainWithType(*other_player, {coffee,bread})); //On definit le nombre de piece que le joueur adverse doit payer
                 if (balance_other >= getEarnedCoins()) { //le joueur qui doit payer a assez de coins pour payer
                     g.getBank()->playerPaysPlayer(id_other, id_Owner, getEarnedCoins());
+                    cout << getOwner()->getName() << " recoit " << getEarnedCoins() << " de " << other_player->getName() << " par " << getCardName() << endl;
                 } else {                                    //le joueur qui doit payer n'a pas assez de coins pour payer donc il donne ce qu'il a
                     g.getBank()->playerPaysPlayer(id_other, id_Owner, balance_other);
+                    cout << getOwner()->getName() << " recoit uniquement " << balance_other << " de " << other_player->getName() << " par " << getCardName() << " parce que ce joueur n'a pas assee pour payer entierement" << endl;
                 }
             }
         }
@@ -520,6 +523,7 @@ void TaxOffice::launchEffect(Game& g, Player& currentPlayer){
         if (id_Owner != id_other && g.getBank()->getBalance(id_other)>=10){ //le joueur possède au moins 10 coins
             int balance_other=g.getBank()->getBalance(id_other);
             g.getBank()->playerPaysPlayer(id_other, id_Owner, balance_other/2); //On prend la moitié de la balance arrondi à l'inférieur (le reste de la divison est ignorée)
+            cout << getOwner()->getName() << " recoit " << g.getBank()->getBalance(id_other) << " de " << other_player->getName() << " par " << getCardName() << endl;
         }
     }
 

@@ -123,14 +123,17 @@ void HarborExpansion::DoTurn(Player &current_player) {
 
             // Si le joueur est le current player et que sa cartes n'est pas rouge et doit être activé
             if (current_player.getId() == all_players->getId() && cards->getColor() != RED && cards->activate(dice)){
-                if (cards->getColor() != PURPLE && cards->getCardName_Enum() != FurnitureFactory && cards->getCardName_Enum() != CheeseFactory && cards->getCardName_Enum() != ProduceMarket && cards->getCardName_Enum() != MackerelBoat && cards->getCardName_Enum() != TunaBoat && cards->getCardName_Enum() != SushiBar){
-                    cout << current_player.getName() << " gagne " << cards->getEarnedCoins() * current_player.getHand()->getEstablishments()[cards->getCardName_Enum()].size() << " coins grace a " << cards->getCardName()<< endl;
+                if (cards->getColor() != PURPLE && cards->getCardName_Enum() != FurnitureFactory && cards->getCardName_Enum() != CheeseFactory && cards->getCardName_Enum() != ProduceMarket && cards->getCardName_Enum() != MackerelBoat && cards->getCardName_Enum() != TunaBoat && cards->getCardName_Enum() != SushiBar && cards->getCardName_Enum() != FoodWarehouse ){
                     for (int i = 0 ; i < current_player.getHand()->getEstablishments()[cards->getCardName_Enum()].size();i++){
                         cards->launchEffect(*this,current_player);
                     }
+                    cout << current_player.getName() << " gagne " << cards->getEarnedCoins() * current_player.getHand()->getEstablishments()[cards->getCardName_Enum()].size() << " coins grace a " << cards->getCardName()<< endl;
                 }
                 else {
-                    cards->launchEffect(*this,current_player); //si la carte est violette ou verte avec un gain avec type l'affichage est gérée directement dans le launch effect
+                    for (int i = 0 ; i < current_player.getHand()->getEstablishments()[cards->getCardName_Enum()].size();i++) {
+                        cards->launchEffect(*this,
+                                            current_player); //si la carte est violette ou verte avec un gain avec type l'affichage est gérée directement dans le launch effect
+                    }
                 }
             }
 
@@ -148,6 +151,7 @@ void HarborExpansion::DoTurn(Player &current_player) {
 
     if (current_player.hasLandmark(CityHall) && bank_game->getBalance(current_player.getId()) == 0){
         bank_game->withdraw(current_player.getId(),1);
+        cout << current_player.getName() << " gagne 1 grace a City Hall (iel disposait de 0 coins)" << endl;
     }
     // On regarde si le joueur veut acheter un landmark
     choice = "";
@@ -202,11 +206,7 @@ void HarborExpansion::DoTurn(Player &current_player) {
             }
         }
     }
-    if (board_Game->getCards().size() < 10 ){
-        while (!(dynamic_cast<HarborBoard*>(board_Game)->getDeck()->is_empty()) && board_Game->getCards().size() < 10){
-            dynamic_cast<HarborBoard*>(board_Game)->getDeck()->drawCard();
-        }
-    }
+        dynamic_cast<HarborBoard*>(board_Game)->fillBoard();
 }
 
 void HarborExpansion::Do_Game() {
@@ -243,22 +243,26 @@ void HarborExpansion::initGame() {
         joueur->getHand()->addEstablishment(baker->Clone(),*joueur);
         joueur->getHand()->addEstablishment(wheat->Clone(),*joueur);
         joueur->getHand()->addLandmark(CityHall);
+        joueur->getHand()->addLandmark(Airport);
+        joueur->getHand()->addLandmark(TrainStation);
+        joueur->getHand()->addLandmark(HarborCard);
     }
 
     //A RETIRER APRES TEST
     Establishment* baker1= nullptr;
     Establishment* wheat1= nullptr;
     for (auto bak1 : establishments){
-        if (bak1->getCardName_Enum() == SushiBar){
+        if (bak1->getCardName_Enum() == MackerelBoat){
             baker1 = bak1;
         }
-        if (bak1->getCardName_Enum() == HamburgerStand)
+        if (bak1->getCardName_Enum() == Cafe)
             wheat1 = bak1;
     }
 
     for(auto joueur : players){
         joueur->getHand()->addEstablishment(baker1->Clone(),*joueur);
-        //joueur->getHand()->addEstablishment(baker1->Clone(),*joueur);
+        joueur->getHand()->addEstablishment(baker1->Clone(),*joueur);
+        joueur->getHand()->addEstablishment(wheat1->Clone(),*joueur);
         //joueur->getHand()->addEstablishment(wheat1->Clone(),*joueur);
         //joueur->getHand()->addLandmark(HarborCard);
     }
@@ -267,10 +271,9 @@ void HarborExpansion::initGame() {
 }
 
 int HarborExpansion::dice_turn(Player &current_player) {
-    int test = 1; //a retirer apres test
     string choice;
     dices.front().rollDice();
-    cout << " Le resultat du de donne " << test << endl; //apres test remettre : dices.front().GetResult()
+    cout << " Le resultat du de donne " << dices.front().GetResult() << endl;
     if (current_player.hasLandmark(TrainStation)){
         cout << "Voulez vous lancer un autre de ? " << endl;
         cin >> choice;
@@ -278,13 +281,14 @@ int HarborExpansion::dice_turn(Player &current_player) {
             dices.back().rollDice();
             cout << " Le resultat des des donnent " << dices.front().GetResult()+dices.back().GetResult() << endl;
             if (dices.front().GetResult()+dices.back().GetResult() >= 10 && current_player.hasLandmark(HarborCard)){
-                cout << "Voulez vous rajoutez +2 à vos des ? " << endl;
+                cout << "Voulez vous rajoutez +2 a vos des ? " << endl;
                 cin >> choice;
                 if (choice == "oui"){
                     cout << "Vu que vous avez harbor on rajoute +2 ce qui donne " << 2+dices.front().GetResult()+dices.back().GetResult() << endl;
                     return 2+dices.front().GetResult()+dices.back().GetResult() ;
                 }
                 else {
+                    cout << " Le resultat des des reste " << dices.front().GetResult()+dices.back().GetResult() << endl;
                     return dices.front().GetResult()+dices.back().GetResult() ;
                 }
             }
@@ -293,7 +297,5 @@ int HarborExpansion::dice_turn(Player &current_player) {
             }
         }
     }
-    //a remettre apres test
-    //return dices.front().GetResult();
-    return test;
+    return dices.front().GetResult();
 }
