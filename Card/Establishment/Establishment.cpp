@@ -139,7 +139,9 @@ void TvStation::launchEffect(Game& g, Player& currentPlayer){ //méthode redefin
             }
         }
         cout<<"\n";
-        cin>>nameOfPayer;
+        ::fflush(stdin);
+        getline(cin,nameOfPayer);
+
         for (const auto& other_player : g.getPlayers()){
             if(nameOfPayer==other_player->getName()){
                 id_payer = other_player->getId();
@@ -591,7 +593,8 @@ void RenovationCompany::launchEffect(Game& g, Player& currentPlayer) {
     bool cardok=false;
     while (!cardok) {
         cout << "Entrez le nom de la carte que vous souhaitez mettre en rénovation (pas de type tower):\n";
-        cin >> cardRenov;
+        ::fflush(stdin);
+        getline(cin,cardRenov);
         if(g.getEstablishmentByName(cardRenov)!= nullptr){
             if(g.getEstablishmentByName(cardRenov)->getType()!=tower)
                 cardok= true;
@@ -664,7 +667,8 @@ void InternationalExhibitHall::launchEffect(Game& g, Player& currentPlayer) {
     bool cardok=false;
     while (!cardok) {
         cout << "Entrez le nom de la carte que vous souhaitez activer (pas de type tower), ecrire 'non' pour ne rien faire:\n";
-        cin >> cardAct;
+        ::fflush(stdin);
+        getline(cin,cardAct);
         if (cardAct=="non") return;
         if(g.getEstablishmentByName(cardAct)!= nullptr){
             if(g.getEstablishmentByName(cardAct)->getType()!=tower)
@@ -839,7 +843,8 @@ void DemolitionCompany::launchEffect(Game& g, Player& currentPlayer) {
     LandmarksNames val;
     do {
         cout << "Quel monument voulez vous détruire ?" << endl;
-        cin >> choice;
+        ::fflush(stdin);
+        getline(cin,choice);
         EnumParser<LandmarksNames> fieldTypeParser;
         val = fieldTypeParser.ParseSomeEnum(choice);
     } while (!getOwner()->hasLandmark(val));
@@ -875,9 +880,10 @@ void MovingCompany::launchEffect(Game& g, Player& currentPlayer) {
     string nameOfReceiver;
     string nameOfCardReciver;
     string nameOfCardGiver;
-    while (playerReceiver == nullptr){
+    while (playerReceiver == nullptr || nameOfReceiver==getOwner()->getName()){
         cout<<"Entrez le nom du joueur a qui voulez vous donner votre carte :\n";
-        cin>>nameOfReceiver;
+        ::fflush(stdin);
+        getline(cin, nameOfReceiver);
         for ( auto& other_player : g.getPlayers()){
             if(nameOfReceiver==other_player->getName()){
                 playerReceiver = other_player;
@@ -886,8 +892,10 @@ void MovingCompany::launchEffect(Game& g, Player& currentPlayer) {
     }
 
     while (CardGiver== nullptr){
-        cout<<"Entrez le nom de la carte que vous souhaitez donner (elle ne doit pas être de type tower) :\n";
-        cin>>nameOfCardGiver;
+
+        cout<<"Entrez le nom de la carte que vous souhaitez donner (elle ne doit pas etre de type tower) :\n";
+        ::fflush(stdin);
+        getline(cin, nameOfCardGiver);
 
         //Giver
         for (const auto&  card : currentPlayer.getHand()->getEstablishments()){ // On verifie que la carte choisi est dans la main du joueur et qu'elle n'est pas de type tower
@@ -901,6 +909,9 @@ void MovingCompany::launchEffect(Game& g, Player& currentPlayer) {
     playerReceiver->getHand()->addEstablishment(CardGiver,*playerReceiver);
     //remove
     currentPlayer.getHand()->removeEstablishment(CardGiver);
+
+    g.getBank()->withdraw(getOwner()->getId(),getEarnedCoins());
+
 }
 
 class MovingCompany *MovingCompany::Clone() {
@@ -947,6 +958,16 @@ class Winery *Winery::Clone() {
     res->numberOfCoinsEarned = this ->getEarnedCoins();
     res->underRenovation = this->getRenovation();
     return res;
+}
+
+void LoanOffice::launchEffect(Game& g, Player& currentPlayer) {
+    if (g.getBank()->getBalance(getOwner()->getId() == 1)){
+        g.getBank()->deposit(getOwner()->getId(), 1);
+    }
+    else if (g.getBank()->getBalance(getOwner()->getId() >= 2)){
+        g.getBank()->deposit(getOwner()->getId(), -getEarnedCoins());
+    }
+    ;
 }
 
 class LoanOffice *LoanOffice::Clone() {

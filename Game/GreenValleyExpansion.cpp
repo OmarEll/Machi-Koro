@@ -78,8 +78,8 @@ void GreenValleyExpansion::DoTurn(Player &current_player) {
     for (auto pl : players){
         cout << pl->getName()<< " dispose de "<< bank_game->getBalance(pl->getId()) << endl;
     }
-    dice = 2; // POUR TEST
-    //dice = dice_turn(current_player);
+    //dice = 5; // POUR TEST***************************************************************************************************************
+    dice = dice_turn(current_player);
     if (current_player.hasLandmark(RadioTower) != nullptr){
         cout << "Voulez vous relancer vos des ?" << endl;
         cin >> choice;
@@ -233,6 +233,10 @@ void GreenValleyExpansion::DoTurn(Player &current_player) {
                     EnumParser<LandmarksNames> fieldTypeParser;
                     LandmarksNames val = fieldTypeParser.ParseSomeEnum(choice);
                     // On regarde si l'établissement existe et qu'il a l'argent nécessaire
+                    if (val == LoanOffice){
+                        getBank()->withdraw(current_player.getId(),5);
+                        cout << "En achetant Loan Office, " << current_player.getName() << " gagne 5 coins" << endl;
+                    }
                     if (!current_player.hasLandmark(val) &&
                         bank_game->getBalance(current_player.getId()) - GetCostLandmark(val) >= 0) {
                         current_player.getHand()->addLandmark(val);
@@ -302,10 +306,10 @@ void GreenValleyExpansion::initGame() {
 
     //POUR TEST
     for (auto bak : establishments){
-        if (bak->getCardName_Enum() == GeneralStore){
+        if (bak->getCardName_Enum() == LoanOffice){
             baker = bak;
         }
-        if (bak->getCardName_Enum() == Vineyard)
+        if (bak->getCardName_Enum() == MovingCompany)
             wheat = bak;
     }
     for(auto joueur : players){

@@ -238,6 +238,7 @@ public:
 class LoanOffice: public Establishment { //Fait (en vrai il y a pas besoin de faire cette classe mais comme les valeurs sont négative elle est faites au cas ou il y est un pb a gérer
 public:
     LoanOffice(): Establishment("Loan Office","When you construct this building, get 5 coins from the bank. When this building is activated, pay 2 coins to the bank, on your turn only.",GREEN, -5,GreenValley, suitcase,{5,6},BankOrigin,-2){}
+    void launchEffect(Game& g,Player& currentPlayer) final;
     LoanOffice* Clone() override;
 };
 
