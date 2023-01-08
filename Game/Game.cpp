@@ -54,8 +54,8 @@ Game* Game::Singleton(const char *const NomEdition) {
                 break;
             }
             case str2int("Deluxe"): {
-                /*g = new Collection_deluxe();
-                Game::Game_single = new DeluxeExpansion(dynamic_cast<Collection_deluxe &>(*g));*/
+                g = new Collection_deluxe();
+                Game::Game_single = new DeluxeExpansion(dynamic_cast<Collection_deluxe &>(*g));
                 break;
             }
         }

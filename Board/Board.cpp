@@ -13,6 +13,19 @@
 
 Board* Board::board_instance = nullptr;
 
+Board::~Board() {
+    for (auto pair : cards){
+        auto card = pair.second;
+        while (!card.empty()){
+            Establishment* dele = card.top();
+            card.pop();
+            delete (dele);
+        }
+        cards.erase(pair.first);
+    }
+}
+
+
 Establishment* Board::foundEstablishmentOnBoard(string choice) {
     bool exist = false ;
     for (auto str : cards){

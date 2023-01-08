@@ -81,6 +81,17 @@ void HarborExpansion::DoTurn(Player &current_player) {
         }
     }
 
+    for (auto other_player : players) {
+        if (other_player->hasLandmark(ShoppingMall) != nullptr) {
+            for (const auto &card: other_player->getHand()->getEstablishments()) { // Si la carte est de type 'bread' ou 'coffee' elle permet de gagner 1 coin de plus
+                Establishment *est = (other_player->getHand()->getEstablishments()[card.first].top());
+                if (est->getType() == bread || est->getType() == coffee) {
+                    est->setNumberOfCoinsEarned(est->getEarnedCoins()+1);
+                }
+            }
+        }
+    }
+
     // On regarde les cartes rouges des autres joueurs
     for (auto other_player : players){
         if (other_player->getId() != current_player.getId()) {
@@ -158,6 +169,18 @@ void HarborExpansion::DoTurn(Player &current_player) {
             board_Game->displayCards();
             ::fflush(stdin);
             getline(cin, choice);
+            if (choice == "exit"){
+                test = 1;
+            }
+            else{
+                Establishment *tmp = board_Game->foundEstablishmentOnBoard(choice);
+                if (tmp != nullptr && bank_game->getBalance(current_player.getId()) - tmp->getCost() >= 0) {
+                    current_player.getHand()->addEstablishment(tmp, current_player);
+                    bank_game->deposit(current_player.getId(), tmp->getCost());
+                    test = 1;
+                } else
+                    cout << "L etablissement n'existe pas && il n'a pas assez de money ! " << endl;
+            }
             Establishment *tmp = board_Game->foundEstablishmentOnBoard(choice);
             if (tmp != nullptr && bank_game->getBalance(current_player.getId()) - tmp->getCost() >= 0) {
                 current_player.getHand()->addEstablishment(tmp, current_player);

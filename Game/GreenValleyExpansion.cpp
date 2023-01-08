@@ -309,7 +309,7 @@ void GreenValleyExpansion::initGame() {
 
     }
     for(auto joueur : players){
-            //joueur->getHand()->addEstablishment(baker->Clone(),*joueur);
+            joueur->getHand()->addEstablishment(baker->Clone(),*joueur);
             joueur->getHand()->addEstablishment(wheat->Clone(),*joueur);
     }
 
