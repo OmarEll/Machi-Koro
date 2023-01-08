@@ -246,25 +246,15 @@ void DeluxeExpansion::DoTurn(Player &current_player) {
     }
     else cout << "Vous n'avez pas d'argent pour faire une action" << endl;
 
-    cout<< "on est avant boucle"<<endl;
-    //cout << current_player.hasEstablishment(TechStartup)<<endl;
-    //cout << bank_game->getBalance(current_player.getId() )<<endl;
+
     Establishment * tc=current_player.hasEstablishment(TechStartup);
     if (current_player.hasEstablishment(TechStartup) != nullptr && (bank_game->getBalance(current_player.getId()) >= 1)){
-        cout<< "on est dans la boucle"<<endl;
-        cout << tc->getEarnedCoins() << endl;
         cout << "Voulez vous investir dans la startup ? Il y a "<< tc->getEarnedCoins()<< " coins deja investis"  << endl;
         cin >> choice;
         if (choice == "oui"){
-            cout << "on est la " <<endl;
-            //Establishment * tc = current_player.hasEstablishment(TechStartup);
-            cout << "on est ici " <<endl;
-            cout << tc->getCardName() <<endl;
             tc->setNumberOfCoinsEarned(tc->getEarnedCoins()+1);
             // dynamic_cast<class TechStartup*> (tc)->oneCoinInvestment();
-            cout << "on est a cet endroit " <<endl;
             bank_game->deposit(current_player.getId(),1);
-            cout << "on est a la fin de la boucle " <<endl;
         }
         else{
             cout << current_player.getName() << " choisit de ne pas investir " << endl;
