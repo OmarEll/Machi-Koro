@@ -14,14 +14,19 @@ Hand::Hand(Collection_standard& g){
 
 void Hand::addEstablishment(Establishment* card, Player& p){
     EstablishmentsNames cardName=card->getCardName_Enum();
-    card->setOwner(&p);
-    if(establishments.find(card->getCardName_Enum())!=establishments.end()){
-        establishments[cardName].push(card);
+    if (card->getColor() != PURPLE || (card->getColor() == PURPLE && p.getHand()->getEstablishments().find(cardName) != p.getHand()->getEstablishments().end())){
+        card->setOwner(&p);
+        if(establishments.find(card->getCardName_Enum())!=establishments.end()){
+            establishments[cardName].push(card);
+        }
+        else{
+            stack<Establishment*>* pile = new stack<Establishment*>;
+            pile->push(card);
+            establishments.insert(pair<EstablishmentsNames,stack<Establishment*>>(card->getCardName_Enum(),*pile));
+        }
     }
     else{
-        stack<Establishment*>* pile = new stack<Establishment*>;
-        pile->push(card);
-        establishments.insert(pair<EstablishmentsNames,stack<Establishment*>>(card->getCardName_Enum(),*pile));
+        cout << "Impossible, vous possedez deja cette carte violette" << endl;
     }
 }
 
@@ -33,6 +38,9 @@ void Hand::removeEstablishment(Establishment* card){
         if (establishments[cardName].size()==0){
             establishments.erase(cardName);
         }
+    }
+    else{
+        cout << "L'etablissement n'est pas dans la main" << endl;
     }
 }
 

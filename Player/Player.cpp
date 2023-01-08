@@ -16,7 +16,6 @@ Landmark* Player::hasLandmark(LandmarksNames name) const{
 Establishment* Player::hasEstablishment(EstablishmentsNames name)const {
     Establishment* hasEst= nullptr;
     for (auto it=hand.getEstablishments().begin(); it!= hand.getEstablishments().end(); it++){
-        cout<< "Dans la main il y a : " << it->second.top()->getCardName() << endl;
         if(it->first == name) hasEst=it->second.top();
     }
     return (hasEst);

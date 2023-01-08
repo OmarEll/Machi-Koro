@@ -25,7 +25,6 @@ public:
     int gainWithType() override{
         return 0;
     };
-    virtual void launchEffect(Game&,Player& currentPlayer) override {};
     Landmark* Clone();
 };
 

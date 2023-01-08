@@ -551,23 +551,22 @@ class TaxOffice *TaxOffice::Clone() {
 
 void Park::launchEffect(Game& g, Player& currentPlayer) {
     //Redistribute all players' coins evenly among all players, on your turn only. If there is an uneven amount of coins, take coins from the bank to make up the difference.
-    int total;
-    int new_balance;
+    int total = 0;
+    int new_balance = 0;
 
     for (const auto& all_player : g.getPlayers()){ //On calcul la somme de toutes les balances des joueurs
         total += g.getBank()->getBalance(all_player->getId());
     }
-
     if(total % g.getPlayers().size() == 0){ //On calcul quel va être la nouvelle balance de tout les joueurs
         new_balance = total/g.getPlayers().size();
     }
     else{
         new_balance = (total/g.getPlayers().size())+1; //si le modulo n'est pas egale a zero cela veux dire qu'il reste au moins une pièce et la banque complète pour tout le monde donc tout le monde a une pièce en plus
     }
-
     for (const auto& all_player : g.getPlayers()){ //On met à jour toutes les balances
         g.getBank()->setBalance(all_player->getId(), new_balance);
     }
+    cout << "Park redistribue tout les coins entre les joueurs" << endl;
 }
 
 class Park *Park::Clone() {
@@ -592,7 +591,7 @@ void RenovationCompany::launchEffect(Game& g, Player& currentPlayer) {
     string cardRenov;
     bool cardok=false;
     while (!cardok) {
-        cout << "Entrez le nom de la carte que vous souhaitez mettre en rénovation (pas de type tower):\n";
+        cout << "Entrez le nom de la carte que vous souhaitez mettre en renovation (pas de type tower):\n";
         ::fflush(stdin);
         getline(cin,cardRenov);
         if(g.getEstablishmentByName(cardRenov)!= nullptr){
@@ -607,7 +606,7 @@ void RenovationCompany::launchEffect(Game& g, Player& currentPlayer) {
     }
     EnumParser<EstablishmentsNames> fieldTypeParser;
     EstablishmentsNames val = fieldTypeParser.ParseSomeEnum(cardRenov);
-
+    int nb= 0;
     for (const auto& player : g.getPlayers()){
         if (player->hasEstablishment(cardRenov) != nullptr){
             stack <Establishment*> tmp = player->getHand()->getEstablishments().find(val)->second;
@@ -615,11 +614,15 @@ void RenovationCompany::launchEffect(Game& g, Player& currentPlayer) {
                 Establishment * card = tmp.top();
                 if (!card->getRenovation()){
                     card->setRenovation(true);
+                    nb++;
                 }
                 tmp.pop();
             }
         }
     }
+
+    g.getBank()->withdraw(getOwner()->getId(),getEarnedCoins()*nb);
+    cout << getOwner()->getName() << " gagne " << getEarnedCoins()*nb << " avec Renovation Company" << endl;
 }
 
 class RenovationCompany *RenovationCompany::Clone() {
@@ -664,27 +667,37 @@ class TechStartup *TechStartup::Clone() {
 void InternationalExhibitHall::launchEffect(Game& g, Player& currentPlayer) {
     //You may choose to activate another of your non tower type establishments in place of this one, on your turn only. If you do, return this card to the market.
     string cardAct;
-    bool cardok=false;
+    bool cardok = false;
     while (!cardok) {
-        cout << "Entrez le nom de la carte que vous souhaitez activer (pas de type tower), ecrire 'non' pour ne rien faire:\n";
+        cout
+                << "Entrez le nom de la carte que vous souhaitez activer (pas de type tower), ecrire 'non' pour ne rien faire:\n";
         ::fflush(stdin);
-        getline(cin,cardAct);
-        if (cardAct=="non") return;
-        if(g.getEstablishmentByName(cardAct)!= nullptr){
-            if(g.getEstablishmentByName(cardAct)->getType()!=tower)
-                cardok= true;
-            else{
-                cout<<"\nErreur: choisir une carte d'un type non tower"<<endl;
+        getline(cin, cardAct);
+        if (cardAct == "non") return;
+        if (g.getEstablishmentByName(cardAct) != nullptr) {
+            if (g.getEstablishmentByName(cardAct)->getType() != tower)
+                cardok = true;
+            else {
+                cout << "\nErreur: choisir une carte d'un type non tower" << endl;
             }
-        }else{
-            cout<<"\nErreur: verifiez l'orthographe de la carte tape"<<endl;
+        } else {
+            cout << "\nErreur: verifiez l'orthographe de la carte tape" << endl;
         }
+
+    cout << "j'arrive ici" << endl;
+    Establishment *est = currentPlayer.hasEstablishment(cardAct);
+    if (est != nullptr) {
+        est->launchEffect(g, currentPlayer);
+        currentPlayer.getHand()->removeEstablishment(this);
+        GreenValleyBoard *board = dynamic_cast<GreenValleyBoard *>(g.getBoard());
+        board->addEstablishmentToBoard(this);
+    } else {
+        cout << "L'etablissement n'est pas dans la main" << endl;
+        cardok = false;
     }
-    Establishment* est=currentPlayer.hasEstablishment(cardAct);
-    est->launchEffect(g,currentPlayer);
-    currentPlayer.getHand()->removeEstablishment(est);
-    GreenValleyBoard* board = dynamic_cast<GreenValleyBoard*>(g.getBoard());
-    board->addEstablishmentToBoard(est);
+    }
+
+
 }
 
 class InternationalExhibitHall *InternationalExhibitHall::Clone() {
@@ -707,7 +720,9 @@ class InternationalExhibitHall *InternationalExhibitHall::Clone() {
 
 void CornField::launchEffect(Game& g, Player& currentPlayer) {
     //If you have less than 2 landmarks built, get 1 coin from the bank
+    cout << getOwner()->getHand()->numberOfConstructedLandmarks() << endl;
     if(getOwner()->getHand()->numberOfConstructedLandmarks()<2) {
+
         Establishment::launchEffect(g, currentPlayer);
         cout << currentPlayer.getName() << " gagne " << getEarnedCoins() << " coins grace a " << getCardName()<< endl;
     }
@@ -761,11 +776,15 @@ class GeneralStore *GeneralStore::Clone() {
 
 void MembersOnlyClub::launchEffect(Game& g, Player& currentPlayer) {
     //If the player who rolled this number has 3 or more constructed landmarks, get all of their coins
-    if(numberOfLandmarks(currentPlayer)>=3) {
+    if(currentPlayer.getHand()->numberOfConstructedLandmarks()>=3) {
         int id_current = currentPlayer.getId();
         int balance_current=g.getBank()->getBalance(id_current);
         g.getBank()->playerPaysPlayer(id_current, getOwner()->getId(), balance_current);
-    };
+        cout << getOwner()->getName() << " recoit " << balance_current << " de " << currentPlayer.getName() << " par " << getCardName() << endl;
+    }
+    else{
+        cout << "Members Only Club est active mais " << currentPlayer.getName() << " possede moins de 3 landmark donc ne doit rien payer" << endl;
+    }
 }
 
 class MembersOnlyClub *MembersOnlyClub::Clone() {
@@ -786,12 +805,17 @@ class MembersOnlyClub *MembersOnlyClub::Clone() {
 
 void FrenchRestaurant::launchEffect(Game& g, Player& currentPlayer) {
     //If the player who rolled this number has 2 or more constructed landmarks, get 5 coins from the player who rolled the dice
+    int id_current=currentPlayer.getId();
+    int balance_current=g.getBank()->getBalance(id_current);
+    int id_Owner=getOwner()->getId();
     if(currentPlayer.getHand()->numberOfConstructedLandmarks()>=2) {
         int balance_current= g.getBank()->getBalance(currentPlayer.getId());
         if (balance_current >= getEarnedCoins()) { //le joueur qui doit payer a assez de coins pour payer
             cout << getOwner()->getName() << " recoit " << getEarnedCoins() << " de " << currentPlayer.getName() << " par " << getCardName() << endl;
+            g.getBank()->playerPaysPlayer(id_current, id_Owner, getEarnedCoins());
         } else {                                    //le joueur qui doit payer n'a pas assez de coins pour payer donc il donne ce qu'il a
             cout << getOwner()->getName() << " recoit uniquement " << balance_current << " de " << currentPlayer.getName() << " par " << getCardName() << " parce que ce joueur n'a pas assee pour payer entierement" << endl;
+            g.getBank()->playerPaysPlayer(id_current, id_Owner, balance_current);
         }
     }
     else{
@@ -846,20 +870,26 @@ void DemolitionCompany::launchEffect(Game& g, Player& currentPlayer) {
     //Demolish 1 of your built landmarks (flip it back over). When you do, get 8 coins from the bank (your turn only)"
     string choice;
     LandmarksNames val;
-    do {
-        cout << "Demolition Company est active. Quel monument voulez vous detruire ?" << endl;
-        ::fflush(stdin);
-        getline(cin,choice);
-        EnumParser<LandmarksNames> fieldTypeParser;
-        val = fieldTypeParser.ParseSomeEnum(choice);
-    } while (!getOwner()->hasLandmark(val));
-    Landmark* land_;
-    for (auto Land : getOwner()->getHand()->getLandmarks()){
-        if (Land.first == val)
-            land_ = Land.second;
+    if (getOwner()->getHand()->numberOfConstructedLandmarks() > 0){
+        do {
+            cout << "Demolition Company est active. Quel monument voulez vous detruire ?" << endl;
+            ::fflush(stdin);
+            getline(cin,choice);
+            EnumParser<LandmarksNames> fieldTypeParser;
+            val = fieldTypeParser.ParseSomeEnum(choice);
+        } while (!getOwner()->hasLandmark(val));
+        Landmark* land_;
+        for (auto Land : getOwner()->getHand()->getLandmarks()){
+            if (Land.first == val)
+                land_ = Land.second;
+        }
+        land_->setDemolition();
+        g.getBank()->withdraw(getOwner()->getId(),getEarnedCoins());
     }
-    land_->setDemolition();
-    g.getBank()->withdraw(getOwner()->getId(),getEarnedCoins());
+    else {
+        cout << "Demolition Company est active. " << getOwner()->getName() << " ne possede pas de landmark donc Demolition Company ne peut pas faire son effet" <<endl;
+    }
+
 }
 
 class DemolitionCompany *DemolitionCompany::Clone() {
@@ -967,13 +997,14 @@ class Winery *Winery::Clone() {
 }
 
 void LoanOffice::launchEffect(Game& g, Player& currentPlayer) {
-    if (g.getBank()->getBalance(getOwner()->getId() == 1)){
+    if (g.getBank()->getBalance(getOwner()->getId())== 1){
         g.getBank()->deposit(getOwner()->getId(), 1);
+        cout << "je retire un\n";
     }
-    else if (g.getBank()->getBalance(getOwner()->getId() >= 2)){
+    else if (g.getBank()->getBalance(getOwner()->getId()) >= 2){
         g.getBank()->deposit(getOwner()->getId(), -getEarnedCoins());
-    }
-    ;
+        cout << "je retire deux\n";
+    };
 }
 
 class LoanOffice *LoanOffice::Clone() {
