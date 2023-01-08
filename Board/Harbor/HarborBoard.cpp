@@ -5,7 +5,7 @@
 #include <vector>
 #include <cstdlib>
 #include "HarborBoard.h"
-#include "Establishment.h"
+#include "../Card/Establishment/Establishment.h"
 
 void HarborBoard::fillBoard() {
     while(cards.size()<10){

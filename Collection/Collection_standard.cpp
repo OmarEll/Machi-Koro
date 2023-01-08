@@ -3,10 +3,11 @@
 //
 
 #include "Collection_standard.h"
-#include "Card.hpp"
-#include "Landmark.h"
-#include "../Establishment/Establishment.h"
-#include "Enums.hpp"
+#include "../Card/Card.hpp"
+//#include "Landmark.h"
+//#include "../Establishment/Establishment.h"
+//#include "Enums.hpp"
+
 
 
 Collection_standard::Collection_standard() {

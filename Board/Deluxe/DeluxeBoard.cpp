@@ -2,11 +2,11 @@
 // Created by sarah on 29/12/2022.
 //
 #include "DeluxeBoard.h"
+#include "../Board.h"
 #include <stack>
 #include <vector>
 #include <cstdlib>
-#include "Establishment.h"
-
+#include "../Card/Establishment/Establishment.h"
 /*
 DeluxeBoard::DeluxeBoard(Collection_deluxe& col) : Board(){
 

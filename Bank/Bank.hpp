@@ -2,7 +2,7 @@
 
 #include <vector>
 #include "Wallet.hpp"
-#include "Player.hpp"
+#include "../Player/Player.hpp"
 
 using namespace std;
 

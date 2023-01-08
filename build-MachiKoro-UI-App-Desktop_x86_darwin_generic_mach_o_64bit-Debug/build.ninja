@@ -1,0 +1,288 @@
+## This file contains all the build statements describing the
+# compilation DAG.
+
+# =============================================================================
+# Write statements declared in CMakeLists.txt:
+# 
+# Which is the root file.
+# =============================================================================
+
+# =============================================================================
+# Project: MachiKoro
+# Configurations: Debug
+# =============================================================================
+
+#############################################
+# Minimal version of Ninja required by this file
+
+ninja_required_version = 1.5
+
+
+#############################################
+# Set configuration variable for custom commands.
+
+CONFIGURATION = Debug
+# =============================================================================
+# Include auxiliary files.
+
+
+#############################################
+# Include rules file.
+
+include CMakeFiles/rules.ninja
+
+# =============================================================================
+
+#############################################
+# Logical path to working directory; prefix for absolute paths.
+
+cmake_ninja_workdir = /Users/omarelloumi/Desktop/MachiKoro/build-MachiKoro-UI-App-Desktop_x86_darwin_generic_mach_o_64bit-Debug/
+# =============================================================================
+# Object build statements for EXECUTABLE target MachiKoro
+
+
+#############################################
+# Order-only phony target for MachiKoro
+
+build cmake_object_order_depends_target_MachiKoro: phony || CMakeFiles/MachiKoro.dir
+
+build CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Bank/Bank.cpp.o: CXX_COMPILER__MachiKoro_Debug /Users/omarelloumi/Desktop/MachiKoro/Bank/Bank.cpp || cmake_object_order_depends_target_MachiKoro
+  DEP_FILE = CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Bank/Bank.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=13.0 -std=gnu++14
+  INCLUDES = -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Bank -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Board -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card/Establishment -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card/Landmark -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Dice -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Game -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Collection -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Player -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Player/Hand -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../UTILS
+  OBJECT_DIR = CMakeFiles/MachiKoro.dir
+  OBJECT_FILE_DIR = CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Bank
+
+build CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Board/Board.cpp.o: CXX_COMPILER__MachiKoro_Debug /Users/omarelloumi/Desktop/MachiKoro/Board/Board.cpp || cmake_object_order_depends_target_MachiKoro
+  DEP_FILE = CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Board/Board.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=13.0 -std=gnu++14
+  INCLUDES = -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Bank -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Board -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card/Establishment -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card/Landmark -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Dice -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Game -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Collection -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Player -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Player/Hand -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../UTILS
+  OBJECT_DIR = CMakeFiles/MachiKoro.dir
+  OBJECT_FILE_DIR = CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Board
+
+build CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Board/Deck/Deck.cpp.o: CXX_COMPILER__MachiKoro_Debug /Users/omarelloumi/Desktop/MachiKoro/Board/Deck/Deck.cpp || cmake_object_order_depends_target_MachiKoro
+  DEP_FILE = CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Board/Deck/Deck.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=13.0 -std=gnu++14
+  INCLUDES = -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Bank -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Board -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card/Establishment -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card/Landmark -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Dice -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Game -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Collection -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Player -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Player/Hand -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../UTILS
+  OBJECT_DIR = CMakeFiles/MachiKoro.dir
+  OBJECT_FILE_DIR = CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Board/Deck
+
+build CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Board/GreenValleyBoard.cpp.o: CXX_COMPILER__MachiKoro_Debug /Users/omarelloumi/Desktop/MachiKoro/Board/GreenValleyBoard.cpp || cmake_object_order_depends_target_MachiKoro
+  DEP_FILE = CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Board/GreenValleyBoard.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=13.0 -std=gnu++14
+  INCLUDES = -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Bank -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Board -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card/Establishment -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card/Landmark -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Dice -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Game -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Collection -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Player -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Player/Hand -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../UTILS
+  OBJECT_DIR = CMakeFiles/MachiKoro.dir
+  OBJECT_FILE_DIR = CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Board
+
+build CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Board/Standard/StandardBoard.cpp.o: CXX_COMPILER__MachiKoro_Debug /Users/omarelloumi/Desktop/MachiKoro/Board/Standard/StandardBoard.cpp || cmake_object_order_depends_target_MachiKoro
+  DEP_FILE = CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Board/Standard/StandardBoard.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=13.0 -std=gnu++14
+  INCLUDES = -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Bank -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Board -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card/Establishment -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card/Landmark -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Dice -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Game -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Collection -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Player -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Player/Hand -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../UTILS
+  OBJECT_DIR = CMakeFiles/MachiKoro.dir
+  OBJECT_FILE_DIR = CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Board/Standard
+
+build CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Card/Establishment/Establishment.cpp.o: CXX_COMPILER__MachiKoro_Debug /Users/omarelloumi/Desktop/MachiKoro/Card/Establishment/Establishment.cpp || cmake_object_order_depends_target_MachiKoro
+  DEP_FILE = CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Card/Establishment/Establishment.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=13.0 -std=gnu++14
+  INCLUDES = -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Bank -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Board -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card/Establishment -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card/Landmark -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Dice -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Game -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Collection -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Player -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Player/Hand -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../UTILS
+  OBJECT_DIR = CMakeFiles/MachiKoro.dir
+  OBJECT_FILE_DIR = CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Card/Establishment
+
+build CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Card/Landmark/Landmark.cpp.o: CXX_COMPILER__MachiKoro_Debug /Users/omarelloumi/Desktop/MachiKoro/Card/Landmark/Landmark.cpp || cmake_object_order_depends_target_MachiKoro
+  DEP_FILE = CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Card/Landmark/Landmark.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=13.0 -std=gnu++14
+  INCLUDES = -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Bank -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Board -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card/Establishment -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card/Landmark -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Dice -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Game -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Collection -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Player -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Player/Hand -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../UTILS
+  OBJECT_DIR = CMakeFiles/MachiKoro.dir
+  OBJECT_FILE_DIR = CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Card/Landmark
+
+build CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Dice/Dice.cpp.o: CXX_COMPILER__MachiKoro_Debug /Users/omarelloumi/Desktop/MachiKoro/Dice/Dice.cpp || cmake_object_order_depends_target_MachiKoro
+  DEP_FILE = CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Dice/Dice.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=13.0 -std=gnu++14
+  INCLUDES = -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Bank -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Board -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card/Establishment -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card/Landmark -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Dice -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Game -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Collection -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Player -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Player/Hand -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../UTILS
+  OBJECT_DIR = CMakeFiles/MachiKoro.dir
+  OBJECT_FILE_DIR = CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Dice
+
+build CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Game/DeluxeExpansion.cpp.o: CXX_COMPILER__MachiKoro_Debug /Users/omarelloumi/Desktop/MachiKoro/Game/DeluxeExpansion.cpp || cmake_object_order_depends_target_MachiKoro
+  DEP_FILE = CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Game/DeluxeExpansion.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=13.0 -std=gnu++14
+  INCLUDES = -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Bank -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Board -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card/Establishment -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card/Landmark -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Dice -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Game -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Collection -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Player -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Player/Hand -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../UTILS
+  OBJECT_DIR = CMakeFiles/MachiKoro.dir
+  OBJECT_FILE_DIR = CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Game
+
+build CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Game/Game.cpp.o: CXX_COMPILER__MachiKoro_Debug /Users/omarelloumi/Desktop/MachiKoro/Game/Game.cpp || cmake_object_order_depends_target_MachiKoro
+  DEP_FILE = CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Game/Game.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=13.0 -std=gnu++14
+  INCLUDES = -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Bank -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Board -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card/Establishment -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card/Landmark -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Dice -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Game -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Collection -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Player -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Player/Hand -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../UTILS
+  OBJECT_DIR = CMakeFiles/MachiKoro.dir
+  OBJECT_FILE_DIR = CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Game
+
+build CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Game/GreenValleyExpansion.cpp.o: CXX_COMPILER__MachiKoro_Debug /Users/omarelloumi/Desktop/MachiKoro/Game/GreenValleyExpansion.cpp || cmake_object_order_depends_target_MachiKoro
+  DEP_FILE = CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Game/GreenValleyExpansion.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=13.0 -std=gnu++14
+  INCLUDES = -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Bank -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Board -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card/Establishment -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card/Landmark -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Dice -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Game -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Collection -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Player -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Player/Hand -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../UTILS
+  OBJECT_DIR = CMakeFiles/MachiKoro.dir
+  OBJECT_FILE_DIR = CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Game
+
+build CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Game/HarborExpansion.cpp.o: CXX_COMPILER__MachiKoro_Debug /Users/omarelloumi/Desktop/MachiKoro/Game/HarborExpansion.cpp || cmake_object_order_depends_target_MachiKoro
+  DEP_FILE = CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Game/HarborExpansion.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=13.0 -std=gnu++14
+  INCLUDES = -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Bank -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Board -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card/Establishment -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card/Landmark -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Dice -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Game -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Collection -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Player -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Player/Hand -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../UTILS
+  OBJECT_DIR = CMakeFiles/MachiKoro.dir
+  OBJECT_FILE_DIR = CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Game
+
+build CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Game/StandardExpansion.cpp.o: CXX_COMPILER__MachiKoro_Debug /Users/omarelloumi/Desktop/MachiKoro/Game/StandardExpansion.cpp || cmake_object_order_depends_target_MachiKoro
+  DEP_FILE = CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Game/StandardExpansion.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=13.0 -std=gnu++14
+  INCLUDES = -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Bank -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Board -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card/Establishment -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card/Landmark -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Dice -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Game -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Collection -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Player -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Player/Hand -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../UTILS
+  OBJECT_DIR = CMakeFiles/MachiKoro.dir
+  OBJECT_FILE_DIR = CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Game
+
+build CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Player/Hand/Hand.cpp.o: CXX_COMPILER__MachiKoro_Debug /Users/omarelloumi/Desktop/MachiKoro/Player/Hand/Hand.cpp || cmake_object_order_depends_target_MachiKoro
+  DEP_FILE = CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Player/Hand/Hand.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=13.0 -std=gnu++14
+  INCLUDES = -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Bank -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Board -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card/Establishment -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card/Landmark -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Dice -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Game -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Collection -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Player -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Player/Hand -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../UTILS
+  OBJECT_DIR = CMakeFiles/MachiKoro.dir
+  OBJECT_FILE_DIR = CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Player/Hand
+
+build CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Player/IA/Strategy/Strategy.cpp.o: CXX_COMPILER__MachiKoro_Debug /Users/omarelloumi/Desktop/MachiKoro/Player/IA/Strategy/Strategy.cpp || cmake_object_order_depends_target_MachiKoro
+  DEP_FILE = CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Player/IA/Strategy/Strategy.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=13.0 -std=gnu++14
+  INCLUDES = -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Bank -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Board -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card/Establishment -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card/Landmark -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Dice -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Game -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Collection -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Player -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Player/Hand -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../UTILS
+  OBJECT_DIR = CMakeFiles/MachiKoro.dir
+  OBJECT_FILE_DIR = CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Player/IA/Strategy
+
+build CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Player/Human/Human.cpp.o: CXX_COMPILER__MachiKoro_Debug /Users/omarelloumi/Desktop/MachiKoro/Player/Human/Human.cpp || cmake_object_order_depends_target_MachiKoro
+  DEP_FILE = CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Player/Human/Human.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=13.0 -std=gnu++14
+  INCLUDES = -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Bank -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Board -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card/Establishment -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card/Landmark -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Dice -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Game -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Collection -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Player -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Player/Hand -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../UTILS
+  OBJECT_DIR = CMakeFiles/MachiKoro.dir
+  OBJECT_FILE_DIR = CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Player/Human
+
+build CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Player/Player.cpp.o: CXX_COMPILER__MachiKoro_Debug /Users/omarelloumi/Desktop/MachiKoro/Player/Player.cpp || cmake_object_order_depends_target_MachiKoro
+  DEP_FILE = CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Player/Player.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=13.0 -std=gnu++14
+  INCLUDES = -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Bank -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Board -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card/Establishment -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card/Landmark -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Dice -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Game -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Collection -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Player -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Player/Hand -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../UTILS
+  OBJECT_DIR = CMakeFiles/MachiKoro.dir
+  OBJECT_FILE_DIR = CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Player
+
+build CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/UTILS/Enums.cpp.o: CXX_COMPILER__MachiKoro_Debug /Users/omarelloumi/Desktop/MachiKoro/UTILS/Enums.cpp || cmake_object_order_depends_target_MachiKoro
+  DEP_FILE = CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/UTILS/Enums.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=13.0 -std=gnu++14
+  INCLUDES = -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Bank -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Board -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card/Establishment -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card/Landmark -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Dice -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Game -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Collection -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Player -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Player/Hand -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../UTILS
+  OBJECT_DIR = CMakeFiles/MachiKoro.dir
+  OBJECT_FILE_DIR = CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/UTILS
+
+build CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/main.cpp.o: CXX_COMPILER__MachiKoro_Debug /Users/omarelloumi/Desktop/MachiKoro/main.cpp || cmake_object_order_depends_target_MachiKoro
+  DEP_FILE = CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/main.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=13.0 -std=gnu++14
+  INCLUDES = -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Bank -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Board -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card/Establishment -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card/Landmark -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Dice -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Game -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Collection -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Player -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Player/Hand -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../UTILS
+  OBJECT_DIR = CMakeFiles/MachiKoro.dir
+  OBJECT_FILE_DIR = CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro
+
+build CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Collection/Collection_standard.cpp.o: CXX_COMPILER__MachiKoro_Debug /Users/omarelloumi/Desktop/MachiKoro/Collection/Collection_standard.cpp || cmake_object_order_depends_target_MachiKoro
+  DEP_FILE = CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Collection/Collection_standard.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=13.0 -std=gnu++14
+  INCLUDES = -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Bank -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Board -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card/Establishment -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card/Landmark -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Dice -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Game -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Collection -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Player -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Player/Hand -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../UTILS
+  OBJECT_DIR = CMakeFiles/MachiKoro.dir
+  OBJECT_FILE_DIR = CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Collection
+
+build CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Collection/Collection_harbor.cpp.o: CXX_COMPILER__MachiKoro_Debug /Users/omarelloumi/Desktop/MachiKoro/Collection/Collection_harbor.cpp || cmake_object_order_depends_target_MachiKoro
+  DEP_FILE = CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Collection/Collection_harbor.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=13.0 -std=gnu++14
+  INCLUDES = -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Bank -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Board -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card/Establishment -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card/Landmark -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Dice -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Game -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Collection -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Player -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Player/Hand -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../UTILS
+  OBJECT_DIR = CMakeFiles/MachiKoro.dir
+  OBJECT_FILE_DIR = CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Collection
+
+build CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Collection/Collection_GreenValley.cpp.o: CXX_COMPILER__MachiKoro_Debug /Users/omarelloumi/Desktop/MachiKoro/Collection/Collection_GreenValley.cpp || cmake_object_order_depends_target_MachiKoro
+  DEP_FILE = CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Collection/Collection_GreenValley.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=13.0 -std=gnu++14
+  INCLUDES = -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Bank -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Board -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card/Establishment -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Card/Landmark -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Dice -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Game -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Collection -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Player -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../Player/Hand -I/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/../UTILS
+  OBJECT_DIR = CMakeFiles/MachiKoro.dir
+  OBJECT_FILE_DIR = CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Collection
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target MachiKoro
+
+
+#############################################
+# Link the executable MachiKoro
+
+build MachiKoro: CXX_EXECUTABLE_LINKER__MachiKoro_Debug CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Bank/Bank.cpp.o CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Board/Board.cpp.o CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Board/Deck/Deck.cpp.o CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Board/GreenValleyBoard.cpp.o CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Board/Standard/StandardBoard.cpp.o CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Card/Establishment/Establishment.cpp.o CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Card/Landmark/Landmark.cpp.o CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Dice/Dice.cpp.o CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Game/DeluxeExpansion.cpp.o CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Game/Game.cpp.o CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Game/GreenValleyExpansion.cpp.o CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Game/HarborExpansion.cpp.o CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Game/StandardExpansion.cpp.o CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Player/Hand/Hand.cpp.o CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Player/IA/Strategy/Strategy.cpp.o CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Player/Human/Human.cpp.o CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Player/Player.cpp.o CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/UTILS/Enums.cpp.o CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/main.cpp.o CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Collection/Collection_standard.cpp.o CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Collection/Collection_harbor.cpp.o CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Collection/Collection_GreenValley.cpp.o
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=13.0
+  OBJECT_DIR = CMakeFiles/MachiKoro.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = MachiKoro
+  TARGET_PDB = MachiKoro.dbg
+
+
+#############################################
+# Utility command for edit_cache
+
+build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /Users/omarelloumi/Desktop/MachiKoro/build-MachiKoro-UI-App-Desktop_x86_darwin_generic_mach_o_64bit-Debug && /Users/omarelloumi/Qt2/Tools/CMake/CMake.app/Contents/bin/ccmake -S/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App -B/Users/omarelloumi/Desktop/MachiKoro/build-MachiKoro-UI-App-Desktop_x86_darwin_generic_mach_o_64bit-Debug
+  DESC = Running CMake cache editor...
+  pool = console
+  restat = 1
+
+build edit_cache: phony CMakeFiles/edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /Users/omarelloumi/Desktop/MachiKoro/build-MachiKoro-UI-App-Desktop_x86_darwin_generic_mach_o_64bit-Debug && /Users/omarelloumi/Qt2/Tools/CMake/CMake.app/Contents/bin/cmake --regenerate-during-build -S/Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App -B/Users/omarelloumi/Desktop/MachiKoro/build-MachiKoro-UI-App-Desktop_x86_darwin_generic_mach_o_64bit-Debug
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build rebuild_cache: phony CMakeFiles/rebuild_cache.util
+
+# =============================================================================
+# Target aliases.
+
+# =============================================================================
+# Folder targets.
+
+# =============================================================================
+
+#############################################
+# Folder: /Users/omarelloumi/Desktop/MachiKoro/build-MachiKoro-UI-App-Desktop_x86_darwin_generic_mach_o_64bit-Debug
+
+build all: phony MachiKoro
+
+# =============================================================================
+# Built-in targets
+
+
+#############################################
+# Re-run CMake if any of its inputs changed.
+
+build build.ninja: RERUN_CMAKE | /Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/CMakeLists.txt /Users/omarelloumi/Qt2/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeCInformation.cmake /Users/omarelloumi/Qt2/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeCXXInformation.cmake /Users/omarelloumi/Qt2/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeCommonLanguageInclude.cmake /Users/omarelloumi/Qt2/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeGenericSystem.cmake /Users/omarelloumi/Qt2/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeInitializeConfigs.cmake /Users/omarelloumi/Qt2/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeLanguageInformation.cmake /Users/omarelloumi/Qt2/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeSystemSpecificInformation.cmake /Users/omarelloumi/Qt2/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeSystemSpecificInitialize.cmake /Users/omarelloumi/Qt2/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/AppleClang-C.cmake /Users/omarelloumi/Qt2/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/AppleClang-CXX.cmake /Users/omarelloumi/Qt2/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/CMakeCommonCompilerMacros.cmake /Users/omarelloumi/Qt2/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/Clang.cmake /Users/omarelloumi/Qt2/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/GNU.cmake /Users/omarelloumi/Qt2/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Platform/Apple-AppleClang-C.cmake /Users/omarelloumi/Qt2/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Platform/Apple-AppleClang-CXX.cmake /Users/omarelloumi/Qt2/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Platform/Apple-Clang-C.cmake /Users/omarelloumi/Qt2/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Platform/Apple-Clang-CXX.cmake /Users/omarelloumi/Qt2/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Platform/Apple-Clang.cmake /Users/omarelloumi/Qt2/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Platform/Darwin-Initialize.cmake /Users/omarelloumi/Qt2/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Platform/Darwin.cmake /Users/omarelloumi/Qt2/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.24.2/CMakeCCompiler.cmake CMakeFiles/3.24.2/CMakeCXXCompiler.cmake CMakeFiles/3.24.2/CMakeSystem.cmake
+  pool = console
+
+
+#############################################
+# A missing CMake input file is not an error.
+
+build /Users/omarelloumi/Desktop/MachiKoro/MachiKoro-UI-App/CMakeLists.txt /Users/omarelloumi/Qt2/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeCInformation.cmake /Users/omarelloumi/Qt2/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeCXXInformation.cmake /Users/omarelloumi/Qt2/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeCommonLanguageInclude.cmake /Users/omarelloumi/Qt2/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeGenericSystem.cmake /Users/omarelloumi/Qt2/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeInitializeConfigs.cmake /Users/omarelloumi/Qt2/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeLanguageInformation.cmake /Users/omarelloumi/Qt2/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeSystemSpecificInformation.cmake /Users/omarelloumi/Qt2/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/CMakeSystemSpecificInitialize.cmake /Users/omarelloumi/Qt2/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/AppleClang-C.cmake /Users/omarelloumi/Qt2/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/AppleClang-CXX.cmake /Users/omarelloumi/Qt2/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/CMakeCommonCompilerMacros.cmake /Users/omarelloumi/Qt2/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/Clang.cmake /Users/omarelloumi/Qt2/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Compiler/GNU.cmake /Users/omarelloumi/Qt2/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Platform/Apple-AppleClang-C.cmake /Users/omarelloumi/Qt2/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Platform/Apple-AppleClang-CXX.cmake /Users/omarelloumi/Qt2/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Platform/Apple-Clang-C.cmake /Users/omarelloumi/Qt2/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Platform/Apple-Clang-CXX.cmake /Users/omarelloumi/Qt2/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Platform/Apple-Clang.cmake /Users/omarelloumi/Qt2/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Platform/Darwin-Initialize.cmake /Users/omarelloumi/Qt2/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Platform/Darwin.cmake /Users/omarelloumi/Qt2/Tools/CMake/CMake.app/Contents/share/cmake-3.24/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.24.2/CMakeCCompiler.cmake CMakeFiles/3.24.2/CMakeCXXCompiler.cmake CMakeFiles/3.24.2/CMakeSystem.cmake: phony
+
+
+#############################################
+# Clean all the built files.
+
+build clean: CLEAN
+
+
+#############################################
+# Print all primary targets available.
+
+build help: HELP
+
+
+#############################################
+# Make the all target the default.
+
+default all

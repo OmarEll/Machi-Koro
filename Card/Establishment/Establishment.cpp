@@ -1,12 +1,12 @@
 #include "Establishment.h"
-#include "../Player/Player.hpp"
-#include "../Game/Game.h"
+#include "../../Player/Player.hpp"
+#include "../../Game/Game.h"
 #include "../../UTILS/Enums.hpp"
-#include "../Dice/Dice.h"
-#include "GreenValleyBoard.h"
-#include "Bank.hpp"
-#include "Landmark.h"
-#include "Enums.hpp"
+//#include "../Dice/Dice.h"
+#include "../../Board/GreenValleyBoard.h"
+#include "../../Bank/Bank.hpp"
+//#include "Landmark.h"
+//#include "Enums.hpp"
 #include <ostream>
 #include <string>
 

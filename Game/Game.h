@@ -58,7 +58,7 @@ public:
     vector<Player*> getPlayers() const {return players;}
     virtual int dice_turn (Player& current_player);
     //Dice * GetDices(){return reinterpret_cast<Dice *>(dices);}
-    list <Dice> GetDices(){return dices; }
+    list <Dice> GetDices() {return dices; }
     vector<Establishment*> getEstablishments(){return establishments;}
     Establishment* getEstablishmentByName(string estName);
     vector<Landmark*> getLandmarks(){return landmarks;}

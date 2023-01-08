@@ -2,13 +2,11 @@
 // Created by mabur on 20/12/2022.
 //
 
-#ifndef MACHI_KORO_COLLECTION_STANDARD_H
-#define MACHI_KORO_COLLECTION_STANDARD_H
-
+#pragma once
 
 #include "../Collection/Collection_standard.h"
-#include "Establishment.h"
-#include "Landmark.h"
+#include "../Card/Establishment/Establishment.h"
+#include "../Card/Landmark/Landmark.h"
 
 class Collection_standard {
 protected:
@@ -21,6 +19,3 @@ public :
     vector<Landmark*> GetLandmark(){ return Landmark_Collection;}
 
 };
-
-
-#endif //MACHI_KORO_COLLECTION_STANDARD_H

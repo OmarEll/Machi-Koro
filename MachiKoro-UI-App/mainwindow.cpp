@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
+    count=0;
     ui->setupUi(this);
     initWindow();
 
@@ -129,5 +130,17 @@ void MainWindow::on_expansions_cb_currentTextChanged(const QString &arg1)
     ui->label_img->setScaledContents(true);
     ui->label_img->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
     ui->label_img->setMinimumSize(1, 1);
+}
+
+
+void MainWindow::on_pushButton_clicked()
+{
+    ui->tableOfNames->insertRow(ui->tableOfNames->rowCount());
+    QTableWidgetItem* itemName= new QTableWidgetItem("IA"+QString::fromStdString(to_string(count)));
+    QWidget* btn=createDeleteButton();
+    ui->tableOfNames->setItem( ui->tableOfNames->rowCount()-1, 0,itemName);
+    ui->tableOfNames->setCellWidget(ui->tableOfNames->rowCount()-1, 1, btn);
+    ui->nom_edt->clear();
+    count++;
 }
 

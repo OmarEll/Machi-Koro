@@ -3,8 +3,8 @@
 //
 
 #include "Collection_GreenValley.h"
-#include "Establishment.h"
-#include "Landmark.h"
+#include "../Card/Establishment/Establishment.h"
+#include "../Card/Landmark/Landmark.h"
 
 Collection_GreenValley::Collection_GreenValley() : Collection_standard(){
     Establishment_Collection.push_back(new class CornField());

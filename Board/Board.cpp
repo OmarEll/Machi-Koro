@@ -2,7 +2,7 @@
 // Created by mabur on 19/12/2022.
 //
 #include "Board.h"
-#include "Establishment.h"
+#include "../Card/Establishment/Establishment.h"
 #include "Standard/StandardBoard.h"
 #include "../Collection/Collection_harbor.h"
 #include "Harbor/HarborBoard.h"

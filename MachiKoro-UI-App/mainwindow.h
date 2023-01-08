@@ -14,6 +14,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
+    int count;
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
@@ -27,10 +28,14 @@ private slots:
     void on_next_btn_clicked();
 
     void initWindow();
+
     void on_expansions_cb_currentTextChanged(const QString &arg1);
+
+    void on_pushButton_clicked();
 
 private:
     Ui::MainWindow *ui;
     GameInterface *game;
+
 };
 #endif // MAINWINDOW_H

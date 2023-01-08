@@ -3,7 +3,7 @@
 //
 
 #include "Bank.hpp"
-#include "Player.hpp"
+#include "../Player/Player.hpp"
 
 Bank* Bank::uniqueBank = nullptr;
 

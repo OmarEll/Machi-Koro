@@ -19,6 +19,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2c74d936-4dcb-44a3-bf52-3de75f7e85aa" name="Changes" comment="MAJ Design Pattern Strategy on AI">
+<<<<<<< Updated upstream
       <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/MachiKoro.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
@@ -2638,6 +2639,10 @@
       <change afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/cmake-build-debug/build.ninja" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" afterDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MachiKoro-UI-App/CMakeLists.txt" afterDir="false" />
+>>>>>>> Stashed changes
       <change beforePath="$PROJECT_DIR$/Bank/Bank.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Bank/Bank.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Bank/Bank.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Bank/Bank.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Board/Board.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Board/Board.cpp" afterDir="false" />
@@ -2660,6 +2665,7 @@
       <change beforePath="$PROJECT_DIR$/Game/HarborExpansion.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/HarborExpansion.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/StandardExpansion.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/StandardExpansion.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MachiKoro-UI-App/MachiKoro-UI-App.pro" beforeDir="false" afterPath="$PROJECT_DIR$/MachiKoro-UI-App/MachiKoro-UI-App.pro" afterDir="false" />
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/MachiKoro-UI-App/cardImages/amusementPark2.BMP" beforeDir="false" afterPath="$PROJECT_DIR$/MachiKoro-UI-App/cardImages/amusement Park2.BMP" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MachiKoro-UI-App/cardImages/radioTower.BMP" beforeDir="false" afterPath="$PROJECT_DIR$/MachiKoro-UI-App/cardImages/radio Tower.BMP" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MachiKoro-UI-App/cardImages/radioTower2.BMP" beforeDir="false" afterPath="$PROJECT_DIR$/MachiKoro-UI-App/cardImages/radio Tower2.BMP" afterDir="false" />
@@ -2667,6 +2673,15 @@
       <change beforePath="$PROJECT_DIR$/MachiKoro-UI-App/cardImages/shoppingMall2.BMP" beforeDir="false" afterPath="$PROJECT_DIR$/MachiKoro-UI-App/cardImages/shopping Mall2.BMP" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MachiKoro-UI-App/cardImages/trainStation.BMP" beforeDir="false" afterPath="$PROJECT_DIR$/MachiKoro-UI-App/cardImages/train Station.BMP" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MachiKoro-UI-App/cardImages/trainStation2.BMP" beforeDir="false" afterPath="$PROJECT_DIR$/MachiKoro-UI-App/cardImages/train Station2.BMP" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/MachiKoro-UI-App/cardImages/amusementPark2.BMP" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MachiKoro-UI-App/cardImages/radioTower.BMP" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MachiKoro-UI-App/cardImages/radioTower2.BMP" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MachiKoro-UI-App/cardImages/shoppingMall.BMP" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MachiKoro-UI-App/cardImages/shoppingMall2.BMP" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MachiKoro-UI-App/cardImages/trainStation.BMP" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MachiKoro-UI-App/cardImages/trainStation2.BMP" beforeDir="false" />
+>>>>>>> Stashed changes
       <change beforePath="$PROJECT_DIR$/MachiKoro-UI-App/gameinterface.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/MachiKoro-UI-App/gameinterface.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MachiKoro-UI-App/gameinterface.h" beforeDir="false" afterPath="$PROJECT_DIR$/MachiKoro-UI-App/gameinterface.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MachiKoro-UI-App/gameinterface.ui" beforeDir="false" afterPath="$PROJECT_DIR$/MachiKoro-UI-App/gameinterface.ui" afterDir="false" />
@@ -2680,7 +2695,11 @@
       <change beforePath="$PROJECT_DIR$/Player/IA/Strategy/Strategy.h" beforeDir="false" afterPath="$PROJECT_DIR$/Player/IA/Strategy/Strategy.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Player/Player.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Player/Player.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UTILS/Enums.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/UTILS/Enums.hpp" afterDir="false" />
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/.qmake.stash" beforeDir="false" afterPath="$PROJECT_DIR$/build-appUI/.qmake.stash" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/.qmake.stash" beforeDir="false" />
+>>>>>>> Stashed changes
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/.qtc_clangd/.cache/clangd/index/Availability.h.2ED23327A8C5DAB4.idx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/.qtc_clangd/.cache/clangd/index/AvailabilityInternal.h.0A9CD88C6ABA56CF.idx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/.qtc_clangd/.cache/clangd/index/AvailabilityMacros.h.98C048329B6DD1E3.idx" beforeDir="false" />
@@ -2707,7 +2726,11 @@
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/.qtc_clangd/.cache/clangd/index/QApplication.957AE407F54F245A.idx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/.qtc_clangd/.cache/clangd/index/QComboBox.CB35BE35F161DF56.idx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/.qtc_clangd/.cache/clangd/index/QDialog.4993C7C62387F8FF.idx" beforeDir="false" />
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/.qtc_clangd/.cache/clangd/index/QDialog.9BD39F1E5291C318.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build-appUI/.qtc_clangd/.cache/clangd/index/QDialog.9BD39F1E5291C318.idx" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/.qtc_clangd/.cache/clangd/index/QDialog.9BD39F1E5291C318.idx" beforeDir="false" />
+>>>>>>> Stashed changes
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/.qtc_clangd/.cache/clangd/index/QDir.FC0FE757D714E296.idx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/.qtc_clangd/.cache/clangd/index/QFile.120E1FB06BC38D5F.idx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/.qtc_clangd/.cache/clangd/index/QGridLayout.430EB4398DA647D4.idx" beforeDir="false" />
@@ -3113,7 +3136,11 @@
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/.qtc_clangd/.cache/clangd/index/qdatastream.h.C670B4DBFABC157A.idx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/.qtc_clangd/.cache/clangd/index/qdatetime.h.EADB0B56592EA2B6.idx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/.qtc_clangd/.cache/clangd/index/qdebug.h.1E9C045E45C60DD1.idx" beforeDir="false" />
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/.qtc_clangd/.cache/clangd/index/qdialog.h.92C723CD0675A5DC.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build-appUI/.qtc_clangd/.cache/clangd/index/qdialog.h.92C723CD0675A5DC.idx" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/.qtc_clangd/.cache/clangd/index/qdialog.h.92C723CD0675A5DC.idx" beforeDir="false" />
+>>>>>>> Stashed changes
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/.qtc_clangd/.cache/clangd/index/qdialog.h.9D34C966B7633E92.idx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/.qtc_clangd/.cache/clangd/index/qdir.h.FA2F25C59600ED35.idx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/.qtc_clangd/.cache/clangd/index/qeventloop.h.55814EEC20D39F05.idx" beforeDir="false" />
@@ -3327,8 +3354,13 @@
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/.qtc_clangd/.cache/clangd/index/types.h.80590083FABF7E03.idx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/.qtc_clangd/.cache/clangd/index/ui_game.h.EB21015E13BBAFE4.idx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/.qtc_clangd/.cache/clangd/index/ui_gameinterface.h.C15E36346C67378D.idx" beforeDir="false" />
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/.qtc_clangd/.cache/clangd/index/ui_gameinterface.h.E3783A1E46248481.idx" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_02_01_2023_18_26_[Changes]/ui_gameinterface.h.E3783A1E46248481.idx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/.qtc_clangd/.cache/clangd/index/ui_mainwindow.h.19B04D988EED5AF8.idx" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_02_01_2023_18_26_[Changes]/ui_mainwindow.h.19B04D988EED5AF8.idx" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/.qtc_clangd/.cache/clangd/index/ui_gameinterface.h.E3783A1E46248481.idx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/.qtc_clangd/.cache/clangd/index/ui_mainwindow.h.19B04D988EED5AF8.idx" beforeDir="false" />
+>>>>>>> Stashed changes
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/.qtc_clangd/.cache/clangd/index/ui_mainwindow.h.A54074BAA1E1B491.idx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/.qtc_clangd/.cache/clangd/index/unary_function.h.33510F1E3A0131C5.idx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/.qtc_clangd/.cache/clangd/index/unary_negate.h.9B40A802B1EECDC6.idx" beforeDir="false" />
@@ -3354,15 +3386,24 @@
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/.qtc_clangd/.cache/clangd/index/wrap_iter.h.5C797B4BAFE55803.idx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/.qtc_clangd/.cache/clangd/index/xlocale.h.5A4B7692DD4181C4.idx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/.qtc_clangd/compile_commands.json" beforeDir="false" />
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/MachiKoro-UI-App.app/Contents/Info.plist" beforeDir="false" afterPath="$PROJECT_DIR$/build-appUI/MachiKoro-UI-App.app/Contents/Info.plist" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/MachiKoro-UI-App.app/Contents/MacOS/MachiKoro-UI-App" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/MachiKoro-UI-App.app/Contents/PkgInfo" beforeDir="false" afterPath="$PROJECT_DIR$/build-appUI/MachiKoro-UI-App.app/Contents/PkgInfo" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/MachiKoro-UI-App.app/Contents/Resources/empty.lproj" beforeDir="false" afterPath="$PROJECT_DIR$/MachiKoro-UI-App/CMakeFiles/CMakeError.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/build-appUI/Makefile" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/MachiKoro-UI-App.app/Contents/Info.plist" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/MachiKoro-UI-App.app/Contents/MacOS/MachiKoro-UI-App" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/MachiKoro-UI-App.app/Contents/PkgInfo" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/MachiKoro-UI-App.app/Contents/Resources/empty.lproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/Makefile" beforeDir="false" />
+>>>>>>> Stashed changes
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/Pictures/Deluxe.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/Pictures/Green Valley.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/Pictures/Harbor.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/Pictures/Standard.png" beforeDir="false" />
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/cardImages/amusementPark.BMP" beforeDir="false" afterPath="$PROJECT_DIR$/MachiKoro-UI-App/cardImages/amusement Park.BMP" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/cardImages/amusementPark2.BMP" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/cardImages/appleOrchard.BMP" beforeDir="false" afterPath="$PROJECT_DIR$/MachiKoro-UI-App/cardImages/Apple Orchard.BMP" afterDir="false" />
@@ -3375,6 +3416,20 @@
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/cardImages/farmersMarket.BMP" beforeDir="false" afterPath="$PROJECT_DIR$/MachiKoro-UI-App/cardImages/farmers Market.BMP" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/cardImages/forest.BMP" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/cardImages/furnitureFactory.BMP" beforeDir="false" afterPath="$PROJECT_DIR$/MachiKoro-UI-App/cardImages/furniture Factory.BMP" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/cardImages/amusementPark.BMP" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/cardImages/amusementPark2.BMP" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/cardImages/appleOrchard.BMP" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/cardImages/bakery.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/cardImages/businessCenter.BMP" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/cardImages/cafe.BMP" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/cardImages/cheeseFactory.BMP" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/cardImages/convenienceStore.BMP" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/cardImages/familyRestaurant.BMP" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/cardImages/farmersMarket.BMP" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/cardImages/forest.BMP" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/cardImages/furnitureFactory.BMP" beforeDir="false" />
+>>>>>>> Stashed changes
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/cardImages/machi.bmp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/cardImages/mine.BMP" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/cardImages/radioTower.BMP" beforeDir="false" />
@@ -3386,14 +3441,20 @@
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/cardImages/testbmp.bmp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/cardImages/trainStation.BMP" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/cardImages/trainStation2.BMP" beforeDir="false" />
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/cardImages/tvStation.BMP" beforeDir="false" afterPath="$PROJECT_DIR$/MachiKoro-UI-App/cardImages/Tv Station.BMP" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/cardImages/wheatField.BMP" beforeDir="false" afterPath="$PROJECT_DIR$/MachiKoro-UI-App/cardImages/Wheat Field.BMP" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/cardImages/tvStation.BMP" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/cardImages/wheatField.BMP" beforeDir="false" />
+>>>>>>> Stashed changes
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/gameinterface.o" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/main.o" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/mainwindow.o" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/moc_NamesWindow.cpp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/moc_gameinterface.cpp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/moc_gameinterface.o" beforeDir="false" />
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/moc_mainwindow.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/build-appUI/moc_mainwindow.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/moc_mainwindow.o" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/style.css" beforeDir="false" />
@@ -3401,6 +3462,15 @@
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/ui_game.h" beforeDir="false" afterPath="$PROJECT_DIR$/build-appUI/ui_game.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/ui_gameinterface.h" beforeDir="false" afterPath="$PROJECT_DIR$/build-appUI/ui_gameinterface.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/ui_mainwindow.h" beforeDir="false" afterPath="$PROJECT_DIR$/build-appUI/ui_mainwindow.h" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/moc_mainwindow.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/moc_mainwindow.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/ui_NamesWindow.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/ui_game.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/ui_gameinterface.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build-MachiKoro-UI-App-Qt_6_4_1_for_macOS-Debug/ui_mainwindow.h" beforeDir="false" />
+>>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -3456,6 +3526,14 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
+<<<<<<< Updated upstream
+=======
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+>>>>>>> Stashed changes
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -3490,7 +3568,10 @@
       <workItem from="1673118408169" duration="1402000" />
       <workItem from="1673165324352" duration="1810000" />
       <workItem from="1673179287023" duration="3274000" />
+<<<<<<< Updated upstream
       <workItem from="1673204641698" duration="4000" />
+=======
+>>>>>>> Stashed changes
     </task>
     <task id="LOCAL-00001" summary="MAJ Design Pattern Strategy on AI">
       <created>1671915492640</created>

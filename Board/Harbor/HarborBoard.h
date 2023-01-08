@@ -1,6 +1,6 @@
 #pragma once
-#include "Deck/Deck.h"
-#include "Board.h"
+#include "../Deck/Deck.h"
+#include "../Board.h"
 #include "../Collection/Collection_harbor.h"
 
 class HarborBoard : public Board {

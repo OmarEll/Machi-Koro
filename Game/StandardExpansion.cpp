@@ -6,7 +6,7 @@
 #include "../Bank/Bank.hpp"
 #include "../Card/Card.hpp"
 #include "StandardExpansion.h"
-#include "Human/Human.h"
+#include "../Player/Human/Human.h"
 
 StandardExpansion::StandardExpansion (vector<Player*> joueur, Collection_standard& col){
     players = joueur;
@@ -65,7 +65,7 @@ void StandardExpansion::DoTurn(Player &current_player) {
     for (auto pl : players) {
         cout << pl->getName() << " dispose de " << bank_game->getBalance(pl->getId()) << endl;
     }
-
+    //bank_game->playerPaysPlayer(current_player.getId(),players.at(2)->getId(),1);
     // Lance le dés
 cout << "\n\nC'est au tour de " << current_player.getName() << endl;
 for (auto car : current_player.getHand()->getEstablishments())

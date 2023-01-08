@@ -6,7 +6,7 @@
 #include "../Collection/Collection_harbor.h"
 #include "../Board/Harbor/HarborBoard.h"
 #include "../Bank/Bank.hpp"
-#include "Human/Human.h"
+#include "../Player/Human/Human.h"
 
 HarborExpansion::HarborExpansion(vector<Player*> joueur, Collection_standard& col){
     players = joueur;

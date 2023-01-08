@@ -3,7 +3,7 @@
 #include <vector>
 #include <stack>
 //-------------
-#include "../UTILS/Enums.hpp"
+#include "../../UTILS/Enums.hpp"
 #include "../Collection/Collection_standard.h"
 
 class  Establishment;
@@ -22,6 +22,7 @@ public:
     void addEstablishment(Establishment*, Player&);
     void removeEstablishment(Establishment*);
     void addLandmark(LandmarksNames name);
+    void addToListLandmark(Landmark*);
 
     /* GETTERS & SETTERS */
     vector<Establishment*> getColorCards(Colors);

@@ -4,8 +4,6 @@
 #include <iostream>
 #include "Hand/Hand.hpp"
 
-
-
 class Establishment;
 class Landmark;
 class Wallet;

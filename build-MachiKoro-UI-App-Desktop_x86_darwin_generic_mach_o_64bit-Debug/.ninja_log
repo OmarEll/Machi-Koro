@@ -1,4 +1,5 @@
 # ninja log v5
+<<<<<<< Updated upstream
 8	1197	1673180142010745294	CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Card/Landmark/Landmark.cpp.o	3399d4837095fb59
 8	1454	1673180142264030815	CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Board/Deck/Deck.cpp.o	a74b6bac8394a9a8
 11	1352	1673180142152013954	CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Game/DeluxeExpansion.cpp.o	4ed8c5238f3f92c5
@@ -23,3 +24,51 @@
 9	2888	1673180143696707012	CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Card/Establishment/Establishment.cpp.o	57a8863ff77c748a
 3218	4008	1673180144824626436	CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Collection/Collection_GreenValley.cpp.o	ae36d4fe9fc46fa8
 1454	3488	1673180144302145028	CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Player/Hand/Hand.cpp.o	9590cd2860fe9b85
+=======
+6	640	1672921870031865212	CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Card/Landmark/Landmark.cpp.o	3399d4837095fb59
+1	1040	1672739642974955031	CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Board/Deck/Deck.cpp.o	a74b6bac8394a9a8
+8	653	1672921870044016408	CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Game/DeluxeExpansion.cpp.o	4ed8c5238f3f92c5
+631	1563	1672921870955495591	CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Game/HarborExpansion.cpp.o	b4714f1a280f0838
+6	988	1672921870375610925	CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Board/GreenValleyBoard.cpp.o	c2f322fbb27b28f9
+640	1617	1672921871007199118	CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Game/StandardExpansion.cpp.o	679a441993e540da
+8	889	1672921870280437194	CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Board/Standard/StandardBoard.cpp.o	a0f1e1d01cd2be9e
+8	630	1672921870023526221	CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Collection/Collection.cpp.o	a50bd8770d0501be
+9	1022	1672921870413611800	CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Game/Game.cpp.o	ebc2ceaab6257ea3
+6	922	1672921870297917467	CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Bank/Bank.cpp.o	d0d8d420182b03ef
+922	1327	1672921870718885262	CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Player/IA/Strategy/Strategy.cpp.o	a98f9fc2c90b81de
+889	1422	1672921870808974207	CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Player/Human/Human.cpp.o	6ec1f1082a13ddf0
+8	631	1672921870024033929	CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Dice/Dice.cpp.o	6e581a7ba3ed7447
+630	1024	1672921870418197212	CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Game/GreenValleyExpansion.cpp.o	49e4829716074ba3
+990	1485	1672921870876779009	CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/UTILS/Enums.cpp.o	efd357ce4f15153a
+988	1638	1672921871031096342	CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Player/Player.cpp.o	36d89126454a209e
+6	990	1672921870381914376	CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Board/Board.cpp.o	6bf0a33e9665b05b
+1022	1585	1672921870974457403	CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/main.cpp.o	45e44d8ad90d3bba
+3511	3614	1672739645558245464	MachiKoro	899b8174c5fee214
+1025	1554	1672921870944556436	CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Collection/Collection_standard.cpp.o	8432c7c95ea3f80c
+1327	1687	1672921871080484539	CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Collection/Collection_harbor.cpp.o	e91f7c32dd0979c9
+8	1396	1672921870779190364	CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Card/Establishment/Establishment.cpp.o	57a8863ff77c748a
+1396	1709	1672921871102501182	CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Collection/Collection_GreenValley.cpp.o	ae36d4fe9fc46fa8
+653	1485	1672921870875131302	CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Player/Hand/Hand.cpp.o	9590cd2860fe9b85
+8	1197	1673180142010745294	CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Card/Landmark/Landmark.cpp.o	3399d4837095fb59
+9	1198	1673180142009852621	CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Dice/Dice.cpp.o	6e581a7ba3ed7447
+11	1352	1673180142152013954	CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Game/DeluxeExpansion.cpp.o	4ed8c5238f3f92c5
+8	1454	1673180142264030815	CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Board/Deck/Deck.cpp.o	a74b6bac8394a9a8
+8	1782	1673180142595885536	CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Bank/Bank.cpp.o	d0d8d420182b03ef
+8	1876	1673180142682067042	CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Board/GreenValleyBoard.cpp.o	c2f322fbb27b28f9
+9	1921	1673180142733692379	CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Board/Standard/StandardBoard.cpp.o	a0f1e1d01cd2be9e
+8	2039	1673180142852200163	CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Board/Board.cpp.o	6bf0a33e9665b05b
+12	2189	1673180143001095128	CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Game/Game.cpp.o	ebc2ceaab6257ea3
+9	2888	1673180143696707012	CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Card/Establishment/Establishment.cpp.o	57a8863ff77c748a
+1782	3105	1673180143918881430	CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Player/Human/Human.cpp.o	6ec1f1082a13ddf0
+2039	3218	1673180144030826042	CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/UTILS/Enums.cpp.o	efd357ce4f15153a
+1454	3488	1673180144302145028	CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Player/Hand/Hand.cpp.o	9590cd2860fe9b85
+1197	3557	1673180144368415138	CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Game/GreenValleyExpansion.cpp.o	49e4829716074ba3
+1198	3586	1673180144398681651	CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Game/HarborExpansion.cpp.o	b4714f1a280f0838
+2189	3597	1673180144407150255	CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/main.cpp.o	45e44d8ad90d3bba
+1922	3647	1673180144460231435	CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Player/Player.cpp.o	36d89126454a209e
+1352	3672	1673180144484742906	CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Game/StandardExpansion.cpp.o	679a441993e540da
+2888	3935	1673180144750047266	CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Collection/Collection_standard.cpp.o	8432c7c95ea3f80c
+3105	3985	1673180144801309599	CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Collection/Collection_harbor.cpp.o	e91f7c32dd0979c9
+3218	4008	1673180144824626436	CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/Collection/Collection_GreenValley.cpp.o	ae36d4fe9fc46fa8
+8	448	1673180219380868223	CMakeFiles/MachiKoro.dir/Users/omarelloumi/Desktop/MachiKoro/main.cpp.o	45e44d8ad90d3bba
+>>>>>>> Stashed changes

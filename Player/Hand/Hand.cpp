@@ -1,10 +1,7 @@
 #include "Hand.hpp"
-#include "Establishment.h"
-#include "Landmark.h"
-#include "../Collection/Collection_standard.h"
-#include "Card.hpp"
-#include "Player.hpp"
-
+#include "../../Card/Establishment/Establishment.h"
+#include "../../Card/Landmark/Landmark.h"
+#include "../Player.hpp"
 
 Hand::Hand(Collection_standard& g){
     for (auto est : g.GetLandmark()){
@@ -92,13 +89,16 @@ vector<Establishment*> Hand::getTypeCards(Types type){
     return cards;
 }
 
+void Hand::addToListLandmark(Landmark* card){
+    LandmarksNames cardName=card->getLandmarks();
+    landmarks[cardName]=card;
+};
 void Hand::addLandmark(LandmarksNames name) {
     for (auto Land : landmarks){
         if (name == Land.first){
             Land.second->setConstruction();
         }
     }
-
 }
 
 int Hand::numberOfConstructedLandmarks(){

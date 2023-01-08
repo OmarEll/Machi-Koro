@@ -1,6 +1,4 @@
-//
-// Created by mabur on 02/12/2022.
-//
+
 #pragma once
 
 #include "Game.h"
@@ -8,12 +6,12 @@
 
 class DeluxeExpansion : public Game{
 public:
-    DeluxeExpansion(Collection_deluxe&);
+    DeluxeExpansion(Collection_deluxe&){};
     ~DeluxeExpansion(){};
-    void DoTurn(Player& current_player) override;
-    void Do_Game() override;
-    void initGame() override;
-    int dice_turn (Player& current_player) override;
+    void DoTurn(Player& current_player) override{};
+    void Do_Game() override{};
+    void initGame() override{};
+    int dice_turn (Player& current_player) override{ return 0;};
 
 };
 

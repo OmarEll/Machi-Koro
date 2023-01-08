@@ -1,14 +1,14 @@
 //
 // Created by mabur on 02/12/2022.
 //
-#include "Card.hpp"
+#include "../Card/Card.hpp"
 #include "Game.h"
-#include "Establishment/Establishment.h"
-#include "Landmark/Landmark.h"
-#include "Enums.hpp"
-#include "Player.hpp"
-#include "Board.h"
-#include "Bank.hpp"
+#include "../Card/Establishment/Establishment.h"
+#include "../Card/Landmark/Landmark.h"
+#include "../UTILS/Enums.hpp"
+#include "../Player/Player.hpp"
+#include "../Board/Board.h"
+#include "../Bank/Bank.hpp"
 #include <iterator>
 #include "StandardExpansion.h"
 #include "../Collection/Collection_harbor.h"
@@ -18,7 +18,7 @@
 #include "HarborExpansion.h"
 #include "GreenValleyExpansion.h"
 #include "DeluxeExpansion.h"
-#include "Human/Human.h"
+#include "../Player/Human/Human.h"
 
 using namespace std;
 

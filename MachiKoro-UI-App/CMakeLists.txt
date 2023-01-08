@@ -1,0 +1,60 @@
+                                cmake_minimum_required(VERSION 3.23)
+                                project(MachiKoro)
+
+                                set(CMAKE_CXX_STANDARD 14)
+
+                                include_directories(../Bank)
+                                include_directories(../Board)
+                                include_directories(../Card)
+                                include_directories(../Card/Establishment)
+                                include_directories(../Card/Landmark)
+                                include_directories(../Dice)
+                                include_directories(../Game)
+                                include_directories(../Collection)
+                                include_directories(../Player)
+                                include_directories(../Player/Hand)
+                                include_directories(../UTILS)
+
+                                add_executable(MachiKoro
+                                        ../Bank/Bank.cpp
+                                        ../Bank/Bank.hpp
+                                        ../Bank/Wallet.hpp
+                                        ../Board/Board.cpp
+                                        ../Board/Board.h
+                                        ../Board/Deck/Deck.h
+                                        ../Board/Deck/Deck.cpp
+                                        ../Board/Deluxe/DeluxeBoard.h
+                                        ../Board/GreenValleyBoard.h
+                                        ../Board/GreenValleyBoard.cpp
+                                        ../Board/Harbor/HarborBoard.h
+                                        ../Board/Standard/StandardBoard.h
+                                        ../Board/Standard/StandardBoard.cpp
+                                        ../Card/Establishment/Establishment.cpp
+                                        ../Card/Establishment/Establishment.h
+                                        ../Card/Landmark/Landmark.cpp
+                                        ../Card/Landmark/Landmark.h
+                                        ../Card/Card.hpp
+                                        ../Dice/Dice.cpp
+                                        ../Dice/Dice.h
+                                        ../Game/DeluxeExpansion.cpp
+                                        ../Game/DeluxeExpansion.h
+                                        ../Game/Game.cpp
+                                        ../Game/Game.h
+                                        ../Game/GreenValleyExpansion.cpp
+                                        ../Game/GreenValleyExpansion.h
+                                        ../Game/HarborExpansion.cpp
+                                        ../Game/HarborExpansion.h
+                                        ../Game/StandardExpansion.cpp
+                                        ../Game/StandardExpansion.h
+                                        ../Player/Hand/Hand.cpp
+                                        ../Player/Hand/Hand.hpp
+                                        ../Player/IA/IA.hpp
+                                        ../Player/IA/Strategy/Strategy.cpp
+                                        ../Player/IA/Strategy/Strategy.h
+                                        ../Player/Human/Human.cpp
+                                        ../Player/Human/Human.h
+                                        ../Player/Player.hpp
+                                        ../Player/Player.cpp
+                                        ../UTILS/Enums.hpp
+                                        ../UTILS/Enums.cpp
+                                        ../main.cpp ../Collection/Collection_standard.cpp ../Collection/Collection_standard.h ../Collection/Collection_harbor.cpp ../Collection/Collection_harbor.h ../Collection/Collection_GreenValley.cpp ../Collection/Collection_GreenValley.h)
