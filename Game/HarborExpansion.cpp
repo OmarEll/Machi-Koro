@@ -241,6 +241,7 @@ void HarborExpansion::initGame() {
 
 int HarborExpansion::dice_turn(Player &current_player) {
     string choice;
+    dices.back().reset_dice();
     dices.front().rollDice();
     cout << " Le resultat du de donne " << dices.front().GetResult() << endl;
     if (current_player.hasLandmark(TrainStation)){

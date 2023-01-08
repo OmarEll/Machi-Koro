@@ -78,8 +78,8 @@ void GreenValleyExpansion::DoTurn(Player &current_player) {
     for (auto pl : players){
         cout << pl->getName()<< " dispose de "<< bank_game->getBalance(pl->getId()) << endl;
     }
-    dice = 5; // POUR TEST***************************************************************************************************************
-    //dice = dice_turn(current_player);
+    //dice = 5; // POUR TEST***************************************************************************************************************
+    dice = dice_turn(current_player);
     if (current_player.hasLandmark(RadioTower) != nullptr){
         cout << "Voulez vous relancer vos des ?" << endl;
         cin >> choice;
@@ -253,7 +253,7 @@ void GreenValleyExpansion::DoTurn(Player &current_player) {
 
 
     if (current_player.hasEstablishment(TechStartup) != nullptr && bank_game->getBalance(current_player.getId()) >= 1){
-        cout << "Voulez vous investir dans la startup ?" << endl;
+        cout << "Voulez vous investir dans la startup ? Il y a "<< current_player.hasEstablishment(TechStartup)->getEarnedCoins()<< " coins deja investis"  << endl;
         cin >> choice;
         if (choice == "oui"){
             Establishment * tc = current_player.hasEstablishment(TechStartup);
@@ -261,7 +261,7 @@ void GreenValleyExpansion::DoTurn(Player &current_player) {
             bank_game->deposit(current_player.getId(),1);
         }
         else{
-            cout << current_player.getName() << " choisis de ne pas investir " << endl;
+            cout << current_player.getName() << " choisit de ne pas investir " << endl;
         }
     }
 
