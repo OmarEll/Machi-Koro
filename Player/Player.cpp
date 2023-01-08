@@ -14,11 +14,12 @@ Landmark* Player::hasLandmark(LandmarksNames name) const{
 }
 
 Establishment* Player::hasEstablishment(EstablishmentsNames name)const {
-    Establishment* hasEst= nullptr;
-    for (auto it=hand.getEstablishments().begin(); it!= hand.getEstablishments().end(); it++){
-        if(it->first == name) hasEst=it->second.top();
+    //Establishment* hasEst= nullptr;
+    for(auto it :hand.getEstablishments() ){
+        if(it.first == name) return it.second.top();
     }
-    return (hasEst);
+    return nullptr;
+
 }
 
 Establishment* Player::hasEstablishment(string name)const {

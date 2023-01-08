@@ -9,12 +9,6 @@
 
 GreenValleyExpansion::GreenValleyExpansion(Collection_GreenValley &col) {
     vector<Player*> Gamer;
-    //POUR TEST
-    int nbJoueurs = 2;
-    Gamer.push_back(new Human("Julie",col));
-    Gamer.push_back(new Human("Sarah",col));
-
-    /*
     int nbJoueurs = 0;
     cout << "Quel est le nombre de joueurs ?\n";
     ::fflush(stdin);
@@ -25,7 +19,7 @@ GreenValleyExpansion::GreenValleyExpansion(Collection_GreenValley &col) {
         ::fflush(stdin);
         getline(cin,nomJoueur);
         Gamer.push_back(new Human(nomJoueur,col));
-    } */
+    }
     players = Gamer;
     establishments = col.GetEstablishment();
     expansionName = GreenValley;
@@ -78,8 +72,7 @@ void GreenValleyExpansion::DoTurn(Player &current_player) {
     for (auto pl : players){
         cout << pl->getName()<< " dispose de "<< bank_game->getBalance(pl->getId()) << endl;
     }
-    dice = 10; // POUR TEST***************************************************************************************************************
-    //dice = dice_turn(current_player);
+    dice = dice_turn(current_player);
     if (current_player.hasLandmark(RadioTower) != nullptr){
         cout << "Voulez vous relancer vos des ?" << endl;
         cin >> choice;
@@ -257,16 +250,22 @@ void GreenValleyExpansion::DoTurn(Player &current_player) {
     }
     else cout << "Vous n'avez pas d'argent pour faire une action" << endl;
 
-
-    if (current_player.hasEstablishment(TechStartup) != nullptr && bank_game->getBalance(current_player.getId()) >= 1){
-        cout << current_player.hasEstablishment(TechStartup)->getEarnedCoins() << endl;
-        cout << "Voulez vous investir dans la startup ? Il y a "<< current_player.hasEstablishment(TechStartup)->getEarnedCoins()<< " coins deja investis"  << endl;
+    cout<< "on est avant boucle"<<endl;
+    //cout << current_player.hasEstablishment(TechStartup)<<endl;
+    //cout << bank_game->getBalance(current_player.getId() )<<endl;
+    Establishment * tc=current_player.hasEstablishment(TechStartup);
+    if (current_player.hasEstablishment(TechStartup) != nullptr && (bank_game->getBalance(current_player.getId()) >= 1)){
+        cout<< "on est dans la boucle"<<endl;
+        cout << tc->getEarnedCoins() << endl;
+        cout << "Voulez vous investir dans la startup ? Il y a "<< tc->getEarnedCoins()<< " coins deja investis"  << endl;
         cin >> choice;
         if (choice == "oui"){
             cout << "on est la " <<endl;
-            Establishment * tc = current_player.hasEstablishment(TechStartup);
+            //Establishment * tc = current_player.hasEstablishment(TechStartup);
             cout << "on est ici " <<endl;
-            dynamic_cast<class TechStartup*> (tc)->oneCoinInvestment();
+            cout << tc->getCardName() <<endl;
+            tc->setNumberOfCoinsEarned(tc->getEarnedCoins()+1);
+            // dynamic_cast<class TechStartup*> (tc)->oneCoinInvestment();
             cout << "on est a cet endroit " <<endl;
             bank_game->deposit(current_player.getId(),1);
             cout << "on est a la fin de la boucle " <<endl;
@@ -313,27 +312,5 @@ void GreenValleyExpansion::initGame() {
             //joueur->getHand()->addEstablishment(baker->Clone(),*joueur);
             joueur->getHand()->addEstablishment(wheat->Clone(),*joueur);
     }
-
-    //POUR TEST
-    Establishment* wheat1= nullptr;
-
-    for (auto bak : establishments){
-        if (bak->getCardName_Enum() == TechStartup){
-            baker = bak;
-        }
-        if (bak->getCardName_Enum() == WheatField)
-            wheat = bak;
-        if (bak->getCardName_Enum() == FrenchRestaurant)
-            wheat1 = bak;
-    }
-    for(auto joueur : players){
-        joueur->getHand()->addEstablishment(baker->Clone(),*joueur);
-        joueur->getHand()->addEstablishment(wheat->Clone(),*joueur);
-        joueur->getHand()->addEstablishment(wheat1->Clone(),*joueur);
-        //joueur->getHand()->addLandmark(TrainStation);
-        //joueur->getHand()->addLandmark(AmusementPark);
-        joueur->getHand()->addLandmark(ShoppingMall);
-    }
-
 
 }
