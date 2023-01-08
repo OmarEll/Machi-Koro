@@ -7,6 +7,7 @@
 
 #include "Collection_harbor.h"
 #include "Collection_GreenValley.h"
+#include "Collection_standard.h"
 
 class Collection_deluxe : public Collection_harbor, public Collection_GreenValley{
 public:

@@ -7,7 +7,7 @@
 
 #include "Collection_standard.h"
 
-class Collection_harbor : public Collection_standard {
+class Collection_harbor : public virtual Collection_standard {
 public :
     Collection_harbor();
     ~Collection_harbor();

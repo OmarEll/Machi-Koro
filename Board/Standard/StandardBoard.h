@@ -11,5 +11,5 @@ class StandardBoard : public Board {
 
 public :
     StandardBoard(Collection_standard&);
-    ~StandardBoard() = default;   // a faire ou on laisse le par défaut?
+    ~StandardBoard() = default;
 };
