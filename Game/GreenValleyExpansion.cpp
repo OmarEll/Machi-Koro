@@ -78,8 +78,8 @@ void GreenValleyExpansion::DoTurn(Player &current_player) {
     for (auto pl : players){
         cout << pl->getName()<< " dispose de "<< bank_game->getBalance(pl->getId()) << endl;
     }
-    //dice = 5; // POUR TEST***************************************************************************************************************
-    dice = dice_turn(current_player);
+    dice = 5; // POUR TEST***************************************************************************************************************
+    //dice = dice_turn(current_player);
     if (current_player.hasLandmark(RadioTower) != nullptr){
         cout << "Voulez vous relancer vos des ?" << endl;
         cin >> choice;
@@ -112,20 +112,20 @@ void GreenValleyExpansion::DoTurn(Player &current_player) {
                     while (!te.empty()){
                         Establishment* red_card = te.top();
                         if (red_card->activate(dice) && !red_card->getRenovation()){
-                            int balance_current= getBank()->getBalance(current_player.getId());
-                            if (balance_current >= red_card->getEarnedCoins()) { //le joueur qui doit payer a assez de coins pour payer
-                                cout << red_card->getOwner()->getName() << " recoit " << red_card->getEarnedCoins() << " de " << current_player.getName() << " par " << red_card->getCardName() << endl;
-                            } else {                                    //le joueur qui doit payer n'a pas assez de coins pour payer donc il donne ce qu'il a
-                                cout << red_card->getOwner()->getName() << " recoit uniquement " << balance_current << " de " << current_player.getName() << " par " << red_card->getCardName() << " parce que ce joueur n'a pas assee pour payer entierement" << endl;
+                            if (red_card->getCardName_Enum() != FrenchRestaurant){
+                                int balance_current= getBank()->getBalance(current_player.getId());
+                                if (balance_current >= red_card->getEarnedCoins()) { //le joueur qui doit payer a assez de coins pour payer
+                                    cout << red_card->getOwner()->getName() << " recoit " << red_card->getEarnedCoins() << " de " << current_player.getName() << " par " << red_card->getCardName() << endl;
+                                } else {                                    //le joueur qui doit payer n'a pas assez de coins pour payer donc il donne ce qu'il a
+                                    cout << red_card->getOwner()->getName() << " recoit uniquement " << balance_current << " de " << current_player.getName() << " par " << red_card->getCardName() << " parce que ce joueur n'a pas assee pour payer entierement" << endl;
 
+                                }
                             }
-
-                                red_card->launchEffect(*this, current_player);
-
+                            red_card->launchEffect(*this, current_player);
                         }
                         else {
                             if (red_card->activate(dice) && red_card->getRenovation()){
-                                red_card->setRenovation(true);
+                                red_card->setRenovation(false);
                             }
                         }
                         te.pop();
@@ -149,10 +149,8 @@ void GreenValleyExpansion::DoTurn(Player &current_player) {
                 // Si le joueur est le current player et que sa cartes n'est pas rouge et doit être activé
                 if (current_player.getId() == all_players->getId() && cards->getColor() != RED && cards->activate(dice) && !cards->getRenovation()){
                     if (cards->getColor() != PURPLE && cards->getCardName_Enum() != FurnitureFactory && cards->getCardName_Enum() != CheeseFactory && cards->getCardName_Enum() != ProduceMarket && cards->getCardName_Enum() != CornField && cards->getCardName_Enum() != GeneralStore){
+                        cards->launchEffect(*this,current_player);
                         cout << current_player.getName() << " gagne " << cards->getEarnedCoins() << " coins grace a " << cards->getCardName()<< endl;
-
-                            cards->launchEffect(*this,current_player);
-
                     }
                     else {
 
@@ -162,7 +160,7 @@ void GreenValleyExpansion::DoTurn(Player &current_player) {
                 }
                 else {
                     if (cards->activate(dice) && cards->getRenovation() && current_player.getId() == all_players->getId() && cards->getColor() != RED){
-                        cards->setRenovation(true);
+                        cards->setRenovation(false);
                     }
                 }
 
@@ -177,7 +175,7 @@ void GreenValleyExpansion::DoTurn(Player &current_player) {
                 }
                 else {
                     if (cards->activate(dice) && cards->getRenovation() && current_player.getId() != all_players->getId() && cards->getColor() == BLUE){
-                        cards->setRenovation(true);
+                        cards->setRenovation(false);
                     }
                 }
                 tet.pop();
@@ -210,6 +208,10 @@ void GreenValleyExpansion::DoTurn(Player &current_player) {
                 ::fflush(stdin);
                 getline(cin, choice);
                 Establishment *tmp = board_Game->foundEstablishmentOnBoard(choice);
+                if (tmp == board_Game->foundEstablishmentOnBoard("Loan Office")){
+                    getBank()->withdraw(current_player.getId(),5);
+                    cout << "En achetant Loan Office, " << current_player.getName() << " gagne 5 coins" << endl;
+                }
                 if (tmp != nullptr && bank_game->getBalance(current_player.getId()) - tmp->getCost() >= 0) {
                     current_player.getHand()->addEstablishment(tmp, current_player);
                     bank_game->deposit(current_player.getId(), tmp->getCost());
@@ -233,17 +235,14 @@ void GreenValleyExpansion::DoTurn(Player &current_player) {
                     EnumParser<LandmarksNames> fieldTypeParser;
                     LandmarksNames val = fieldTypeParser.ParseSomeEnum(choice);
                     // On regarde si l'établissement existe et qu'il a l'argent nécessaire
-                    if (val == LoanOffice){
-                        getBank()->withdraw(current_player.getId(),5);
-                        cout << "En achetant Loan Office, " << current_player.getName() << " gagne 5 coins" << endl;
-                    }
+
                     if (!current_player.hasLandmark(val) &&
                         bank_game->getBalance(current_player.getId()) - GetCostLandmark(val) >= 0) {
                         current_player.getHand()->addLandmark(val);
                         bank_game->deposit(current_player.getId(), GetCostLandmark(val));
                         test = 1;
                     } else {
-                        cout << "Impossible : soit l'etablissement n'existe pas soit vous n'avez pas l'argent" << endl;
+                        cout << "Impossible : soit le landmark n'existe pas soit vous n'avez pas l'argent" << endl;
                     }
                 }
             } else
@@ -262,7 +261,7 @@ void GreenValleyExpansion::DoTurn(Player &current_player) {
             bank_game->deposit(current_player.getId(),1);
         }
         else{
-            cout << current_player.getName() << "choisis de ne pas investir " << endl;
+            cout << current_player.getName() << " choisis de ne pas investir " << endl;
         }
     }
 
@@ -305,18 +304,24 @@ void GreenValleyExpansion::initGame() {
     }
 
     //POUR TEST
+    Establishment* wheat1= nullptr;
+
     for (auto bak : establishments){
-        if (bak->getCardName_Enum() == LoanOffice){
+        if (bak->getCardName_Enum() == SodaBottlingPlant){
             baker = bak;
         }
-        if (bak->getCardName_Enum() == MovingCompany)
+        if (bak->getCardName_Enum() == Cafe)
             wheat = bak;
+        if (bak->getCardName_Enum() == FrenchRestaurant)
+            wheat1 = bak;
     }
     for(auto joueur : players){
         joueur->getHand()->addEstablishment(baker->Clone(),*joueur);
         joueur->getHand()->addEstablishment(wheat->Clone(),*joueur);
+        joueur->getHand()->addEstablishment(wheat1->Clone(),*joueur);
         joueur->getHand()->addLandmark(CityHall);
-        //joueur->getHand()->addLandmark(TrainStation);
+        joueur->getHand()->addLandmark(TrainStation);
+        joueur->getHand()->addLandmark(AmusementPark);
     }
 
 

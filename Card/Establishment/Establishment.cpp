@@ -786,11 +786,16 @@ class MembersOnlyClub *MembersOnlyClub::Clone() {
 
 void FrenchRestaurant::launchEffect(Game& g, Player& currentPlayer) {
     //If the player who rolled this number has 2 or more constructed landmarks, get 5 coins from the player who rolled the dice
-    if(numberOfLandmarks(getOwner())<=2) {
-        Establishment::launchEffect(g, currentPlayer);
+    if(currentPlayer.getHand()->numberOfConstructedLandmarks()>=2) {
+        int balance_current= g.getBank()->getBalance(currentPlayer.getId());
+        if (balance_current >= getEarnedCoins()) { //le joueur qui doit payer a assez de coins pour payer
+            cout << getOwner()->getName() << " recoit " << getEarnedCoins() << " de " << currentPlayer.getName() << " par " << getCardName() << endl;
+        } else {                                    //le joueur qui doit payer n'a pas assez de coins pour payer donc il donne ce qu'il a
+            cout << getOwner()->getName() << " recoit uniquement " << balance_current << " de " << currentPlayer.getName() << " par " << getCardName() << " parce que ce joueur n'a pas assee pour payer entierement" << endl;
+        }
     }
     else{
-        cout << getCardName() <<" ne permet pas de gagner de coins car " << getOwner()->getName() << " possedent au moins 2 landmarks" <<endl;
+        cout << getCardName() <<" ne permet pas de gagner de coins car " << currentPlayer.getName() << " possede moins de 2 landmarks" <<endl;
     }
 }
 
@@ -842,7 +847,7 @@ void DemolitionCompany::launchEffect(Game& g, Player& currentPlayer) {
     string choice;
     LandmarksNames val;
     do {
-        cout << "Quel monument voulez vous détruire ?" << endl;
+        cout << "Demolition Company est active. Quel monument voulez vous detruire ?" << endl;
         ::fflush(stdin);
         getline(cin,choice);
         EnumParser<LandmarksNames> fieldTypeParser;
@@ -935,11 +940,12 @@ void Winery::launchEffect(Game& g, Player& currentPlayer) {
     //Get 6 coins for each vineyard you own, on your turn only. Then, close this building for renovation.
     auto establishments=getOwner()->getHand()->getEstablishments();
     if (getOwner()->getHand()->getEstablishments().find(Vineyard)!=getOwner()->getHand()->getEstablishments().end()){
-        setNumberOfCoinsEarned(getOwner()->getHand()->getEstablishments()[Vineyard].size()); //Le nombre de coins gagné est le nombre de vineyard possédées
+        setNumberOfCoinsEarned(getOwner()->getHand()->getEstablishments()[Vineyard].size() * getEarnedCoins()); //Le nombre de coins gagné est le nombre de vineyard possédées
     }
     else {
         setNumberOfCoinsEarned(0); //Le joueur ne possède pas de winery
     }
+    cout << getEarnedCoins() << endl;
     g.getBank()->withdraw(getOwner()->getId(), getEarnedCoins());
     setRenovation(true);
 }
